@@ -1,0 +1,16 @@
+PODS:
+  - HotKey (0.1.1)
+
+DEPENDENCIES:
+  - HotKey
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - HotKey
+
+SPEC CHECKSUMS:
+  HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
+
+PODFILE CHECKSUM: 38a3cb76a2007cdf7514ed9f6dd387e990d2812d
+
+COCOAPODS: 1.7.5

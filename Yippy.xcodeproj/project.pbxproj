@@ -1,0 +1,733 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		347D59A522F43B94005F6EA8 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* CollectionViewItem.swift */; };
+		34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */; };
+		34ACFBC322EB0B11004E6E63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC222EB0B11004E6E63 /* Assets.xcassets */; };
+		34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC422EB0B11004E6E63 /* Main.storyboard */; };
+		34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBD122EB0B11004E6E63 /* YippyTests.swift */; };
+		34ACFBDD22EB0B11004E6E63 /* YippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */; };
+		34ACFBEB22EB0D6A004E6E63 /* QuotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBEA22EB0D6A004E6E63 /* QuotesViewController.swift */; };
+		34ACFBEF22EB119E004E6E63 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBEE22EB119E004E6E63 /* EventMonitor.swift */; };
+		34B2FD8D22F6FF970068D50A /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2FD8C22F6FF970068D50A /* CollectionViewItem.xib */; };
+		A5C99B740C04DDE460B8F2DA /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */; };
+		BF469DA2E1A5167F91B1378F /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */; };
+		BFCE078A2E64ECAB4558310F /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		34ACFBCE22EB0B11004E6E63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34ACFBB322EB0B0E004E6E63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34ACFBBA22EB0B0F004E6E63;
+			remoteInfo = Yippy;
+		};
+		34ACFBD922EB0B11004E6E63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34ACFBB322EB0B0E004E6E63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34ACFBBA22EB0B0F004E6E63;
+			remoteInfo = Yippy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		347D59A322F43B94005F6EA8 /* CollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
+		34ACFBBB22EB0B0F004E6E63 /* Yippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		34ACFBC222EB0B11004E6E63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		34ACFBC522EB0B11004E6E63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		34ACFBC722EB0B11004E6E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yippy.entitlements; sourceTree = "<group>"; };
+		34ACFBCD22EB0B11004E6E63 /* YippyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YippyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34ACFBD122EB0B11004E6E63 /* YippyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTests.swift; sourceTree = "<group>"; };
+		34ACFBD322EB0B11004E6E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34ACFBD822EB0B11004E6E63 /* YippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyUITests.swift; sourceTree = "<group>"; };
+		34ACFBDE22EB0B11004E6E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34ACFBEA22EB0D6A004E6E63 /* QuotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesViewController.swift; sourceTree = "<group>"; };
+		34ACFBEE22EB119E004E6E63 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		34B2FD8C22F6FF970068D50A /* CollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
+		4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
+		4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6D79BF5FC022B6E951278A1A /* Pods-YippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E87FF0379487D853FC8C52C /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
+		AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE5BC7136BE0BA33106A2C2D /* Pods-Yippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.debug.xcconfig"; sourceTree = "<group>"; };
+		C5A3D2D300A55B877885A168 /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34ACFBB822EB0B0F004E6E63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF469DA2E1A5167F91B1378F /* Pods_Yippy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34ACFBCA22EB0B11004E6E63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFCE078A2E64ECAB4558310F /* Pods_YippyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34ACFBD522EB0B11004E6E63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5C99B740C04DDE460B8F2DA /* Pods_YippyUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F6C79B4B534D194417375B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */,
+				4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */,
+				16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34ACFBB222EB0B0E004E6E63 = {
+			isa = PBXGroup;
+			children = (
+				34ACFBBD22EB0B0F004E6E63 /* Yippy */,
+				34ACFBD022EB0B11004E6E63 /* YippyTests */,
+				34ACFBDB22EB0B11004E6E63 /* YippyUITests */,
+				34ACFBBC22EB0B0F004E6E63 /* Products */,
+				E25B1BF673F15B06A7F5367C /* Pods */,
+				2F6C79B4B534D194417375B9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		34ACFBBC22EB0B0F004E6E63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34ACFBBB22EB0B0F004E6E63 /* Yippy.app */,
+				34ACFBCD22EB0B11004E6E63 /* YippyTests.xctest */,
+				34ACFBD822EB0B11004E6E63 /* YippyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34ACFBBD22EB0B0F004E6E63 /* Yippy */ = {
+			isa = PBXGroup;
+			children = (
+				34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */,
+				34ACFBEA22EB0D6A004E6E63 /* QuotesViewController.swift */,
+				34B2FD8C22F6FF970068D50A /* CollectionViewItem.xib */,
+				347D59A322F43B94005F6EA8 /* CollectionViewItem.swift */,
+				34ACFBEE22EB119E004E6E63 /* EventMonitor.swift */,
+				34ACFBC222EB0B11004E6E63 /* Assets.xcassets */,
+				34ACFBC422EB0B11004E6E63 /* Main.storyboard */,
+				34ACFBC722EB0B11004E6E63 /* Info.plist */,
+				34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */,
+			);
+			path = Yippy;
+			sourceTree = "<group>";
+		};
+		34ACFBD022EB0B11004E6E63 /* YippyTests */ = {
+			isa = PBXGroup;
+			children = (
+				34ACFBD122EB0B11004E6E63 /* YippyTests.swift */,
+				34ACFBD322EB0B11004E6E63 /* Info.plist */,
+			);
+			path = YippyTests;
+			sourceTree = "<group>";
+		};
+		34ACFBDB22EB0B11004E6E63 /* YippyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */,
+				34ACFBDE22EB0B11004E6E63 /* Info.plist */,
+			);
+			path = YippyUITests;
+			sourceTree = "<group>";
+		};
+		E25B1BF673F15B06A7F5367C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE5BC7136BE0BA33106A2C2D /* Pods-Yippy.debug.xcconfig */,
+				4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */,
+				6D79BF5FC022B6E951278A1A /* Pods-YippyTests.debug.xcconfig */,
+				8E87FF0379487D853FC8C52C /* Pods-YippyTests.release.xcconfig */,
+				C5A3D2D300A55B877885A168 /* Pods-YippyUITests.debug.xcconfig */,
+				5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34ACFBBA22EB0B0F004E6E63 /* Yippy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34ACFBE122EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "Yippy" */;
+			buildPhases = (
+				DCA536B0E60A36F2F95C1FC4 /* [CP] Check Pods Manifest.lock */,
+				34ACFBB722EB0B0F004E6E63 /* Sources */,
+				34ACFBB822EB0B0F004E6E63 /* Frameworks */,
+				34ACFBB922EB0B0F004E6E63 /* Resources */,
+				042254BF3306F66F9FE950EB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Yippy;
+			productName = Yippy;
+			productReference = 34ACFBBB22EB0B0F004E6E63 /* Yippy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		34ACFBCC22EB0B11004E6E63 /* YippyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34ACFBE422EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyTests" */;
+			buildPhases = (
+				09C9DB2E4127513BB5E58FF4 /* [CP] Check Pods Manifest.lock */,
+				34ACFBC922EB0B11004E6E63 /* Sources */,
+				34ACFBCA22EB0B11004E6E63 /* Frameworks */,
+				34ACFBCB22EB0B11004E6E63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34ACFBCF22EB0B11004E6E63 /* PBXTargetDependency */,
+			);
+			name = YippyTests;
+			productName = YippyTests;
+			productReference = 34ACFBCD22EB0B11004E6E63 /* YippyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		34ACFBD722EB0B11004E6E63 /* YippyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34ACFBE722EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyUITests" */;
+			buildPhases = (
+				DB53ADD3045336845337472B /* [CP] Check Pods Manifest.lock */,
+				34ACFBD422EB0B11004E6E63 /* Sources */,
+				34ACFBD522EB0B11004E6E63 /* Frameworks */,
+				34ACFBD622EB0B11004E6E63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34ACFBDA22EB0B11004E6E63 /* PBXTargetDependency */,
+			);
+			name = YippyUITests;
+			productName = YippyUITests;
+			productReference = 34ACFBD822EB0B11004E6E63 /* YippyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34ACFBB322EB0B0E004E6E63 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = MatthewDavidson;
+				TargetAttributes = {
+					34ACFBBA22EB0B0F004E6E63 = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					34ACFBCC22EB0B11004E6E63 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 34ACFBBA22EB0B0F004E6E63;
+					};
+					34ACFBD722EB0B11004E6E63 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 34ACFBBA22EB0B0F004E6E63;
+					};
+				};
+			};
+			buildConfigurationList = 34ACFBB622EB0B0E004E6E63 /* Build configuration list for PBXProject "Yippy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 34ACFBB222EB0B0E004E6E63;
+			productRefGroup = 34ACFBBC22EB0B0F004E6E63 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34ACFBBA22EB0B0F004E6E63 /* Yippy */,
+				34ACFBCC22EB0B11004E6E63 /* YippyTests */,
+				34ACFBD722EB0B11004E6E63 /* YippyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34ACFBB922EB0B0F004E6E63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34ACFBC322EB0B11004E6E63 /* Assets.xcassets in Resources */,
+				34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */,
+				34B2FD8D22F6FF970068D50A /* CollectionViewItem.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34ACFBCB22EB0B11004E6E63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34ACFBD622EB0B11004E6E63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		042254BF3306F66F9FE950EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		09C9DB2E4127513BB5E58FF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YippyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB53ADD3045336845337472B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YippyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCA536B0E60A36F2F95C1FC4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yippy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34ACFBB722EB0B0F004E6E63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34ACFBEF22EB119E004E6E63 /* EventMonitor.swift in Sources */,
+				347D59A522F43B94005F6EA8 /* CollectionViewItem.swift in Sources */,
+				34ACFBEB22EB0D6A004E6E63 /* QuotesViewController.swift in Sources */,
+				34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34ACFBC922EB0B11004E6E63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34ACFBD422EB0B11004E6E63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34ACFBDD22EB0B11004E6E63 /* YippyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		34ACFBCF22EB0B11004E6E63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34ACFBBA22EB0B0F004E6E63 /* Yippy */;
+			targetProxy = 34ACFBCE22EB0B11004E6E63 /* PBXContainerItemProxy */;
+		};
+		34ACFBDA22EB0B11004E6E63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34ACFBBA22EB0B0F004E6E63 /* Yippy */;
+			targetProxy = 34ACFBD922EB0B11004E6E63 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34ACFBC422EB0B11004E6E63 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34ACFBC522EB0B11004E6E63 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		34ACFBDF22EB0B11004E6E63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		34ACFBE022EB0B11004E6E63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		34ACFBE222EB0B11004E6E63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE5BC7136BE0BA33106A2C2D /* Pods-Yippy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				INFOPLIST_FILE = Yippy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		34ACFBE322EB0B11004E6E63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				INFOPLIST_FILE = Yippy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		34ACFBE522EB0B11004E6E63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D79BF5FC022B6E951278A1A /* Pods-YippyTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				INFOPLIST_FILE = YippyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+			};
+			name = Debug;
+		};
+		34ACFBE622EB0B11004E6E63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E87FF0379487D853FC8C52C /* Pods-YippyTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				INFOPLIST_FILE = YippyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+			};
+			name = Release;
+		};
+		34ACFBE822EB0B11004E6E63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5A3D2D300A55B877885A168 /* Pods-YippyUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				INFOPLIST_FILE = YippyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Yippy;
+			};
+			name = Debug;
+		};
+		34ACFBE922EB0B11004E6E63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				INFOPLIST_FILE = YippyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Yippy;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34ACFBB622EB0B0E004E6E63 /* Build configuration list for PBXProject "Yippy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34ACFBDF22EB0B11004E6E63 /* Debug */,
+				34ACFBE022EB0B11004E6E63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34ACFBE122EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "Yippy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34ACFBE222EB0B11004E6E63 /* Debug */,
+				34ACFBE322EB0B11004E6E63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34ACFBE422EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34ACFBE522EB0B11004E6E63 /* Debug */,
+				34ACFBE622EB0B11004E6E63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34ACFBE722EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34ACFBE822EB0B11004E6E63 /* Debug */,
+				34ACFBE922EB0B11004E6E63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34ACFBB322EB0B0E004E6E63 /* Project object */;
+}

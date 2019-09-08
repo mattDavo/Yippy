@@ -1,5 +1,5 @@
 //
-//  QuotesViewController.swift
+//  HistoryViewController.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 26/7/19.
@@ -8,12 +8,23 @@
 
 import Cocoa
 import HotKey
+import RxSwift
+import RxRelay
+import RxCocoa
 
-class QuotesViewController: NSViewController {
+class HistoryViewController: NSViewController {
     
     @IBOutlet var collectionView: NSCollectionView!
     
     let sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 10.0, right: 20.0)
+    
+    let disposeBag = DisposeBag()
+    
+    var enterHotKey: HotKey!
+    var escHotKey: HotKey!
+    var downHotKey: HotKey!
+    var upHotKey: HotKey!
+    var downLongHotKey: LongHotKey!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +45,7 @@ class QuotesViewController: NSViewController {
         downHotKey = HotKey(keyCombo: KeyCombo(key: .downArrow, modifiers: []))
         downHotKey.keyDownHandler = { [weak self] in
             if let self = self {
-                if selected < history.endIndex {
+                if selected < State.main.history.endIndex {
                     self.collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: selected + 1, section: 0)), scrollPosition: .nearestHorizontalEdge)
                     self.collectionView.deselectItems(at: Set(arrayLiteral: IndexPath(item: selected, section: 0)))
                     selected += 1
@@ -42,6 +53,7 @@ class QuotesViewController: NSViewController {
             }
         }
         downHotKey.isPaused = true
+        bindHotKeyToToggle(hotKey: downHotKey, disposeBag: disposeBag)
         
         upHotKey = HotKey(keyCombo: KeyCombo(key: .upArrow, modifiers: []))
         upHotKey.keyDownHandler = { [weak self] in
@@ -54,9 +66,41 @@ class QuotesViewController: NSViewController {
             }
         }
         upHotKey.isPaused = true
+        bindHotKeyToToggle(hotKey: upHotKey, disposeBag: disposeBag)
+        
+        escHotKey = HotKey(keyCombo: KeyCombo(key: .escape, modifiers: []))
+        escHotKey.keyDownHandler = { () in
+            State.main.isHistoryPanelShown.accept(false)
+        }
+        escHotKey.isPaused = true
+        bindHotKeyToToggle(hotKey: escHotKey, disposeBag: disposeBag)
+        
+        enterHotKey = HotKey(keyCombo: KeyCombo(key: .return, modifiers: []))
+        enterHotKey.keyDownHandler = { [weak self] in
+            if let _ = self {
+                State.main.isPasteboardPaused.accept(true)
+                State.main.isHistoryPanelShown.accept(false)
+                if selected != 0 {
+                    let pasteboard = NSPasteboard.general
+                    pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+                    pasteboard.setString(State.main.history[selected], forType: NSPasteboard.PasteboardType.string)
+                    State.main.history.remove(at: selected)
+                }
+                pasteEventMonitor.start()
+                send(9, useCommandFlag: true)
+            }
+            
+        }
+        enterHotKey.isPaused = true
+        bindHotKeyToToggle(hotKey: enterHotKey, disposeBag: disposeBag)
         
         downLongHotKey = LongHotKey(keyCombo: KeyCombo(key: .downArrow, modifiers: []))
         downLongHotKey.isPaused = true
+        State.main.isHistoryPanelShown
+            .subscribe(onNext: { [unowned self] in
+                self.downLongHotKey.isPaused = !$0
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear() {
@@ -66,12 +110,20 @@ class QuotesViewController: NSViewController {
         collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: 0, section: 0)), scrollPosition: .bottom)
         selected = 0
     }
+    
+    func frameWillChange() {
+        collectionView.reloadData()
+    }
+    
+    func frameDidChange() {
+        collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: selected, section: 0)), scrollPosition: .bottom)
+    }
 }
 
-extension QuotesViewController: NSCollectionViewDataSource {
+extension HistoryViewController: NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return history.count
+        return State.main.history.count
     }
     
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -79,14 +131,14 @@ extension QuotesViewController: NSCollectionViewDataSource {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CollectionViewItem.identifier), for: indexPath)
         guard let cell = item as? CollectionViewItem else {return item}
         
-        cell.textView.string = history[indexPath.item]
-        cell.textView.setFont(CollectionViewItem.font, range: NSRange(location: 0, length: history[indexPath.item].count))
+        cell.textView.string = State.main.history[indexPath.item]
+        cell.textView.setFont(CollectionViewItem.font, range: NSRange(location: 0, length: State.main.history[indexPath.item].count))
         
         return cell
     }
 }
 
-extension QuotesViewController: NSCollectionViewDelegate {
+extension HistoryViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let item = item as? CollectionViewItem {
@@ -101,14 +153,14 @@ extension QuotesViewController: NSCollectionViewDelegate {
     }
 }
 
-extension QuotesViewController: NSCollectionViewDelegateFlowLayout {
+extension HistoryViewController: NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
 
         let width = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
         
-        let attrStr = NSAttributedString(string: history[indexPath.item], attributes: [.font: CollectionViewItem.font])
+        let attrStr = NSAttributedString(string: State.main.history[indexPath.item], attributes: [.font: CollectionViewItem.font])
         
-        let bRect = attrStr.boundingRect(with: NSSize(width: width - CollectionViewItem.padding.left - CollectionViewItem.padding.right, height: maxHeight - CollectionViewItem.padding.top - CollectionViewItem.padding.bottom), options: .usesLineFragmentOrigin)
+        let bRect = attrStr.boundingRect(with: NSSize(width: width - CollectionViewItem.padding.left - CollectionViewItem.padding.right, height: Constants.panel.maxCellHeight - CollectionViewItem.padding.top - CollectionViewItem.padding.bottom), options: .usesLineFragmentOrigin)
         
         let height = bRect.height + CollectionViewItem.padding.top + CollectionViewItem.padding.bottom
 
@@ -116,12 +168,12 @@ extension QuotesViewController: NSCollectionViewDelegateFlowLayout {
     }
 }
 
-extension QuotesViewController {
+extension HistoryViewController {
     // MARK: Storyboard instantiation
-    static func freshController() -> QuotesViewController {
+    static func freshController() -> HistoryViewController {
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
         let identifier = NSStoryboard.SceneIdentifier(stringLiteral: "QuotesViewController")
-        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? QuotesViewController else {
+        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? HistoryViewController else {
             fatalError("Why cant i find QuotesViewController? - Check Main.storyboard")
         }
         return viewcontroller

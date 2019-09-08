@@ -8,99 +8,51 @@
 
 import Cocoa
 import HotKey
-
-var history = [String]()
-
-var downHotKey: HotKey!
-var upHotKey: HotKey!
-var downLongHotKey: LongHotKey!
+import RxSwift
+import RxRelay
+import RxCocoa
 
 var selected = 0
 
-let maxHeight: CGFloat = 200
+var pasteEventMonitor: EventMonitor!
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+    var statusItem: NSStatusItem!
     
     var window: NSWindow!
     
-    let menuWidth: CGFloat = 400
-    
     private var toggleHotKey: HotKey!
-    private var enterHotKey: HotKey!
-    private var escHotKey: HotKey!
     
     var timer: Timer!
     let pasteboard: NSPasteboard = .general
     var lastChangeCount: Int = 0
-    var pasteboardPaused = false
-    var pasteboardWasPaused = false
     
-    var pasteEventMonitor: EventMonitor!
+    var historyPanelController: HistoryPanelController!
     
-    var panel: NSPanel!
+    let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        guard let window = NSApplication.shared.windows.first else { return }
-        window.isOpaque = false
-        window.backgroundColor = .clear
-        if let button = statusItem.button {
-            button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
-        }
         
-        statusItem.menu = NSMenu()
-            .with(menuItem: NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        loadSettings()
+        loadState(fromSettings: Settings.main)
         
-        
-        pasteEventMonitor = EventMonitor(mask: [.keyDown]) { [weak self] event in
-            if let self = self {
-                self.pasteEventMonitor.stop()
-                self.pasteboardPaused = false
-            }
-        }
+        statusItem = createStatusItem()
+        statusItem.menu = createMenu(withSettings: Settings.main)
         
         toggleHotKey = HotKey(keyCombo: KeyCombo(key: .v, modifiers: [.command, .shift]))
-        toggleHotKey.keyDownHandler = { [weak self] in
-            if let strongSelf = self {
-                strongSelf.togglePopover()
-            }
+        toggleHotKey.keyDownHandler = { [] in
+            State.main.isHistoryPanelShown.accept(!State.main.isHistoryPanelShown.value)
         }
         
-        enterHotKey = HotKey(keyCombo: KeyCombo(key: .return, modifiers: []))
-        enterHotKey.keyDownHandler = { [weak self] in
-            if let self = self {
-                self.pasteboardPaused = true
-                if selected != 0 {
-                    let pasteboard = NSPasteboard.general
-                    pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-                    pasteboard.setString(history[selected], forType: NSPasteboard.PasteboardType.string)
-                    history.remove(at: selected)
-                }
-                self.pasteEventMonitor.start()
-                send(9, useCommandFlag: true)
-                self.closePopover()
-            }
-            
-        }
-        enterHotKey.isPaused = true
-        
-        escHotKey = HotKey(keyCombo: KeyCombo(key: .escape, modifiers: []))
-        escHotKey.keyDownHandler = { [weak self] in
-            if let self = self {
-                self.closePopover()
-            }
-        }
-        escHotKey.isPaused = true
-        
-        
-        if let h = UserDefaults.standard.stringArray(forKey: "history") {
-            history = h
+        pasteEventMonitor = EventMonitor(mask: [.keyDown]) { [] event in
+            pasteEventMonitor.stop()
+            State.main.isPasteboardPaused.accept(false)
         }
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (t) in
-            if !self.pasteboardPaused && self.lastChangeCount != self.pasteboard.changeCount  {
+            if !State.main.isPasteboardPaused.value && self.lastChangeCount != self.pasteboard.changeCount  {
                 self.lastChangeCount = self.pasteboard.changeCount
                 NotificationCenter.default.post(name: .NSPasteboardDidChange, object: self.pasteboard)
             }
@@ -108,64 +60,114 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(onPasteboardChanged), name: .NSPasteboardDidChange, object: nil)
         
-        panel = NSPanel(contentRect: NSRect.zero, styleMask: .borderless, backing: .buffered, defer: false)
-        panel.level = .floating
-        panel.isOpaque = false
-        panel.isMovable = false
-        panel.hidesOnDeactivate = false
-        panel.isMovableByWindowBackground = true
-        panel.contentViewController = QuotesViewController.freshController()
-        panel.backgroundColor = NSColor(calibratedHue: 0, saturation: 1.0, brightness: 0, alpha: 0.7)
-        panel.setFrame(NSMakeRect(NSScreen.main!.visibleFrame.maxX - menuWidth, 0, menuWidth, NSScreen.main!.visibleFrame.maxY), display: true)
-        panel.hasShadow = true
-        panel.backgroundColor = .clear
+        historyPanelController = createHistoryPanelController()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-        
     }
     
-    @objc
-    func onPasteboardChanged(_ notification: Notification) {
+    func createStatusItem() -> NSStatusItem {
+        let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+        
+        if let button = statusItem.button {
+            button.image = NSImage(named: NSImage.Name("yippyIcon"))
+        }
+        
+        return statusItem
+    }
+    
+    func createMenu(withSettings settings: Settings) -> NSMenu {
+        let menu = NSMenu()
+            .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V"))
+            .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
+                .with(submenu: NSMenu(title: "")
+                    .with(menuItem: NSMenuItem(title: "Left", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(state: settings.panelPosition == .left ? .on : .off)
+                        .with(tag: PanelPosition.left.rawValue)
+                    )
+                    .with(menuItem: NSMenuItem(title: "Right", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(state: settings.panelPosition == .right ? .on : .off)
+                        .with(tag: PanelPosition.right.rawValue)
+                    )
+                    .with(menuItem: NSMenuItem(title: "Top", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(state: settings.panelPosition == .top ? .on : .off)
+                        .with(tag: PanelPosition.top.rawValue)
+                    )
+                    .with(menuItem: NSMenuItem(title: "Bottom", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(state: settings.panelPosition == .bottom ? .on : .off)
+                        .with(tag: PanelPosition.bottom.rawValue)
+                    )
+            ))
+            .with(menuItem: NSMenuItem.separator())
+            .with(menuItem: NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
+        
+        State.main.panelPosition
+            .subscribe(onNext: {
+                [] in
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.left.rawValue)?.state = $0 == .left ? .on : .off
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.right.rawValue)?.state = $0 == .right ? .on : .off
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.top.rawValue)?.state = $0 == .top ? .on : .off
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.bottom.rawValue)?.state = $0 == .bottom ? .on : .off
+            })
+            .disposed(by: disposeBag)
+        
+        return menu
+    }
+    
+    func createHistoryPanelController() -> HistoryPanelController {
+        let historyPanelController = HistoryPanelController()
+        historyPanelController
+            .subscribeTo(toggle: State.main.isHistoryPanelShown)
+            .disposed(by: disposeBag)
+        historyPanelController
+            .subscribePositionTo(position: State.main.panelPosition)
+            .disposed(by: disposeBag)
+        return historyPanelController
+    }
+    
+    @objc func panelPositionSelected(_ sender: NSMenuItem) {
+        if let position = PanelPosition(rawValue: sender.tag) {
+            Settings.main.panelPosition = position
+            State.main.panelPosition.accept(position)
+        }
+        else {
+            print("TODO: WARNING")
+        }
+    }
+    
+    @objc func onPasteboardChanged(_ notification: Notification) {
         guard let pb = notification.object as? NSPasteboard else { return }
         guard let items = pb.pasteboardItems else { return }
         guard let item = items.first else { return } // TODO: handle multiple types and items
         guard let str = item.string(forType: .string) else { return }
         
-        if history.count == 0 || str != history[0] {
-            history.insert(str, at: 0)
+        if State.main.history.count == 0 || str != State.main.history[0] {
+            State.main.history.insert(str, at: 0)
         }
-        UserDefaults.standard.set(history, forKey: "history")
+        UserDefaults.standard.set(State.main.history, forKey: "history")
         
     }
 
     @objc func togglePopover() {
-        if panel.isVisible {
-            closePopover()
-        } else {
-            showPopover()
+        State.main.isHistoryPanelShown.accept(!State.main.isHistoryPanelShown.value)
+    }
+    
+    func loadState(fromSettings settings: Settings) {
+        // TODO: Should these be loaded?
+//        State.main.isHistoryPanelShown.accept()
+//        State.main.isPasteboardPaused.accept()
+        State.main.panelPosition.accept(settings.panelPosition)
+        
+        if let h = UserDefaults.standard.stringArray(forKey: "history") {
+            State.main.history = h
         }
     }
     
-    func showPopover() {
-        panel.makeKeyAndOrderFront(true)
-        
-        enterHotKey.isPaused = false
-        downHotKey.isPaused = false
-        upHotKey.isPaused = false
-        escHotKey.isPaused = false
-        downLongHotKey.isPaused = false
-    }
-    
-    func closePopover() {
-        panel.close()
-        
-        enterHotKey.isPaused = true
-        downHotKey.isPaused = true
-        upHotKey.isPaused = true
-        escHotKey.isPaused = true
-        downLongHotKey.isPaused = true
+    func loadSettings() {
+        if Settings.main == nil {
+            Settings.main = Settings()
+        }
     }
 }
 
@@ -197,20 +199,11 @@ func send(_ keyCode: CGKeyCode, useCommandFlag: Bool) {
     keyUpEvent?.post(tap: .cghidEventTap)
 }
 
-
-extension NSMenuItem {
-    
-    func with(submenu: NSMenu) -> NSMenuItem {
-        self.submenu = submenu
-        return self
-    }
-}
-
-
-extension NSMenu {
-    
-    func with(menuItem: NSMenuItem) -> NSMenu {
-        self.addItem(menuItem)
-        return self
-    }
+func bindHotKeyToToggle(hotKey: HotKey, disposeBag: DisposeBag) {
+    State.main.isHistoryPanelShown
+        .distinctUntilChanged()
+        .subscribe(onNext: { [] in
+            hotKey.isPaused = !$0
+        })
+        .disposed(by: disposeBag)
 }

@@ -680,10 +680,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Quotes View Controller-->
+        <!--History View Controller-->
         <scene sceneID="YK8-4f-MXM">
             <objects>
-                <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="QuotesViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="HistoryViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="light" state="active" id="EMV-Rg-IFx">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -692,7 +692,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qiX-g5-VvL">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="e19-Ic-rWq">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>

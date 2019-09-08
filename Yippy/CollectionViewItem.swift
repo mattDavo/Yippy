@@ -47,7 +47,7 @@ class CollectionViewItem: NSCollectionViewItem {
         textView.textContainer?.lineFragmentPadding = 0
         // Define the maximum size of the text container, so that the text renders correctly when there needs to be clipping.
         // Width can be any value
-        textView.textContainer?.size = NSSize(width: 200, height: maxHeight - CollectionViewItem.padding.top - CollectionViewItem.padding.bottom)
+        textView.textContainer?.size = NSSize(width: 200, height: Constants.panel.maxCellHeight - CollectionViewItem.padding.top - CollectionViewItem.padding.bottom)
         
         view.addConstraint(NSLayoutConstraint(item: textView!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: CollectionViewItem.padding.left))
         view.addConstraint(NSLayoutConstraint(item: textView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: CollectionViewItem.padding.top))

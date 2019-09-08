@@ -1,16 +1,44 @@
 PODS:
+  - Default (2.1.0)
   - HotKey (0.1.1)
+  - RxBlocking (5.0.0):
+    - RxSwift (~> 5)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - RxTest (5.0.0):
+    - RxSwift (~> 5)
 
 DEPENDENCIES:
+  - Default
   - HotKey
+  - RxBlocking (~> 5)
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
+  - RxTest (~> 5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Default
     - HotKey
+    - RxBlocking
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - RxTest
 
 SPEC CHECKSUMS:
+  Default: 6b79a17b84763dac64c2e49ea1198c00ce8c2631
   HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
+  RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
 
-PODFILE CHECKSUM: 38a3cb76a2007cdf7514ed9f6dd387e990d2812d
+PODFILE CHECKSUM: 69814af127a82041df6fc15f85746088530b1281
 
 COCOAPODS: 1.7.5

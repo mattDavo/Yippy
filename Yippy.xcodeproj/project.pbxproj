@@ -11,6 +11,8 @@
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
 		3488B14422FAEF810019E7DA /* HistoryPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14322FAEF810019E7DA /* HistoryPanelController.swift */; };
+		3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */; };
+		3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3982328EFB300BA8747 /* HelpViewController.swift */; };
 		34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */; };
 		34ACFBC322EB0B11004E6E63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC222EB0B11004E6E63 /* Assets.xcassets */; };
 		34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC422EB0B11004E6E63 /* Main.storyboard */; };
@@ -24,6 +26,12 @@
 		34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9422F98B1A0068D50A /* PanelPosition.swift */; };
 		34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */; };
 		34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */; };
+		34D018E5232A2B73006259E1 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018E4232A2B73006259E1 /* WaitingViewController.swift */; };
+		34D018E7232A2B7C006259E1 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018E6232A2B7C006259E1 /* InstructionsViewController.swift */; };
+		34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018E8232B4CFC006259E1 /* HelpWindowController.swift */; };
+		34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EA232B4D70006259E1 /* WelcomeWindowController.swift */; };
+		34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EC232B5139006259E1 /* AboutWindowController.swift */; };
+		34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EE232B514A006259E1 /* AboutViewController.swift */; };
 		A5C99B740C04DDE460B8F2DA /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */; };
 		BF469DA2E1A5167F91B1378F /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */; };
 		BFCE078A2E64ECAB4558310F /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */; };
@@ -52,6 +60,8 @@
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		3488B14322FAEF810019E7DA /* HistoryPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPanelController.swift; sourceTree = "<group>"; };
+		3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		3490D3982328EFB300BA8747 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		34ACFBBB22EB0B0F004E6E63 /* Yippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACFBC222EB0B11004E6E63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +82,12 @@
 		34B2FD9422F98B1A0068D50A /* PanelPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPosition.swift; sourceTree = "<group>"; };
 		34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenu+Functional.swift"; sourceTree = "<group>"; };
 		34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+Functional.swift"; sourceTree = "<group>"; };
+		34D018E4232A2B73006259E1 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
+		34D018E6232A2B7C006259E1 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		34D018E8232B4CFC006259E1 /* HelpWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpWindowController.swift; sourceTree = "<group>"; };
+		34D018EA232B4D70006259E1 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
+		34D018EC232B5139006259E1 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		34D018EE232B514A006259E1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
 		4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,9 +167,11 @@
 				34B2FD8C22F6FF970068D50A /* CollectionViewItem.xib */,
 				3488B13F22FAE8F30019E7DA /* Constants.swift */,
 				34ACFBEE22EB119E004E6E63 /* EventMonitor.swift */,
+				3490D3982328EFB300BA8747 /* HelpViewController.swift */,
 				3488B14322FAEF810019E7DA /* HistoryPanelController.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* HistoryViewController.swift */,
 				34ACFBC722EB0B11004E6E63 /* Info.plist */,
+				34D018E6232A2B7C006259E1 /* InstructionsViewController.swift */,
 				34ACFBC422EB0B11004E6E63 /* Main.storyboard */,
 				34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */,
 				34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */,
@@ -161,7 +179,13 @@
 				34B2FD9022F986AB0068D50A /* README.md */,
 				34B2FD9222F988980068D50A /* Settings.swift */,
 				3488B14122FAE9FA0019E7DA /* State.swift */,
+				34D018E4232A2B73006259E1 /* WaitingViewController.swift */,
+				3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */,
 				34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */,
+				34D018E8232B4CFC006259E1 /* HelpWindowController.swift */,
+				34D018EA232B4D70006259E1 /* WelcomeWindowController.swift */,
+				34D018EC232B5139006259E1 /* AboutWindowController.swift */,
+				34D018EE232B514A006259E1 /* AboutViewController.swift */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -463,12 +487,20 @@
 				34ACFBEF22EB119E004E6E63 /* EventMonitor.swift in Sources */,
 				34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */,
 				347D59A522F43B94005F6EA8 /* CollectionViewItem.swift in Sources */,
+				3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
 				34ACFBEB22EB0D6A004E6E63 /* HistoryViewController.swift in Sources */,
 				34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */,
 				34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */,
+				34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */,
+				34D018E7232A2B7C006259E1 /* InstructionsViewController.swift in Sources */,
+				34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */,
 				34B2FD9322F988980068D50A /* Settings.swift in Sources */,
+				34D018E5232A2B73006259E1 /* WaitingViewController.swift in Sources */,
+				3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */,
+				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
+				34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */,
 				3488B14422FAEF810019E7DA /* HistoryPanelController.swift in Sources */,
 				3488B14022FAE8F30019E7DA /* Constants.swift in Sources */,
 			);

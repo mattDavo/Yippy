@@ -19,5 +19,7 @@ struct State {
     
     var history = [String]()
     
+    var allowAccessTapped = false
+    
     static var main = State()
 }

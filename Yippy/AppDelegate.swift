@@ -32,9 +32,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var historyPanelController: HistoryPanelController!
     
     let disposeBag = DisposeBag()
+    
+    var welcomeWindow: NSWindow?
+    var helpWindowController: NSWindowController?
+    var aboutWindowController: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+        welcomeWindow = getWelcomeWindow()
         loadSettings()
         loadState(fromSettings: Settings.main)
         
@@ -60,6 +64,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(onPasteboardChanged), name: .NSPasteboardDidChange, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose), name: NSWindow.willCloseNotification, object: nil)
+        
         historyPanelController = createHistoryPanelController()
     }
 
@@ -71,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
         
         if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("yippyIcon"))
+            button.image = NSImage(named: NSImage.Name("YippyStatusBarIcon"))
         }
         
         return statusItem
@@ -79,6 +85,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func createMenu(withSettings settings: Settings) -> NSMenu {
         let menu = NSMenu()
+            .with(menuItem: NSMenuItem(title: "About Yippy", action: #selector(showAboutWindow), keyEquivalent: ""))
+            .with(menuItem: NSMenuItem(title: "Yippy Help", action: #selector(showHelpWindow), keyEquivalent: ""))
+            .with(menuItem: NSMenuItem.separator())
             .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V"))
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
                 .with(submenu: NSMenu(title: "")
@@ -169,6 +178,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Settings.main = Settings()
         }
     }
+    
+    @objc func windowWillClose(_ notification: Notification) {
+        if (welcomeWindow != nil) && notification.object is NSWindow && (notification.object as! NSWindow) == welcomeWindow {
+            if State.main.allowAccessTapped {
+                showHelpWindow()
+            }
+            else {
+                NSApplication.shared.terminate(self)
+            }
+        }
+    }
+    
+    @objc func showHelpWindow() {
+        // Create the help window controller if it hasn't been created yet
+        if helpWindowController == nil {
+            helpWindowController = HelpWindowController.createHelpWindowController()
+        }
+        
+        // If the window isn't visible, show it
+        if !(helpWindowController?.window!.isVisible)! {
+            helpWindowController!.showWindow(nil)
+        }
+        
+        // Bring the window to front
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    @objc func showAboutWindow() {
+        // Create the help window controller if it hasn't been created yet
+        if aboutWindowController == nil {
+            aboutWindowController = AboutWindowController.createAboutWindowController()
+        }
+        
+        // If the window isn't visible, show it
+        if !(aboutWindowController?.window!.isVisible)! {
+            aboutWindowController!.showWindow(nil)
+        }
+        
+        // Bring the window to front
+        NSApp.activate(ignoringOtherApps: true)
+    }
 }
 
 extension NSNotification.Name {
@@ -206,4 +256,29 @@ func bindHotKeyToToggle(hotKey: HotKey, disposeBag: DisposeBag) {
             hotKey.isPaused = !$0
         })
         .disposed(by: disposeBag)
+}
+
+func getWelcomeWindow() -> NSWindow? {
+    // If the user has enabled access we don't need to do anything
+    if isAccessEnabled(showPopup: false) {
+        return nil
+    }
+    
+    // Otherwise we should show a popup detailing why access is required.
+    let windowController = WelcomeWindowController.createWelcomeWindowController()
+    windowController.showWindow(nil)
+    
+    return windowController.window
+}
+
+// https://stackoverflow.com/questions/40144259/modify-accessibility-settings-on-macos-with-swift
+func isAccessEnabled(showPopup: Bool) -> Bool {
+    // get the value for accesibility
+    let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
+    // set the options: false means it wont ask
+    // true means it will popup and ask
+    let options = [checkOptPrompt: showPopup]
+    // translate into boolean value
+    let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
+    return accessEnabled
 }

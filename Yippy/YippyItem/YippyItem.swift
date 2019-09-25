@@ -1,5 +1,5 @@
 //
-//  CollectionViewItem.swift
+//  YippyItem.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 2/8/19.
@@ -8,7 +8,14 @@
 
 import Cocoa
 
-class CollectionViewItem: NSCollectionViewItem {
+class YippyItem: NSCollectionViewItem {
+    
+    class CustomTextView: NSTextView {
+        
+        override func mouseDown(with event: NSEvent) {
+            self.nextResponder?.mouseDown(with: event)
+        }
+    }
     
     static let attributes: [NSAttributedString.Key: Any] = [:]
     
@@ -16,7 +23,7 @@ class CollectionViewItem: NSCollectionViewItem {
     
     var textView: CustomTextView!
     
-    static let identifier = "CollectionViewItem"
+    static let identifier = "YippyItem"
     
     static let font = NSFont(name: "Roboto Mono Light for Powerline", size: 12)!
     
@@ -47,23 +54,16 @@ class CollectionViewItem: NSCollectionViewItem {
         textView.textContainer?.lineFragmentPadding = 0
         // Define the maximum size of the text container, so that the text renders correctly when there needs to be clipping.
         // Width can be any value
-        textView.textContainer?.size = NSSize(width: 200, height: Constants.panel.maxCellHeight - CollectionViewItem.padding.top - CollectionViewItem.padding.bottom)
+        textView.textContainer?.size = NSSize(width: 200, height: Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom)
         
-        view.addConstraint(NSLayoutConstraint(item: textView!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: CollectionViewItem.padding.left))
-        view.addConstraint(NSLayoutConstraint(item: textView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: CollectionViewItem.padding.top))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: textView, attribute: .trailing, multiplier: 1, constant: CollectionViewItem.padding.right))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: textView, attribute: .bottom, multiplier: 1, constant: CollectionViewItem.padding.bottom))
+        view.addConstraint(NSLayoutConstraint(item: textView!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: YippyItem.padding.left))
+        view.addConstraint(NSLayoutConstraint(item: textView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: YippyItem.padding.top))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: textView, attribute: .trailing, multiplier: 1, constant: YippyItem.padding.right))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: textView, attribute: .bottom, multiplier: 1, constant: YippyItem.padding.bottom))
     }
     
     func setHighlight() {
         view.layer?.backgroundColor = self.isSelected ? NSColor.systemBlue.withAlphaComponent(0.5).cgColor : NSColor.lightGray.withAlphaComponent(0.5).cgColor
-    }
-}
-
-class CustomTextView: NSTextView {
-    
-    override func mouseDown(with event: NSEvent) {
-        self.nextResponder?.mouseDown(with: event)
     }
 }
 

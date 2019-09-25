@@ -24,12 +24,12 @@ class HelpViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hasControl = isAccessEnabled(showPopup: false)
+        hasControl = Helper.isControlGranted(showPopup: false)
         waitingView.isHidden = hasControl
         instructionsView.isHidden = !hasControl
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (t) in
-            let new = isAccessEnabled(showPopup: false)
+            let new = Helper.isControlGranted(showPopup: false)
             if new != self.hasControl {
                 self.hasControl = new
                 self.waitingView.isHidden = self.hasControl

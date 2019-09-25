@@ -12,65 +12,37 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-var selected = 0
-
-var pasteEventMonitor: EventMonitor!
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var statusItem: NSStatusItem!
-    
-    var window: NSWindow!
-    
-    private var toggleHotKey: HotKey!
-    
-    var timer: Timer!
-    let pasteboard: NSPasteboard = .general
-    var lastChangeCount: Int = 0
-    
-    var historyPanelController: HistoryPanelController!
-    
     let disposeBag = DisposeBag()
-    
-    var welcomeWindow: NSWindow?
-    var helpWindowController: NSWindowController?
-    var aboutWindowController: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        welcomeWindow = getWelcomeWindow()
-        loadSettings()
         loadState(fromSettings: Settings.main)
         
-        statusItem = createStatusItem()
-        statusItem.menu = createMenu(withSettings: Settings.main)
-        
-        toggleHotKey = HotKey(keyCombo: KeyCombo(key: .v, modifiers: [.command, .shift]))
-        toggleHotKey.keyDownHandler = { [] in
-            State.main.isHistoryPanelShown.accept(!State.main.isHistoryPanelShown.value)
-        }
-        
-        pasteEventMonitor = EventMonitor(mask: [.keyDown]) { [] event in
-            pasteEventMonitor.stop()
-            State.main.isPasteboardPaused.accept(false)
-        }
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (t) in
-            if !State.main.isPasteboardPaused.value && self.lastChangeCount != self.pasteboard.changeCount  {
-                self.lastChangeCount = self.pasteboard.changeCount
-                NotificationCenter.default.post(name: .NSPasteboardDidChange, object: self.pasteboard)
-            }
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onPasteboardChanged), name: .NSPasteboardDidChange, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose), name: NSWindow.willCloseNotification, object: nil)
-        
-        historyPanelController = createHistoryPanelController()
+        showWelcomeIfNeeded()
+
+        setupHotKey()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    func showWelcomeIfNeeded() {
+        // If the user has enabled access we don't need to do anything
+        if Helper.isControlGranted(showPopup: false) {
+            return
+        }
+        
+        // Otherwise we should show a popup detailing why access is required.
+        State.main.welcomeWindowController?.showWindow(nil)
+    }
+    
+    func setupHotKey() {
+        YippyHotKeys.toggle.onDown {
+            State.main.isHistoryPanelShown.accept(!State.main.isHistoryPanelShown.value)
+        }
     }
     
     func createStatusItem() -> NSStatusItem {
@@ -89,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .with(menuItem: NSMenuItem(title: "Yippy Help", action: #selector(showHelpWindow), keyEquivalent: ""))
             .with(menuItem: NSMenuItem.separator())
             .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V"))
+            .with(menuItem: NSMenuItem(title: "TODO: Clear history", action: nil, keyEquivalent: ""))
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
                 .with(submenu: NSMenu(title: "")
                     .with(menuItem: NSMenuItem(title: "Left", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
@@ -124,38 +97,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return menu
     }
     
-    func createHistoryPanelController() -> HistoryPanelController {
-        let historyPanelController = HistoryPanelController()
-        historyPanelController
+    func createYippyWindowController() -> YippyWindowController {
+        let controller = YippyWindowController.createYippyWindowController()
+        controller
             .subscribeTo(toggle: State.main.isHistoryPanelShown)
             .disposed(by: disposeBag)
-        historyPanelController
+        controller
             .subscribePositionTo(position: State.main.panelPosition)
             .disposed(by: disposeBag)
-        return historyPanelController
+        return controller
     }
     
     @objc func panelPositionSelected(_ sender: NSMenuItem) {
         if let position = PanelPosition(rawValue: sender.tag) {
-            Settings.main.panelPosition = position
             State.main.panelPosition.accept(position)
         }
         else {
-            print("TODO: WARNING")
+            print("TODO: WARNING INVALID PANEL POSITION")
         }
-    }
-    
-    @objc func onPasteboardChanged(_ notification: Notification) {
-        guard let pb = notification.object as? NSPasteboard else { return }
-        guard let items = pb.pasteboardItems else { return }
-        guard let item = items.first else { return } // TODO: handle multiple types and items
-        guard let str = item.string(forType: .string) else { return }
-        
-        if State.main.history.count == 0 || str != State.main.history[0] {
-            State.main.history.insert(str, at: 0)
-        }
-        UserDefaults.standard.set(State.main.history, forKey: "history")
-        
     }
 
     @objc func togglePopover() {
@@ -163,42 +122,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func loadState(fromSettings settings: Settings) {
-        // TODO: Should these be loaded?
+        // TODO: Should this be loaded?
 //        State.main.isHistoryPanelShown.accept()
-//        State.main.isPasteboardPaused.accept()
+        // Load stored settings
         State.main.panelPosition.accept(settings.panelPosition)
+        State.main.pasteboardChangeCount.accept(settings.pasteboardChangeCount)
+        State.main.history.accept(settings.history)
         
-        if let h = UserDefaults.standard.stringArray(forKey: "history") {
-            State.main.history = h
-        }
-    }
-    
-    func loadSettings() {
-        if Settings.main == nil {
-            Settings.main = Settings()
-        }
-    }
-    
-    @objc func windowWillClose(_ notification: Notification) {
-        if (welcomeWindow != nil) && notification.object is NSWindow && (notification.object as! NSWindow) == welcomeWindow {
-            if State.main.allowAccessTapped {
-                showHelpWindow()
-            }
-            else {
-                NSApplication.shared.terminate(self)
-            }
-        }
+        // Map settings to state
+        settings.bindPanelPositionTo(state: State.main.panelPosition).disposed(by: disposeBag)
+        settings.bindPasteboardChangeCountTo(state: State.main.pasteboardChangeCount).disposed(by: disposeBag)
+        settings.bindHistoryTo(state: State.main.history).disposed(by: disposeBag)
+        
+        // Setup status item
+        State.main.statusItem = createStatusItem()
+        State.main.statusItem.menu = createMenu(withSettings: Settings.main)
+        
+        // Setup pasteboard monitor
+        State.main.pasteboardMonitor = PasteboardMonitor(pasteboard: NSPasteboard.general, changeCount: Settings.main.pasteboardChangeCount, delegate: self)
+        
+        // Create yippy window controller
+        State.main.yippyWindowController = createYippyWindowController()
     }
     
     @objc func showHelpWindow() {
-        // Create the help window controller if it hasn't been created yet
-        if helpWindowController == nil {
-            helpWindowController = HelpWindowController.createHelpWindowController()
-        }
-        
         // If the window isn't visible, show it
-        if !(helpWindowController?.window!.isVisible)! {
-            helpWindowController!.showWindow(nil)
+        if !(State.main.helpWindowController?.window!.isVisible)! {
+            State.main.helpWindowController?.showWindow(nil)
         }
         
         // Bring the window to front
@@ -206,14 +156,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func showAboutWindow() {
-        // Create the help window controller if it hasn't been created yet
-        if aboutWindowController == nil {
-            aboutWindowController = AboutWindowController.createAboutWindowController()
-        }
-        
         // If the window isn't visible, show it
-        if !(aboutWindowController?.window!.isVisible)! {
-            aboutWindowController!.showWindow(nil)
+        if !(State.main.aboutWindowController?.window!.isVisible)! {
+            State.main.aboutWindowController?.showWindow(nil)
         }
         
         // Bring the window to front
@@ -221,64 +166,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-extension NSNotification.Name {
-    public static let NSPasteboardDidChange: NSNotification.Name = .init(rawValue: "pasteboardDidChangeNotification")
-}
-
-
-func send(_ keyCode: CGKeyCode, useCommandFlag: Bool) {
-    let sourceRef = CGEventSource(stateID: .combinedSessionState)
+extension AppDelegate: PasteboardMonitorDelegate {
     
-    if sourceRef == nil {
-        NSLog("FakeKey: No event source")
-        return
+    func pasteboardDidChange(_ pasteboard: NSPasteboard) {
+        guard let items = pasteboard.pasteboardItems else { return }
+        guard let item = items.first else { return } // TODO: handle multiple types and items
+        guard let str = item.string(forType: .string) else { return }
+        
+        State.main.history.accept(State.main.history.value.with(insert: str, at: 0))
+        State.main.pasteboardChangeCount.accept(pasteboard.changeCount)
     }
-    
-    let keyDownEvent = CGEvent(keyboardEventSource: sourceRef,
-                               virtualKey: keyCode,
-                               keyDown: true)
-    if useCommandFlag {
-        keyDownEvent?.flags = .maskCommand
-    }
-    
-    let keyUpEvent = CGEvent(keyboardEventSource: sourceRef,
-                             virtualKey: keyCode,
-                             keyDown: false)
-    
-    keyDownEvent?.post(tap: .cghidEventTap)
-    keyUpEvent?.post(tap: .cghidEventTap)
-}
-
-func bindHotKeyToToggle(hotKey: HotKey, disposeBag: DisposeBag) {
-    State.main.isHistoryPanelShown
-        .distinctUntilChanged()
-        .subscribe(onNext: { [] in
-            hotKey.isPaused = !$0
-        })
-        .disposed(by: disposeBag)
-}
-
-func getWelcomeWindow() -> NSWindow? {
-    // If the user has enabled access we don't need to do anything
-    if isAccessEnabled(showPopup: false) {
-        return nil
-    }
-    
-    // Otherwise we should show a popup detailing why access is required.
-    let windowController = WelcomeWindowController.createWelcomeWindowController()
-    windowController.showWindow(nil)
-    
-    return windowController.window
-}
-
-// https://stackoverflow.com/questions/40144259/modify-accessibility-settings-on-macos-with-swift
-func isAccessEnabled(showPopup: Bool) -> Bool {
-    // get the value for accesibility
-    let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
-    // set the options: false means it wont ask
-    // true means it will popup and ask
-    let options = [checkOptPrompt: showPopup]
-    // translate into boolean value
-    let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
-    return accessEnabled
 }

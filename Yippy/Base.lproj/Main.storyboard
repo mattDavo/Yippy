@@ -680,10 +680,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--History View Controller-->
+        <!--Yippy View Controller-->
         <scene sceneID="YK8-4f-MXM">
             <objects>
-                <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="HistoryViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="YippyViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="light" state="active" id="EMV-Rg-IFx">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -735,6 +735,26 @@
                 <customObject id="lTq-R9-WUZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="231"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="i01-lF-j9v">
+            <objects>
+                <windowController storyboardIdentifier="YippyWindowController" id="6mG-8P-NBo" customClass="YippyWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5mc-W7-tKp" customClass="NSPanel">
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="6mG-8P-NBo" id="xOF-Va-Vob"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Maf-jn-umO" kind="relationship" relationship="window.shadowedContentViewController" id="Wd8-wZ-uDI"/>
+                    </connections>
+                </windowController>
+                <customObject id="LDI-gA-M3r" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-537" y="238"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="XZJ-Zi-dMP">
@@ -1032,10 +1052,10 @@ Website: https://yippy.mattdavo.com</string>
             </objects>
             <point key="canvasLocation" x="706" y="810"/>
         </scene>
-        <!--Instructions View Controller-->
+        <!--View Controller-->
         <scene sceneID="ZJx-lv-EXR">
             <objects>
-                <viewController id="Qra-K0-lj6" customClass="InstructionsViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qra-K0-lj6" sceneMemberID="viewController">
                     <view key="view" id="7iQ-JE-siG">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="435"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1052,13 +1072,13 @@ Website: https://yippy.mattdavo.com</string>
                                 <rect key="frame" x="18" y="20" width="532" height="238"/>
                                 <textFieldCell key="cell" alignment="center" id="wE9-ee-EOr">
                                     <font key="font" metaFont="system"/>
-                                    <mutableString key="title">Yippy is a simple tool for clipboard/pasteboard history. Yippy is best used by taking advantage of its keyboard controls.
+                                    <string key="title">Yippy is a simple tool for clipboard/pasteboard history. Yippy is best used by taking advantage of its keyboard controls.
 
 To launch the Yippy clipboard history window simply use the keyboard shortcut: Command (⌘) + Shift + v.
 
 The Yippy history window shows all the text items ever copied since Yippy has been running (in the background). The highlighted cell indicates that the item is selected and when return/enter is pressed, it will be saved as the current item to the clipboard and pasted into the current location of the cursor. Change the selected item either by clicking on another with the mouse or moving up and down with the arrow keys.
 
-The default position for the Yippy is to float on the right edge of the screen, however this can be customized in the menu bar by clicking on the Yippy icon in the status bar.</mutableString>
+The default position for the Yippy is to float on the right edge of the screen, however this can be customized in the menu bar by clicking on the Yippy icon in the status bar.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

@@ -9,7 +9,13 @@
 import Foundation
 import Cocoa
 
-class WelcomeWindowController: NSWindowController {
+class WelcomeWindowController: NSWindowController, NSWindowDelegate {
+    
+    override func windowDidLoad() {
+        super.windowDidLoad()
+        
+        window?.delegate = self
+    }
     
     static func createWelcomeWindowController() -> WelcomeWindowController {
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
@@ -17,6 +23,13 @@ class WelcomeWindowController: NSWindowController {
         guard let windowController = storyboard.instantiateController(withIdentifier: identifier) as? WelcomeWindowController else {
             fatalError("Failed to load WelcomeWindowController of type WelcomeWindowController from the Main storyboard.")
         }
+        
         return windowController
+    }
+    
+    func windowWillClose(_ notification: Notification) {
+        if !State.main.allowAccessTapped {
+            NSApplication.shared.terminate(self)
+        }
     }
 }

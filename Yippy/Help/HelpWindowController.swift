@@ -17,6 +17,7 @@ class HelpWindowController: NSWindowController {
         guard let windowController = storyboard.instantiateController(withIdentifier: identifier) as? HelpWindowController else {
             fatalError("Failed to load HelpWindowController of type HelpWindowController from the Main storyboard.")
         }
+        
         return windowController
     }
 }

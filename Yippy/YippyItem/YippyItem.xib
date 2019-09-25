@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <point key="canvasLocation" x="90" y="151"/>
         </customView>
-        <collectionViewItem id="TfS-hu-d1Y" customClass="CollectionViewItem" customModule="Yippy" customModuleProvider="target">
+        <collectionViewItem id="TfS-hu-d1Y" customClass="YippyItem" customModule="Yippy" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="c22-O7-iKe" id="NBS-FL-EBb"/>
             </connections>

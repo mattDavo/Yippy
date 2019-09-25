@@ -12,6 +12,6 @@ import Cocoa
 class WaitingViewController: NSViewController {
     
     @IBAction func allowAccessClicked(_ sender: Any) {
-        _ = isAccessEnabled(showPopup: true)
+        _ = Helper.isControlGranted(showPopup: true)
     }
 }

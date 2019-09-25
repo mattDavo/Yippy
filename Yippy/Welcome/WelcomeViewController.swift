@@ -14,7 +14,8 @@ class WelcomeViewController: NSViewController {
     
     @IBAction func allowAccessTapped(_ sender: Any) {
         State.main.allowAccessTapped = true
-        self.view.window?.close()
-        _ = isAccessEnabled(showPopup: true)
+        self.view.window?.performClose(sender)
+        State.main.helpWindowController?.showWindow(sender)
+        _ = Helper.isControlGranted(showPopup: true)
     }
 }

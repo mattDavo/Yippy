@@ -30,14 +30,21 @@ struct Settings: Codable, DefaultStorable {
         }
     }
     
+    // MARK: - Default
+    
+    struct `default` {
+        static var panelPosition = PanelPosition.right
+        static var pasteboardChangeCount: Int = -1
+        static var history = [String]()
+    }
     
     // MARK: - Settings
     
-    var panelPosition: PanelPosition = .right
+    var panelPosition = Settings.default.panelPosition
     
-    var pasteboardChangeCount: Int = -1
+    var pasteboardChangeCount = Settings.default.pasteboardChangeCount
     
-    var history = [String]()
+    var history = Settings.default.history
     
     
     // MARK: - State Binding Methods

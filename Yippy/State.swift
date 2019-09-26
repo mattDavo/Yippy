@@ -11,13 +11,14 @@ import RxRelay
 
 struct State {
     
-    // Singleton
+    // MARK: - Singleton
     static var main = State()
     
     // Enfore singleton
     private init() {}
     
-    // RxSwift
+    
+    // MARK: - RxSwift
     var isHistoryPanelShown = BehaviorRelay<Bool>(value: false)
     
     var panelPosition = BehaviorRelay<PanelPosition>(value: .right)
@@ -25,6 +26,9 @@ struct State {
     var pasteboardChangeCount = BehaviorRelay<Int>(value: -1)
     
     var history = BehaviorRelay<[String]>(value: [])
+    
+    
+    // MARK: - Non RxSwift
     
     // Global variables
     var allowAccessTapped = false
@@ -35,6 +39,9 @@ struct State {
     
     // Monitors the pasteboard, here it can be controlled in the future if needed.
     var pasteboardMonitor: PasteboardMonitor!
+    
+    
+    // MARK: - Window Controllers
     
     // Private NSWindowControllers
     private var _welcomeWC: WelcomeWindowController? = nil

@@ -20,6 +20,8 @@
 		341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */; };
 		341D9D40233AE8A1008A2BE6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D3F233AE8A1008A2BE6 /* Helper.swift */; };
 		341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D41233B48E4008A2BE6 /* Array+Functional.swift */; };
+		343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F4119233C8C14004DA324 /* SettingsTests.swift */; };
+		343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
 		347D59A522F43B94005F6EA8 /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyItem.swift */; };
@@ -81,6 +83,8 @@
 		341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindowController.swift; sourceTree = "<group>"; };
 		341D9D3F233AE8A1008A2BE6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		341D9D41233B48E4008A2BE6 /* Array+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Functional.swift"; sourceTree = "<group>"; };
+		343F4119233C8C14004DA324 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Blank.swift"; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorDelegate.swift; sourceTree = "<group>"; };
 		347D59A322F43B94005F6EA8 /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
@@ -199,8 +203,17 @@
 				34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */,
 				34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */,
 				341D9D41233B48E4008A2BE6 /* Array+Functional.swift */,
+				343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		343F4116233C5A6F004DA324 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				34B2FD9222F988980068D50A /* Settings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		34734C7D2330CB6A0056F855 /* PasteboardMonitor */ = {
@@ -276,7 +289,7 @@
 				34B2FD9422F98B1A0068D50A /* PanelPosition.swift */,
 				34734C7D2330CB6A0056F855 /* PasteboardMonitor */,
 				34B2FD9022F986AB0068D50A /* README.md */,
-				34B2FD9222F988980068D50A /* Settings.swift */,
+				343F4116233C5A6F004DA324 /* Settings */,
 				3488B14122FAE9FA0019E7DA /* State.swift */,
 				34D018E4232A2B73006259E1 /* WaitingViewController.swift */,
 				34734C832330CED20056F855 /* Welcome */,
@@ -295,6 +308,7 @@
 			children = (
 				34ACFBD122EB0B11004E6E63 /* YippyTests.swift */,
 				34ACFBD322EB0B11004E6E63 /* Info.plist */,
+				343F4119233C8C14004DA324 /* SettingsTests.swift */,
 			);
 			path = YippyTests;
 			sourceTree = "<group>";
@@ -613,6 +627,7 @@
 				341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
 				34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */,
+				343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */,
 				341D9D33233725DE008A2BE6 /* SpecialKeyChangedEventMonitor.swift in Sources */,
 				3488B14022FAE8F30019E7DA /* Constants.swift in Sources */,
 			);
@@ -622,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */,
 				34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

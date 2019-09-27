@@ -10,7 +10,7 @@ import Foundation
 
 class Helper {
     
-    static func press(keyCode: CGKeyCode, useCommandFlag: Bool) {
+    static func press(keyCode: CGKeyCode, flags: CGEventFlags) {
         let sourceRef = CGEventSource(stateID: .combinedSessionState)
         
         if sourceRef == nil {
@@ -21,9 +21,7 @@ class Helper {
         let keyDownEvent = CGEvent(keyboardEventSource: sourceRef,
                                    virtualKey: keyCode,
                                    keyDown: true)
-        if useCommandFlag {
-            keyDownEvent?.flags = .maskCommand
-        }
+        keyDownEvent?.flags = flags
         
         let keyUpEvent = CGEvent(keyboardEventSource: sourceRef,
                                  virtualKey: keyCode,
@@ -34,7 +32,7 @@ class Helper {
     }
     
     static func pressCommandV() {
-        Helper.press(keyCode: 9, useCommandFlag: true)
+        Helper.press(keyCode: 9, flags: .maskCommand)
     }
     
     // https://stackoverflow.com/questions/40144259/modify-accessibility-settings-on-macos-with-swift

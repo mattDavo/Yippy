@@ -20,6 +20,7 @@
 		341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */; };
 		341D9D40233AE8A1008A2BE6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D3F233AE8A1008A2BE6 /* Helper.swift */; };
 		341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D41233B48E4008A2BE6 /* Array+Functional.swift */; };
+		3426810D233D912E00BA226A /* PasteboardMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426810C233D912E00BA226A /* PasteboardMonitorTests.swift */; };
 		343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F4119233C8C14004DA324 /* SettingsTests.swift */; };
 		343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
@@ -83,6 +84,7 @@
 		341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindowController.swift; sourceTree = "<group>"; };
 		341D9D3F233AE8A1008A2BE6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		341D9D41233B48E4008A2BE6 /* Array+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Functional.swift"; sourceTree = "<group>"; };
+		3426810C233D912E00BA226A /* PasteboardMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorTests.swift; sourceTree = "<group>"; };
 		343F4119233C8C14004DA324 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Blank.swift"; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				34ACFBD122EB0B11004E6E63 /* YippyTests.swift */,
 				34ACFBD322EB0B11004E6E63 /* Info.plist */,
 				343F4119233C8C14004DA324 /* SettingsTests.swift */,
+				3426810C233D912E00BA226A /* PasteboardMonitorTests.swift */,
 			);
 			path = YippyTests;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3426810D233D912E00BA226A /* PasteboardMonitorTests.swift in Sources */,
 				343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */,
 				34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */,
 			);

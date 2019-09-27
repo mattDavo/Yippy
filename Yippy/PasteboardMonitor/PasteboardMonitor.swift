@@ -13,23 +13,26 @@ class PasteboardMonitor {
     
     let intervalInSeconds: TimeInterval = 0.05
     
+    private var timer: Timer!
+    private var lastChangeCount: Int!
+    
     var pasteboard: NSPasteboard!
-    var timer: Timer!
-    var lastChangeCount: Int!
     var delegate: PasteboardMonitorDelegate!
     
-    init(pasteboard: NSPasteboard, changeCount: Int = -1, delegate: PasteboardMonitorDelegate! = nil) {
+    init(pasteboard: NSPasteboard, changeCount: Int = -1, delegate: PasteboardMonitorDelegate) {
         self.pasteboard = pasteboard
         self.delegate = delegate
         self.lastChangeCount = changeCount
         
         self.timer = Timer.scheduledTimer(withTimeInterval: intervalInSeconds, repeats: true) { (t) in
-            if self.lastChangeCount != self.pasteboard.changeCount  {
-                self.lastChangeCount = self.pasteboard.changeCount
-                if let delegate = delegate {
-                    delegate.pasteboardDidChange(pasteboard)
-                }
-            }
+            self.checkIfPasteboardChanged()
+        }
+    }
+    
+    private func checkIfPasteboardChanged() {
+        if lastChangeCount != pasteboard.changeCount  {
+            lastChangeCount = self.pasteboard.changeCount
+            delegate.pasteboardDidChange(pasteboard)
         }
     }
 }

@@ -173,7 +173,7 @@ extension AppDelegate: PasteboardMonitorDelegate {
         guard let item = items.first else { return } // TODO: handle multiple types and items
         guard let str = item.string(forType: .string) else { return }
         
-        State.main.history.accept(State.main.history.value.with(insert: str, at: 0))
+        State.main.history.accept(State.main.history.value.with(element: str, insertedAt: 0))
         State.main.pasteboardChangeCount.accept(pasteboard.changeCount)
     }
 }

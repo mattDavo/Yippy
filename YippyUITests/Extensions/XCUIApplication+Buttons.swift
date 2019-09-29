@@ -29,4 +29,8 @@ extension XCUIApplication {
     var helpButton: XCUIElement {
         return self.menus.menuItems[Accessibility.identifiers.helpButton]
     }
+    
+    var aboutButton: XCUIElement {
+        return self.menus.menuItems[Accessibility.identifiers.aboutButton]
+    }
 }

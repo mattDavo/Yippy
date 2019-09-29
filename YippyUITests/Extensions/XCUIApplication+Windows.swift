@@ -18,6 +18,10 @@ extension XCUIApplication {
         return windows[Accessibility.identifiers.helpWindow]
     }
     
+    var aboutWindow: XCUIElement {
+        return windows[Accessibility.identifiers.aboutWindow]
+    }
+    
     var yippyWindow: XCUIElement {
         // Not a window because it's a floating panel
         return otherElements[Accessibility.identifiers.yippyWindow]

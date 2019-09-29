@@ -76,7 +76,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func createMenu(withSettings settings: Settings) -> NSMenu {
         let menu = NSMenu()
-            .with(menuItem: NSMenuItem(title: "About Yippy", action: #selector(showAboutWindow), keyEquivalent: ""))
+            .with(menuItem: NSMenuItem(title: "About Yippy", action: #selector(showAboutWindow), keyEquivalent: "")
+                .with(accessibilityIdentifier: Accessibility.identifiers.aboutButton)
+            )
             .with(menuItem: NSMenuItem(title: "Yippy Help", action: #selector(showHelpWindow), keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.helpButton)
             )

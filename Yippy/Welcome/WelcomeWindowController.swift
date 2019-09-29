@@ -15,6 +15,7 @@ class WelcomeWindowController: NSWindowController, NSWindowDelegate {
         super.windowDidLoad()
         
         window?.delegate = self
+        window?.setAccessibilityIdentifier(Accessibility.identifiers.welcomeWindow)
     }
     
     static func createWelcomeWindowController() -> WelcomeWindowController {

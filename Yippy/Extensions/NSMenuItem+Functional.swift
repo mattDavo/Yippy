@@ -24,4 +24,9 @@ extension NSMenuItem {
         self.tag = tag
         return self
     }
+    
+    func with(accessibilityIdentifier: String) -> NSMenuItem {
+        self.setAccessibilityIdentifier(accessibilityIdentifier)
+        return self
+    }
 }

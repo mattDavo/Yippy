@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        checkLaunchArgs()
         loadState(fromSettings: Settings.main)
         
         showWelcomeIfNeeded()
@@ -26,7 +27,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        checkTerminationArgs()
+    }
+    
+    func checkLaunchArgs() {
+        if CommandLine.arguments.contains("--uitesting") {
+            // Set the access control
+            Helper.accessControlHelper = AccessControlHelperMock()
+            
+            // Remove the settings
+            UITesting.oldUserDefaults = UserDefaults.standard.blank()
+        }
+    }
+    
+    func checkTerminationArgs() {
+        if CommandLine.arguments.contains("--uitesting") {
+            // Restore the settings
+            UserDefaults.standard.restore(from: UITesting.oldUserDefaults)
+        }
     }
     
     func showWelcomeIfNeeded() {
@@ -50,6 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let button = statusItem.button {
             button.image = NSImage(named: NSImage.Name("YippyStatusBarIcon"))
+            button.setAccessibilityIdentifier(Accessibility.identifiers.statusItemButton)
         }
         
         return statusItem
@@ -60,7 +79,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .with(menuItem: NSMenuItem(title: "About Yippy", action: #selector(showAboutWindow), keyEquivalent: ""))
             .with(menuItem: NSMenuItem(title: "Yippy Help", action: #selector(showHelpWindow), keyEquivalent: ""))
             .with(menuItem: NSMenuItem.separator())
-            .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V"))
+            .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V")
+                .with(accessibilityIdentifier: Accessibility.identifiers.toggleYippyWindowButton)
+            )
             .with(menuItem: NSMenuItem(title: "TODO: Clear history", action: nil, keyEquivalent: ""))
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
                 .with(submenu: NSMenu(title: "")
@@ -82,7 +103,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     )
             ))
             .with(menuItem: NSMenuItem.separator())
-            .with(menuItem: NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
+            .with(menuItem: NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+                .with(accessibilityIdentifier: Accessibility.identifiers.quitButton)
+        )
         
         State.main.panelPosition
             .subscribe(onNext: {

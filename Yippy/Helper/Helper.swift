@@ -10,6 +10,8 @@ import Foundation
 
 class Helper {
     
+    // MARK: - Key Press
+    
     static func press(keyCode: CGKeyCode, flags: CGEventFlags) {
         let sourceRef = CGEventSource(stateID: .combinedSessionState)
         
@@ -35,15 +37,22 @@ class Helper {
         Helper.press(keyCode: 9, flags: .maskCommand)
     }
     
-    // https://stackoverflow.com/questions/40144259/modify-accessibility-settings-on-macos-with-swift
+    // MARK: - Access Control
+    
+    static var accessControlHelper = AccessControlHelper()
+    
+    static func isControlGranted() -> Bool {
+        return Helper.accessControlHelper.isControlGranted()
+    }
+    
     static func isControlGranted(showPopup: Bool) -> Bool {
-        // get the value for accesibility
-        let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
-        // set the options: false means it wont ask
-        // true means it will popup and ask
-        let options = [checkOptPrompt: showPopup]
-        // translate into boolean value
-        let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
-        return accessEnabled
+        return Helper.accessControlHelper.isControlGranted(showPopup: showPopup)
     }
 }
+
+
+
+
+
+
+

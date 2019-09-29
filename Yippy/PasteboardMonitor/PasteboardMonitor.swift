@@ -24,6 +24,8 @@ class PasteboardMonitor {
         self.delegate = delegate
         self.lastChangeCount = changeCount
         
+        // TODO: Is it best to do a check straight away?
+        self.checkIfPasteboardChanged()
         self.timer = Timer.scheduledTimer(withTimeInterval: intervalInSeconds, repeats: true) { (t) in
             self.checkIfPasteboardChanged()
         }

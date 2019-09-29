@@ -19,11 +19,7 @@ class YippyHotKeyTests: XCTestCase {
         hotKey = HotKey(key: .a, modifiers: .none)
         yippyHotKey = YippyHotKey(hotKey: hotKey)
     }
-
-    override func tearDown() {
-        
-    }
-
+    
     func testKeyUp() {
         // 1. Given a handler registered to the hot key
         let keyUpHandlerCalled = expectation(description: "keyUpHandlerCalled")
@@ -91,14 +87,6 @@ class YippyHotKeyTests: XCTestCase {
         // 3. Then the handler should be called multiple times
         waitForExpectations(timeout: 1.1, handler: nil)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
 
 // MARK: - Partial Hot Key Mock

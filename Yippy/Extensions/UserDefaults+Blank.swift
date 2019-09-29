@@ -56,4 +56,26 @@ extension UserDefaults {
         
         self.setPersistentDomain(old, forName: name)
     }
+    
+    /**
+     Blanks a user defaults domain until it is restored again.
+     
+     - Returns: A dictionary of the original content of the user defaults. This should be passed to `restore(:)` to restore the user defaults back to normal.
+     - Parameter name: The name of the domain whose contents you want to set.
+     */
+    func blank(forName name: String) -> [String: Any] {
+        let old = self.persistentDomain(forName: name)
+        self.removePersistentDomain(forName: name)
+        return old ?? [:]
+    }
+    
+    /**
+     Restores a user defaults persistent domain of given name from a given dictionary.
+     
+     - Parameter old: A dictionary of the original content of the user defaults. This should be the dictionary returned from `blank()` to restore the user defaults back to normal.
+     - Parameter name: The name of the domain whose contents you want to set.
+     */
+    func restore(from old: [String: Any], forName name: String) {
+        self.setPersistentDomain(old, forName: name)
+    }
 }

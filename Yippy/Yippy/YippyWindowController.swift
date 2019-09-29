@@ -17,6 +17,7 @@ class YippyWindowController: NSWindowController {
         super.windowDidLoad()
         
         window?.level = .floating
+        window?.setAccessibilityIdentifier(Accessibility.identifiers.yippyWindow)
     }
     
     static func createYippyWindowController() -> YippyWindowController {

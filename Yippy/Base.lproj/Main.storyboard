@@ -945,6 +945,9 @@ Website: https://yippy.mattdavo.com</string>
                             <constraint firstItem="ili-Q1-k3U" firstAttribute="leading" secondItem="TL6-xS-lcI" secondAttribute="leading" constant="20" id="wt6-KC-Fqh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="allowAccessButton" destination="2gX-zW-UTr" id="VAt-Qb-xrU"/>
+                    </connections>
                 </viewController>
                 <customObject id="hCL-ss-Nie" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

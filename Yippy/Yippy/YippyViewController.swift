@@ -67,7 +67,9 @@ class YippyViewController: NSViewController {
         super.viewWillAppear()
         
         collectionView.reloadData()
-        collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: 0, section: 0)), scrollPosition: .bottom)
+        if collectionView.numberOfItems(inSection: 0) > 0 {
+            collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: 0, section: 0)), scrollPosition: .bottom)
+        }
         State.main.selected = 0
     }
     
@@ -76,7 +78,9 @@ class YippyViewController: NSViewController {
     }
     
     func frameDidChange() {
-        collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected, section: 0)), scrollPosition: .bottom)
+        if collectionView.numberOfItems(inSection: 0) > 0 {
+            collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected, section: 0)), scrollPosition: .bottom)
+        }
     }
     
     func bindHotKeyToYippyWindow(yippyHotKey: YippyHotKey, disposeBag: DisposeBag) {

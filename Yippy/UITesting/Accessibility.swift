@@ -18,6 +18,10 @@ class Accessibility {
         static let statusItemButton = "statusItemButton"
         static let toggleYippyWindowButton = "toggleWindowButton"
         static let quitButton = "quitButton"
+        static let helpButton = "helpButton"
         static let welcomeAllowAccessButton = "welcomeAllowAccessButton"
+        
+        static let waitingForControlLabel = "waitingForControlLabel"
+        static let howToUseLabel = "howToUseLabel"
     }
 }

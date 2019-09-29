@@ -40,6 +40,8 @@
 		345B14982340494300C2D0DA /* XCUIApplication+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */; };
 		345B149A23404A9400C2D0DA /* XCUIApplication+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149923404A9400C2D0DA /* XCUIApplication+Actions.swift */; };
 		345B149C23404AC700C2D0DA /* XCUIElement+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149B23404AC700C2D0DA /* XCUIElement+Properties.swift */; };
+		345B149F23404D8500C2D0DA /* HelpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149E23404D8500C2D0DA /* HelpUITests.swift */; };
+		345B14A3234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14A2234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
 		347D59A522F43B94005F6EA8 /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyItem.swift */; };
@@ -119,6 +121,8 @@
 		345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Buttons.swift"; sourceTree = "<group>"; };
 		345B149923404A9400C2D0DA /* XCUIApplication+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Actions.swift"; sourceTree = "<group>"; };
 		345B149B23404AC700C2D0DA /* XCUIElement+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Properties.swift"; sourceTree = "<group>"; };
+		345B149E23404D8500C2D0DA /* HelpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpUITests.swift; sourceTree = "<group>"; };
+		345B14A2234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+StaticTexts.swift"; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorDelegate.swift; sourceTree = "<group>"; };
 		347D59A322F43B94005F6EA8 /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
@@ -281,6 +285,18 @@
 			path = UITesting;
 			sourceTree = "<group>";
 		};
+		345B14A42340618200C2D0DA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				345B149923404A9400C2D0DA /* XCUIApplication+Actions.swift */,
+				345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */,
+				345B14A2234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift */,
+				345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */,
+				345B149B23404AC700C2D0DA /* XCUIElement+Properties.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		34734C7D2330CB6A0056F855 /* PasteboardMonitor */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,11 +403,9 @@
 			children = (
 				34ACFBDE22EB0B11004E6E63 /* Info.plist */,
 				34268119233DF64700BA226A /* WelcomeUITests.swift */,
-				345B149923404A9400C2D0DA /* XCUIApplication+Actions.swift */,
-				345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */,
-				345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */,
-				345B149B23404AC700C2D0DA /* XCUIElement+Properties.swift */,
+				345B14A42340618200C2D0DA /* Extensions */,
 				34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */,
+				345B149E23404D8500C2D0DA /* HelpUITests.swift */,
 			);
 			path = YippyUITests;
 			sourceTree = "<group>";
@@ -733,6 +747,8 @@
 			files = (
 				345B14962340493600C2D0DA /* XCUIApplication+Windows.swift in Sources */,
 				345B149423403B8F00C2D0DA /* AccessControlMock.swift in Sources */,
+				345B14A3234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift in Sources */,
+				345B149F23404D8500C2D0DA /* HelpUITests.swift in Sources */,
 				345B149C23404AC700C2D0DA /* XCUIElement+Properties.swift in Sources */,
 				3426811F233E0A9A00BA226A /* Accessibility.swift in Sources */,
 				345B14982340494300C2D0DA /* XCUIApplication+Buttons.swift in Sources */,

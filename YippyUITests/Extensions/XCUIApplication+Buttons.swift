@@ -25,4 +25,8 @@ extension XCUIApplication {
     var quitButton: XCUIElement {
         return self.menus.menuItems[Accessibility.identifiers.quitButton]
     }
+    
+    var helpButton: XCUIElement {
+        return self.menus.menuItems[Accessibility.identifiers.helpButton]
+    }
 }

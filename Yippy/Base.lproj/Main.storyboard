@@ -1008,7 +1008,9 @@ Website: https://yippy.mattdavo.com</string>
                                     <font key="font" metaFont="system" size="25"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <accessibility identifier="waitingForControlLabel"/>
                                 </textFieldCell>
+                                <accessibility identifier="waitingForControlLabel"/>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Dd-YQZ">
                                 <rect key="frame" x="18" y="61" width="421" height="17"/>
@@ -1069,6 +1071,7 @@ Website: https://yippy.mattdavo.com</string>
                                     <font key="font" metaFont="system" size="25"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <accessibility identifier="howToUseLabel"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="m4h-rn-US5">
@@ -1109,7 +1112,7 @@ The default position for the Yippy is to float on the right edge of the screen, 
                 </viewController>
                 <customObject id="EPe-bf-fiu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="761" y="1282"/>
+            <point key="canvasLocation" x="761" y="1281.5"/>
         </scene>
     </scenes>
     <resources>

@@ -77,7 +77,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func createMenu(withSettings settings: Settings) -> NSMenu {
         let menu = NSMenu()
             .with(menuItem: NSMenuItem(title: "About Yippy", action: #selector(showAboutWindow), keyEquivalent: ""))
-            .with(menuItem: NSMenuItem(title: "Yippy Help", action: #selector(showHelpWindow), keyEquivalent: ""))
+            .with(menuItem: NSMenuItem(title: "Yippy Help", action: #selector(showHelpWindow), keyEquivalent: "")
+                .with(accessibilityIdentifier: Accessibility.identifiers.helpButton)
+            )
             .with(menuItem: NSMenuItem.separator())
             .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V")
                 .with(accessibilityIdentifier: Accessibility.identifiers.toggleYippyWindowButton)

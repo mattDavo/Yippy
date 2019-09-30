@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AccessControlHelper: AccessControlHelping {
+class AccessControlHelper {
     
     // https://stackoverflow.com/questions/40144259/modify-accessibility-settings-on-macos-with-swift
     

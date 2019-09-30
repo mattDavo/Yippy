@@ -16,7 +16,7 @@ class YippyViewController: NSViewController {
     
     @IBOutlet var collectionView: NSCollectionView!
     
-    let sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 10.0, right: 20.0)
+    let sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
     
     let disposeBag = DisposeBag()
     
@@ -27,6 +27,7 @@ class YippyViewController: NSViewController {
         collectionView.delegate = self
         collectionView.layer?.backgroundColor = .clear
         collectionView.allowsEmptySelection = false
+        collectionView.setAccessibilityIdentifier(Accessibility.identifiers.yippyCollectionView)
         
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
@@ -38,9 +39,13 @@ class YippyViewController: NSViewController {
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)
+        YippyHotKeys.pageDown.onDown(goToNextItem)
+        YippyHotKeys.pageDown.onLong(goToNextItem)
 
         YippyHotKeys.upArrow.onDown(goToPreviousItem)
         YippyHotKeys.upArrow.onLong(goToPreviousItem)
+        YippyHotKeys.pageUp.onDown(goToPreviousItem)
+        YippyHotKeys.pageUp.onLong(goToPreviousItem)
 
         YippyHotKeys.escape.onDown {
             State.main.isHistoryPanelShown.accept(false)
@@ -61,6 +66,8 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.upArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.return, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.escape, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.pageDown, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.pageUp, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {

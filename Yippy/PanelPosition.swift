@@ -18,7 +18,7 @@ enum PanelPosition: Int, Codable {
     var frame: NSRect {
         switch self {
         case .right:
-            return NSRect(x: NSScreen.main!.visibleFrame.maxX - Constants.panel.menuWidth, y: 0, width: Constants.panel.menuWidth, height: NSScreen.main!.visibleFrame.maxY)
+            return NSRect(x: NSScreen.main!.visibleFrame.maxX - Constants.panel.menuWidth, y: NSScreen.main!.visibleFrame.minY, width: Constants.panel.menuWidth, height: NSScreen.main!.visibleFrame.height)
         case .left:
             return NSRect(x: 0, y: 0, width: Constants.panel.menuWidth, height: NSScreen.main!.visibleFrame.maxY)
         case .top:

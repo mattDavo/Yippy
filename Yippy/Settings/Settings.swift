@@ -67,3 +67,24 @@ struct Settings: Codable, DefaultStorable {
         }
     }
 }
+
+extension Settings {
+    
+    struct testData {
+        static var a: Settings {
+            var settings = Settings()
+            settings.panelPosition = .left
+            settings.history = UITesting.testHistory.a
+            return settings
+        }
+        
+        static func from(_ str: String) -> Settings? {
+            switch str {
+            case "--Settings.testData=a":
+                return a
+            default:
+                return nil
+            }
+        }
+    }
+}

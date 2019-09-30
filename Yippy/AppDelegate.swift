@@ -32,11 +32,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func checkLaunchArgs() {
         if CommandLine.arguments.contains("--uitesting") {
-            // Set the access control
+            // Mock the access control and key pressing
             Helper.accessControlHelper = AccessControlHelperMock()
+            Helper.keyPressHelper = KeyPressHelperMock()
             
             // Remove the settings
             UITesting.oldUserDefaults = UserDefaults.standard.blank()
+        }
+        if let test = CommandLine.arguments.filter({$0.contains("--Settings.testData=")}).first {
+            Settings.main = Settings.testData.from(test)
         }
     }
     
@@ -88,20 +92,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             )
             .with(menuItem: NSMenuItem(title: "TODO: Clear history", action: nil, keyEquivalent: ""))
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
+                .with(accessibilityIdentifier: Accessibility.identifiers.positionButton)
                 .with(submenu: NSMenu(title: "")
                     .with(menuItem: NSMenuItem(title: "Left", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(accessibilityIdentifier: Accessibility.identifiers.positionLeftButton)
                         .with(state: settings.panelPosition == .left ? .on : .off)
                         .with(tag: PanelPosition.left.rawValue)
                     )
                     .with(menuItem: NSMenuItem(title: "Right", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(accessibilityIdentifier: Accessibility.identifiers.positionRightButton)
                         .with(state: settings.panelPosition == .right ? .on : .off)
                         .with(tag: PanelPosition.right.rawValue)
                     )
                     .with(menuItem: NSMenuItem(title: "Top", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(accessibilityIdentifier: Accessibility.identifiers.positionTopButton)
                         .with(state: settings.panelPosition == .top ? .on : .off)
                         .with(tag: PanelPosition.top.rawValue)
                     )
                     .with(menuItem: NSMenuItem(title: "Bottom", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                        .with(accessibilityIdentifier: Accessibility.identifiers.positionBottomButton)
                         .with(state: settings.panelPosition == .bottom ? .on : .off)
                         .with(tag: PanelPosition.bottom.rawValue)
                     )

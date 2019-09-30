@@ -8,7 +8,7 @@
 
 import XCTest
 
-class ABoutUITests: XCTestCase {
+class AboutUITests: XCTestCase {
     
     var app: XCUIApplication!
     

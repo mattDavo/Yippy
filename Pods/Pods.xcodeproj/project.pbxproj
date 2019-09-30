@@ -15,7 +15,6 @@
 		039CBD9C9AC681515E74F47B32FD14CA /* Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D4F9D2D0FEFA65A4738AF4B2EDF8B6 /* Enumerated.swift */; };
 		050F77278A9652787D66251F6E4A2BF7 /* ControlProperty+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B55E8A80B03145E636AC4C894F6C2 /* ControlProperty+Driver.swift */; };
 		06E545E29BAF21DF437B9077E94F1B9F /* UITabBarItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422AF0D3AAF172077F9DCF777462CDA /* UITabBarItem+Rx.swift */; };
-		075F4716379058CC5791CF925E4729E8 /* Pods-YippyTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2163AD97117F5723A48B193E760D1E42 /* Pods-YippyTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07E8495E1601C4903CBC93B2F01E27CA /* _RXKVOObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 119F9D7EB10B1E2DA10D87FC4BAD1036 /* _RXKVOObserver.m */; };
 		0800A71B63C826478C051136D9EB07E1 /* WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F861031C269F1F8562F04B02A749F31 /* WithLatestFrom.swift */; };
 		0845CB4D906D45A5DBA150293F89720C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A21125EA98239774DC107BB2EC5AD68 /* Cocoa.framework */; };
@@ -64,6 +63,7 @@
 		1D507E64BA3900491F295FC5D33EC99C /* SharedSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804D8CB51DF3D081C38D5C3C74EB25A6 /* SharedSequence.swift */; };
 		1E1D40B75A2BA4AAE13812CD45F2DF05 /* Pods-Yippy-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 670F71D2D94BF37428C3E3C43CBFC648 /* Pods-Yippy-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		207F759CA856CFCDDC76EFB09FE2A011 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547DC2366141E1E766CA9FD6D27238E /* Map.swift */; };
+		2091619A41BADDF306892D603756B086 /* Pods-YippyTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2163AD97117F5723A48B193E760D1E42 /* Pods-YippyTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20C0B98517D8B674D83C95BEF7F1AAB7 /* UINavigationItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C29921F937374E557B22A79AD2DE57 /* UINavigationItem+Rx.swift */; };
 		20C56C81504A6E759CCE0A0FE208BA4B /* UISearchBar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E300295B0F289753AF77D4CC5A376 /* UISearchBar+Rx.swift */; };
 		22526FDF0F65A70281E1694503076436 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9640BDB9F937344A6CBB0227B5C6CF6A /* Event.swift */; };
@@ -125,12 +125,12 @@
 		4A5239AC2E85CCBB7B01528F26A510E4 /* Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3695DC2DE1F82E0F1B8E3B69AF9A5E1B /* Do.swift */; };
 		4AF7D97E01CACA93A58AE01A9494B391 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF6AF8EF3357C78DF60FCFA67EF28B /* Switch.swift */; };
 		4B8684B35F1A9C1349935344C36A7DE0 /* RxCocoaObjCRuntimeError+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003FDF2FA608A0A704DD152C3CC33DA0 /* RxCocoaObjCRuntimeError+Extensions.swift */; };
+		4B92967AB1A93D9C60B95B3B108D8B11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A21125EA98239774DC107BB2EC5AD68 /* Cocoa.framework */; };
 		4D84BE032836D5AA2DE204DB3C2B0863 /* HistoricalScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7498F1712532615501A49D8E76B017AD /* HistoricalScheduler.swift */; };
 		4F7407F2BDED9F202AC9FD0D010D3A20 /* CombineLatest+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5AC62B176603A5CDDBC2158E38496 /* CombineLatest+Collection.swift */; };
 		517B6ADFFDCF3DFD0AE3A370CEDB9F9A /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776A851130CE44F7990F4240BBD642A4 /* TextInput.swift */; };
 		51863080AA50B7BF2D8A427E8859DD94 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A21125EA98239774DC107BB2EC5AD68 /* Cocoa.framework */; };
 		54554DEC4E00BB0B49BA1DB434208438 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C506F7ECB5E8E6574753A10673318F2 /* Cancelable.swift */; };
-		54AB2F97E2F9D631DC7686A2B39FEC87 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A21125EA98239774DC107BB2EC5AD68 /* Cocoa.framework */; };
 		561EC1520B95B3E8AC8C9B9B69CF2B55 /* _RXObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6EAA15A7BE45C65D72211CB0CD7942 /* _RXObjCRuntime.m */; };
 		56ABF691DF591F78EA2E5EDB0562316D /* Platform.Darwin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095B944BC2935624BDF2489D1A8C41C /* Platform.Darwin.swift */; };
 		5757E6468E5FBFD4DF12C61AE40987A0 /* DelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF8C11284DD71B3EE29C18B03F4FA4 /* DelegateProxy.swift */; };
@@ -313,7 +313,6 @@
 		CD951294210FCB4F24699C18A7EB986B /* NSObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8FFD1E726EA1512EB5E5FA12B49307 /* NSObject+Rx.swift */; };
 		CEACB1B13E877D075662570AB04DA102 /* AsSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC94F983BC3940DC70CFF5ADC9BD7A /* AsSingle.swift */; };
 		CF07C57123C762283BF4CAB62D82D0DD /* StartWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B90689AE60D61BEB2A7D130590D04 /* StartWith.swift */; };
-		CF28F2B7BF9E90BB9D84B6FBC8C0ED8B /* Pods-YippyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EB24663E6D9F5F874FC332C314ABFC /* Pods-YippyTests-dummy.m */; };
 		CF64F3D43E10EE67B395A2F69F81A0FF /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C30047A58F5FB11BB4E7E2FD6CD /* Queue.swift */; };
 		CF71144B8C2E4CB84A106BD73ADE4A26 /* ColdObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED88332F5F4DFEAC2A87DC9996286FB /* ColdObservable.swift */; };
 		D0F3B766AD0A49178232A92AF03292C7 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B8814931DBEBEE97A076B39434287 /* URLSession+Rx.swift */; };
@@ -323,6 +322,7 @@
 		D409F89547C8EA14DBEE9A6D4B5B442D /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A02E1D6FA60A6784D4E703D96EDCE /* Just.swift */; };
 		D4D331AC9E70582EAF669BD479EECEF9 /* BooleanDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBC16B68C5DCEDFEFC5EC8434DCCE72 /* BooleanDisposable.swift */; };
 		D4DB8A02127BB87032E1DA5223CFF741 /* PublishRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BE913008540B11F54219C5C4C2AEFD /* PublishRelay.swift */; };
+		D6B82F7009F40A676DFFBE8D26504600 /* Pods-YippyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EB24663E6D9F5F874FC332C314ABFC /* Pods-YippyTests-dummy.m */; };
 		D6D014B3B68A2411C9308040B01BB109 /* RxCollectionViewReactiveArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD44999BD5A0AC1F5C32B3304E58D794 /* RxCollectionViewReactiveArrayDataSource.swift */; };
 		D7A6ADA464E262E6D662A4E31902957E /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C536D8A9C127608EE47A78B0E63255 /* Subscription.swift */; };
 		D7F405C3D7E799BA2757510AA978FECC /* RxTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FAEF7BD9B4D0E555860A11ECC6048F /* RxTest.swift */; };
@@ -385,12 +385,12 @@
 			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
 			remoteInfo = RxRelay;
 		};
-		114940DCF1CFE62C66A153E33BB1A64E /* PBXContainerItemProxy */ = {
+		264F77E18F581401A75E3BF4F28CDF94 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F243B36381C0CE83CCFF789AC38F0D36;
-			remoteInfo = RxBlocking;
+			remoteGlobalIDString = 9723A18E34398070D1208EAEC8B4DFA6;
+			remoteInfo = Default;
 		};
 		2A273223769C12E0EF7B6357D33A12C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -398,6 +398,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C8D93C508E21FFD4EE60D335DD6C22E3;
 			remoteInfo = RxTest;
+		};
+		32AF08CE0845A9E35265274730EAA278 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
+			remoteInfo = RxSwift;
 		};
 		3AA5F122E4B6C1CDC8306AE3F5C627D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -434,12 +441,12 @@
 			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
 			remoteInfo = RxRelay;
 		};
-		6616FEDB813B671558B7325F60BDE542 /* PBXContainerItemProxy */ = {
+		634FF24F284B3BC8297AF9688B54D63E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
-			remoteInfo = RxSwift;
+			remoteGlobalIDString = C8D93C508E21FFD4EE60D335DD6C22E3;
+			remoteInfo = RxTest;
 		};
 		66F4EBA5F79E5637F3AA6390B4563D2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -454,6 +461,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
 			remoteInfo = RxSwift;
+		};
+		68EB086F6C451DB9F4CE1014F466508D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F243B36381C0CE83CCFF789AC38F0D36;
+			remoteInfo = RxBlocking;
 		};
 		733C2F2B39689E2788A54A702DE8ED6E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -476,6 +490,20 @@
 			remoteGlobalIDString = 1DCA08B27A8D80BE40A7EB722C544B79;
 			remoteInfo = "Pods-Yippy";
 		};
+		90B400302C17E3A87B3F734CCD8ACC79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1DCA08B27A8D80BE40A7EB722C544B79;
+			remoteInfo = "Pods-Yippy";
+		};
+		9F6DC07D92C3734E5B4353469FCC9DA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB4D977E4336D9F2E9E510A33CD1DB6D;
+			remoteInfo = HotKey;
+		};
 		A42753E40F602A8CB2F77ED518C3BF05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -490,19 +518,19 @@
 			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
 			remoteInfo = RxSwift;
 		};
-		B05FA640F5F6A0CE4069BAA7774F1DE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C8D93C508E21FFD4EE60D335DD6C22E3;
-			remoteInfo = RxTest;
-		};
 		B08CFB5BB186C4F1C90D058A3ACAE4FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F243B36381C0CE83CCFF789AC38F0D36;
 			remoteInfo = RxBlocking;
+		};
+		B97DD9B75099E680EAF844AC32842C9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
+			remoteInfo = RxRelay;
 		};
 		E4207E7CF0689F88F452981652FCB95E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -518,12 +546,12 @@
 			remoteGlobalIDString = 9723A18E34398070D1208EAEC8B4DFA6;
 			remoteInfo = Default;
 		};
-		F41027C450CEED9DED6063EAA72B5FE5 /* PBXContainerItemProxy */ = {
+		F9CC86F432DA4688232A2731B958EC8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1DCA08B27A8D80BE40A7EB722C544B79;
-			remoteInfo = "Pods-Yippy";
+			remoteGlobalIDString = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6;
+			remoteInfo = RxCocoa;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -974,14 +1002,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		850166851F2A57FC8EC418C483B71A22 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				54AB2F97E2F9D631DC7686A2B39FEC87 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B0EAB3E70300E93F2BF3747078647BDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -997,6 +1017,14 @@
 				51863080AA50B7BF2D8A427E8859DD94 /* Cocoa.framework in Frameworks */,
 				0FF63AA5C2FF50BD5E8191BEF87D691E /* RxSwift.framework in Frameworks */,
 				69C0BCBCB7B033984A34B8C5894E522C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD3514EFE06DF1D95A1413D9645EDEAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B92967AB1A93D9C60B95B3B108D8B11 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,14 +1724,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		898F354FDDF9BEF9A0403F7F5288F031 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				075F4716379058CC5791CF925E4729E8 /* Pods-YippyTests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		907F01882D68654B4DFE6572506E3C9A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1717,6 +1737,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ACE0164F9160C30BF314780B13B469F /* Default-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97AD1896F19C5962AA85FCA04520A19 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2091619A41BADDF306892D603756B086 /* Pods-YippyTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1839,20 +1867,24 @@
 		};
 		AC4E7F7F6CDDD723A1B2DFDEA83A434F /* Pods-YippyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BFABB686DE1ABC3CC6550948AF8BBDF /* Build configuration list for PBXNativeTarget "Pods-YippyTests" */;
+			buildConfigurationList = 168D407D6832E4C69C3AA7F8DA0599CE /* Build configuration list for PBXNativeTarget "Pods-YippyTests" */;
 			buildPhases = (
-				898F354FDDF9BEF9A0403F7F5288F031 /* Headers */,
-				6AB448ED2ED32E1E9F50F155CA48E2F1 /* Sources */,
-				850166851F2A57FC8EC418C483B71A22 /* Frameworks */,
-				5AD86E8AB9D22B6679B542FEB6268B54 /* Resources */,
+				D97AD1896F19C5962AA85FCA04520A19 /* Headers */,
+				4479FCC07BFB10C4585F460805FA50BB /* Sources */,
+				BD3514EFE06DF1D95A1413D9645EDEAC /* Frameworks */,
+				673C254E599DD969A9727A151F8EC505 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7168721AD7B755487617820F0509BD31 /* PBXTargetDependency */,
-				9EF2A91C3F0D12AC6BD8DA69F276F4AF /* PBXTargetDependency */,
-				2F305EBF1BAC0BFF1572CF9F5CC58FCB /* PBXTargetDependency */,
-				56788C1EBB18D5F55BB2BB99BA6A7B5C /* PBXTargetDependency */,
+				AC186BAD8F3902DC3E4A583D2835FE98 /* PBXTargetDependency */,
+				72AA244E7B4B1AE609AA0C62C3AB182B /* PBXTargetDependency */,
+				BF60BCCD1BE29491E3CF19380DF0CADB /* PBXTargetDependency */,
+				432B7564E000B16CFA5D176188FE0AE1 /* PBXTargetDependency */,
+				79CA25BCE6D1A98C87BA66DFAC8750E1 /* PBXTargetDependency */,
+				9BDE91A9FC14DD28B123756E44F533D9 /* PBXTargetDependency */,
+				FB63F113B2DB6B3AE08CDBE1C7DB0123 /* PBXTargetDependency */,
+				AE6D0C5383859674E6D5FD2AD92161E7 /* PBXTargetDependency */,
 			);
 			name = "Pods-YippyTests";
 			productName = "Pods-YippyTests";
@@ -1976,13 +2008,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5AD86E8AB9D22B6679B542FEB6268B54 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		600B94B82A30BB13B25775F0379A299C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1991,6 +2016,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		66B235E675798CB68D882749DEE86CD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		673C254E599DD969A9727A151F8EC505 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2053,6 +2085,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4479FCC07BFB10C4585F460805FA50BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6B82F7009F40A676DFFBE8D26504600 /* Pods-YippyTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C3D851FEBEB90EA47E2CCD1A8900D81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2101,14 +2141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B34FF0B91E4DACDC5A58EE52F61FCC7A /* Pods-Yippy-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6AB448ED2ED32E1E9F50F155CA48E2F1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CF28F2B7BF9E90BB9D84B6FBC8C0ED8B /* Pods-YippyTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2454,17 +2486,17 @@
 			target = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */;
 			targetProxy = E4207E7CF0689F88F452981652FCB95E /* PBXContainerItemProxy */;
 		};
-		2F305EBF1BAC0BFF1572CF9F5CC58FCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxSwift;
-			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
-			targetProxy = 6616FEDB813B671558B7325F60BDE542 /* PBXContainerItemProxy */;
-		};
 		3AD6B6EC6E5E07C2C31373164A6683A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Default;
 			target = 9723A18E34398070D1208EAEC8B4DFA6 /* Default */;
 			targetProxy = 760F0D5B644F882896A507A8CD8A8565 /* PBXContainerItemProxy */;
+		};
+		432B7564E000B16CFA5D176188FE0AE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RxBlocking;
+			target = F243B36381C0CE83CCFF789AC38F0D36 /* RxBlocking */;
+			targetProxy = 68EB086F6C451DB9F4CE1014F466508D /* PBXContainerItemProxy */;
 		};
 		44B6C31D1E527B826BB33696C78A085A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2478,23 +2510,17 @@
 			target = C8D93C508E21FFD4EE60D335DD6C22E3 /* RxTest */;
 			targetProxy = 2A273223769C12E0EF7B6357D33A12C5 /* PBXContainerItemProxy */;
 		};
-		56788C1EBB18D5F55BB2BB99BA6A7B5C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxTest;
-			target = C8D93C508E21FFD4EE60D335DD6C22E3 /* RxTest */;
-			targetProxy = B05FA640F5F6A0CE4069BAA7774F1DE1 /* PBXContainerItemProxy */;
-		};
 		573F8FF351F0F1AAB796DAE14F0B18F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxRelay;
 			target = 4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */;
 			targetProxy = 07E45B0AFEEED2846D13571956E582B3 /* PBXContainerItemProxy */;
 		};
-		7168721AD7B755487617820F0509BD31 /* PBXTargetDependency */ = {
+		72AA244E7B4B1AE609AA0C62C3AB182B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-Yippy";
-			target = 1DCA08B27A8D80BE40A7EB722C544B79 /* Pods-Yippy */;
-			targetProxy = F41027C450CEED9DED6063EAA72B5FE5 /* PBXContainerItemProxy */;
+			name = HotKey;
+			target = DB4D977E4336D9F2E9E510A33CD1DB6D /* HotKey */;
+			targetProxy = 9F6DC07D92C3734E5B4353469FCC9DA3 /* PBXContainerItemProxy */;
 		};
 		7517CD60A7F31D13AA759DC538E26DDD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2514,6 +2540,12 @@
 			target = 9723A18E34398070D1208EAEC8B4DFA6 /* Default */;
 			targetProxy = EFF65DB6352FF027782BF8A959E93EFF /* PBXContainerItemProxy */;
 		};
+		79CA25BCE6D1A98C87BA66DFAC8750E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RxCocoa;
+			target = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */;
+			targetProxy = F9CC86F432DA4688232A2731B958EC8B /* PBXContainerItemProxy */;
+		};
 		885825BCF203D3688766C295BC3182B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxSwift;
@@ -2526,17 +2558,17 @@
 			target = DB4D977E4336D9F2E9E510A33CD1DB6D /* HotKey */;
 			targetProxy = 448B901D52C647E39CEAADED6BCFE36F /* PBXContainerItemProxy */;
 		};
+		9BDE91A9FC14DD28B123756E44F533D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RxRelay;
+			target = 4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */;
+			targetProxy = B97DD9B75099E680EAF844AC32842C9C /* PBXContainerItemProxy */;
+		};
 		9CC239530FF1F8F22ED406CAD9C614F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxSwift;
 			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
 			targetProxy = 04142E1DB41EC92EB296F3E757BCE4B7 /* PBXContainerItemProxy */;
-		};
-		9EF2A91C3F0D12AC6BD8DA69F276F4AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxBlocking;
-			target = F243B36381C0CE83CCFF789AC38F0D36 /* RxBlocking */;
-			targetProxy = 114940DCF1CFE62C66A153E33BB1A64E /* PBXContainerItemProxy */;
 		};
 		A3418453DADD34D9A83A499CBB3F5E66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2550,6 +2582,12 @@
 			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
 			targetProxy = 6862F44C37A3B5FE9F1A75F05C1262B8 /* PBXContainerItemProxy */;
 		};
+		AC186BAD8F3902DC3E4A583D2835FE98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Default;
+			target = 9723A18E34398070D1208EAEC8B4DFA6 /* Default */;
+			targetProxy = 264F77E18F581401A75E3BF4F28CDF94 /* PBXContainerItemProxy */;
+		};
 		ACDE37D2943A7ECC9E85ACF87A66276C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxSwift;
@@ -2562,6 +2600,18 @@
 			target = DB4D977E4336D9F2E9E510A33CD1DB6D /* HotKey */;
 			targetProxy = A42753E40F602A8CB2F77ED518C3BF05 /* PBXContainerItemProxy */;
 		};
+		AE6D0C5383859674E6D5FD2AD92161E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RxTest;
+			target = C8D93C508E21FFD4EE60D335DD6C22E3 /* RxTest */;
+			targetProxy = 634FF24F284B3BC8297AF9688B54D63E /* PBXContainerItemProxy */;
+		};
+		BF60BCCD1BE29491E3CF19380DF0CADB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Yippy";
+			target = 1DCA08B27A8D80BE40A7EB722C544B79 /* Pods-Yippy */;
+			targetProxy = 90B400302C17E3A87B3F734CCD8ACC79 /* PBXContainerItemProxy */;
+		};
 		CCCA4B7752069A69459186957330D49D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxSwift;
@@ -2573,6 +2623,12 @@
 			name = RxRelay;
 			target = 4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */;
 			targetProxy = 634D92510B62EE85BA8370D9D47FE485 /* PBXContainerItemProxy */;
+		};
+		FB63F113B2DB6B3AE08CDBE1C7DB0123 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RxSwift;
+			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
+			targetProxy = 32AF08CE0845A9E35265274730EAA278 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2790,9 +2846,9 @@
 			};
 			name = Debug;
 		};
-		4AA2F1376F44E34921C1D9BF3FF95AC8 /* Debug */ = {
+		4392EDF623DE3A4C29C8EE2E91B9C893 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAA884A4B68510B0227B5BC8BC7692EC /* Pods-YippyTests.debug.xcconfig */;
+			baseConfigurationReference = 804E035F82F596AD980A907128843F98 /* Pods-YippyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -2828,7 +2884,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		4D3D5FF16184DC66A07EA12CBFCE504A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3310,46 +3366,9 @@
 			};
 			name = Release;
 		};
-		EADBE94060815557A311FFD4FEE1046C /* Release */ = {
+		E914776CD202B4089ED85F517BE68474 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41F21C09883132120E69B8E1C214E934 /* RxRelay.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/RxRelay/RxRelay-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RxRelay/RxRelay-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "Target Support Files/RxRelay/RxRelay.modulemap";
-				PRODUCT_MODULE_NAME = RxRelay;
-				PRODUCT_NAME = RxRelay;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		ED9A5F2959676249736BCF9AED458309 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 804E035F82F596AD980A907128843F98 /* Pods-YippyTests.release.xcconfig */;
+			baseConfigurationReference = EAA884A4B68510B0227B5BC8BC7692EC /* Pods-YippyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -3382,6 +3401,43 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EADBE94060815557A311FFD4FEE1046C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41F21C09883132120E69B8E1C214E934 /* RxRelay.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/RxRelay/RxRelay-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RxRelay/RxRelay-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/RxRelay/RxRelay.modulemap";
+				PRODUCT_MODULE_NAME = RxRelay;
+				PRODUCT_NAME = RxRelay;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3464,11 +3520,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0BFABB686DE1ABC3CC6550948AF8BBDF /* Build configuration list for PBXNativeTarget "Pods-YippyTests" */ = {
+		168D407D6832E4C69C3AA7F8DA0599CE /* Build configuration list for PBXNativeTarget "Pods-YippyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4AA2F1376F44E34921C1D9BF3FF95AC8 /* Debug */,
-				ED9A5F2959676249736BCF9AED458309 /* Release */,
+				E914776CD202B4089ED85F517BE68474 /* Debug */,
+				4392EDF623DE3A4C29C8EE2E91B9C893 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

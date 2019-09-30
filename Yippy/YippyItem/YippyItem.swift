@@ -23,7 +23,7 @@ class YippyItem: NSCollectionViewItem {
     
     var textView: CustomTextView!
     
-    static let identifier = "YippyItem"
+    static let identifier = Accessibility.identifiers.yippyItem
     
     static let font = NSFont(name: "Roboto Mono Light for Powerline", size: 12)!
     
@@ -50,6 +50,7 @@ class YippyItem: NSCollectionViewItem {
         textView.drawsBackground = true
         textView.wantsLayer = true
         textView.backgroundColor = .clear
+        textView.isSelectable = false
         textView.textContainerInset = NSSize.zero
         textView.textContainer?.lineFragmentPadding = 0
         // Define the maximum size of the text container, so that the text renders correctly when there needs to be clipping.
@@ -66,4 +67,3 @@ class YippyItem: NSCollectionViewItem {
         view.layer?.backgroundColor = self.isSelected ? NSColor.systemBlue.withAlphaComponent(0.5).cgColor : NSColor.lightGray.withAlphaComponent(0.5).cgColor
     }
 }
-

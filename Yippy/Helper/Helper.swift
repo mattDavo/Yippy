@@ -12,25 +12,10 @@ class Helper {
     
     // MARK: - Key Press
     
+    static var keyPressHelper = KeyPressHelper()
+    
     static func press(keyCode: CGKeyCode, flags: CGEventFlags) {
-        let sourceRef = CGEventSource(stateID: .combinedSessionState)
-        
-        if sourceRef == nil {
-            NSLog("FakeKey: No event source")
-            return
-        }
-        
-        let keyDownEvent = CGEvent(keyboardEventSource: sourceRef,
-                                   virtualKey: keyCode,
-                                   keyDown: true)
-        keyDownEvent?.flags = flags
-        
-        let keyUpEvent = CGEvent(keyboardEventSource: sourceRef,
-                                 virtualKey: keyCode,
-                                 keyDown: false)
-        
-        keyDownEvent?.post(tap: .cghidEventTap)
-        keyUpEvent?.post(tap: .cghidEventTap)
+        keyPressHelper.press(keyCode: keyCode, flags: flags)
     }
     
     static func pressCommandV() {

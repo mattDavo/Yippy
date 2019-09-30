@@ -23,7 +23,16 @@ class Accessibility {
         static let aboutButton = "aboutButton"
         static let welcomeAllowAccessButton = "welcomeAllowAccessButton"
         
+        static let positionButton = "positionButton"
+        static let positionRightButton = "positionRightButton"
+        static let positionLeftButton = "positionLeftButton"
+        static let positionTopButton = "positionTopButton"
+        static let positionBottomButton = "positionBottomButton"
+        
         static let waitingForControlLabel = "waitingForControlLabel"
         static let howToUseLabel = "howToUseLabel"
+        
+        static let yippyCollectionView = "yippyCollectionView"
+        static let yippyItem = "YippyItem"
     }
 }

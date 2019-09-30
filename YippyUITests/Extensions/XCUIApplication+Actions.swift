@@ -14,4 +14,12 @@ extension XCUIApplication {
         statusItemButton.click()
         quitButton.click()
     }
+    
+    func pressHotKey() {
+        typeKey("v", modifierFlags: .init(arrayLiteral: .command, .shift))
+    }
+    
+    func typeKey(_ key: XCUIKeyboardKey) {
+        typeKey(key, modifierFlags: .init())
+    }
 }

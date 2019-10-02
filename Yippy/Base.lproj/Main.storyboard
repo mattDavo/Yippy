@@ -694,7 +694,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView selectable="YES" id="e19-Ic-rWq">
+                                        <collectionView selectable="YES" id="e19-Ic-rWq" customClass="YippyHistoryView" customModule="Yippy" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <color key="primaryBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -730,7 +730,7 @@
                         </constraints>
                     </visualEffectView>
                     <connections>
-                        <outlet property="collectionView" destination="e19-Ic-rWq" id="eB3-r5-sSZ"/>
+                        <outlet property="yippyHistoryView" destination="e19-Ic-rWq" id="eB3-r5-sSZ"/>
                     </connections>
                 </viewController>
                 <customObject id="lTq-R9-WUZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

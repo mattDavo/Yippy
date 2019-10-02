@@ -51,9 +51,9 @@ class YippyWindowController: NSWindowController {
                     print("TODO: Unexpected panel contentViewController")
                     return
                 }
-                hvc.frameWillChange()
+                let selected = hvc.frameWillChange()
                 self.window?.setFrame($0.frame, display: true)
-                hvc.frameDidChange()
+                hvc.frameDidChange(selected: selected)
             })
     }
 }

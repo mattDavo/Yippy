@@ -14,7 +14,7 @@ struct State {
     // MARK: - Singleton
     static var main = State()
     
-    // Enfore singleton
+    // Enforce singleton
     private init() {}
     
     
@@ -28,15 +28,12 @@ struct State {
     var history = BehaviorRelay<[String]>(value: [])
     
     
-    // MARK: - Non RxSwift
-    
-    // Global variables
-    var allowAccessTapped = false
-    var selected = 0
-    
+    // MARK: - Status Item
     // Must exist for the duration of the application so that the status bar does not disappear.
     var statusItem: NSStatusItem!
     
+    
+    // MARK: - Pasteboard Monitor
     // Monitors the pasteboard, here it can be controlled in the future if needed.
     var pasteboardMonitor: PasteboardMonitor!
     

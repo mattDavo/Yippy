@@ -12,55 +12,35 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
+let sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+
 class YippyViewController: NSViewController {
     
-    @IBOutlet var collectionView: NSCollectionView!
-    
-    let sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+    @IBOutlet var yippyHistoryView: YippyHistoryView!
     
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.layer?.backgroundColor = .clear
-        collectionView.allowsEmptySelection = false
-        collectionView.setAccessibilityIdentifier(Accessibility.identifiers.yippyCollectionView)
-        
-        let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
-        flowLayout.sectionInset = sectionInset
-        flowLayout.minimumLineSpacing = 5.0
-        collectionView.collectionViewLayout = flowLayout
+        yippyHistoryView.dataSource = self
+        yippyHistoryView.delegate = self
         view.wantsLayer = true
-        collectionView.layer?.backgroundColor = NSColor.black.cgColor
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)
         YippyHotKeys.pageDown.onDown(goToNextItem)
         YippyHotKeys.pageDown.onLong(goToNextItem)
-
         YippyHotKeys.upArrow.onDown(goToPreviousItem)
         YippyHotKeys.upArrow.onLong(goToPreviousItem)
         YippyHotKeys.pageUp.onDown(goToPreviousItem)
         YippyHotKeys.pageUp.onLong(goToPreviousItem)
-
-        YippyHotKeys.escape.onDown {
-            State.main.isHistoryPanelShown.accept(false)
-        }
-        
-        YippyHotKeys.return.onDown {
-            State.main.isHistoryPanelShown.accept(false)
-            if State.main.selected != 0 {
-                let pasteboard = NSPasteboard.general
-                pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-                pasteboard.setString(State.main.history.value[State.main.selected], forType: NSPasteboard.PasteboardType.string)
-                State.main.history.accept(State.main.history.value.without(elementAt: State.main.selected))
-            }
-            Helper.pressCommandV()
-        }
+        YippyHotKeys.escape.onDown(close)
+        YippyHotKeys.return.onDown(pasteSelected)
+        YippyHotKeys.cmdLeftArrow.onDown { State.main.panelPosition.accept(.left) }
+        YippyHotKeys.cmdRightArrow.onDown { State.main.panelPosition.accept(.right) }
+        YippyHotKeys.cmdDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
+        YippyHotKeys.cmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
         
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.downArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.upArrow, disposeBag: disposeBag)
@@ -68,25 +48,31 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.escape, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.pageDown, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.pageUp, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdLeftArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdRightArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdDownArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdUpArrow, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        collectionView.reloadData()
-        if collectionView.numberOfItems(inSection: 0) > 0 {
-            collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: 0, section: 0)), scrollPosition: .bottom)
+        yippyHistoryView.reloadData()
+        if yippyHistoryView.numberOfItems(inSection: 0) > 0 {
+            yippyHistoryView.selectItem(0)
         }
-        State.main.selected = 0
     }
     
-    func frameWillChange() {
-        collectionView.reloadData()
+    func frameWillChange() -> Int? {
+        // Must get the selected item before data is reloaded and it is reset
+        let selected = yippyHistoryView.selected
+        yippyHistoryView.reloadData()
+        return selected
     }
     
-    func frameDidChange() {
-        if collectionView.numberOfItems(inSection: 0) > 0 {
-            collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected, section: 0)), scrollPosition: .bottom)
+    func frameDidChange(selected: Int?) {
+        if let selected = selected {
+            yippyHistoryView.selectItem(selected)
         }
     }
     
@@ -100,19 +86,28 @@ class YippyViewController: NSViewController {
     }
     
     func goToNextItem() {
-        if State.main.selected < State.main.history.value.count - 1 {
-            collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected + 1, section: 0)), scrollPosition: .nearestHorizontalEdge)
-            collectionView.deselectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected, section: 0)))
-            State.main.selected += 1
-        }
+        yippyHistoryView.moveDown(self)
     }
     
     func goToPreviousItem() {
-        if State.main.selected > 0 {
-            collectionView.selectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected - 1, section: 0)), scrollPosition: .nearestHorizontalEdge)
-            collectionView.deselectItems(at: Set(arrayLiteral: IndexPath(item: State.main.selected, section: 0)))
-            State.main.selected -= 1
+        yippyHistoryView.moveUp(self)
+    }
+    
+    func pasteSelected() {
+        State.main.isHistoryPanelShown.accept(false)
+        if let selected = self.yippyHistoryView.selected {
+            if selected != 0 {
+                let pasteboard = NSPasteboard.general
+                pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+                pasteboard.setString(State.main.history.value[selected], forType: NSPasteboard.PasteboardType.string)
+                State.main.history.accept(State.main.history.value.without(elementAt: selected))
+            }
+            Helper.pressCommandV()
         }
+    }
+    
+    func close() {
+        State.main.isHistoryPanelShown.accept(false)
     }
 }
 
@@ -124,8 +119,8 @@ extension YippyViewController: NSCollectionViewDataSource {
     
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: YippyItem.identifier), for: indexPath)
-        guard let cell = item as? YippyItem else {return item}
+        let item = yippyHistoryView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: YippyItem.identifier), for: indexPath)
+        guard let cell = item as? YippyItem else { return item }
         
         cell.textView.string = State.main.history.value[indexPath.item]
         cell.textView.setFont(YippyItem.font, range: NSRange(location: 0, length: State.main.history.value[indexPath.item].count))
@@ -141,25 +136,23 @@ extension YippyViewController: NSCollectionViewDelegate {
             item.setHighlight()
         }
     }
-    
-    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        if let first = indexPaths.first {
-            State.main.selected = first.item
-        }
-    }
 }
 
 extension YippyViewController: NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
 
+        // Calculate the width of the cell
         let width = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
         
+        // Create an attributed string of the text
         let attrStr = NSAttributedString(string: State.main.history.value[indexPath.item], attributes: [.font: YippyItem.font])
         
+        // Determine the height of the text view (capping the cell height)
         let bRect = attrStr.boundingRect(with: NSSize(width: width - YippyItem.padding.left - YippyItem.padding.right, height: Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom), options: .usesLineFragmentOrigin)
         
+        // Add the padding back to get the height of the cell
         let height = bRect.height + YippyItem.padding.top + YippyItem.padding.bottom
-
+        
         return NSSize(width: width, height: ceil(height))
     }
 }

@@ -53,6 +53,7 @@
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
 		347D59A522F43B94005F6EA8 /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyItem.swift */; };
+		3486C0A6234416A4004B2F2E /* YippyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */; };
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
 		3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */; };
@@ -138,6 +139,7 @@
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorDelegate.swift; sourceTree = "<group>"; };
 		347D59A322F43B94005F6EA8 /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
+		3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistoryView.swift; sourceTree = "<group>"; };
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		341D9D38233A1460008A2BE6 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
+				3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
 			);
@@ -293,8 +296,8 @@
 			children = (
 				345B149223403B4100C2D0DA /* AccessControlMock.swift */,
 				3426811D233E0A4600BA226A /* Accessibility.swift */,
-				3426812B233EFD2900BA226A /* UITesting.swift */,
 				345B14B22341AFB800C2D0DA /* KeyPressMock.swift */,
+				3426812B233EFD2900BA226A /* UITesting.swift */,
 			);
 			path = UITesting;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				3426812C233EFD2900BA226A /* UITesting.swift in Sources */,
 				34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */,
 				34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */,
+				3486C0A6234416A4004B2F2E /* YippyHistoryView.swift in Sources */,
 				341D9D2D23372592008A2BE6 /* EventMonitor.swift in Sources */,
 				341D9D2B23372550008A2BE6 /* KeyAction.swift in Sources */,
 				34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */,

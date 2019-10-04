@@ -52,6 +52,8 @@
 		345B14B52341B8DF00C2D0DA /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426812B233EFD2900BA226A /* UITesting.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
+		3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */; };
+		3474C1402346E82900232620 /* YippyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13F2346E82900232620 /* YippyHistory.swift */; };
 		347D59A522F43B94005F6EA8 /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyItem.swift */; };
 		3486C0A6234416A4004B2F2E /* YippyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */; };
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
@@ -138,6 +140,8 @@
 		345B14B22341AFB800C2D0DA /* KeyPressMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMock.swift; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorDelegate.swift; sourceTree = "<group>"; };
+		3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BoundingRect.swift"; sourceTree = "<group>"; };
+		3474C13F2346E82900232620 /* YippyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistory.swift; sourceTree = "<group>"; };
 		347D59A322F43B94005F6EA8 /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
 		3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistoryView.swift; sourceTree = "<group>"; };
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -234,20 +238,14 @@
 		341D9D38233A1460008A2BE6 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
+				347D59A322F43B94005F6EA8 /* YippyItem.swift */,
+				34B2FD8C22F6FF970068D50A /* YippyItem.xib */,
 				3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
+				3474C13F2346E82900232620 /* YippyHistory.swift */,
 			);
 			path = Yippy;
-			sourceTree = "<group>";
-		};
-		341D9D39233A14DB008A2BE6 /* YippyItem */ = {
-			isa = PBXGroup;
-			children = (
-				347D59A322F43B94005F6EA8 /* YippyItem.swift */,
-				34B2FD8C22F6FF970068D50A /* YippyItem.xib */,
-			);
-			path = YippyItem;
 			sourceTree = "<group>";
 		};
 		341D9D3A233A1CA1008A2BE6 /* Extensions */ = {
@@ -257,6 +255,7 @@
 				34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */,
 				341D9D41233B48E4008A2BE6 /* Array+Functional.swift */,
 				343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */,
+				3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,7 +397,6 @@
 				34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */,
 				341D9D3423373083008A2BE6 /* YippyHotKey.swift */,
 				341D9D36233730A5008A2BE6 /* YippyHotKeys.swift */,
-				341D9D39233A14DB008A2BE6 /* YippyItem */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -720,6 +718,7 @@
 				345B14AF2341AEEA00C2D0DA /* KeyPressHelper.swift in Sources */,
 				341D9D31233725CA008A2BE6 /* KeyUpEventMonitor.swift in Sources */,
 				34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */,
+				3474C1402346E82900232620 /* YippyHistory.swift in Sources */,
 				341D9D37233730A5008A2BE6 /* YippyHotKeys.swift in Sources */,
 				34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */,
 				34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */,
@@ -738,6 +737,7 @@
 				345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */,
 				3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */,
 				341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */,
+				3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */,
 				34268124233EE82200BA226A /* AccessControlHelper.swift in Sources */,
 				341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,

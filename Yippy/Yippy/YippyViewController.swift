@@ -18,6 +18,8 @@ class YippyViewController: NSViewController {
     
     @IBOutlet var yippyHistoryView: YippyHistoryView!
     
+    var yippyHistory: YippyHistory!
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -26,6 +28,12 @@ class YippyViewController: NSViewController {
         yippyHistoryView.dataSource = self
         yippyHistoryView.delegate = self
         view.wantsLayer = true
+        
+        State.main.history
+            .subscribe(onNext: { (history) in
+                self.yippyHistory = YippyHistory(history: history)
+            })
+            .disposed(by: disposeBag)
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)
@@ -42,6 +50,18 @@ class YippyViewController: NSViewController {
         YippyHotKeys.cmdDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
         YippyHotKeys.cmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
         
+        // Paste hot keys
+        YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }
+        YippyHotKeys.cmd1.onDown { self.shortcutPressed(key: 1) }
+        YippyHotKeys.cmd2.onDown { self.shortcutPressed(key: 2) }
+        YippyHotKeys.cmd3.onDown { self.shortcutPressed(key: 3) }
+        YippyHotKeys.cmd4.onDown { self.shortcutPressed(key: 4) }
+        YippyHotKeys.cmd5.onDown { self.shortcutPressed(key: 5) }
+        YippyHotKeys.cmd6.onDown { self.shortcutPressed(key: 6) }
+        YippyHotKeys.cmd7.onDown { self.shortcutPressed(key: 7) }
+        YippyHotKeys.cmd8.onDown { self.shortcutPressed(key: 8) }
+        YippyHotKeys.cmd9.onDown { self.shortcutPressed(key: 9) }
+        
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.downArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.upArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.return, disposeBag: disposeBag)
@@ -52,6 +72,16 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdRightArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdDownArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdUpArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd0, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd1, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd2, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd3, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd4, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd5, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd6, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd7, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd8, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd9, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {
@@ -94,27 +124,26 @@ class YippyViewController: NSViewController {
     }
     
     func pasteSelected() {
-        State.main.isHistoryPanelShown.accept(false)
         if let selected = self.yippyHistoryView.selected {
-            if selected != 0 {
-                let pasteboard = NSPasteboard.general
-                pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-                pasteboard.setString(State.main.history.value[selected], forType: NSPasteboard.PasteboardType.string)
-                State.main.history.accept(State.main.history.value.without(elementAt: selected))
-            }
-            Helper.pressCommandV()
+            State.main.isHistoryPanelShown.accept(false)
+            yippyHistory.paste(selected: selected)
         }
     }
     
     func close() {
         State.main.isHistoryPanelShown.accept(false)
     }
+    
+    func shortcutPressed(key: Int) {
+        yippyHistoryView.selectItem(key)
+        pasteSelected()
+    }
 }
 
 extension YippyViewController: NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return State.main.history.value.count
+        return yippyHistory.history.count
     }
     
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -122,8 +151,14 @@ extension YippyViewController: NSCollectionViewDataSource {
         let item = yippyHistoryView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: YippyItem.identifier), for: indexPath)
         guard let cell = item as? YippyItem else { return item }
         
-        cell.textView.string = State.main.history.value[indexPath.item]
-        cell.textView.setFont(YippyItem.font, range: NSRange(location: 0, length: State.main.history.value[indexPath.item].count))
+        let itemStr = NSAttributedString(string: yippyHistory.history[indexPath.item], attributes: YippyItem.itemStringAttributes)
+        cell.itemTextView.textStorage?.setAttributedString(itemStr)
+        
+        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: YippyItem.shortcutStringAttributes)
+        cell.shortcutTextView.textStorage?.setAttributedString(shortcutStr)
+        cell.shortcutTextView.isHidden = indexPath.item >= 10
+        cell.shortcutTextView.setFrameOrigin(cell.getShortcutTextViewOrigin())
+        cell.shortcutTextView.setFrameSize(cell.getShortcutTextViewSize())
         
         return cell
     }
@@ -142,17 +177,26 @@ extension YippyViewController: NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
 
         // Calculate the width of the cell
-        let width = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        
+        // Calculate the width of the text container
+        let width = cellWidth - YippyItem.padding.left - YippyItem.padding.right - YippyItem.textContainerInset.width * 2
         
         // Create an attributed string of the text
-        let attrStr = NSAttributedString(string: State.main.history.value[indexPath.item], attributes: [.font: YippyItem.font])
+        let attrStr = NSAttributedString(string: yippyHistory.history[indexPath.item], attributes: [.font: YippyItem.font])
+        
+        // Get the max height of the text view
+        let maxTextViewHeight = Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom - YippyItem.textContainerInset.height * 2
         
         // Determine the height of the text view (capping the cell height)
-        let bRect = attrStr.boundingRect(with: NSSize(width: width - YippyItem.padding.left - YippyItem.padding.right, height: Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom), options: .usesLineFragmentOrigin)
+        let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextViewHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
         
         // Add the padding back to get the height of the cell
-        let height = bRect.height + YippyItem.padding.top + YippyItem.padding.bottom
+        let height = min(bRect.height, maxTextViewHeight) + YippyItem.padding.top + YippyItem.padding.bottom + YippyItem.textContainerInset.height * 2
         
-        return NSSize(width: width, height: ceil(height))
+        return NSSize(width: cellWidth, height: ceil(height))
     }
 }
+
+
+

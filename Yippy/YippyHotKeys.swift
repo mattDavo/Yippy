@@ -21,4 +21,15 @@ struct YippyHotKeys {
     static var cmdRightArrow = YippyHotKey(key: .rightArrow, modifiers: [.command])
     static var cmdDownArrow = YippyHotKey(key: .downArrow, modifiers: [.command])
     static var cmdUpArrow = YippyHotKey(key: .upArrow, modifiers: [.command])
+    
+    static var cmd0 = YippyHotKey(key: .zero, modifiers: [.command])
+    static var cmd1 = YippyHotKey(key: .one, modifiers: [.command])
+    static var cmd2 = YippyHotKey(key: .two, modifiers: [.command])
+    static var cmd3 = YippyHotKey(key: .three, modifiers: [.command])
+    static var cmd4 = YippyHotKey(key: .four, modifiers: [.command])
+    static var cmd5 = YippyHotKey(key: .five, modifiers: [.command])
+    static var cmd6 = YippyHotKey(key: .six, modifiers: [.command])
+    static var cmd7 = YippyHotKey(key: .seven, modifiers: [.command])
+    static var cmd8 = YippyHotKey(key: .eight, modifiers: [.command])
+    static var cmd9 = YippyHotKey(key: .nine, modifiers: [.command])
 }

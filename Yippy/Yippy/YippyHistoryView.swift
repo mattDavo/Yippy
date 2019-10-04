@@ -41,6 +41,9 @@ class YippyHistoryView: NSCollectionView {
     }
     
     func selectItem(_ i: Int) {
+        if let selected = selected {
+            deselectItem(selected)
+        }
         selectItems(at: Set(arrayLiteral: IndexPath(item: i, section: 0)), scrollPosition: .nearestHorizontalEdge)
     }
     

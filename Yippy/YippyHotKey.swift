@@ -101,6 +101,12 @@ class YippyHotKey {
         longPressObservers.append(obv)
     }
     
+    func simulateOnDown() {
+        for obv in self.keyDownObservers {
+            obv()
+        }
+    }
+    
     // MARK: - Private Methods
     
     private func stopLongPressTimer() {

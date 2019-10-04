@@ -15,6 +15,23 @@ class YippyItem: NSCollectionViewItem {
         override func mouseDown(with event: NSEvent) {
             self.nextResponder?.mouseDown(with: event)
         }
+        
+        var textInset: NSEdgeInsets = NSEdgeInsetsZero {
+            didSet {
+                textContainerInset = CGSize(width: (textInset.left + textInset.right)/2, height: (textInset.top + textInset.bottom)/2)
+            }
+        }
+        
+        var usingEdgeInsets = false
+        
+        override var textContainerOrigin: NSPoint {
+            if usingEdgeInsets {
+                return NSPoint(x: textInset.left, y: textInset.top)
+            }
+            else {
+                return super.textContainerOrigin
+            }
+        }
     }
     
     // MARK: - UI Constants
@@ -25,12 +42,12 @@ class YippyItem: NSCollectionViewItem {
     
     static let shortcutStringAttributes: [NSAttributedString.Key: Any] = [
         .font: YippyItem.font,
-        .foregroundColor: NSColor.white
+        .foregroundColor: NSColor.white.withAlphaComponent(0.7)
     ]
     
     static let padding = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
-    static let textContainerInset = NSSize(width: 20, height: 10)
+    static let textInset = NSEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     
     static let identifier = Accessibility.identifiers.yippyItem
     
@@ -70,14 +87,15 @@ class YippyItem: NSCollectionViewItem {
         view.addSubview(itemTextView)
         // Define the maximum size of the text container, so that the text renders correctly when there needs to be clipping.
         // Width can be any value
-        itemTextView.textContainer?.size = NSSize(width: 300, height: Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom - YippyItem.textContainerInset.height * 2)
+        itemTextView.textContainer?.size = NSSize(width: 300, height: Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom - YippyItem.textInset.yTotal)
         
         itemTextView.translatesAutoresizingMaskIntoConstraints = false
         itemTextView.drawsBackground = true
         itemTextView.wantsLayer = true
         itemTextView.backgroundColor = .clear
         itemTextView.isSelectable = false
-        itemTextView.textContainerInset = YippyItem.textContainerInset
+        itemTextView.usingEdgeInsets = true
+        itemTextView.textInset = YippyItem.textInset
         itemTextView.textContainer?.lineFragmentPadding = 0
         itemTextView.layer?.borderColor = NSColor.gray.cgColor
         itemTextView.layer?.borderWidth = 0.1
@@ -100,7 +118,7 @@ class YippyItem: NSCollectionViewItem {
         shortcutTextView.isSelectable = false
         shortcutTextView.textContainer?.lineFragmentPadding = 0
         shortcutTextView.alignment = .right
-        shortcutTextView.textContainerInset = NSSize(width: 5, height: 5)
+        shortcutTextView.textContainerInset = NSSize(width: 5, height: 2.5)
         shortcutTextView.layer?.cornerRadius = 7
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
         shortcutTextView.layer?.backgroundColor = NSColor.darkGray.withAlphaComponent(0.5).cgColor

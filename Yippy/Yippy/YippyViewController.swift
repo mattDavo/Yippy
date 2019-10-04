@@ -49,6 +49,7 @@ class YippyViewController: NSViewController {
         YippyHotKeys.cmdRightArrow.onDown { State.main.panelPosition.accept(.right) }
         YippyHotKeys.cmdDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
         YippyHotKeys.cmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
+        YippyHotKeys.cmdDelete.onDown(deleteSelected)
         
         // Paste hot keys
         YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }
@@ -82,6 +83,7 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd7, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd8, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd9, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdDelete, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {
@@ -127,6 +129,20 @@ class YippyViewController: NSViewController {
         if let selected = self.yippyHistoryView.selected {
             State.main.isHistoryPanelShown.accept(false)
             yippyHistory.paste(selected: selected)
+        }
+    }
+    
+    func deleteSelected() {
+        if let selected = self.yippyHistoryView.selected {
+            yippyHistory.delete(selected: selected)
+            yippyHistoryView.deleteItems(at: Set<IndexPath>(arrayLiteral: IndexPath(item: selected, section: 0)))
+            yippyHistoryView.reloadData()
+            if selected < yippyHistoryView.numberOfItems(inSection: 0) {
+                yippyHistoryView.selectItem(selected)
+            }
+            else if selected > 0 {
+                yippyHistoryView.selectItem(selected - 1)
+            }
         }
     }
     
@@ -180,19 +196,19 @@ extension YippyViewController: NSCollectionViewDelegateFlowLayout {
         let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
         
         // Calculate the width of the text container
-        let width = cellWidth - YippyItem.padding.left - YippyItem.padding.right - YippyItem.textContainerInset.width * 2
+        let width = cellWidth - YippyItem.padding.left - YippyItem.padding.right - YippyItem.textInset.xTotal
         
         // Create an attributed string of the text
         let attrStr = NSAttributedString(string: yippyHistory.history[indexPath.item], attributes: [.font: YippyItem.font])
         
         // Get the max height of the text view
-        let maxTextViewHeight = Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom - YippyItem.textContainerInset.height * 2
+        let maxTextViewHeight = Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom - YippyItem.textInset.yTotal
         
         // Determine the height of the text view (capping the cell height)
         let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextViewHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
         
         // Add the padding back to get the height of the cell
-        let height = min(bRect.height, maxTextViewHeight) + YippyItem.padding.top + YippyItem.padding.bottom + YippyItem.textContainerInset.height * 2
+        let height = min(bRect.height, maxTextViewHeight) + YippyItem.padding.top + YippyItem.padding.bottom + YippyItem.textInset.yTotal
         
         return NSSize(width: cellWidth, height: ceil(height))
     }

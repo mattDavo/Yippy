@@ -12,6 +12,12 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
+let deleteKeyEquivalent = NSString(format: "%c", NSDeleteCharacter) as String
+let leftArrowKeyEquivalent = NSString(format: "%C", 0x001c) as String
+let rightArrowKeyEquivalent = NSString(format: "%C", 0x001d) as String
+let downArrowKeyEquivalent = NSString(format: "%C", 0x001f) as String
+let upArrowKeyEquivalent = NSString(format: "%C", 0x001e) as String
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -90,7 +96,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V")
                 .with(accessibilityIdentifier: Accessibility.identifiers.toggleYippyWindowButton)
             )
-            .with(menuItem: NSMenuItem(title: "TODO: Clear history", action: nil, keyEquivalent: ""))
+            .with(menuItem: NSMenuItem(title: "Delete Selected", action: #selector(deleteSelectedClicked), keyEquivalent: deleteKeyEquivalent)
+                .with(state: .off)
+            )
+            .with(menuItem: NSMenuItem(title: "TODO: Clear history", action: nil, keyEquivalent: "")
+                .with(isEnabled: false)
+            )
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.positionButton)
                 .with(submenu: NSMenu(title: "")
@@ -119,6 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .with(menuItem: NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.quitButton)
         )
+        menu.autoenablesItems = false
         
         State.main.panelPosition
             .subscribe(onNext: {
@@ -127,6 +139,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.right.rawValue)?.state = $0 == .right ? .on : .off
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.top.rawValue)?.state = $0 == .top ? .on : .off
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.bottom.rawValue)?.state = $0 == .bottom ? .on : .off
+            })
+            .disposed(by: disposeBag)
+        
+        
+        State.main.isHistoryPanelShown
+            .subscribe(onNext: {
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.left.rawValue)?.keyEquivalent = $0 ? leftArrowKeyEquivalent : ""
+                
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.right.rawValue)?.keyEquivalent = $0 ? rightArrowKeyEquivalent : ""
+                
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.top.rawValue)?.keyEquivalent = $0 ? upArrowKeyEquivalent : ""
+                
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.bottom.rawValue)?.keyEquivalent = $0 ? downArrowKeyEquivalent : ""
+                
+                menu.item(withTitle: "Delete Selected")?.isEnabled = $0
             })
             .disposed(by: disposeBag)
         
@@ -155,6 +182,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func togglePopover() {
         State.main.isHistoryPanelShown.accept(!State.main.isHistoryPanelShown.value)
+    }
+    
+    @objc func deleteSelectedClicked() {
+        YippyHotKeys.cmdDelete.simulateOnDown()
     }
     
     func loadState(fromSettings settings: Settings) {

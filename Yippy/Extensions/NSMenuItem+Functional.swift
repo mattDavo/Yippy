@@ -29,4 +29,9 @@ extension NSMenuItem {
         self.setAccessibilityIdentifier(accessibilityIdentifier)
         return self
     }
+    
+    func with(isEnabled: Bool) -> NSMenuItem {
+        self.isEnabled = isEnabled
+        return self
+    }
 }

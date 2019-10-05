@@ -99,9 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .with(menuItem: NSMenuItem(title: "Delete Selected", action: #selector(deleteSelectedClicked), keyEquivalent: deleteKeyEquivalent)
                 .with(state: .off)
             )
-            .with(menuItem: NSMenuItem(title: "TODO: Clear history", action: nil, keyEquivalent: "")
-                .with(isEnabled: false)
-            )
+            .with(menuItem: NSMenuItem(title: "Clear history", action: #selector(clearHistoryClicked), keyEquivalent: ""))
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.positionButton)
                 .with(submenu: NSMenu(title: "")
@@ -186,6 +184,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func deleteSelectedClicked() {
         YippyHotKeys.cmdDelete.simulateOnDown()
+    }
+    
+    @objc func clearHistoryClicked() {
+        State.main.history.accept([])
+        State.main.selected.accept(nil)
     }
     
     func loadState(fromSettings settings: Settings) {

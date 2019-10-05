@@ -242,5 +242,7 @@ extension AppDelegate: PasteboardMonitorDelegate {
         
         State.main.history.accept(State.main.history.value.with(element: str, insertedAt: 0))
         State.main.pasteboardChangeCount.accept(pasteboard.changeCount)
+        let selected = (State.main.selected.value ?? -1) + 1
+        State.main.selected.accept(selected)
     }
 }

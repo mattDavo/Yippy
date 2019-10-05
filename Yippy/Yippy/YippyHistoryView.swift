@@ -30,10 +30,10 @@ class YippyHistoryView: NSCollectionView {
     private func commonInit() {
         layer?.backgroundColor = .clear
         allowsEmptySelection = false
+        allowsMultipleSelection = false
         setAccessibilityIdentifier(Accessibility.identifiers.yippyCollectionView)
         
         let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
         flowLayout.sectionInset = sectionInset
         flowLayout.minimumLineSpacing = 5.0
         collectionViewLayout = flowLayout
@@ -44,10 +44,15 @@ class YippyHistoryView: NSCollectionView {
         if let selected = selected {
             deselectItem(selected)
         }
-        selectItems(at: Set(arrayLiteral: IndexPath(item: i, section: 0)), scrollPosition: .nearestHorizontalEdge)
+        let items = Set(arrayLiteral: IndexPath(item: i, section: 0))
+        selectItems(at: items, scrollPosition: .nearestHorizontalEdge)
     }
     
     func deselectItem(_ i: Int) {
         deselectItems(at: Set(arrayLiteral: IndexPath(item: i, section: 0)))
+    }
+    
+    func deleteItem(_ i: Int) {
+        deleteItems(at: Set<IndexPath>(arrayLiteral: IndexPath(item: i, section: 0)))
     }
 }

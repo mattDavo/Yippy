@@ -27,6 +27,7 @@ struct State {
     
     var history = BehaviorRelay<[String]>(value: [])
     
+    var selected = BehaviorRelay<Int?>(value: nil)
     
     // MARK: - Status Item
     // Must exist for the duration of the application so that the status bar does not disappear.

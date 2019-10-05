@@ -33,6 +33,8 @@
 		3426812C233EFD2900BA226A /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426812B233EFD2900BA226A /* UITesting.swift */; };
 		343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F4119233C8C14004DA324 /* SettingsTests.swift */; };
 		343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */; };
+		344DF6FB2348459F00351310 /* NSLayoutDimension+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */; };
+		344DF6FD234845E700351310 /* NSView+ConstraintWithIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */; };
 		345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B149423403B8F00C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B14962340493600C2D0DA /* XCUIApplication+Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */; };
@@ -127,6 +129,8 @@
 		3426812B233EFD2900BA226A /* UITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITesting.swift; sourceTree = "<group>"; };
 		343F4119233C8C14004DA324 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Blank.swift"; sourceTree = "<group>"; };
+		344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutDimension+Constraint.swift"; sourceTree = "<group>"; };
+		344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ConstraintWithIdentifier.swift"; sourceTree = "<group>"; };
 		345B149223403B4100C2D0DA /* AccessControlMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlMock.swift; sourceTree = "<group>"; };
 		345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Windows.swift"; sourceTree = "<group>"; };
 		345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Buttons.swift"; sourceTree = "<group>"; };
@@ -253,12 +257,14 @@
 		341D9D3A233A1CA1008A2BE6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */,
-				34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */,
 				341D9D41233B48E4008A2BE6 /* Array+Functional.swift */,
-				343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */,
 				3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */,
 				3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */,
+				344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */,
+				34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */,
+				34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */,
+				344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */,
+				343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -727,6 +733,8 @@
 				34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */,
 				34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */,
 				341D9D40233AE8A1008A2BE6 /* Helper.swift in Sources */,
+				344DF6FD234845E700351310 /* NSView+ConstraintWithIdentifier.swift in Sources */,
+				344DF6FB2348459F00351310 /* NSLayoutDimension+Constraint.swift in Sources */,
 				3426812C233EFD2900BA226A /* UITesting.swift in Sources */,
 				34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */,
 				34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */,

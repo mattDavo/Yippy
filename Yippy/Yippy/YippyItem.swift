@@ -58,6 +58,7 @@ class YippyItem: NSCollectionViewItem {
     var itemTextView: YippyItemCellTextView!
     var shortcutTextView: YippyItemCellTextView!
     
+    
     // MARK: - isSelected override
     
     override var isSelected: Bool {
@@ -123,6 +124,11 @@ class YippyItem: NSCollectionViewItem {
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
         shortcutTextView.layer?.backgroundColor = NSColor.darkGray.withAlphaComponent(0.5).cgColor
         shortcutTextView.isHorizontallyResizable = true
+        
+        itemTextView.addConstraint(NSLayoutConstraint(item: shortcutTextView!, attribute: .top, relatedBy: .equal, toItem: itemTextView, attribute: .top, multiplier: 1, constant: 0))
+        itemTextView.addConstraint(NSLayoutConstraint(item: itemTextView!, attribute: .trailing, relatedBy: .equal, toItem: shortcutTextView, attribute: .trailing, multiplier: 1, constant: 0))
+        shortcutTextView.widthAnchor.constraint(equalToConstant: 0, withIdentifier: "width")?.isActive = true
+        shortcutTextView.heightAnchor.constraint(equalToConstant: 0, withIdentifier: "height")?.isActive = true
     }
     
     func getShortcutTextViewSize() -> NSSize {
@@ -132,8 +138,14 @@ class YippyItem: NSCollectionViewItem {
         return NSSize(width: bRect.width + shortcutTextView.textContainerInset.width * 2, height: bRect.height + shortcutTextView.textContainerInset.height * 2)
     }
     
-    func getShortcutTextViewOrigin() -> NSPoint {
-        let minSize = getShortcutTextViewSize()
-        return NSPoint(x: view.frame.width - YippyItem.padding.left - YippyItem.padding.right - minSize.width + shortcutTextView.layer!.borderWidth, y: -shortcutTextView.layer!.borderWidth)
+    func updateShortcutTextViewContraints() {
+        let size = getShortcutTextViewSize()
+        shortcutTextView.constraint(withIdentifier: "width")?.constant = size.width
+        shortcutTextView.constraint(withIdentifier: "height")?.constant = size.height
     }
 }
+
+
+
+
+

@@ -29,11 +29,8 @@ class YippyViewController: NSViewController {
         yippyHistoryView.delegate = self
         view.wantsLayer = true
         
-        State.main.history
-            .subscribe(onNext: { (history) in
-                self.yippyHistory = YippyHistory(history: history)
-            })
-            .disposed(by: disposeBag)
+        State.main.history.subscribe(onNext: onHistoryChange).disposed(by: disposeBag)
+        State.main.selected.subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)
@@ -89,23 +86,27 @@ class YippyViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        yippyHistoryView.reloadData()
-        if yippyHistoryView.numberOfItems(inSection: 0) > 0 {
-            yippyHistoryView.selectItem(0)
+        if yippyHistory.history.count > 0 {
+            State.main.selected.accept(0)
         }
     }
     
-    func frameWillChange() -> Int? {
-        // Must get the selected item before data is reloaded and it is reset
-        let selected = yippyHistoryView.selected
-        yippyHistoryView.reloadData()
-        return selected
+    func onHistoryChange(_ history: [String]) {
+        self.yippyHistory = YippyHistory(history: history)
+        self.yippyHistoryView.reloadData()
     }
     
-    func frameDidChange(selected: Int?) {
+    func onSelectedChange(_ selected: Int?) {
         if let selected = selected {
-            yippyHistoryView.selectItem(selected)
+            let currentSelection = self.yippyHistoryView.selected
+            if currentSelection == nil || currentSelection != selected {
+                self.yippyHistoryView.selectItem(selected)
+            }
         }
+    }
+    
+    func frameWillChange() {
+        yippyHistoryView.collectionViewLayout?.invalidateLayout()
     }
     
     func bindHotKeyToYippyWindow(yippyHotKey: YippyHotKey, disposeBag: DisposeBag) {
@@ -135,14 +136,23 @@ class YippyViewController: NSViewController {
     func deleteSelected() {
         if let selected = self.yippyHistoryView.selected {
             yippyHistory.delete(selected: selected)
-            yippyHistoryView.deleteItems(at: Set<IndexPath>(arrayLiteral: IndexPath(item: selected, section: 0)))
-            yippyHistoryView.reloadData()
-            if selected < yippyHistoryView.numberOfItems(inSection: 0) {
-                yippyHistoryView.selectItem(selected)
+            yippyHistoryView.deleteItem(selected)
+            
+            // Assume no selection
+            var select: Int? = nil
+            // If the deleted item is not the last in the list then keep the selection index the same.
+            if selected < yippyHistory.history.count {
+                select = selected
             }
+            // Otherwise if there is any items left, select the previous item
             else if selected > 0 {
-                yippyHistoryView.selectItem(selected - 1)
+                select = selected - 1
             }
+            // No items, select nothing
+            else {
+                select = nil
+            }
+            State.main.selected.accept(select)
         }
     }
     
@@ -151,7 +161,7 @@ class YippyViewController: NSViewController {
     }
     
     func shortcutPressed(key: Int) {
-        yippyHistoryView.selectItem(key)
+        State.main.selected.accept(key)
         pasteSelected()
     }
 }
@@ -173,8 +183,7 @@ extension YippyViewController: NSCollectionViewDataSource {
         let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: YippyItem.shortcutStringAttributes)
         cell.shortcutTextView.textStorage?.setAttributedString(shortcutStr)
         cell.shortcutTextView.isHidden = indexPath.item >= 10
-        cell.shortcutTextView.setFrameOrigin(cell.getShortcutTextViewOrigin())
-        cell.shortcutTextView.setFrameSize(cell.getShortcutTextViewSize())
+        cell.updateShortcutTextViewContraints()
         
         return cell
     }
@@ -186,6 +195,10 @@ extension YippyViewController: NSCollectionViewDelegate {
         if let item = item as? YippyItem {
             item.setHighlight()
         }
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        State.main.selected.accept(indexPaths.first?.item)
     }
 }
 
@@ -213,6 +226,3 @@ extension YippyViewController: NSCollectionViewDelegateFlowLayout {
         return NSSize(width: cellWidth, height: ceil(height))
     }
 }
-
-
-

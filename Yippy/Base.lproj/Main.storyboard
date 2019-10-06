@@ -689,9 +689,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZH-k7-QqI">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="231"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qiX-g5-VvL">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="231"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="e19-Ic-rWq" customClass="YippyHistoryView" customModule="Yippy" customModuleProvider="target">
@@ -707,12 +707,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1IP-9D-3FM">
-                                    <rect key="frame" x="434" y="0.0" width="16" height="250"/>
+                                    <rect key="frame" x="434" y="0.0" width="16" height="221"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RtE-1d-ash">
-                                <rect key="frame" x="200" y="268" width="50" height="23"/>
+                                <rect key="frame" x="200" y="247" width="50" height="23"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Yippy" id="4zx-Je-VkY">
                                     <font key="font" size="15" name="RobotoMonoForPowerline-Medium"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -724,8 +724,8 @@
                             <constraint firstAttribute="bottom" secondItem="4ZH-k7-QqI" secondAttribute="bottom" id="361-lO-vgy"/>
                             <constraint firstAttribute="trailing" secondItem="4ZH-k7-QqI" secondAttribute="trailing" id="9hW-0s-Q6Y"/>
                             <constraint firstItem="4ZH-k7-QqI" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" id="THx-TG-TK6"/>
-                            <constraint firstItem="4ZH-k7-QqI" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="8" id="jZe-dl-wD2"/>
-                            <constraint firstItem="RtE-1d-ash" firstAttribute="top" secondItem="EMV-Rg-IFx" secondAttribute="top" constant="9" id="oI3-yu-m8a"/>
+                            <constraint firstItem="4ZH-k7-QqI" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="16" id="jZe-dl-wD2"/>
+                            <constraint firstItem="RtE-1d-ash" firstAttribute="top" secondItem="EMV-Rg-IFx" secondAttribute="top" constant="30" id="oI3-yu-m8a"/>
                             <constraint firstItem="RtE-1d-ash" firstAttribute="centerX" secondItem="EMV-Rg-IFx" secondAttribute="centerX" id="uHR-w9-04z"/>
                         </constraints>
                     </visualEffectView>
@@ -742,6 +742,7 @@
             <objects>
                 <windowController storyboardIdentifier="YippyWindowController" id="6mG-8P-NBo" customClass="YippyWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5mc-W7-tKp" customClass="NSPanel">
+                        <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>

@@ -92,9 +92,9 @@ class YippyViewController: NSViewController {
     }
     
     func onHistoryChange(_ history: [String]) {
-        self.yippyHistory = YippyHistory(history: history)
-        self.yippyHistoryView.reloadData()
-        self.view.displayIfNeeded()
+        yippyHistory = YippyHistory(history: history)
+        yippyHistoryView.reloadData()
+        view.displayIfNeeded()
     }
     
     func onSelectedChange(_ selected: Int?) {

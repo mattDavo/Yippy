@@ -16,8 +16,9 @@ class YippyWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        window?.level = .floating
+        window?.level = NSWindow.Level(rawValue: Int(kCGDockWindowLevel + 1))
         window?.setAccessibilityIdentifier(Accessibility.identifiers.yippyWindow)
+        window?.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
     }
     
     static func createYippyWindowController() -> YippyWindowController {

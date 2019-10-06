@@ -18,13 +18,13 @@ enum PanelPosition: Int, Codable {
     var frame: NSRect {
         switch self {
         case .right:
-            return NSRect(x: NSScreen.main!.visibleFrame.maxX - Constants.panel.menuWidth, y: NSScreen.main!.visibleFrame.minY, width: Constants.panel.menuWidth, height: NSScreen.main!.visibleFrame.height)
+            return NSRect(x: NSScreen.main!.frame.maxX - Constants.panel.menuWidth, y: NSScreen.main!.visibleFrame.minY, width: Constants.panel.menuWidth, height: NSScreen.main!.frame.maxY)
         case .left:
-            return NSRect(x: 0, y: 0, width: Constants.panel.menuWidth, height: NSScreen.main!.visibleFrame.maxY)
+            return NSRect(x: 0, y: NSScreen.main!.visibleFrame.minY, width: Constants.panel.menuWidth, height: NSScreen.main!.frame.maxY)
         case .top:
-            return NSRect(x: 0, y: NSScreen.main!.visibleFrame.height - Constants.panel.menuHeight, width: NSScreen.main!.visibleFrame.width, height: Constants.panel.menuHeight)
+            return NSRect(x: 0, y: NSScreen.main!.frame.maxY - Constants.panel.menuHeight, width: NSScreen.main!.frame.width, height: Constants.panel.menuHeight)
         case .bottom:
-            return NSRect(x: 0, y: 0, width: NSScreen.main!.visibleFrame.width, height: Constants.panel.menuHeight)
+            return NSRect(x: 0, y: 0, width: NSScreen.main!.frame.width, height: Constants.panel.menuHeight)
         }
     }
 }

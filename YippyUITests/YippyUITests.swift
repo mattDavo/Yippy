@@ -123,7 +123,7 @@ class YippyUITests: XCTestCase {
         app.positionTopButton.click()
         
         // Check window location is .top
-        XCTAssertEqual(app.yippyWindow.frame.midY, statusBarHeight + Constants.panel.menuHeight/2)
+        XCTAssertEqual(app.yippyWindow.frame.midY, Constants.panel.menuHeight/2)
         
         // Change back to position right
         app.statusItemButton.click()

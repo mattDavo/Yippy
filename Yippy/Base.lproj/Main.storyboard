@@ -695,7 +695,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="e19-Ic-rWq" customClass="YippyHistoryView" customModule="Yippy" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="231"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <color key="primaryBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </collectionView>
@@ -741,7 +741,7 @@
         <scene sceneID="i01-lF-j9v">
             <objects>
                 <windowController storyboardIdentifier="YippyWindowController" id="6mG-8P-NBo" customClass="YippyWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5mc-W7-tKp" customClass="NSPanel">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5mc-W7-tKp" customClass="YippyWindow" customModule="Yippy" customModuleProvider="target">
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>

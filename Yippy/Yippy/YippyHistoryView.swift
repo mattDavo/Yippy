@@ -51,8 +51,4 @@ class YippyHistoryView: NSCollectionView {
     func deselectItem(_ i: Int) {
         deselectItems(at: Set(arrayLiteral: IndexPath(item: i, section: 0)))
     }
-    
-    func deleteItem(_ i: Int) {
-        deleteItems(at: Set<IndexPath>(arrayLiteral: IndexPath(item: i, section: 0)))
-    }
 }

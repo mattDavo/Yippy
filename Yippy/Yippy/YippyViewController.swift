@@ -89,6 +89,9 @@ class YippyViewController: NSViewController {
         if yippyHistory.history.count > 0 {
             State.main.selected.accept(0)
         }
+        else {
+            State.main.selected.accept(nil)
+        }
     }
     
     func onHistoryChange(_ history: [String]) {
@@ -130,6 +133,7 @@ class YippyViewController: NSViewController {
     func pasteSelected() {
         if let selected = self.yippyHistoryView.selected {
             State.main.isHistoryPanelShown.accept(false)
+            State.main.selected.accept(nil)
             yippyHistory.paste(selected: selected)
         }
     }
@@ -137,7 +141,6 @@ class YippyViewController: NSViewController {
     func deleteSelected() {
         if let selected = self.yippyHistoryView.selected {
             yippyHistory.delete(selected: selected)
-            yippyHistoryView.deleteItem(selected)
             
             // Assume no selection
             var select: Int? = nil

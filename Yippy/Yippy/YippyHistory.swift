@@ -18,12 +18,10 @@ class YippyHistory {
     }
     
     func paste(selected: Int) {
-        if selected != 0 {
-            let pasteboard = NSPasteboard.general
-            pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-            pasteboard.setString(history[selected], forType: NSPasteboard.PasteboardType.string)
-            State.main.history.accept(history.without(elementAt: selected))
-        }
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        pasteboard.setString(history[selected], forType: NSPasteboard.PasteboardType.string)
+        State.main.history.accept(history.without(elementAt: selected))
         Helper.pressCommandV()
     }
     

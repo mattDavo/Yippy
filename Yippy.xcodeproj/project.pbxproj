@@ -21,6 +21,9 @@
 		341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */; };
 		341D9D40233AE8A1008A2BE6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D3F233AE8A1008A2BE6 /* Helper.swift */; };
 		341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D41233B48E4008A2BE6 /* Array+Functional.swift */; };
+		3423B1BD234D8A7F00B40715 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423B1BC234D8A7F00B40715 /* PreviewViewController.swift */; };
+		3423B1C1234D8AFF00B40715 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423B1C0234D8AFF00B40715 /* HistoryItem.swift */; };
+		3423B1C3234DA3B700B40715 /* YippyStatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423B1C2234DA3B700B40715 /* YippyStatusItem.swift */; };
 		3426810D233D912E00BA226A /* PasteboardMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426810C233D912E00BA226A /* PasteboardMonitorTests.swift */; };
 		34268111233D9CB500BA226A /* NSMenuFunctionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268110233D9CB500BA226A /* NSMenuFunctionalTests.swift */; };
 		34268113233D9EC500BA226A /* NSMenuItemFunctionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268112233D9EC500BA226A /* NSMenuItemFunctionalTests.swift */; };
@@ -32,8 +35,12 @@
 		34268124233EE82200BA226A /* AccessControlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268123233EE82200BA226A /* AccessControlHelper.swift */; };
 		34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268125233EE83700BA226A /* AccessControlHelperMock.swift */; };
 		3426812C233EFD2900BA226A /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426812B233EFD2900BA226A /* UITesting.swift */; };
+		342D4E4D234F1E2000FC9F42 /* QLPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D4E4C234F1E2000FC9F42 /* QLPreviewController.swift */; };
 		343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F4119233C8C14004DA324 /* SettingsTests.swift */; };
 		343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */; };
+		344C1160234DB23B00B35DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344C115F234DB23B00B35DC9 /* Assets.xcassets */; };
+		344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344C1161234DD2EF00B35DC9 /* Quartz.framework */; };
+		344C1166234E94C600B35DC9 /* PreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C1165234E94C600B35DC9 /* PreviewWindowController.swift */; };
 		344DF6FB2348459F00351310 /* NSLayoutDimension+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */; };
 		344DF6FD234845E700351310 /* NSView+ConstraintWithIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */; };
 		345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
@@ -53,24 +60,28 @@
 		345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
 		345B14B42341B37A00C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
 		345B14B52341B8DF00C2D0DA /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426812B233EFD2900BA226A /* UITesting.swift */; };
+		345BAE2A234FF655008ACB4C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE29234FF655008ACB4C /* Fonts.swift */; };
+		345BAE2C23500580008ACB4C /* YippyFileIconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */; };
+		345BAE2E235005BB008ACB4C /* YippyFileThumbnailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */; };
+		345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2F235005E7008ACB4C /* YippyItem.swift */; };
+		345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */; };
+		345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
 		3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */; };
 		3474C1402346E82900232620 /* YippyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13F2346E82900232620 /* YippyHistory.swift */; };
 		3474C14223472A1500232620 /* NSEdgeInset+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */; };
-		347D59A522F43B94005F6EA8 /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyItem.swift */; };
+		347D59A522F43B94005F6EA8 /* YippyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyTextItem.swift */; };
 		3486C0A6234416A4004B2F2E /* YippyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */; };
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
 		3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */; };
 		3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3982328EFB300BA8747 /* HelpViewController.swift */; };
 		34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */; };
-		34ACFBC322EB0B11004E6E63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC222EB0B11004E6E63 /* Assets.xcassets */; };
 		34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC422EB0B11004E6E63 /* Main.storyboard */; };
 		34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBD122EB0B11004E6E63 /* YippyTests.swift */; };
 		34ACFBDD22EB0B11004E6E63 /* YippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */; };
 		34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */; };
-		34B2FD8D22F6FF970068D50A /* YippyItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2FD8C22F6FF970068D50A /* YippyItem.xib */; };
 		34B2FD9122F986AB0068D50A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 34B2FD9022F986AB0068D50A /* README.md */; };
 		34B2FD9322F988980068D50A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9222F988980068D50A /* Settings.swift */; };
 		34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9422F98B1A0068D50A /* PanelPosition.swift */; };
@@ -81,9 +92,16 @@
 		34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EA232B4D70006259E1 /* WelcomeWindowController.swift */; };
 		34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EC232B5139006259E1 /* AboutWindowController.swift */; };
 		34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EE232B514A006259E1 /* AboutViewController.swift */; };
-		A5C99B740C04DDE460B8F2DA /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */; };
-		BF469DA2E1A5167F91B1378F /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */; };
-		BFCE078A2E64ECAB4558310F /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */; };
+		34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */; };
+		34E516CB2352AC50008B4256 /* YippyColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CA2352AC50008B4256 /* YippyColorItem.swift */; };
+		34E516CD2352C4AF008B4256 /* YippyItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CC2352C4AF008B4256 /* YippyItemBase.swift */; };
+		34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */; };
+		34F1047B23542BB000B65251 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423B1C0234D8AFF00B40715 /* HistoryItem.swift */; };
+		34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */; };
+		34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
+		A80929005D94487CF88D2DA5 /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA78297EE0725B2F07E9051B /* Pods_YippyUITests.framework */; };
+		BEFD933C68F4CADC8B98A22B /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C321AF00E460B22DA8A701 /* Pods_YippyTests.framework */; };
+		D3E1FEC77714C750EEC80E0F /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA350E8DD07ABC229F432A7 /* Pods_Yippy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +122,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C321AF00E460B22DA8A701 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34010D29234AB3F100C1218D /* YippyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindow.swift; sourceTree = "<group>"; };
 		341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMonitor.swift; sourceTree = "<group>"; };
 		341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEventModifierFlags+KeyPressMonitor.swift"; sourceTree = "<group>"; };
@@ -119,6 +137,9 @@
 		341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindowController.swift; sourceTree = "<group>"; };
 		341D9D3F233AE8A1008A2BE6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		341D9D41233B48E4008A2BE6 /* Array+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Functional.swift"; sourceTree = "<group>"; };
+		3423B1BC234D8A7F00B40715 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		3423B1C0234D8AFF00B40715 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
+		3423B1C2234DA3B700B40715 /* YippyStatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyStatusItem.swift; sourceTree = "<group>"; };
 		3426810C233D912E00BA226A /* PasteboardMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorTests.swift; sourceTree = "<group>"; };
 		34268110233D9CB500BA226A /* NSMenuFunctionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuFunctionalTests.swift; sourceTree = "<group>"; };
 		34268112233D9EC500BA226A /* NSMenuItemFunctionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuItemFunctionalTests.swift; sourceTree = "<group>"; };
@@ -129,8 +150,13 @@
 		34268123233EE82200BA226A /* AccessControlHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlHelper.swift; sourceTree = "<group>"; };
 		34268125233EE83700BA226A /* AccessControlHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlHelperMock.swift; sourceTree = "<group>"; };
 		3426812B233EFD2900BA226A /* UITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITesting.swift; sourceTree = "<group>"; };
+		342D4E4C234F1E2000FC9F42 /* QLPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLPreviewController.swift; sourceTree = "<group>"; };
 		343F4119233C8C14004DA324 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Blank.swift"; sourceTree = "<group>"; };
+		344C115F234DB23B00B35DC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		344C1161234DD2EF00B35DC9 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		344C1163234DD31700B35DC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		344C1165234E94C600B35DC9 /* PreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWindowController.swift; sourceTree = "<group>"; };
 		344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutDimension+Constraint.swift"; sourceTree = "<group>"; };
 		344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ConstraintWithIdentifier.swift"; sourceTree = "<group>"; };
 		345B149223403B4100C2D0DA /* AccessControlMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlMock.swift; sourceTree = "<group>"; };
@@ -145,12 +171,18 @@
 		345B14AE2341AEEA00C2D0DA /* KeyPressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelper.swift; sourceTree = "<group>"; };
 		345B14B02341AF1900C2D0DA /* KeyPressHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelperMock.swift; sourceTree = "<group>"; };
 		345B14B22341AFB800C2D0DA /* KeyPressMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMock.swift; sourceTree = "<group>"; };
+		345BAE29234FF655008ACB4C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileIconItem.swift; sourceTree = "<group>"; };
+		345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileThumbnailItem.swift; sourceTree = "<group>"; };
+		345BAE2F235005E7008ACB4C /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
+		345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemCellTextView.swift; sourceTree = "<group>"; };
+		345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardType+Codable.swift"; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorDelegate.swift; sourceTree = "<group>"; };
 		3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BoundingRect.swift"; sourceTree = "<group>"; };
 		3474C13F2346E82900232620 /* YippyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistory.swift; sourceTree = "<group>"; };
 		3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEdgeInset+Convenience.swift"; sourceTree = "<group>"; };
-		347D59A322F43B94005F6EA8 /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
+		347D59A322F43B94005F6EA8 /* YippyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTextItem.swift; sourceTree = "<group>"; };
 		3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistoryView.swift; sourceTree = "<group>"; };
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -158,7 +190,6 @@
 		3490D3982328EFB300BA8747 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		34ACFBBB22EB0B0F004E6E63 /* Yippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		34ACFBC222EB0B11004E6E63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34ACFBC522EB0B11004E6E63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34ACFBC722EB0B11004E6E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yippy.entitlements; sourceTree = "<group>"; };
@@ -169,7 +200,6 @@
 		34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyUITests.swift; sourceTree = "<group>"; };
 		34ACFBDE22EB0B11004E6E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyViewController.swift; sourceTree = "<group>"; };
-		34B2FD8C22F6FF970068D50A /* YippyItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YippyItem.xib; sourceTree = "<group>"; };
 		34B2FD9022F986AB0068D50A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		34B2FD9222F988980068D50A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		34B2FD9422F98B1A0068D50A /* PanelPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPosition.swift; sourceTree = "<group>"; };
@@ -180,14 +210,19 @@
 		34D018EA232B4D70006259E1 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
 		34D018EC232B5139006259E1 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		34D018EE232B514A006259E1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
-		4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
-		6D79BF5FC022B6E951278A1A /* Pods-YippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8E87FF0379487D853FC8C52C /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
-		AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE5BC7136BE0BA33106A2C2D /* Pods-Yippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.debug.xcconfig"; sourceTree = "<group>"; };
-		C5A3D2D300A55B877885A168 /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+AttributedText.swift"; sourceTree = "<group>"; };
+		34E516CA2352AC50008B4256 /* YippyColorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyColorItem.swift; sourceTree = "<group>"; };
+		34E516CC2352C4AF008B4256 /* YippyItemBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemBase.swift; sourceTree = "<group>"; };
+		34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemContentView.swift; sourceTree = "<group>"; };
+		34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+YippyItem.swift"; sourceTree = "<group>"; };
+		50BD8C6B3DD4E743FC8D8EA0 /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D4AC283904A4F947D976AE2 /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
+		A19A245BB447E419FA6C3CFC /* Pods-Yippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.debug.xcconfig"; sourceTree = "<group>"; };
+		B4157B2EF07B5214AE1BA728 /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BAA350E8DD07ABC229F432A7 /* Pods_Yippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA78297EE0725B2F07E9051B /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E012DD17F645A774B72C4060 /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
+		E271F1F1F55D845FEF1FC341 /* Pods-YippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,7 +230,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF469DA2E1A5167F91B1378F /* Pods_Yippy.framework in Frameworks */,
+				344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */,
+				D3E1FEC77714C750EEC80E0F /* Pods_Yippy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFCE078A2E64ECAB4558310F /* Pods_YippyTests.framework in Frameworks */,
+				BEFD933C68F4CADC8B98A22B /* Pods_YippyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5C99B740C04DDE460B8F2DA /* Pods_YippyUITests.framework in Frameworks */,
+				A80929005D94487CF88D2DA5 /* Pods_YippyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,9 +257,11 @@
 		2F6C79B4B534D194417375B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAC486734C13D23E7E98A2AC /* Pods_Yippy.framework */,
-				4E6D5ACCA33FD3492CE9A5A1 /* Pods_YippyTests.framework */,
-				16E2E0C7CB9E1EAF99F2E21E /* Pods_YippyUITests.framework */,
+				344C1163234DD31700B35DC9 /* QuartzCore.framework */,
+				344C1161234DD2EF00B35DC9 /* Quartz.framework */,
+				BAA350E8DD07ABC229F432A7 /* Pods_Yippy.framework */,
+				33C321AF00E460B22DA8A701 /* Pods_YippyTests.framework */,
+				CA78297EE0725B2F07E9051B /* Pods_YippyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,10 +284,16 @@
 		341D9D38233A1460008A2BE6 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
+				34E516CA2352AC50008B4256 /* YippyColorItem.swift */,
+				345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */,
+				345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */,
 				3474C13F2346E82900232620 /* YippyHistory.swift */,
 				3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */,
-				347D59A322F43B94005F6EA8 /* YippyItem.swift */,
-				34B2FD8C22F6FF970068D50A /* YippyItem.xib */,
+				345BAE2F235005E7008ACB4C /* YippyItem.swift */,
+				34E516CC2352C4AF008B4256 /* YippyItemBase.swift */,
+				345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */,
+				34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */,
+				347D59A322F43B94005F6EA8 /* YippyTextItem.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				34010D29234AB3F100C1218D /* YippyWindow.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
@@ -267,7 +311,9 @@
 				34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */,
 				34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */,
 				344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */,
+				345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */,
 				343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */,
+				34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +346,16 @@
 				34B2FD9222F988980068D50A /* Settings.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		344C1167234EB72C00B35DC9 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				3423B1BC234D8A7F00B40715 /* PreviewViewController.swift */,
+				344C1165234E94C600B35DC9 /* PreviewWindowController.swift */,
+				342D4E4C234F1E2000FC9F42 /* QLPreviewController.swift */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 		345B149D23404C4300C2D0DA /* UITesting */ = {
@@ -390,7 +446,8 @@
 				34734C842330CEDE0056F855 /* About */,
 				345B149D23404C4300C2D0DA /* UITesting */,
 				34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */,
-				34ACFBC222EB0B11004E6E63 /* Assets.xcassets */,
+				344C115F234DB23B00B35DC9 /* Assets.xcassets */,
+				3423B1C2234DA3B700B40715 /* YippyStatusItem.swift */,
 				3488B13F22FAE8F30019E7DA /* Constants.swift */,
 				341D9D3A233A1CA1008A2BE6 /* Extensions */,
 				34734C822330CEC00056F855 /* Help */,
@@ -409,6 +466,10 @@
 				34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */,
 				341D9D3423373083008A2BE6 /* YippyHotKey.swift */,
 				341D9D36233730A5008A2BE6 /* YippyHotKeys.swift */,
+				344C1167234EB72C00B35DC9 /* Preview */,
+				3423B1C0234D8AFF00B40715 /* HistoryItem.swift */,
+				34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */,
+				345BAE29234FF655008ACB4C /* Fonts.swift */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -442,12 +503,12 @@
 		E25B1BF673F15B06A7F5367C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AE5BC7136BE0BA33106A2C2D /* Pods-Yippy.debug.xcconfig */,
-				4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */,
-				6D79BF5FC022B6E951278A1A /* Pods-YippyTests.debug.xcconfig */,
-				8E87FF0379487D853FC8C52C /* Pods-YippyTests.release.xcconfig */,
-				C5A3D2D300A55B877885A168 /* Pods-YippyUITests.debug.xcconfig */,
-				5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */,
+				A19A245BB447E419FA6C3CFC /* Pods-Yippy.debug.xcconfig */,
+				9D4AC283904A4F947D976AE2 /* Pods-Yippy.release.xcconfig */,
+				E271F1F1F55D845FEF1FC341 /* Pods-YippyTests.debug.xcconfig */,
+				E012DD17F645A774B72C4060 /* Pods-YippyTests.release.xcconfig */,
+				50BD8C6B3DD4E743FC8D8EA0 /* Pods-YippyUITests.debug.xcconfig */,
+				B4157B2EF07B5214AE1BA728 /* Pods-YippyUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -459,11 +520,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE122EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "Yippy" */;
 			buildPhases = (
-				DCA536B0E60A36F2F95C1FC4 /* [CP] Check Pods Manifest.lock */,
+				04DCFFCBBBAC8529D67150E7 /* [CP] Check Pods Manifest.lock */,
 				34ACFBB722EB0B0F004E6E63 /* Sources */,
 				34ACFBB822EB0B0F004E6E63 /* Frameworks */,
 				34ACFBB922EB0B0F004E6E63 /* Resources */,
-				042254BF3306F66F9FE950EB /* [CP] Embed Pods Frameworks */,
+				0AC16D2D13F2D65C36985651 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,11 +539,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE422EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyTests" */;
 			buildPhases = (
-				09C9DB2E4127513BB5E58FF4 /* [CP] Check Pods Manifest.lock */,
+				BAF07977B927A774508DECF2 /* [CP] Check Pods Manifest.lock */,
 				34ACFBC922EB0B11004E6E63 /* Sources */,
 				34ACFBCA22EB0B11004E6E63 /* Frameworks */,
 				34ACFBCB22EB0B11004E6E63 /* Resources */,
-				46E617A1AC30F513A5614DB5 /* [CP] Embed Pods Frameworks */,
+				55DCFC11E71F6C8843DFDE77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -498,11 +559,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE722EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyUITests" */;
 			buildPhases = (
-				DB53ADD3045336845337472B /* [CP] Check Pods Manifest.lock */,
+				9312DBA02B9E04B5048D232A /* [CP] Check Pods Manifest.lock */,
 				34ACFBD422EB0B11004E6E63 /* Sources */,
 				34ACFBD522EB0B11004E6E63 /* Frameworks */,
 				34ACFBD622EB0B11004E6E63 /* Resources */,
-				1277C902D4FB2D059A30577C /* [CP] Embed Pods Frameworks */,
+				A7F3D3C2084DEC84D8DB54A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -567,10 +628,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34ACFBC322EB0B11004E6E63 /* Assets.xcassets in Resources */,
 				34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */,
 				34B2FD9122F986AB0068D50A /* README.md in Resources */,
-				34B2FD8D22F6FF970068D50A /* YippyItem.xib in Resources */,
+				344C1160234DB23B00B35DC9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,102 +651,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		042254BF3306F66F9FE950EB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		09C9DB2E4127513BB5E58FF4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YippyTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1277C902D4FB2D059A30577C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		46E617A1AC30F513A5614DB5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB53ADD3045336845337472B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YippyUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DCA536B0E60A36F2F95C1FC4 /* [CP] Check Pods Manifest.lock */ = {
+		04DCFFCBBBAC8529D67150E7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -708,6 +673,101 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		0AC16D2D13F2D65C36985651 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55DCFC11E71F6C8843DFDE77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9312DBA02B9E04B5048D232A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YippyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7F3D3C2084DEC84D8DB54A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAF07977B927A774508DECF2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YippyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -717,14 +777,18 @@
 			files = (
 				34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */,
 				341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */,
+				3423B1C1234D8AFF00B40715 /* HistoryItem.swift in Sources */,
 				34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */,
 				341D9D2F233725B3008A2BE6 /* KeyDownEventMonitor.swift in Sources */,
-				347D59A522F43B94005F6EA8 /* YippyItem.swift in Sources */,
+				347D59A522F43B94005F6EA8 /* YippyTextItem.swift in Sources */,
 				3426811E233E0A4600BA226A /* Accessibility.swift in Sources */,
+				34E516CD2352C4AF008B4256 /* YippyItemBase.swift in Sources */,
 				3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */,
+				34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */,
 				34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */,
 				345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */,
 				341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */,
+				342D4E4D234F1E2000FC9F42 /* QLPreviewController.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,
@@ -732,12 +796,14 @@
 				341D9D31233725CA008A2BE6 /* KeyUpEventMonitor.swift in Sources */,
 				34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */,
 				3474C1402346E82900232620 /* YippyHistory.swift in Sources */,
+				345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */,
 				341D9D37233730A5008A2BE6 /* YippyHotKeys.swift in Sources */,
 				3474C14223472A1500232620 /* NSEdgeInset+Convenience.swift in Sources */,
 				34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */,
 				34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */,
 				341D9D40233AE8A1008A2BE6 /* Helper.swift in Sources */,
 				344DF6FD234845E700351310 /* NSView+ConstraintWithIdentifier.swift in Sources */,
+				3423B1BD234D8A7F00B40715 /* PreviewViewController.swift in Sources */,
 				344DF6FB2348459F00351310 /* NSLayoutDimension+Constraint.swift in Sources */,
 				3426812C233EFD2900BA226A /* UITesting.swift in Sources */,
 				34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */,
@@ -746,21 +812,31 @@
 				341D9D2D23372592008A2BE6 /* EventMonitor.swift in Sources */,
 				341D9D2B23372550008A2BE6 /* KeyAction.swift in Sources */,
 				34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */,
+				34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */,
 				341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */,
 				34B2FD9322F988980068D50A /* Settings.swift in Sources */,
+				345BAE2E235005BB008ACB4C /* YippyFileThumbnailItem.swift in Sources */,
+				345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */,
+				34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */,
 				34D018E5232A2B73006259E1 /* WaitingViewController.swift in Sources */,
 				341D9D3523373083008A2BE6 /* YippyHotKey.swift in Sources */,
 				345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */,
 				3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */,
 				341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */,
 				3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */,
+				344C1166234E94C600B35DC9 /* PreviewWindowController.swift in Sources */,
 				34268124233EE82200BA226A /* AccessControlHelper.swift in Sources */,
+				3423B1C3234DA3B700B40715 /* YippyStatusItem.swift in Sources */,
 				341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
 				34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */,
 				343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */,
 				34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */,
 				341D9D33233725DE008A2BE6 /* SpecialKeyChangedEventMonitor.swift in Sources */,
+				345BAE2C23500580008ACB4C /* YippyFileIconItem.swift in Sources */,
+				34E516CB2352AC50008B4256 /* YippyColorItem.swift in Sources */,
+				345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */,
+				345BAE2A234FF655008ACB4C /* Fonts.swift in Sources */,
 				3488B14022FAE8F30019E7DA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,6 +859,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */,
+				34F1047B23542BB000B65251 /* HistoryItem.swift in Sources */,
 				345B14B52341B8DF00C2D0DA /* UITesting.swift in Sources */,
 				345B14B42341B37A00C2D0DA /* KeyPressMock.swift in Sources */,
 				345B14A823406E0500C2D0DA /* Constants.swift in Sources */,
@@ -884,6 +962,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -938,6 +1017,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -946,7 +1026,7 @@
 		};
 		34ACFBE222EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE5BC7136BE0BA33106A2C2D /* Pods-Yippy.debug.xcconfig */;
+			baseConfigurationReference = A19A245BB447E419FA6C3CFC /* Pods-Yippy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -958,6 +1038,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -965,7 +1046,7 @@
 		};
 		34ACFBE322EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4441172D72EE383F3CC69E4F /* Pods-Yippy.release.xcconfig */;
+			baseConfigurationReference = 9D4AC283904A4F947D976AE2 /* Pods-Yippy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -977,6 +1058,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -984,7 +1066,7 @@
 		};
 		34ACFBE522EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D79BF5FC022B6E951278A1A /* Pods-YippyTests.debug.xcconfig */;
+			baseConfigurationReference = E271F1F1F55D845FEF1FC341 /* Pods-YippyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1006,7 +1088,7 @@
 		};
 		34ACFBE622EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E87FF0379487D853FC8C52C /* Pods-YippyTests.release.xcconfig */;
+			baseConfigurationReference = E012DD17F645A774B72C4060 /* Pods-YippyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1028,7 +1110,7 @@
 		};
 		34ACFBE822EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5A3D2D300A55B877885A168 /* Pods-YippyUITests.debug.xcconfig */;
+			baseConfigurationReference = 50BD8C6B3DD4E743FC8D8EA0 /* Pods-YippyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1049,7 +1131,7 @@
 		};
 		34ACFBE922EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B238C725C4811E4B8CC319B /* Pods-YippyUITests.release.xcconfig */;
+			baseConfigurationReference = B4157B2EF07B5214AE1BA728 /* Pods-YippyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

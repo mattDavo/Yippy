@@ -38,6 +38,11 @@ class YippyHistoryView: NSCollectionView {
         flowLayout.minimumLineSpacing = 5.0
         collectionViewLayout = flowLayout
         layer?.backgroundColor = NSColor.black.cgColor
+        
+        register(YippyTextItem.self, forItemWithIdentifier: YippyTextItem.identifier)
+        register(YippyFileThumbnailItem.self, forItemWithIdentifier: YippyFileThumbnailItem.identifier)
+        register(YippyFileIconItem.self, forItemWithIdentifier: YippyFileIconItem.identifier)
+        register(YippyColorItem.self, forItemWithIdentifier: YippyColorItem.identifier)
     }
     
     func selectItem(_ i: Int) {

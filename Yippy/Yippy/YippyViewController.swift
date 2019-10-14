@@ -22,6 +22,8 @@ class YippyViewController: NSViewController {
     
     let disposeBag = DisposeBag()
     
+    var isPreviewShowing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +49,7 @@ class YippyViewController: NSViewController {
         YippyHotKeys.cmdDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
         YippyHotKeys.cmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
         YippyHotKeys.cmdDelete.onDown(deleteSelected)
+        YippyHotKeys.space.onDown(togglePreview)
         
         // Paste hot keys
         YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }
@@ -81,11 +84,13 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd8, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd9, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdDelete, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.space, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
+        isPreviewShowing = false
         if yippyHistory.history.count > 0 {
             State.main.selected.accept(0)
         }
@@ -94,7 +99,7 @@ class YippyViewController: NSViewController {
         }
     }
     
-    func onHistoryChange(_ history: [String]) {
+    func onHistoryChange(_ history: [HistoryItem]) {
         yippyHistory = YippyHistory(history: history)
         yippyHistoryView.reloadData()
         view.displayIfNeeded()
@@ -105,6 +110,10 @@ class YippyViewController: NSViewController {
             let currentSelection = self.yippyHistoryView.selected
             if currentSelection == nil || currentSelection != selected {
                 self.yippyHistoryView.selectItem(selected)
+            }
+            
+            if isPreviewShowing {
+                State.main.previewHistoryItem.accept(self.yippyHistory.history[selected])
             }
         }
     }
@@ -162,11 +171,24 @@ class YippyViewController: NSViewController {
     
     func close() {
         State.main.isHistoryPanelShown.accept(false)
+        State.main.previewHistoryItem.accept(nil)
     }
     
     func shortcutPressed(key: Int) {
         State.main.selected.accept(key)
         pasteSelected()
+    }
+    
+    func togglePreview() {
+        if let selected = yippyHistoryView.selected {
+            isPreviewShowing = !isPreviewShowing
+            if isPreviewShowing {
+                State.main.previewHistoryItem.accept(yippyHistory.history[selected])
+            }
+            else {
+                State.main.previewHistoryItem.accept(nil)
+            }
+        }
     }
 }
 
@@ -177,19 +199,12 @@ extension YippyViewController: NSCollectionViewDataSource {
     }
     
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        
-        let item = yippyHistoryView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: YippyItem.identifier), for: indexPath)
+        let historyItem = yippyHistory.history[indexPath.item]
+        let itemType = historyItem.getCollectionViewItemType()
+        let item = itemForRepresentedObjectAtcollectionView.makeItem(withIdentifier: itemType.identifier, for: indexPath)
         guard let cell = item as? YippyItem else { return item }
-        
-        let itemStr = NSAttributedString(string: yippyHistory.history[indexPath.item], attributes: YippyItem.itemStringAttributes)
-        cell.itemTextView.textStorage?.setAttributedString(itemStr)
-        
-        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: YippyItem.shortcutStringAttributes)
-        cell.shortcutTextView.textStorage?.setAttributedString(shortcutStr)
-        cell.shortcutTextView.isHidden = indexPath.item >= 10
-        cell.updateShortcutTextViewContraints()
-        
-        return cell
+        cell.setupCell(withHistoryItem: historyItem, atIndexPath: indexPath)
+        return cell as! NSCollectionViewItem
     }
 }
 
@@ -203,30 +218,19 @@ extension YippyViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         State.main.selected.accept(indexPaths.first?.item)
+        for (type, data) in yippyHistory.history[indexPaths.first!.item].data {
+            if NSPasteboard.PasteboardType.defaultTypes.contains(type) {
+                print(type, data)
+            }
+        }
+        print("")
     }
 }
 
 extension YippyViewController: NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-
-        // Calculate the width of the cell
-        let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        let historyItem = yippyHistory.history[indexPath.item]
+        return historyItem.getCollectionViewItemType().getItemSize(withCollectionView: collectionView, forHistoryItem: historyItem)
         
-        // Calculate the width of the text container
-        let width = cellWidth - YippyItem.padding.left - YippyItem.padding.right - YippyItem.textInset.xTotal
-        
-        // Create an attributed string of the text
-        let attrStr = NSAttributedString(string: yippyHistory.history[indexPath.item], attributes: [.font: YippyItem.font])
-        
-        // Get the max height of the text view
-        let maxTextViewHeight = Constants.panel.maxCellHeight - YippyItem.padding.top - YippyItem.padding.bottom - YippyItem.textInset.yTotal
-        
-        // Determine the height of the text view (capping the cell height)
-        let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextViewHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
-        
-        // Add the padding back to get the height of the cell
-        let height = min(bRect.height, maxTextViewHeight) + YippyItem.padding.top + YippyItem.padding.bottom + YippyItem.textInset.yTotal
-        
-        return NSSize(width: cellWidth, height: ceil(height))
     }
 }

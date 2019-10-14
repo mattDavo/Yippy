@@ -16,5 +16,16 @@ extension NSView {
     func constraint(withIdentifier identifier: String) -> NSLayoutConstraint? {
         return self.constraints.filter{ $0.identifier == identifier }.first
     }
+    
+    func removeConstraint(withIdentifier identifier: String) {
+        if let constraint = constraints.filter({ $0.identifier == identifier }).first {
+            removeConstraint(constraint)
+        }
+    }
+    
+    func addConstraint(_ constraint: NSLayoutConstraint, withIdentifier identifier: String) {
+        constraint.identifier = identifier
+        addConstraint(constraint)
+    }
 }
 

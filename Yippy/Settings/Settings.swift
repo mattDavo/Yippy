@@ -15,7 +15,11 @@ struct Settings: Codable, DefaultStorable {
     
     // MARK: - Singleton
     
-    private init() {}
+    private init(panelPosition: PanelPosition, pasteboardChangeCount: Int, history: [HistoryItem]) {
+        self.panelPosition = panelPosition
+        self.pasteboardChangeCount = pasteboardChangeCount
+        self.history = history
+    }
     
     static var main: Settings! {
         get {
@@ -23,7 +27,7 @@ struct Settings: Codable, DefaultStorable {
             if settings != nil {
                 return settings
             }
-            return Settings()
+            return Settings.default
         }
         set (main) {
             main.write(withKey: "settings")
@@ -32,19 +36,19 @@ struct Settings: Codable, DefaultStorable {
     
     // MARK: - Default
     
-    struct `default` {
-        static var panelPosition = PanelPosition.right
-        static var pasteboardChangeCount: Int = -1
-        static var history = [String]()
-    }
+    static let `default` = Settings(
+        panelPosition: .right,
+        pasteboardChangeCount: -1,
+        history: []
+    )
     
     // MARK: - Settings
     
-    var panelPosition = Settings.default.panelPosition
+    var panelPosition: PanelPosition
     
-    var pasteboardChangeCount = Settings.default.pasteboardChangeCount
+    var pasteboardChangeCount: Int
     
-    var history = Settings.default.history
+    var history: [HistoryItem]
     
     
     // MARK: - State Binding Methods
@@ -61,7 +65,7 @@ struct Settings: Codable, DefaultStorable {
         }
     }
     
-    func bindHistoryTo(state: BehaviorRelay<[String]>) -> Disposable {
+    func bindHistoryTo(state: BehaviorRelay<[HistoryItem]>) -> Disposable {
         return state.bind { (x) in
             Settings.main.history = x
         }
@@ -72,7 +76,7 @@ extension Settings {
     
     struct testData {
         static var a: Settings {
-            var settings = Settings()
+            var settings = Settings.default
             settings.panelPosition = .left
             settings.history = UITesting.testHistory.a
             return settings
@@ -87,4 +91,8 @@ extension Settings {
             }
         }
     }
+}
+
+extension Settings: Equatable {
+    
 }

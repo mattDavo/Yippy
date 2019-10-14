@@ -30,7 +30,30 @@ class YippyHotKey {
     
     // MARK: - Private attributes
     
-    private var hotKey: HotKey
+    var hotKey: HotKey {
+        didSet {
+            self.isPaused = hotKey.isPaused
+            self.hotKey.keyDownHandler = {
+                // Handle key down observers
+                for obv in self.keyDownObservers {
+                    obv()
+                }
+                
+                // Handle long press observers
+                self.setLongPressTimer(withInterval: self.longPressStartingInterval)
+            }
+            
+            self.hotKey.keyUpHandler = {
+                // Handle key up observers
+                for obv in self.keyUpObservers {
+                    obv()
+                }
+                
+                // Terminate long press observers
+                self.stopLongPressTimer()
+            }
+        }
+    }
     
     private var keyDownObservers = [Handler]()
     

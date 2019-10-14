@@ -16,7 +16,7 @@ class YippyWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        window?.level = NSWindow.Level(NSWindow.Level.mainMenu.rawValue - 1)
+        window?.level = NSWindow.Level(NSWindow.Level.mainMenu.rawValue - 2)
         window?.setAccessibilityIdentifier(Accessibility.identifiers.yippyWindow)
         window?.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
     }

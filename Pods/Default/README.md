@@ -1,7 +1,9 @@
+<img src="cassette.jpg" width="40%">
+
 # Default
 [![Build Status](https://travis-ci.org/Nirma/Default.svg?branch=master)](https://travis-ci.org/Nirma/Default)
 ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS-333333.svg)
-![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)
 [![CocoaPods compatible](https://img.shields.io/cocoapods/v/Default.svg)](#cocoapods)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
@@ -74,7 +76,7 @@ if let settings = VisualSettings.read(forKey: "someUniqueKey") {
 
 
 ## Swift 4 `Codable` Support
-This library offers support for directly storing custom objects to `UserDefaults` that conform to `Codable`.
+This library offers support for directly storing custom objects within `UserDefaults` that conform to `Codable`.
 With the release of Swift 4 comes the `Codable` protocol, which provides support for serializing objects.
 `UserDefaults` has not been updated to work with Swift 4's `Codable` protocol so if saving custom objects directly to 
 `UserDefaults` is necessary then that object must support `NSCoding` and inherit from `NSObject`.

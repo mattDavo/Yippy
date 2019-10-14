@@ -36,9 +36,10 @@ class SettingsTests: XCTestCase {
         
         // 3. Assert they are default values
         XCTAssertNotNil(settings)
-        XCTAssertEqual(settings!.panelPosition, Settings.default.panelPosition)
-        XCTAssertEqual(settings!.pasteboardChangeCount, Settings.default.pasteboardChangeCount)
-        XCTAssertEqual(settings!.history, Settings.default.history)
+//        XCTAssertEqual(settings!.panelPosition, Settings.default.panelPosition)
+//        XCTAssertEqual(settings!.pasteboardChangeCount, Settings.default.pasteboardChangeCount)
+//        XCTAssertEqual(settings!.history, Settings.default.history)
+        XCTAssertEqual(settings!, Settings.default)
     }
 
     func testPersistentStorage() {
@@ -48,7 +49,7 @@ class SettingsTests: XCTestCase {
         // 2. Set some things
         settings?.panelPosition = .bottom
         settings?.pasteboardChangeCount = 42
-        settings?.history = ["1", "2"]
+        settings?.history = [HistoryItem()]
         Settings.main = settings
         // Retrieve the settings again
         settings = Settings.main
@@ -56,7 +57,7 @@ class SettingsTests: XCTestCase {
         // 3. Check they have been saved
         XCTAssertEqual(settings?.panelPosition, .bottom)
         XCTAssertEqual(settings?.pasteboardChangeCount, 42)
-        XCTAssertEqual(settings?.history, ["1", "2"])
+        XCTAssertEqual(settings?.history, [HistoryItem()])
     }
     
     func testObserving() {
@@ -75,13 +76,13 @@ class SettingsTests: XCTestCase {
         Settings.main.bindPasteboardChangeCountTo(state: pasteboardChangeCount).disposed(by: disposeBag)
         pasteboardChangeCount.accept(42)
         
-        let history = BehaviorRelay<[String]>(value: [])
+        let history = BehaviorRelay<[HistoryItem]>(value: [])
         Settings.main.bindHistoryTo(state: history).disposed(by: disposeBag)
-        history.accept(["1", "2"])
+        history.accept([HistoryItem()])
         
         // 3. Check that the settings have been saved
         XCTAssertEqual(Settings.main.panelPosition, .bottom)
         XCTAssertEqual(Settings.main.pasteboardChangeCount, 42)
-        XCTAssertEqual(Settings.main.history, ["1", "2"])
+        XCTAssertEqual(Settings.main.history, [HistoryItem()])
     }
 }

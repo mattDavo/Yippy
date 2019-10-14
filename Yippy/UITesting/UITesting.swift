@@ -17,8 +17,9 @@ struct UITesting {
     
     struct testHistory {
         static let a = [
-            "Should be below whatever is on the pasteboard.",
-            """
+            stringItem("Should be below whatever is on the pasteboard."),
+            stringItem(
+                """
                 func testYippyToggle() {
                     // Launch app
                     app.launch()
@@ -40,9 +41,15 @@ struct UITesting {
                     // Check window isn't displayed
                     XCTAssertFalse(app.yippyWindow.isDisplayed)
                 }
-                """,
-            "https://stackoverflow.com/questions/41966151/how-to-access-the-detailtextlabel-in-a-tableviewcell-at-uitests",
-            "Hello world"
+                """),
+            stringItem("https://stackoverflow.com/questions/41966151/how-to-access-the-detailtextlabel-in-a-tableviewcell-at-uitests"),
+            stringItem("Hello world")
         ]
+    }
+    
+    static func stringItem(_ str: String) -> HistoryItem {
+        return HistoryItem(data: [
+            .string: str.data(using: .utf8)!
+        ])
     }
 }

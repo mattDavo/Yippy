@@ -238,14 +238,14 @@ class YippyUITests: XCTestCase {
         XCTAssertFalse(app.yippyWindow.isDisplayed)
         
         // Assert the pasteboard now contains the index 2 text (index 1 in history)
-        XCTAssertEqual(NSPasteboard.general.string(forType: .string), UITesting.testHistory.a[1])
+        XCTAssertEqual(NSPasteboard.general.string(forType: .string), UITesting.testHistory.a[1].getPlainString())
         
         // Open Yippy window
         app.pressHotKey()
         
         // Check that the items have been shuffled
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), UITesting.testHistory.a[1])
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), UITesting.testHistory.a[1].getPlainString())
         XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "My latest copy")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), UITesting.testHistory.a[0])
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), UITesting.testHistory.a[0].getPlainString())
     }
 }

@@ -33,6 +33,7 @@ class Accessibility {
         static let howToUseLabel = "howToUseLabel"
         
         static let yippyCollectionView = "yippyCollectionView"
-        static let yippyItem = "YippyItem"
+        static let yippyTextItem = "YippyTextItem"
+        static let yippyItemTextView = "YippyItemTextView"
     }
 }

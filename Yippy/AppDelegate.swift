@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        checkBuildFlags()
         checkLaunchArgs()
         loadState(fromSettings: Settings.main)
         
@@ -57,6 +58,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func checkBuildFlags() {
+        #if BETA
+        YippyHotKeys.toggle.hotKey = HotKey(key: .b, modifiers: NSEvent.ModifierFlags(arrayLiteral: .command, .shift))
+        YippyStatusItem.statusItemButtonImage = NSImage(named: NSImage.Name("YippyBetaStatusBarIcon"))
+        #endif
+    }
+    
     func showWelcomeIfNeeded() {
         // If the user has enabled access we don't need to do anything
         if Helper.isControlGranted(showPopup: false) {
@@ -69,19 +77,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func setupHotKey() {
         YippyHotKeys.toggle.onDown {
-            State.main.isHistoryPanelShown.accept(!State.main.isHistoryPanelShown.value)
+            self.togglePopover()
         }
-    }
-    
-    func createStatusItem() -> NSStatusItem {
-        let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        
-        if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("YippyStatusBarIcon"))
-            button.setAccessibilityIdentifier(Accessibility.identifiers.statusItemButton)
-        }
-        
-        return statusItem
     }
     
     func createMenu(withSettings settings: Settings) -> NSMenu {
@@ -169,6 +166,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return controller
     }
     
+    func createPreviewWindowController() -> PreviewWindowController {
+        let controller = PreviewWindowController.createPreviewWindowController()
+        controller
+            .subscribeTo(previewHistoryItem: State.main.previewHistoryItem)
+            .disposed(by: disposeBag)
+        return controller
+    }
+    
+    func createQLPreviewController() -> QLPreviewController {
+        let controller = QLPreviewController()
+        controller
+            .subscribeTo(previewHistoryItem: State.main.previewHistoryItem)
+            .disposed(by: disposeBag)
+        return controller
+    }
+    
     @objc func panelPositionSelected(_ sender: NSMenuItem) {
         if let position = PanelPosition(rawValue: sender.tag) {
             State.main.panelPosition.accept(position)
@@ -205,7 +218,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         settings.bindHistoryTo(state: State.main.history).disposed(by: disposeBag)
         
         // Setup status item
-        State.main.statusItem = createStatusItem()
+        State.main.statusItem = YippyStatusItem.create()
         State.main.statusItem.menu = createMenu(withSettings: Settings.main)
         
         // Setup pasteboard monitor
@@ -213,6 +226,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create yippy window controller
         State.main.yippyWindowController = createYippyWindowController()
+        
+        // Create preview window controller
+        State.main.previewWindowController = createPreviewWindowController()
+        State.main.previewController = createQLPreviewController()
     }
     
     @objc func showHelpWindow() {
@@ -239,13 +256,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: PasteboardMonitorDelegate {
     
     func pasteboardDidChange(_ pasteboard: NSPasteboard) {
-        guard let items = pasteboard.pasteboardItems else { return }
-        guard let item = items.first else { return } // TODO: handle multiple types and items
-        guard let str = item.string(forType: .string) else { return }
+//        guard let items = pasteboard.pasteboardItems else { return }
+//        guard let item = items.first else { return } // TODO: handle multiple types and items
+//        guard let str = item.string(forType: .string) else { return }
+        // TODO: I think we can't handle tiff data until we store it differently
         
-        State.main.history.accept(State.main.history.value.with(element: str, insertedAt: 0))
-        State.main.pasteboardChangeCount.accept(pasteboard.changeCount)
-        let selected = (State.main.selected.value ?? -1) + 1
-        State.main.selected.accept(selected)
+        // Only do anything if the pasteboard change includes having data
+        if let types = pasteboard.types, !types.isEmpty {
+            var historyItem = HistoryItem()
+            for type in types {
+                historyItem.data[type] = pasteboard.data(forType: type)
+            }
+            
+            State.main.history.accept(State.main.history.value.with(element: historyItem, insertedAt: 0))
+            State.main.pasteboardChangeCount.accept(pasteboard.changeCount)
+            let selected = (State.main.selected.value ?? -1) + 1
+            State.main.selected.accept(selected)
+        }
     }
 }

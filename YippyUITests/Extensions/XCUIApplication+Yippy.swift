@@ -15,7 +15,7 @@ extension XCUIApplication {
     }
     
     var yippyCollectionViewItems: XCUIElementQuery {
-        return yippyCollectionView.otherElements.children(matching: .group).matching(identifier: Accessibility.identifiers.yippyItem)
+        return yippyCollectionView.otherElements.children(matching: .group).matching(identifier: Accessibility.identifiers.yippyTextItem)
     }
     
     func getYippyCollectionViewCell(at i: Int) -> XCUIElement {
@@ -23,7 +23,7 @@ extension XCUIApplication {
     }
     
     func getYippyCollectionViewCellTextView(at i: Int) -> XCUIElement {
-        return yippyCollectionViewItems.element(boundBy: i).children(matching: .textView).element
+        return yippyCollectionViewItems.element(boundBy: i).children(matching: .textView).matching(identifier: Accessibility.identifiers.yippyItemTextView).element
     }
     
     func getYippyCollectionViewString(at i: Int) -> String? {

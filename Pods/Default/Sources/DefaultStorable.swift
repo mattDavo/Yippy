@@ -1,7 +1,7 @@
 //
 // DefaultStorable.swift
 //
-// Copyright (c) 2017-2018 Nicholas Maccharoli
+// Copyright (c) 2017-2019 Nicholas Maccharoli
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,7 @@ public protocol DefaultStorable {
     static func read(forKey key: String?) -> Self?
     func write(withKey key: String?)
     func clear(forKey key: String?)
+    static func clear(forKey key: String?)
 }
 
 extension DefaultStorable where Self: Codable {
@@ -56,6 +57,10 @@ extension DefaultStorable where Self: Codable {
     }
 
     public func clear(forKey key: String? = nil) {
+        type(of: self).clear(forKey: key)
+    }
+
+    public static func clear(forKey key: String? = nil) {
         let key: String = key ?? Self.defaultIdentifier
         return Self.defaults.removeObject(forKey: key)
     }

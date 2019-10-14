@@ -1,5 +1,5 @@
 PODS:
-  - Default (2.1.0)
+  - Default (3.0.0)
   - HotKey (0.1.1)
   - RxBlocking (5.0.0):
     - RxSwift (~> 5)
@@ -31,7 +31,7 @@ SPEC REPOS:
     - RxTest
 
 SPEC CHECKSUMS:
-  Default: 6b79a17b84763dac64c2e49ea1198c00ce8c2631
+  Default: df6f5067d92a350e908125bf269a7317df86b3bb
   HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
   RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8

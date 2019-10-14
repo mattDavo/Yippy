@@ -38,26 +38,6 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "34ACFBCC22EB0B11004E6E63"
-               BuildableName = "YippyTests.xctest"
-               BlueprintName = "YippyTests"
-               ReferencedContainer = "container:Yippy.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "34ACFBD722EB0B11004E6E63"
-               BuildableName = "YippyUITests.xctest"
-               BlueprintName = "YippyUITests"
-               ReferencedContainer = "container:Yippy.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

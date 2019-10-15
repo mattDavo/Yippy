@@ -27,6 +27,13 @@ class SettingsTests: XCTestCase {
         
         UserDefaults.standard.restore(from: old)
     }
+    
+    func assertHistorySaved(_ history: [HistoryItem]) {
+        _ = expectation(for: NSPredicate(block: { (_, _) -> Bool in
+            return Settings.main!.history == history
+        }), evaluatedWith: nil, handler: .none)
+        waitForExpectations(timeout: 3, handler: .none)
+    }
 
     func testDefaultSettings() {
         // 1. Given nothing
@@ -57,7 +64,7 @@ class SettingsTests: XCTestCase {
         // 3. Check they have been saved
         XCTAssertEqual(settings?.panelPosition, .bottom)
         XCTAssertEqual(settings?.pasteboardChangeCount, 42)
-        XCTAssertEqual(settings?.history, [HistoryItem()])
+        assertHistorySaved([HistoryItem()])
     }
     
     func testObserving() {
@@ -83,6 +90,6 @@ class SettingsTests: XCTestCase {
         // 3. Check that the settings have been saved
         XCTAssertEqual(Settings.main.panelPosition, .bottom)
         XCTAssertEqual(Settings.main.pasteboardChangeCount, 42)
-        XCTAssertEqual(Settings.main.history, [HistoryItem()])
+        assertHistorySaved([HistoryItem()])
     }
 }

@@ -685,7 +685,7 @@
         <scene sceneID="YK8-4f-MXM">
             <objects>
                 <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="YippyViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="appearanceBased" state="active" id="EMV-Rg-IFx">
+                    <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="toolTip" state="active" id="EMV-Rg-IFx">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -900,8 +900,8 @@
         <scene sceneID="u5v-Gd-EBE">
             <objects>
                 <viewController id="0ll-QT-yOq" customClass="AboutViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="I7W-mi-knt">
-                        <rect key="frame" x="0.0" y="0.0" width="416" height="326"/>
+                    <view key="view" id="I7W-mi-knt">
+                        <rect key="frame" x="0.0" y="0.0" width="416" height="303"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ss-UM-7az">
@@ -1016,7 +1016,6 @@ Website: https://yippy.mattdavo.com</string>
                             <constraint firstItem="0bn-y0-I1O" firstAttribute="leading" secondItem="TL6-xS-lcI" secondAttribute="leading" constant="20" id="ZNK-Ah-85l"/>
                             <constraint firstAttribute="trailing" secondItem="0bn-y0-I1O" secondAttribute="trailing" constant="20" id="cbx-Na-oVd"/>
                             <constraint firstAttribute="trailing" secondItem="ili-Q1-k3U" secondAttribute="trailing" constant="20" id="dUb-FP-ZNj"/>
-                            <constraint firstItem="0bn-y0-I1O" firstAttribute="centerX" secondItem="TL6-xS-lcI" secondAttribute="centerX" id="hDc-Xl-Ben"/>
                             <constraint firstItem="ili-Q1-k3U" firstAttribute="top" secondItem="0bn-y0-I1O" secondAttribute="bottom" constant="8" id="qwM-RP-OAl"/>
                             <constraint firstItem="0bn-y0-I1O" firstAttribute="top" secondItem="oQx-J8-E0d" secondAttribute="bottom" constant="18" id="reE-2o-L3q"/>
                             <constraint firstItem="ili-Q1-k3U" firstAttribute="leading" secondItem="TL6-xS-lcI" secondAttribute="leading" constant="20" id="wt6-KC-Fqh"/>
@@ -1117,9 +1116,9 @@ Website: https://yippy.mattdavo.com</string>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="eAI-s8-ayO" firstAttribute="centerX" secondItem="eYw-Dd-YQZ" secondAttribute="centerX" id="0PN-DW-5Z2"/>
                             <constraint firstItem="eYw-Dd-YQZ" firstAttribute="leading" secondItem="tkz-fh-OxE" secondAttribute="leading" constant="20" id="BH7-2Y-Y2G"/>
                             <constraint firstAttribute="trailing" secondItem="eYw-Dd-YQZ" secondAttribute="trailing" constant="20" id="DW3-oy-8sj"/>
+                            <constraint firstItem="eAI-s8-ayO" firstAttribute="centerX" secondItem="tkz-fh-OxE" secondAttribute="centerX" id="IQU-Iv-NjL"/>
                             <constraint firstItem="US1-sf-gtU" firstAttribute="top" secondItem="Nba-Fe-mqy" secondAttribute="bottom" constant="8" id="LTT-IF-dOE"/>
                             <constraint firstItem="US1-sf-gtU" firstAttribute="centerX" secondItem="tkz-fh-OxE" secondAttribute="centerX" id="bb3-mz-RzN"/>
                             <constraint firstItem="eAI-s8-ayO" firstAttribute="top" secondItem="eYw-Dd-YQZ" secondAttribute="bottom" constant="20" id="iIw-ca-azX"/>

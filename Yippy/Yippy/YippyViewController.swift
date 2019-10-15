@@ -220,7 +220,7 @@ extension YippyViewController: NSCollectionViewDelegate {
         State.main.selected.accept(indexPaths.first?.item)
         for (type, data) in yippyHistory.history[indexPaths.first!.item].data {
             if NSPasteboard.PasteboardType.defaultTypes.contains(type) {
-                print(type, data)
+                print(type, data!)
             }
         }
         print("")

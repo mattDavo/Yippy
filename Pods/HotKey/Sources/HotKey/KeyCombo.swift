@@ -31,7 +31,7 @@ public struct KeyCombo {
 		}
 
 		set {
-			carbonModifiers = modifiers.carbonFlags
+            carbonModifiers = newValue.carbonFlags
 		}
 	}
 

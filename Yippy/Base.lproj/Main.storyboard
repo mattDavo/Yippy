@@ -1028,7 +1028,7 @@ Website: https://yippy.mattdavo.com</string>
                 </viewController>
                 <customObject id="hCL-ss-Nie" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="59" y="619.5"/>
+            <point key="canvasLocation" x="59" y="619"/>
         </scene>
         <!--Help View Controller-->
         <scene sceneID="D8q-Vf-nWb">

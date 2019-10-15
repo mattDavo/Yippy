@@ -60,7 +60,6 @@
 		345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
 		345B14B42341B37A00C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
 		345B14B52341B8DF00C2D0DA /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426812B233EFD2900BA226A /* UITesting.swift */; };
-		345BAE2A234FF655008ACB4C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE29234FF655008ACB4C /* Fonts.swift */; };
 		345BAE2C23500580008ACB4C /* YippyFileIconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */; };
 		345BAE2E235005BB008ACB4C /* YippyFileThumbnailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */; };
 		345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2F235005E7008ACB4C /* YippyItem.swift */; };
@@ -77,6 +76,7 @@
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
 		3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */; };
 		3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3982328EFB300BA8747 /* HelpViewController.swift */; };
+		34A1942123553DD60076A717 /* FormatFileUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1942023553DD60076A717 /* FormatFileUrl.swift */; };
 		34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */; };
 		34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC422EB0B11004E6E63 /* Main.storyboard */; };
 		34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBD122EB0B11004E6E63 /* YippyTests.swift */; };
@@ -176,7 +176,6 @@
 		345B14AE2341AEEA00C2D0DA /* KeyPressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelper.swift; sourceTree = "<group>"; };
 		345B14B02341AF1900C2D0DA /* KeyPressHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelperMock.swift; sourceTree = "<group>"; };
 		345B14B22341AFB800C2D0DA /* KeyPressMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMock.swift; sourceTree = "<group>"; };
-		345BAE29234FF655008ACB4C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileIconItem.swift; sourceTree = "<group>"; };
 		345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileThumbnailItem.swift; sourceTree = "<group>"; };
 		345BAE2F235005E7008ACB4C /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		3490D3982328EFB300BA8747 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		34A1942023553DD60076A717 /* FormatFileUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatFileUrl.swift; sourceTree = "<group>"; };
 		34ACFBBB22EB0B0F004E6E63 /* Yippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACFBC522EB0B11004E6E63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -306,6 +306,7 @@
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				34010D29234AB3F100C1218D /* YippyWindow.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
+				34A1942023553DD60076A717 /* FormatFileUrl.swift */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -478,7 +479,6 @@
 				344C1167234EB72C00B35DC9 /* Preview */,
 				3423B1C0234D8AFF00B40715 /* HistoryItem.swift */,
 				34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */,
-				345BAE29234FF655008ACB4C /* Fonts.swift */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -852,9 +852,9 @@
 				34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */,
 				341D9D33233725DE008A2BE6 /* SpecialKeyChangedEventMonitor.swift in Sources */,
 				345BAE2C23500580008ACB4C /* YippyFileIconItem.swift in Sources */,
+				34A1942123553DD60076A717 /* FormatFileUrl.swift in Sources */,
 				34E516CB2352AC50008B4256 /* YippyColorItem.swift in Sources */,
 				345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */,
-				345BAE2A234FF655008ACB4C /* Fonts.swift in Sources */,
 				3488B14022FAE8F30019E7DA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

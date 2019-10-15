@@ -17,5 +17,7 @@ protocol YippyItem {
     
     func setHighlight()
     
+    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath)
+    
     func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath)
 }

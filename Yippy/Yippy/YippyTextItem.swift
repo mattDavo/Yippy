@@ -30,7 +30,7 @@ class YippyTextItem: YippyItemBase, YippyItem {
         return NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTextItem)
     }
     
-    static let font = Fonts.yippyPlainText
+    static let font = Constants.fonts.yippyPlainText
     
     // MARK: - Methods
     
@@ -50,7 +50,6 @@ class YippyTextItem: YippyItemBase, YippyItem {
         itemTextView.usingEdgeInsets = true
         itemTextView.textInset = YippyTextItem.textInset
         itemTextView.textContainer?.lineFragmentPadding = 0
-        itemTextView.drawsBackground = false
         
         // Add constraints for the item text view
         contentView.addConstraint(NSLayoutConstraint(item: itemTextView!, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: Self.padding.left))
@@ -59,14 +58,15 @@ class YippyTextItem: YippyItemBase, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: itemTextView, attribute: .bottom, multiplier: 1, constant: Self.padding.bottom))
     }
     
+    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+        setHighlight()
+    }
+    
     func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
         let itemStr = Self.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextItem.itemStringAttributes)
         itemTextView.attributedText = itemStr
         
-        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: YippyTextItem.shortcutStringAttributes)
-        shortcutTextView.attributedText = shortcutStr
-        shortcutTextView.isHidden = indexPath.item >= 10
-        updateShortcutTextViewContraints()
+        setupShortcutTextView(atIndexPath: indexPath)
     }
     
     static func getAttributedString(forHistoryItem item: HistoryItem, withDefaultAttributes attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {

@@ -212,7 +212,7 @@ extension YippyViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let item = item as? YippyItem {
-            item.setHighlight()
+            item.willDisplayCell(withHistoryItem: yippyHistory.history[indexPath.item], atIndexPath: indexPath)
         }
     }
     

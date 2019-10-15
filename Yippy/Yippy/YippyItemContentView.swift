@@ -18,7 +18,7 @@ class YippyItemContentView: NSView {
         super.updateLayer()
         
         if usesDynamicBackgroundColor {
-            layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+            layer?.backgroundColor = NSColor(named: NSColor.Name("TextBackgroundColor"))?.cgColor
         }
     }
 }

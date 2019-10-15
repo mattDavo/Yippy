@@ -48,6 +48,7 @@ class YippyItemBase: NSCollectionViewItem {
         view.wantsLayer = true
         view.layer?.cornerRadius = 10
         itemTextView.setAccessibilityIdentifier(Accessibility.identifiers.yippyItemTextView)
+        itemTextView.drawsBackground = false
         
         setupContentView()
         setupShortcutTextView()
@@ -75,6 +76,7 @@ class YippyItemBase: NSCollectionViewItem {
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
         shortcutTextView.isHorizontallyResizable = true
         shortcutTextView.backgroundColor = NSColor(named: NSColor.Name("ShortcutBackgroundColor"))!
+        shortcutTextView.layer?.zPosition = 1
         
         contentView.addConstraint(NSLayoutConstraint(item: shortcutTextView!, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .trailing, relatedBy: .equal, toItem: shortcutTextView, attribute: .trailing, multiplier: 1, constant: 0))
@@ -93,5 +95,12 @@ class YippyItemBase: NSCollectionViewItem {
         let size = getShortcutTextViewSize()
         shortcutTextView.constraint(withIdentifier: "width")?.constant = size.width
         shortcutTextView.constraint(withIdentifier: "height")?.constant = size.height
+    }
+    
+    func setupShortcutTextView(atIndexPath indexPath: IndexPath) {
+        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: YippyTextItem.shortcutStringAttributes)
+        shortcutTextView.attributedText = shortcutStr
+        shortcutTextView.isHidden = indexPath.item >= 10
+        updateShortcutTextViewContraints()
     }
 }

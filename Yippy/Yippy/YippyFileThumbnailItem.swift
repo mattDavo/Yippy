@@ -20,11 +20,6 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
     
     static let imageTopPadding: CGFloat = 5
     
-    static let fileNameTextAttributes: [NSAttributedString.Key: Any] = [
-        .font: Fonts.yippyFileNameText,
-        .foregroundColor: NSColor.textColor
-    ]
-    
     var previewView: NSImageView!
     
     override func loadView() {
@@ -61,13 +56,16 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: itemTextView, attribute: .bottom, multiplier: 1, constant: Self.fileNamePadding.bottom))
     }
     
+    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+        setHighlight()
+    }
+    
     func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
         guard let url = historyItem.getFileUrl() else { return }
+        itemTextView.attributedText = formatFileUrl(url)
+        setupShortcutTextView(atIndexPath: indexPath)
         
-        itemTextView.attributedText = NSAttributedString(string: url.path, attributes: Self.fileNameTextAttributes)
-        
-        Thread.detachNewThread {
-            
+        DispatchQueue.global(qos: .background).async {
             let cgImageRef = QLThumbnailImageCreate(kCFAllocatorDefault, url as CFURL, CGSize(width: 200, height: 200), [kQLThumbnailOptionIconModeKey: false, kQLThumbnailOptionScaleFactorKey: 4] as CFDictionary)
             
             DispatchQueue.main.async {
@@ -90,7 +88,7 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
         let textContainerWidth = cellWidth - contentViewInsets.xTotal - fileNamePadding.xTotal
         
         // Create the attributed string
-        let str = NSAttributedString(string: historyItem.getFileUrl()!.path, attributes: fileNameTextAttributes)
+        let str = formatFileUrl(historyItem.getFileUrl()!)
         
         // Calculate the height of the text
         let bRect = str.boundingRect(with: NSSize(width: textContainerWidth, height: 100000), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))

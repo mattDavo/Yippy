@@ -12,12 +12,6 @@ import Cocoa
 class YippyFileIconItem: YippyItemBase, YippyItem {
     
     static let identifier = NSUserInterfaceItemIdentifier("YippyFileIconItem")
-    
-    static let fileNameTextAttributes: [NSAttributedString.Key: Any] = [
-        .font: Fonts.yippyFileNameText,
-        .foregroundColor: NSColor.textColor
-    ]
-    
     static let textContainerInset = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let iconViewPadding = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let iconSize = NSSize(width: 32, height: 32)
@@ -36,6 +30,10 @@ class YippyFileIconItem: YippyItemBase, YippyItem {
         
         setupIconView()
         setupItemTextView()
+    }
+    
+    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+        setHighlight()
     }
     
     func setupIconView() {
@@ -59,7 +57,8 @@ class YippyFileIconItem: YippyItemBase, YippyItem {
     
     func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
         iconView.image = historyItem.getFileIcon()
-        itemTextView.attributedText = NSAttributedString(string: historyItem.getFileUrl()!.path, attributes: Self.fileNameTextAttributes)
+        setupShortcutTextView(atIndexPath: indexPath)
+        itemTextView.attributedText = formatFileUrl(historyItem.getFileUrl()!)
         itemTextView.constraint(withIdentifier: "height")?.constant = Self.getFileNameTextViewHeight(withCellWidth: floor(collectionView!.frame.width - sectionInset.left - sectionInset.right), forHistoryItem: historyItem)
     }
     
@@ -84,7 +83,7 @@ class YippyFileIconItem: YippyItemBase, YippyItem {
         let width = cellWidth - contentViewInsets.xTotal - iconSize.width - textContainerInset.xTotal - iconViewPadding.xTotal
         
         // Create an attributed string of the text
-        let attrStr = NSAttributedString(string: historyItem.getFileUrl()!.path, attributes: fileNameTextAttributes)
+        let attrStr = formatFileUrl(historyItem.getFileUrl()!)
         
         // Get the max height of the text container
         let maxTextContainerHeight = Constants.panel.maxCellHeight - contentViewInsets.yTotal - textContainerInset.yTotal

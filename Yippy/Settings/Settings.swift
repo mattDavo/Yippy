@@ -67,7 +67,9 @@ struct Settings: Codable, DefaultStorable {
     
     func bindHistoryTo(state: BehaviorRelay<[HistoryItem]>) -> Disposable {
         return state.bind { (x) in
-            Settings.main.history = x
+            DispatchQueue.global(qos: .background).async {
+                Settings.main.history = x
+            }
         }
     }
 }

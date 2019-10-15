@@ -29,9 +29,9 @@ class YippyHistory {
     }
     
     func delete(selected: Int) {
+        State.main.history.accept(history.without(elementAt: selected))
         if selected == 0 {
             NSPasteboard.general.clearContents()
         }
-        State.main.history.accept(history.without(elementAt: selected))
     }
 }

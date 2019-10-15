@@ -18,7 +18,7 @@ class YippyViewController: NSViewController {
     
     @IBOutlet var yippyHistoryView: YippyHistoryView!
     
-    var yippyHistory: YippyHistory!
+    var yippyHistory = YippyHistory(history: [])
     
     let disposeBag = DisposeBag()
     

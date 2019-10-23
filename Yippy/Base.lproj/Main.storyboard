@@ -825,7 +825,7 @@
         <!--Window Controller-->
         <scene sceneID="pBM-vi-50c">
             <objects>
-                <windowController storyboardIdentifier="PreviewWindowController" id="uRp-cX-pUz" customClass="PreviewWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PreviewTextWindowController" id="uRp-cX-pUz" customClass="PreviewTextWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Ejq-Gt-SXr">
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>
@@ -842,10 +842,10 @@
             </objects>
             <point key="canvasLocation" x="-614" y="1960"/>
         </scene>
-        <!--Preview View Controller-->
+        <!--Preview Text View Controller-->
         <scene sceneID="B92-uU-EjF">
             <objects>
-                <viewController id="wLM-tu-sp6" customClass="PreviewViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wLM-tu-sp6" customClass="PreviewTextViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G2Q-kv-fNF" customClass="YippyItemContentView" customModule="Yippy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -901,11 +901,11 @@
             <objects>
                 <viewController id="0ll-QT-yOq" customClass="AboutViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="I7W-mi-knt">
-                        <rect key="frame" x="0.0" y="0.0" width="416" height="303"/>
+                        <rect key="frame" x="0.0" y="0.0" width="439" height="303"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ss-UM-7az">
-                                <rect key="frame" x="153" y="172" width="111" height="111"/>
+                                <rect key="frame" x="164" y="172" width="111" height="111"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="gC7-e8-lwS"/>
                                     <constraint firstAttribute="height" constant="111" id="uKr-B3-ptu"/>
@@ -913,7 +913,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="YippyIconColored" id="fDg-n1-Z9J"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NdS-xO-VUL">
-                                <rect key="frame" x="175" y="135" width="66" height="29"/>
+                                <rect key="frame" x="187" y="135" width="66" height="29"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Yippy" id="Z6b-cD-Bpq">
                                     <font key="font" metaFont="system" size="25"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -921,47 +921,76 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oEK-pg-YYN">
-                                <rect key="frame" x="162" y="108" width="93" height="19"/>
+                                <rect key="frame" x="173" y="108" width="93" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0.1" id="Xnq-Kb-aEf">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Seq-KO-grZ">
-                                <rect key="frame" x="18" y="20" width="380" height="80"/>
-                                <textFieldCell key="cell" selectable="YES" alignment="center" id="J0b-Iv-ri1">
-                                    <font key="font" metaFont="system"/>
-                                    <string key="title">Written and maintained by Matthew Davidson.
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9OQ-Ol-gxT">
+                                <rect key="frame" x="20" y="20" width="399" height="80"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BCJ-dP-P7S">
+                                    <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" linkDetection="YES" spellingCorrection="YES" smartInsertDelete="YES" id="DEF-3O-Hu2">
+                                            <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="399" height="80"/>
+                                            <size key="maxSize" width="399" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment>
+                                                    <string key="content">Written and maintained by Matthew Davidson.
 
 Source code available at: https://github.com/mattDavo/Yippy
 
 Website: https://yippy.mattdavo.com</string>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" metaFont="system"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="lVW-fY-bgC">
+                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="BO1-NF-wVD">
+                                    <rect key="frame" x="-100" y="-100" width="16" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Seq-KO-grZ" secondAttribute="bottom" constant="20" id="5D5-fW-N8S"/>
-                            <constraint firstItem="Seq-KO-grZ" firstAttribute="top" secondItem="oEK-pg-YYN" secondAttribute="bottom" constant="8" id="CVp-0J-qqg"/>
-                            <constraint firstItem="Seq-KO-grZ" firstAttribute="leading" secondItem="I7W-mi-knt" secondAttribute="leading" constant="20" id="EeA-Lb-x4K"/>
                             <constraint firstItem="5ss-UM-7az" firstAttribute="centerX" secondItem="I7W-mi-knt" secondAttribute="centerX" id="FBW-3Z-fEf"/>
+                            <constraint firstAttribute="bottom" secondItem="9OQ-Ol-gxT" secondAttribute="bottom" constant="20" id="GR9-a3-CzN"/>
+                            <constraint firstItem="9OQ-Ol-gxT" firstAttribute="leading" secondItem="I7W-mi-knt" secondAttribute="leading" constant="20" id="OuU-D2-gxq"/>
+                            <constraint firstAttribute="trailing" secondItem="9OQ-Ol-gxT" secondAttribute="trailing" constant="20" id="POj-DQ-5Qa"/>
                             <constraint firstItem="oEK-pg-YYN" firstAttribute="centerX" secondItem="I7W-mi-knt" secondAttribute="centerX" id="Q6s-AX-Lf3"/>
                             <constraint firstItem="oEK-pg-YYN" firstAttribute="top" secondItem="NdS-xO-VUL" secondAttribute="bottom" constant="8" id="YlS-AT-HsQ"/>
+                            <constraint firstItem="9OQ-Ol-gxT" firstAttribute="top" secondItem="oEK-pg-YYN" secondAttribute="bottom" constant="8" id="fEX-Fs-ylS"/>
                             <constraint firstItem="5ss-UM-7az" firstAttribute="top" secondItem="I7W-mi-knt" secondAttribute="top" constant="20" id="gIO-vC-oUw"/>
                             <constraint firstItem="NdS-xO-VUL" firstAttribute="centerX" secondItem="I7W-mi-knt" secondAttribute="centerX" id="qCg-Do-akU"/>
                             <constraint firstItem="NdS-xO-VUL" firstAttribute="top" secondItem="5ss-UM-7az" secondAttribute="bottom" constant="8" id="sqn-LC-5G4"/>
-                            <constraint firstAttribute="trailing" secondItem="Seq-KO-grZ" secondAttribute="trailing" constant="20" id="vw7-mj-ald"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="infoTextView" destination="DEF-3O-Hu2" id="M1N-Xp-jay"/>
                         <outlet property="versionLabel" destination="oEK-pg-YYN" id="ZXS-Jk-xDy"/>
                     </connections>
                 </viewController>
                 <customObject id="Wq5-hD-YXi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43" y="1528"/>
+            <point key="canvasLocation" x="54.5" y="1527.5"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="Dfg-P8-zsR">
@@ -1189,6 +1218,39 @@ The default position for the Yippy is to float on the right edge of the screen, 
                 <customObject id="EPe-bf-fiu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="761" y="1281.5"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="3m6-E1-13Y">
+            <objects>
+                <windowController storyboardIdentifier="PreviewTiffWindowController" id="Hmd-M3-LGt" customClass="PreviewTiffWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="bpO-GL-4gT">
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="Hmd-M3-LGt" id="UbT-bE-U69"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="pfg-tV-l9k" kind="relationship" relationship="window.shadowedContentViewController" id="0DQ-ni-XIt"/>
+                    </connections>
+                </windowController>
+                <customObject id="rmU-6d-9hF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-614" y="2473"/>
+        </scene>
+        <!--Preview Tiff View Controller-->
+        <scene sceneID="w7v-KV-oDL">
+            <objects>
+                <viewController id="pfg-tV-l9k" customClass="PreviewTiffViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="PDn-gT-0Go" customClass="YippyItemContentView" customModule="Yippy" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="CZN-Dw-v7b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="2473"/>
         </scene>
     </scenes>
     <resources>

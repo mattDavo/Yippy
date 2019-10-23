@@ -15,10 +15,9 @@ struct Settings: Codable, DefaultStorable {
     
     // MARK: - Singleton
     
-    private init(panelPosition: PanelPosition, pasteboardChangeCount: Int, history: [HistoryItem]) {
+    private init(panelPosition: PanelPosition, pasteboardChangeCount: Int) {
         self.panelPosition = panelPosition
         self.pasteboardChangeCount = pasteboardChangeCount
-        self.history = history
     }
     
     static var main: Settings! {
@@ -38,8 +37,7 @@ struct Settings: Codable, DefaultStorable {
     
     static let `default` = Settings(
         panelPosition: .right,
-        pasteboardChangeCount: -1,
-        history: []
+        pasteboardChangeCount: -1
     )
     
     // MARK: - Settings
@@ -47,8 +45,6 @@ struct Settings: Codable, DefaultStorable {
     var panelPosition: PanelPosition
     
     var pasteboardChangeCount: Int
-    
-    var history: [HistoryItem]
     
     
     // MARK: - State Binding Methods
@@ -59,17 +55,9 @@ struct Settings: Codable, DefaultStorable {
         }
     }
     
-    func bindPasteboardChangeCountTo(state: BehaviorRelay<Int>) -> Disposable {
+    func bindPasteboardChangeCountTo(state: Observable<Int>) -> Disposable {
         return state.bind { (x) in
             Settings.main.pasteboardChangeCount = x
-        }
-    }
-    
-    func bindHistoryTo(state: BehaviorRelay<[HistoryItem]>) -> Disposable {
-        return state.bind { (x) in
-            DispatchQueue.global(qos: .background).async {
-                Settings.main.history = x
-            }
         }
     }
 }
@@ -80,7 +68,6 @@ extension Settings {
         static var a: Settings {
             var settings = Settings.default
             settings.panelPosition = .left
-            settings.history = UITesting.testHistory.a
             return settings
         }
         

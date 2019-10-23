@@ -34,27 +34,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        checkTerminationArgs()
+        
     }
     
     func checkLaunchArgs() {
         if CommandLine.arguments.contains("--uitesting") {
-            // Mock the access control and key pressing
-            Helper.accessControlHelper = AccessControlHelperMock()
-            Helper.keyPressHelper = KeyPressHelperMock()
-            
-            // Remove the settings
-            UITesting.oldUserDefaults = UserDefaults.standard.blank()
-        }
-        if let test = CommandLine.arguments.filter({$0.contains("--Settings.testData=")}).first {
-            Settings.main = Settings.testData.from(test)
-        }
-    }
-    
-    func checkTerminationArgs() {
-        if CommandLine.arguments.contains("--uitesting") {
-            // Restore the settings
-            UserDefaults.standard.restore(from: UITesting.oldUserDefaults)
+            do {
+                try UITesting.setupUITestEnvironment(launchArgs: CommandLine.arguments, environment: ProcessInfo.processInfo.environment)
+            }
+            catch {
+                NSAlert(error: error).runModal()
+            }
         }
     }
     
@@ -73,6 +63,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Otherwise we should show a popup detailing why access is required.
         State.main.welcomeWindowController?.showWindow(nil)
+        
+        // Bring the window to front
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     func setupHotKey() {
@@ -166,8 +159,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return controller
     }
     
-    func createPreviewWindowController() -> PreviewWindowController {
-        let controller = PreviewWindowController.createPreviewWindowController()
+    func createPreviewTextWindowController() -> PreviewTextWindowController {
+        let controller = PreviewTextWindowController.createPreviewTextWindowController()
+        controller
+            .subscribeTo(previewHistoryItem: State.main.previewHistoryItem)
+            .disposed(by: disposeBag)
+        return controller
+    }
+    
+    func createPreviewTiffWindowController() -> PreviewTiffWindowController {
+        let controller = PreviewTiffWindowController.createPreviewTiffWindowController()
         controller
             .subscribeTo(previewHistoryItem: State.main.previewHistoryItem)
             .disposed(by: disposeBag)
@@ -200,35 +201,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func clearHistoryClicked() {
-        State.main.history.accept([])
         State.main.selected.accept(nil)
+        State.main.history.clear()
+    }
+    
+    func loadHistory(cache: HistoryCache) -> History {
+        return History.load(cache: cache)
     }
     
     func loadState(fromSettings settings: Settings) {
-        // TODO: Should this be loaded?
-//        State.main.isHistoryPanelShown.accept()
         // Load stored settings
         State.main.panelPosition.accept(settings.panelPosition)
-        State.main.pasteboardChangeCount.accept(settings.pasteboardChangeCount)
-        State.main.history.accept(settings.history)
+        
+        // Load history
+        State.main.historyCache = HistoryCache()
+        State.main.history = loadHistory(cache: State.main.historyCache)
+        
+        // Setup history
+        State.main.history.recordPasteboardChange(withCount: settings.pasteboardChangeCount)
         
         // Map settings to state
+        settings.bindPasteboardChangeCountTo(state: State.main.history!.observableLastRecordedChangeCount).disposed(by: disposeBag)
         settings.bindPanelPositionTo(state: State.main.panelPosition).disposed(by: disposeBag)
-        settings.bindPasteboardChangeCountTo(state: State.main.pasteboardChangeCount).disposed(by: disposeBag)
-        settings.bindHistoryTo(state: State.main.history).disposed(by: disposeBag)
         
         // Setup status item
         State.main.statusItem = YippyStatusItem.create()
         State.main.statusItem.menu = createMenu(withSettings: Settings.main)
         
         // Setup pasteboard monitor
-        State.main.pasteboardMonitor = PasteboardMonitor(pasteboard: NSPasteboard.general, changeCount: Settings.main.pasteboardChangeCount, delegate: self)
+        State.main.pasteboardMonitor = PasteboardMonitor(pasteboard: NSPasteboard.general, changeCount: Settings.main.pasteboardChangeCount, delegate: State.main.history)
         
         // Create yippy window controller
         State.main.yippyWindowController = createYippyWindowController()
         
-        // Create preview window controller
-        State.main.previewWindowController = createPreviewWindowController()
+        // Create preview window controllers
+        State.main.previewTextWindowController = createPreviewTextWindowController()
+        State.main.previewTiffWindowController = createPreviewTiffWindowController()
         State.main.previewController = createQLPreviewController()
     }
     
@@ -250,28 +258,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Bring the window to front
         NSApp.activate(ignoringOtherApps: true)
-    }
-}
-
-extension AppDelegate: PasteboardMonitorDelegate {
-    
-    func pasteboardDidChange(_ pasteboard: NSPasteboard) {
-//        guard let items = pasteboard.pasteboardItems else { return }
-//        guard let item = items.first else { return } // TODO: handle multiple types and items
-//        guard let str = item.string(forType: .string) else { return }
-        // TODO: I think we can't handle tiff data until we store it differently
-        
-        // Only do anything if the pasteboard change includes having data
-        if let types = pasteboard.types, !types.isEmpty {
-            var historyItem = HistoryItem()
-            for type in types {
-                historyItem.data[type] = pasteboard.data(forType: type)
-            }
-            
-            State.main.history.accept(State.main.history.value.with(element: historyItem, insertedAt: 0))
-            State.main.pasteboardChangeCount.accept(pasteboard.changeCount)
-            let selected = (State.main.selected.value ?? -1) + 1
-            State.main.selected.accept(selected)
-        }
     }
 }

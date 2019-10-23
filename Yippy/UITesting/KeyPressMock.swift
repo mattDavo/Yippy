@@ -42,4 +42,9 @@ struct KeyPressMock {
         }
         return nil
     }
+    
+    struct constants {
+        static let cKeyCode = CGKeyCode(9)
+        static let enterEventFlags = CGEventFlags.maskCommand
+    }
 }

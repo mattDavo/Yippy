@@ -13,6 +13,8 @@ class AboutViewController: NSViewController {
     
     @IBOutlet var versionLabel: NSTextField!
     
+    @IBOutlet var infoTextView: NSTextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,5 +23,12 @@ class AboutViewController: NSViewController {
         let build = (Bundle.main.infoDictionary!["CFBundleVersion"] as! String?)!
         
         versionLabel.stringValue = "Version \(version) (\(build))"
+        
+        infoTextView.isAutomaticLinkDetectionEnabled = true
+        // https://stackoverflow.com/a/25762502
+        infoTextView.isEditable = true
+        infoTextView.checkTextInDocument(nil)
+        infoTextView.isEditable = false
+        infoTextView.isSelectable = false
     }
 }

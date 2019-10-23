@@ -28,13 +28,6 @@ class SettingsTests: XCTestCase {
         UserDefaults.standard.restore(from: old)
     }
     
-    func assertHistorySaved(_ history: [HistoryItem]) {
-        _ = expectation(for: NSPredicate(block: { (_, _) -> Bool in
-            return Settings.main!.history == history
-        }), evaluatedWith: nil, handler: .none)
-        waitForExpectations(timeout: 3, handler: .none)
-    }
-
     func testDefaultSettings() {
         // 1. Given nothing
         
@@ -45,7 +38,6 @@ class SettingsTests: XCTestCase {
         XCTAssertNotNil(settings)
 //        XCTAssertEqual(settings!.panelPosition, Settings.default.panelPosition)
 //        XCTAssertEqual(settings!.pasteboardChangeCount, Settings.default.pasteboardChangeCount)
-//        XCTAssertEqual(settings!.history, Settings.default.history)
         XCTAssertEqual(settings!, Settings.default)
     }
 
@@ -56,7 +48,6 @@ class SettingsTests: XCTestCase {
         // 2. Set some things
         settings?.panelPosition = .bottom
         settings?.pasteboardChangeCount = 42
-        settings?.history = [HistoryItem()]
         Settings.main = settings
         // Retrieve the settings again
         settings = Settings.main
@@ -64,14 +55,12 @@ class SettingsTests: XCTestCase {
         // 3. Check they have been saved
         XCTAssertEqual(settings?.panelPosition, .bottom)
         XCTAssertEqual(settings?.pasteboardChangeCount, 42)
-        assertHistorySaved([HistoryItem()])
     }
     
     func testObserving() {
         // 1. Given fresh settings
         XCTAssertEqual(Settings.main.panelPosition, Settings.default.panelPosition)
         XCTAssertEqual(Settings.main.pasteboardChangeCount, Settings.default.pasteboardChangeCount)
-        XCTAssertEqual(Settings.main.history, Settings.default.history)
         let disposeBag = DisposeBag()
         
         // 2. Bind settings to behaviour relays
@@ -80,16 +69,11 @@ class SettingsTests: XCTestCase {
         panelPosition.accept(.bottom)
         
         let pasteboardChangeCount = BehaviorRelay<Int>(value: -1)
-        Settings.main.bindPasteboardChangeCountTo(state: pasteboardChangeCount).disposed(by: disposeBag)
+        Settings.main.bindPasteboardChangeCountTo(state: pasteboardChangeCount.asObservable()).disposed(by: disposeBag)
         pasteboardChangeCount.accept(42)
-        
-        let history = BehaviorRelay<[HistoryItem]>(value: [])
-        Settings.main.bindHistoryTo(state: history).disposed(by: disposeBag)
-        history.accept([HistoryItem()])
         
         // 3. Check that the settings have been saved
         XCTAssertEqual(Settings.main.panelPosition, .bottom)
         XCTAssertEqual(Settings.main.pasteboardChangeCount, 42)
-        assertHistorySaved([HistoryItem()])
     }
 }

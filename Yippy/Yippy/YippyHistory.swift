@@ -19,18 +19,24 @@ class YippyHistory {
     
     func paste(selected: Int) {
         let pasteboard = NSPasteboard.general
-        pasteboard.clearContents()
-        for (type, data) in history[selected].data {
-            pasteboard.addTypes([type], owner: nil)
-            pasteboard.setData(data, forType: type)
-        }
-        State.main.history.accept(history.without(elementAt: selected))
+        
+        // Internally action the pasteboard change
+        // Our pasteboard monitor will detect the change
+        // But our `History` will know that it has already been consumed
+        State.main.history.moveItem(at: selected, to: 0)
+        let newChangeCount = pasteboard.clearContents()
+        State.main.history.recordPasteboardChange(withCount: newChangeCount)
+        
+        // Write object
+        pasteboard.writeObjects([history[selected]])
+        
         Helper.pressCommandV()
     }
     
     func delete(selected: Int) {
-        State.main.history.accept(history.without(elementAt: selected))
+        State.main.history.deleteItem(at: selected)
         if selected == 0 {
+            // If we want to remove this, then we may have to change the `HistoryItem` writingOptions() to not `.promised`, because if something is pasted from history, then deleted, it can no longer satisfy the promise.
             NSPasteboard.general.clearContents()
         }
     }

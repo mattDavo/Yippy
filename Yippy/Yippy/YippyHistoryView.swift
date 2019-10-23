@@ -43,6 +43,7 @@ class YippyHistoryView: NSCollectionView {
         register(YippyFileThumbnailItem.self, forItemWithIdentifier: YippyFileThumbnailItem.identifier)
         register(YippyFileIconItem.self, forItemWithIdentifier: YippyFileIconItem.identifier)
         register(YippyColorItem.self, forItemWithIdentifier: YippyColorItem.identifier)
+        register(YippyTiffItem.self, forItemWithIdentifier: YippyTiffItem.identifier)
     }
     
     func selectItem(_ i: Int) {

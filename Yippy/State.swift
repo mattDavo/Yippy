@@ -23,13 +23,15 @@ struct State {
     
     var panelPosition = BehaviorRelay<PanelPosition>(value: .right)
     
-    var pasteboardChangeCount = BehaviorRelay<Int>(value: -1)
-    
-    var history = BehaviorRelay<[HistoryItem]>(value: [])
-    
     var selected = BehaviorRelay<Int?>(value: nil)
     
     var previewHistoryItem = BehaviorRelay<HistoryItem?>(value: nil)
+    
+    
+    // MARK: - History
+    var historyCache: HistoryCache!
+    var history: History!
+    
     
     // MARK: - Status Item
     // Must exist for the duration of the application so that the status bar does not disappear.
@@ -50,7 +52,8 @@ struct State {
     
     // Public NSWindowControllers
     var yippyWindowController: YippyWindowController!
-    var previewWindowController: PreviewWindowController!
+    var previewTextWindowController: PreviewTextWindowController!
+    var previewTiffWindowController: PreviewTiffWindowController!
     var previewController: QLPreviewController!
     
     var welcomeWindowController: WelcomeWindowController? {

@@ -13,8 +13,8 @@ class AboutUITests: XCTestCase {
     var app: XCUIApplication!
     
     override func setUp() {
-        // We want to continue after failure because we want a clean exit, so that we can restore the state of the application when quitting. For example, the user defaults.
-        continueAfterFailure = true
+        // Nothing to clean up after a failure
+        continueAfterFailure = false
         
         // Set full access control
         AccessControlMock.setControlGranted(true)
@@ -22,14 +22,11 @@ class AboutUITests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app = XCUIApplication()
         app.launchArguments.append("--uitesting")
+        app.launchArguments.append("--test-dir=Empty")
+        app.launchEnvironment["SRCROOT"] = ProcessInfo.processInfo.environment["SRCROOT"]
         
         // Launch app
         app.launch()
-    }
-    
-    override func tearDown() {
-        // Quit cleanly
-        app.quit()
     }
     
     func testAboutButton() {

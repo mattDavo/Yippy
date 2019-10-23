@@ -31,7 +31,7 @@ class YippyViewController: NSViewController {
         yippyHistoryView.delegate = self
         view.wantsLayer = true
         
-        State.main.history.subscribe(onNext: onHistoryChange).disposed(by: disposeBag)
+        State.main.history.subscribe(onNext: onHistoryChange)
         State.main.selected.subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
@@ -91,6 +91,7 @@ class YippyViewController: NSViewController {
         super.viewWillAppear()
         
         isPreviewShowing = false
+        yippyHistoryView.collectionViewLayout?.invalidateLayout()
         if yippyHistory.history.count > 0 {
             State.main.selected.accept(0)
         }
@@ -172,6 +173,7 @@ class YippyViewController: NSViewController {
     func close() {
         State.main.isHistoryPanelShown.accept(false)
         State.main.previewHistoryItem.accept(nil)
+        isPreviewShowing = false
     }
     
     func shortcutPressed(key: Int) {
@@ -218,12 +220,12 @@ extension YippyViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         State.main.selected.accept(indexPaths.first?.item)
-        for (type, data) in yippyHistory.history[indexPaths.first!.item].data {
-            if NSPasteboard.PasteboardType.defaultTypes.contains(type) {
-                print(type, data!)
-            }
-        }
-        print("")
+//        for (type, data) in yippyHistory.history[indexPaths.first!.item].data {
+//            if NSPasteboard.PasteboardType.defaultTypes.contains(type) {
+//                print(type, data!)
+//            }
+//        }
+//        print("")
     }
 }
 

@@ -14,8 +14,8 @@ class YippyUITests: XCTestCase {
     var app: XCUIApplication!
     
     override func setUp() {
-        // We want to continue after failure because we want a clean exit, so that we can restore the state of the application when quitting. For example, the user defaults.
-        continueAfterFailure = true
+        // Nothing to clean up after a failure
+        continueAfterFailure = false
         
         // Set full access control
         AccessControlMock.setControlGranted(true)
@@ -23,11 +23,19 @@ class YippyUITests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app = XCUIApplication()
         app.launchArguments.append("--uitesting")
+        app.launchEnvironment["SRCROOT"] = ProcessInfo.processInfo.environment["SRCROOT"]
     }
     
-    override func tearDown() {
-        // Quit cleanly
-        app.quit()
+    func assertCmdV() {
+        let keyPress = KeyPressMock.handleKeyPress()
+        // Assert there was a key press
+        XCTAssertNotNil(keyPress)
+        // Assert it was a c + cmd key press
+        let (keyCode, flags) = keyPress!
+        XCTAssertEqual(keyCode, KeyPressMock.constants.cKeyCode)
+        XCTAssertEqual(flags, KeyPressMock.constants.enterEventFlags)
+        // Assert there was just a single key press
+        XCTAssertNil(KeyPressMock.handleKeyPress())
     }
     
     func testYippyToggle() {
@@ -135,6 +143,9 @@ class YippyUITests: XCTestCase {
     }
     
     func testEmptyYippyHistory() {
+        // Empty app support directory
+        app.launchArguments.append("--test-dir=Empty")
+        
         // Test no contents on pasteboard
         NSPasteboard.general.clearContents()
         
@@ -172,6 +183,9 @@ class YippyUITests: XCTestCase {
         // Set settings environment
         app.launchArguments.append("--Settings.testData=a")
         
+        // Basic app support directory
+        app.launchArguments.append("--test-dir=A")
+        
         // Launch app
         app.launch()
         
@@ -191,6 +205,9 @@ class YippyUITests: XCTestCase {
         // Set settings environment
         app.launchArguments.append("--Settings.testData=a")
         
+        // Basic app support directory
+        app.launchArguments.append("--test-dir=A")
+        
         // Launch app
         app.launch()
         
@@ -198,16 +215,8 @@ class YippyUITests: XCTestCase {
         app.pressHotKey()
         app.typeKey(.return)
         
-        // Handle the key press
-        let keyPress = KeyPressMock.handleKeyPress()
-        // Assert there was a key press
-        XCTAssertNotNil(keyPress)
-        // Assert it was a c + cmd key press
-        let (keyCode, flags) = keyPress!
-        XCTAssertEqual(keyCode, UITesting.cKeyCode)
-        XCTAssertEqual(flags, UITesting.enterEventFlags)
-        // Assert there was just a single key press
-        XCTAssertNil(KeyPressMock.handleKeyPress())
+        // Assert item was pasted
+        assertCmdV()
         
         // Assert the Yippy window is closed
         XCTAssertFalse(app.yippyWindow.isDisplayed)
@@ -221,6 +230,9 @@ class YippyUITests: XCTestCase {
         // Set settings environment
         app.launchArguments.append("--Settings.testData=a")
         
+        // Basic app support directory
+        app.launchArguments.append("--test-dir=A")
+        
         // Launch app
         app.launch()
         
@@ -230,22 +242,113 @@ class YippyUITests: XCTestCase {
         app.getYippyCollectionViewCell(at: 2).click()
         app.typeKey(.return)
         
-        // Assert there was a single key press
-        XCTAssertNotNil(KeyPressMock.handleKeyPress())
-        XCTAssertNil(KeyPressMock.handleKeyPress())
+        // Assert item was pasted
+        assertCmdV()
         
         // Assert the Yippy window is closed
         XCTAssertFalse(app.yippyWindow.isDisplayed)
         
         // Assert the pasteboard now contains the index 2 text (index 1 in history)
-        XCTAssertEqual(NSPasteboard.general.string(forType: .string), UITesting.testHistory.a[1].getPlainString())
+        XCTAssertEqual(NSPasteboard.general.string(forType: .string), "2")
         
         // Open Yippy window
         app.pressHotKey()
         
         // Check that the items have been shuffled
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), UITesting.testHistory.a[1].getPlainString())
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "2")
         XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "My latest copy")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), UITesting.testHistory.a[0].getPlainString())
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), "1")
+    }
+    
+    func testPasteFromShortcut() {
+        // Copy something
+        NSPasteboard.general.declareTypes([.string], owner: nil)
+        NSPasteboard.general.setString("My latest copy", forType: .string)
+        
+        // Set settings environment
+        app.launchArguments.append("--Settings.testData=a")
+        
+        // Basic app support directory
+        app.launchArguments.append("--test-dir=A")
+        
+        // Launch app
+        app.launch()
+        
+        // Open Yippy window
+        app.pressHotKey()
+        // Use short cut for item index 2 (⌘ + 2)
+        app.typeKey("2", modifierFlags: .command)
+        
+        // Assert item was pasted
+        assertCmdV()
+        
+        // Assert the Yippy window is closed
+        XCTAssertFalse(app.yippyWindow.isDisplayed)
+        
+        // Assert the pasteboard now contains the index 2 text (index 1 in history)
+        XCTAssertEqual(NSPasteboard.general.string(forType: .string), "2")
+        
+        // Open Yippy window
+        app.pressHotKey()
+        
+        // Check that the items have been shuffled
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "2")
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "My latest copy")
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), "1")
+    }
+    
+    func testDelete() {
+        // Copy something
+        NSPasteboard.general.declareTypes([.string], owner: nil)
+        NSPasteboard.general.setString("My latest copy", forType: .string)
+        
+        // Set settings environment
+        app.launchArguments.append("--Settings.testData=a")
+        
+        // Basic app support directory
+        app.launchArguments.append("--test-dir=A")
+        
+        // Launch app
+        app.launch()
+        
+        // Open Yippy window
+        app.pressHotKey()
+        // Select index 2
+        app.getYippyCollectionViewCell(at: 2).click()
+        // Delete
+        app.typeKey(.delete, modifierFlags: .command)
+        
+        // Check that the item is gone
+        XCTAssertEqual(app.yippyCollectionViewItems.count, 4)
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "My latest copy")
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "1")
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), "3")
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 3), "4")
+        
+        // Delete again
+        app.typeKey(.delete, modifierFlags: .command)
+        app.typeKey(.delete, modifierFlags: .command)
+        
+        // Check that the items are gone
+        XCTAssertEqual(app.yippyCollectionViewItems.count, 2)
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "My latest copy")
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "1")
+        
+        // Delete first item
+        app.getYippyCollectionViewCell(at: 0).click()
+        app.typeKey(.delete, modifierFlags: .command)
+        
+        // Check that the item is gone
+        XCTAssertEqual(app.yippyCollectionViewItems.count, 1)
+        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "1")
+        
+        // Delete final item
+        app.typeKey(.delete, modifierFlags: .command)
+        
+        // Check all items gone
+        XCTAssertEqual(app.yippyCollectionViewItems.count, 0)
+        
+        // Check pasteboard is empty
+        XCTAssertTrue(NSPasteboard.general.types?.isEmpty ?? true)
     }
 }

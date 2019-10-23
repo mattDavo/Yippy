@@ -47,7 +47,6 @@ class YippyItemBase: NSCollectionViewItem {
         
         view.wantsLayer = true
         view.layer?.cornerRadius = 10
-        itemTextView.setAccessibilityIdentifier(Accessibility.identifiers.yippyItemTextView)
         itemTextView.drawsBackground = false
         
         setupContentView()

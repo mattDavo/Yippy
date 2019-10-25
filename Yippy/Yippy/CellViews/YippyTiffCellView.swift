@@ -37,15 +37,15 @@ class YippyTiffCellView: YippyItemBaseCellView, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: tiffView, attribute: .bottom, multiplier: 1, constant: Self.imagePadding.bottom))
     }
     
-    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
-        setupShortcutTextView(atIndexPath: indexPath)
-        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
+    func setupCell(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem, at i: Int) {
+        setupShortcutTextView(at: i)
+        setHighlight(isSelected: yippyTableView.isRowSelected(i))
         tiffView.image = historyItem.getTiffImage()
     }
     
-    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
+    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(tableView.tableColumns[0].width)
+        let cellWidth = floor(yippyTableView.cellWidth)
         
         // TODO: Need placeholder or something
         guard let image = historyItem.getTiffImage() else {
@@ -60,7 +60,7 @@ class YippyTiffCellView: YippyItemBaseCellView, YippyItem {
         let imageHeight = min(image.size.height * imageWidth / image.size.width, maxImageHeight)
         
         // Get max height of cell based on visible on visible height
-        let maxHeight = tableView.visibleRect.height
+        let maxHeight = yippyTableView.visibleRect.height
         // Calculate cell height
         let height = min(imageHeight + imagePadding.yTotal + contentViewInsets.xTotal, maxHeight)
         

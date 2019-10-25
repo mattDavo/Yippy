@@ -103,10 +103,10 @@ class YippyItemBaseCellView: NSTableCellView {
         shortcutTextView.constraint(withIdentifier: "height")?.constant = size.height
     }
     
-    func setupShortcutTextView(atIndexPath indexPath: IndexPath) {
-        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: Self.shortcutStringAttributes)
+    func setupShortcutTextView(at i: Int) {
+        let shortcutStr = NSAttributedString(string: i < 10 ? "⌘ + \(i)" : "", attributes: Self.shortcutStringAttributes)
         shortcutTextView.attributedText = shortcutStr
-        shortcutTextView.isHidden = indexPath.item >= 10
+        shortcutTextView.isHidden = i >= 10
         updateShortcutTextViewContraints()
     }
 }

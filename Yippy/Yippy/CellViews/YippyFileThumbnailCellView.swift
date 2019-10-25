@@ -54,11 +54,11 @@ class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: itemTextView, attribute: .bottom, multiplier: 1, constant: Self.fileNamePadding.bottom))
     }
     
-    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+    func setupCell(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem, at i: Int) {
         guard let url = historyItem.getFileUrl() else { return }
         itemTextView.attributedText = formatFileUrl(url)
-        setupShortcutTextView(atIndexPath: indexPath)
-        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
+        setupShortcutTextView(at: i)
+        setHighlight(isSelected: yippyTableView.isRowSelected(i))
         
         DispatchQueue.global(qos: .background).async {
             let cgImageRef = QLThumbnailImageCreate(kCFAllocatorDefault, url as CFURL, CGSize(width: 200, height: 200), [kQLThumbnailOptionIconModeKey: false, kQLThumbnailOptionScaleFactorKey: 4] as CFDictionary)
@@ -75,9 +75,9 @@ class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
         }
     }
     
-    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
+    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(tableView.tableColumns[0].width)
+        let cellWidth = floor(yippyTableView.cellWidth)
         
         // Calculate the text container width
         let textContainerWidth = cellWidth - contentViewInsets.xTotal - fileNamePadding.xTotal

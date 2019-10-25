@@ -51,17 +51,17 @@ class YippyFileIconCellView: YippyItemBaseCellView, YippyItem {
         itemTextView.heightAnchor.constraint(equalToConstant: 0, withIdentifier: "height")?.isActive = true
     }
     
-    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+    func setupCell(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem, at i: Int) {
         iconView.image = historyItem.getFileIcon()
-        setupShortcutTextView(atIndexPath: indexPath)
+        setupShortcutTextView(at: i)
         itemTextView.attributedText = formatFileUrl(historyItem.getFileUrl()!)
-        itemTextView.constraint(withIdentifier: "height")?.constant = Self.getFileNameTextViewHeight(withCellWidth: floor(tableView.tableColumns[0].width), forHistoryItem: historyItem)
-        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
+        itemTextView.constraint(withIdentifier: "height")?.constant = Self.getFileNameTextViewHeight(withCellWidth: floor(yippyTableView.cellWidth), forHistoryItem: historyItem)
+        setHighlight(isSelected: yippyTableView.isRowSelected(i))
     }
     
-    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
+    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(tableView.tableColumns[0].width)
+        let cellWidth = floor(yippyTableView.cellWidth)
         
         // Calculate the text view height
         let textViewHeight = getFileNameTextViewHeight(withCellWidth: cellWidth, forHistoryItem: historyItem)

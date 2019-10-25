@@ -55,13 +55,13 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: itemTextView, attribute: .bottom, multiplier: 1, constant: Self.padding.bottom))
     }
     
-    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+    func setupCell(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem, at i: Int) {
         let itemStr = Self.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: Self.itemStringAttributes)
         itemTextView.attributedText = itemStr
         
-        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
+        setHighlight(isSelected: yippyTableView.isRowSelected(i))
         
-        setupShortcutTextView(atIndexPath: indexPath)
+        setupShortcutTextView(at: i)
     }
     
     static func getAttributedString(forHistoryItem item: HistoryItem, withDefaultAttributes attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
@@ -82,9 +82,9 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         }
     }
     
-    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
+    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(tableView.tableColumns[0].width)
+        let cellWidth = floor(yippyTableView.cellWidth)
         
         // Calculate the width of the text container
         let width = cellWidth - Self.padding.left - Self.padding.right - Self.textInset.xTotal - Self.contentViewInsets.xTotal

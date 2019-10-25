@@ -13,11 +13,11 @@ protocol YippyItem {
     
     static var identifier: NSUserInterfaceItemIdentifier { get }
     
-    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat
+    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat
     
     func setHighlight(isSelected: Bool)
     
-    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath)
+    func setupCell(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem, at i: Int)
     
     static func makeItem() -> YippyItem
 }

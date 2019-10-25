@@ -14,7 +14,7 @@ import RxCocoa
 
 class YippyViewController: NSViewController {
     
-    @IBOutlet var yippyHistoryView: YippyHistoryView!
+    @IBOutlet var yippyHistoryView: YippyTableView!
     
     var yippyHistory = YippyHistory(history: [])
     
@@ -24,9 +24,6 @@ class YippyViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        yippyHistoryView.dataSource = self
-        yippyHistoryView.delegate = self
         
         State.main.history.subscribe(onNext: onHistoryChange)
         State.main.selected.withPrevious(startWith: nil).subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
@@ -60,35 +57,35 @@ class YippyViewController: NSViewController {
         YippyHotKeys.cmd8.onDown { self.shortcutPressed(key: 8) }
         YippyHotKeys.cmd9.onDown { self.shortcutPressed(key: 9) }
         
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.downArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.upArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.return, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.escape, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.pageDown, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.pageUp, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdLeftArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdRightArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdDownArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdUpArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd0, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd1, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd2, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd3, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd4, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd5, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd6, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd7, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd8, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmd9, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.cmdDelete, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(yippyHotKey: YippyHotKeys.space, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.downArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.upArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.return, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.escape, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.pageDown, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.pageUp, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmdLeftArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmdRightArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmdDownArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmdUpArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd0, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd1, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd2, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd3, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd4, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd5, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd6, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd7, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd8, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmd9, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.cmdDelete, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.space, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         isPreviewShowing = false
-        yippyHistoryView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<yippyHistory.history.count))
+        yippyHistoryView.checkRowHeights()
         if yippyHistory.history.count > 0 {
             State.main.selected.accept(0)
         }
@@ -99,8 +96,7 @@ class YippyViewController: NSViewController {
     
     func onHistoryChange(_ history: [HistoryItem]) {
         yippyHistory = YippyHistory(history: history)
-        yippyHistoryView.reloadData()
-        view.displayIfNeeded()
+        yippyHistoryView.reloadData(yippyHistory.history)
     }
     
     func onSelectedChange(_ previous: Int?, _ selected: Int?) {
@@ -121,11 +117,11 @@ class YippyViewController: NSViewController {
         }
     }
     
-    func bindHotKeyToYippyWindow(yippyHotKey: YippyHotKey, disposeBag: DisposeBag) {
+    func bindHotKeyToYippyWindow(_ hotKey: YippyHotKey, disposeBag: DisposeBag) {
         State.main.isHistoryPanelShown
             .distinctUntilChanged()
             .subscribe(onNext: { [] in
-                yippyHotKey.isPaused = !$0
+                hotKey.isPaused = !$0
             })
             .disposed(by: disposeBag)
     }
@@ -197,43 +193,5 @@ class YippyViewController: NSViewController {
                 State.main.previewHistoryItem.accept(nil)
             }
         }
-    }
-}
-
-extension YippyViewController: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return yippyHistory.history.count
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        let historyItem = yippyHistory.history[row]
-        let itemType = historyItem.getTableViewItemType()
-        let cell = tableView.makeView(withIdentifier: itemType.identifier, owner: nil) as? YippyItem ?? itemType.makeItem()
-        cell.setupCell(withTableView: tableView, forHistoryItem: historyItem, atIndexPath: IndexPath(item: row, section: 0))
-        if let cell = cell as? NSTableCellView {
-            cell.setAccessibilityLabel(itemType.identifier.rawValue)
-        }
-        
-        return cell as? NSView
-    }
-    
-    func tableViewSelectionIsChanging(_ notification: Notification) {
-        State.main.selected.accept(yippyHistoryView.selected)
-    }
-    
-    func tableViewColumnDidResize(_ notification: Notification) {
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current.duration = 0
-        yippyHistoryView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<yippyHistory.history.count))
-        NSAnimationContext.endGrouping()
-        yippyHistoryView.redisplayVisible(yippyHistory: yippyHistory)
-    }
-}
-
-extension YippyViewController: NSTableViewDelegate {
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        let historyItem = yippyHistory.history[row]
-        return historyItem.getTableViewItemType().getItemHeight(withTableView: tableView, forHistoryItem: historyItem)
     }
 }

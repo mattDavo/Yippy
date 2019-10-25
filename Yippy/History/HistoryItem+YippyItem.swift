@@ -10,23 +10,23 @@ import Foundation
 
 extension HistoryItem {
     
-    func getCollectionViewItemType() -> YippyItem.Type {
+    func getTableViewItemType() -> YippyItem.Type {
         if getFileUrl() != nil {
             if getThumbnailImage() != nil {
-                return YippyFileThumbnailItem.self
+                return YippyFileThumbnailCellView.self
             }
             else {
-                return YippyFileIconItem.self
+                return YippyFileIconCellView.self
             }
         }
         else if getColor() != nil {
-            return YippyColorItem.self
+            return YippyColorCellView.self
         }
         else if types.contains(.tiff) {
-            return YippyTiffItem.self
+            return YippyTiffCellView.self
         }
         else {
-            return YippyTextItem.self
+            return YippyTextCellView.self
         }
     }
 }

@@ -9,11 +9,7 @@
 import Foundation
 import Cocoa
 
-class YippyHistoryView: NSCollectionView {
-    
-    var selected: Int? {
-        return selectionIndexPaths.first?.item
-    }
+class YippyHistoryView: NSTableView {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -21,40 +17,44 @@ class YippyHistoryView: NSCollectionView {
         commonInit()
     }
     
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         
         commonInit()
     }
     
     private func commonInit() {
-        layer?.backgroundColor = .clear
-        allowsEmptySelection = false
+        selectionHighlightStyle = .none
         allowsMultipleSelection = false
-        setAccessibilityIdentifier(Accessibility.identifiers.yippyCollectionView)
         
-        let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.sectionInset = sectionInset
-        flowLayout.minimumLineSpacing = 5.0
-        collectionViewLayout = flowLayout
-        layer?.backgroundColor = NSColor.black.cgColor
-        
-        register(YippyTextItem.self, forItemWithIdentifier: YippyTextItem.identifier)
-        register(YippyFileThumbnailItem.self, forItemWithIdentifier: YippyFileThumbnailItem.identifier)
-        register(YippyFileIconItem.self, forItemWithIdentifier: YippyFileIconItem.identifier)
-        register(YippyColorItem.self, forItemWithIdentifier: YippyColorItem.identifier)
-        register(YippyTiffItem.self, forItemWithIdentifier: YippyTiffItem.identifier)
+        intercellSpacing = NSSize(width: 40, height: 5)
+        setAccessibilityIdentifier(Accessibility.identifiers.yippyTableView)
+    }
+    
+    var selected: Int? {
+        return self.selectedRowIndexes.first
     }
     
     func selectItem(_ i: Int) {
-        if let selected = selected {
-            deselectItem(selected)
-        }
-        let items = Set(arrayLiteral: IndexPath(item: i, section: 0))
-        selectItems(at: items, scrollPosition: .nearestHorizontalEdge)
+        let items = IndexSet(arrayLiteral: i)
+        selectRowIndexes(items, byExtendingSelection: false)
+        scrollRowToVisible(items.first!)
     }
     
     func deselectItem(_ i: Int) {
-        deselectItems(at: Set(arrayLiteral: IndexPath(item: i, section: 0)))
+        deselectRow(i)
+    }
+    
+    func reloadItem(_ i: Int) {
+        reloadData(forRowIndexes: IndexSet(arrayLiteral: i), columnIndexes: IndexSet(arrayLiteral: 0))
+    }
+    
+    func redisplayVisible(yippyHistory: YippyHistory) {
+        let vis = visibleRect
+        let range = rows(in: vis)
+        for row in range.location..<range.location+range.length {
+            guard let cell = view(atColumn: 0, row: row, makeIfNecessary: false) as? YippyItem else { continue }
+            cell.setupCell(withTableView: self, forHistoryItem: yippyHistory.history[row], atIndexPath: IndexPath(item: row, section: 0))
+        }
     }
 }

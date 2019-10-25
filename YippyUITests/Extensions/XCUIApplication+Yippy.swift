@@ -10,24 +10,27 @@ import XCTest
 
 extension XCUIApplication {
     
-    var yippyCollectionView: XCUIElement {
-        return yippyWindow.collectionViews[Accessibility.identifiers.yippyCollectionView]
+    var yippyTableView: XCUIElement {
+        return yippyWindow.tables[Accessibility.identifiers.yippyTableView]
     }
     
-    var yippyCollectionViewItems: XCUIElementQuery {
-        return yippyCollectionView.otherElements.children(matching: .group).matching(.group, identifier: nil)
-//        return yippyCollectionView.otherElements.children(matching: .group).matching(identifier: Accessibility.identifiers.yippyItemBase)
+    var yippyTableViewItems: XCUIElementQuery {
+        return yippyTableView.cells
     }
     
-    func getYippyCollectionViewCell(at i: Int) -> XCUIElement {
-        return yippyCollectionViewItems.element(boundBy: i)
+    func getYippyTableViewCell(at i: Int) -> XCUIElement {
+        return yippyTableViewItems.element(boundBy: i)
     }
     
-    func getYippyCollectionViewCellTextView(at i: Int) -> XCUIElement {
-        return yippyCollectionViewItems.element(boundBy: i).children(matching: .textView).matching(identifier: Accessibility.identifiers.yippyItemTextView).element
+    func getYippyTableViewCellTextView(at i: Int) -> XCUIElement {
+        return getYippyTableViewCell(at: i).children(matching: .textView).matching(identifier: Accessibility.identifiers.yippyItemTextView).element
     }
     
-    func getYippyCollectionViewString(at i: Int) -> String? {
-        return getYippyCollectionViewCellTextView(at: i).value as? String
+    func getYippyTableViewItemString(at i: Int) -> String? {
+        return getYippyTableViewCellTextView(at: i).value as? String
+    }
+    
+    func getYippyTableViewCellType(at i: Int) -> String {
+        return getYippyTableViewCell(at: i).label
     }
 }

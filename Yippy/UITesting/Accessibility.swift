@@ -32,8 +32,12 @@ class Accessibility {
         static let waitingForControlLabel = "waitingForControlLabel"
         static let howToUseLabel = "howToUseLabel"
         
-        static let yippyCollectionView = "yippyCollectionView"
-        static let yippyTextItem = "YippyTextItem"
+        static let yippyTableView = "yippyTableView"
         static let yippyItemTextView = "YippyItemTextView"
+        static let yippyTextCellView = "YippyTextCellView"
+        static let yippyColorCellView = "YippyColorCellView"
+        static let yippyTiffCellView = "YippyTiffCellView"
+        static let yippyFileIconCellView = "YippyFileIconCellView"
+        static let yippyFileThumbnailCellView = "YippyFileIconCellView"
     }
 }

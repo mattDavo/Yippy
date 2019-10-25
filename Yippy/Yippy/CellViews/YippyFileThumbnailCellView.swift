@@ -1,5 +1,5 @@
 //
-//  YippyFileThumbnailItem.swift
+//  YippyFileThumbnailCellView.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 11/10/19.
@@ -10,9 +10,9 @@ import Foundation
 import QuickLook
 import Quartz
 
-class YippyFileThumbnailItem: YippyItemBase, YippyItem {
+class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
     
-    static let identifier = NSUserInterfaceItemIdentifier("YippyFileThumbnailItem")
+    static let identifier = NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyFileThumbnailCellView)
     
     static let fileNamePadding = NSEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
     
@@ -22,15 +22,13 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
     
     var previewView: NSImageView!
     
-    override func loadView() {
-        super.loadView()
+    override func commonInit() {
+        super.commonInit()
+        
+        identifier = Self.identifier
         
         previewView = NSImageView(frame: .zero)
         contentView.addSubview(previewView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         setupPreviewView()
         setupItemTextView()
@@ -56,14 +54,11 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: itemTextView, attribute: .bottom, multiplier: 1, constant: Self.fileNamePadding.bottom))
     }
     
-    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
-        setHighlight()
-    }
-    
-    func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
         guard let url = historyItem.getFileUrl() else { return }
         itemTextView.attributedText = formatFileUrl(url)
         setupShortcutTextView(atIndexPath: indexPath)
+        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
         
         DispatchQueue.global(qos: .background).async {
             let cgImageRef = QLThumbnailImageCreate(kCFAllocatorDefault, url as CFURL, CGSize(width: 200, height: 200), [kQLThumbnailOptionIconModeKey: false, kQLThumbnailOptionScaleFactorKey: 4] as CFDictionary)
@@ -80,9 +75,9 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
         }
     }
     
-    static func getItemSize(withCollectionView collectionView: NSCollectionView, forHistoryItem historyItem: HistoryItem) -> NSSize {
+    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        let cellWidth = floor(tableView.tableColumns[0].width)
         
         // Calculate the text container width
         let textContainerWidth = cellWidth - contentViewInsets.xTotal - fileNamePadding.xTotal
@@ -96,6 +91,10 @@ class YippyFileThumbnailItem: YippyItemBase, YippyItem {
         // Calculate the height of the cell
         let height = bRect.height + contentViewInsets.yTotal + fileNamePadding.yTotal + imageSize.height + imageTopPadding
         
-        return NSSize(width: cellWidth, height: height)
+        return ceil(height)
+    }
+    
+    static func makeItem() -> YippyItem {
+        return YippyFileThumbnailCellView(frame: .zero)
     }
 }

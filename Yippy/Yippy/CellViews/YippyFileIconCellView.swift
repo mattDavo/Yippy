@@ -1,5 +1,5 @@
 //
-//  YippyFileIconItem.swift
+//  YippyFileIconCellView.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 11/10/19.
@@ -9,31 +9,25 @@
 import Foundation
 import Cocoa
 
-class YippyFileIconItem: YippyItemBase, YippyItem {
+class YippyFileIconCellView: YippyItemBaseCellView, YippyItem {
     
-    static let identifier = NSUserInterfaceItemIdentifier("YippyFileIconItem")
+    static let identifier = NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyFileIconCellView)
     static let textContainerInset = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let iconViewPadding = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let iconSize = NSSize(width: 32, height: 32)
     
     var iconView: NSImageView!
     
-    override func loadView() {
-        super.loadView()
+    override func commonInit() {
+        super.commonInit()
+        
+        identifier = Self.identifier
         
         iconView = NSImageView(frame: .zero)
         contentView.addSubview(iconView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         setupIconView()
         setupItemTextView()
-    }
-    
-    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
-        setHighlight()
     }
     
     func setupIconView() {
@@ -49,22 +43,25 @@ class YippyFileIconItem: YippyItemBase, YippyItem {
         itemTextView.usingEdgeInsets = true
         itemTextView.textInset = Self.textContainerInset
         itemTextView.textContainer?.lineFragmentPadding = 0
+        itemTextView.isVerticallyResizable = false
+        itemTextView.isHorizontallyResizable = false
         contentView.addConstraint(NSLayoutConstraint(item: itemTextView!, attribute: .leading, relatedBy: .equal, toItem: iconView, attribute: .trailing, multiplier: 1, constant: Self.iconViewPadding.right))
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .trailing, relatedBy: .equal, toItem: itemTextView, attribute: .trailing, multiplier: 1, constant: 0))
         itemTextView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         itemTextView.heightAnchor.constraint(equalToConstant: 0, withIdentifier: "height")?.isActive = true
     }
     
-    func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
         iconView.image = historyItem.getFileIcon()
         setupShortcutTextView(atIndexPath: indexPath)
         itemTextView.attributedText = formatFileUrl(historyItem.getFileUrl()!)
-        itemTextView.constraint(withIdentifier: "height")?.constant = Self.getFileNameTextViewHeight(withCellWidth: floor(collectionView!.frame.width - sectionInset.left - sectionInset.right), forHistoryItem: historyItem)
+        itemTextView.constraint(withIdentifier: "height")?.constant = Self.getFileNameTextViewHeight(withCellWidth: floor(tableView.tableColumns[0].width), forHistoryItem: historyItem)
+        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
     }
     
-    static func getItemSize(withCollectionView collectionView: NSCollectionView, forHistoryItem historyItem: HistoryItem) -> NSSize {
+    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        let cellWidth = floor(tableView.tableColumns[0].width)
         
         // Calculate the text view height
         let textViewHeight = getFileNameTextViewHeight(withCellWidth: cellWidth, forHistoryItem: historyItem)
@@ -75,7 +72,7 @@ class YippyFileIconItem: YippyItemBase, YippyItem {
         // Add the padding back to get the height of the cell
         let height = max(textViewHeight + contentViewInsets.yTotal, minCellHeight)
         
-        return NSSize(width: cellWidth, height: ceil(height))
+        return ceil(height)
     }
     
     static func getFileNameTextViewHeight(withCellWidth cellWidth: CGFloat, forHistoryItem historyItem: HistoryItem) -> CGFloat {
@@ -92,5 +89,9 @@ class YippyFileIconItem: YippyItemBase, YippyItem {
         let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextContainerHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
         
         return min(bRect.height, maxTextContainerHeight) + textContainerInset.yTotal
+    }
+    
+    static func makeItem() -> YippyItem {
+        return YippyFileIconCellView(frame: .zero)
     }
 }

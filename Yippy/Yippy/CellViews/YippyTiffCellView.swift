@@ -1,5 +1,5 @@
 //
-//  YippyTiffItem.swift
+//  YippyTiffCellView.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 17/10/19.
@@ -9,23 +9,21 @@
 import Foundation
 import Cocoa
 
-class YippyTiffItem: YippyItemBase, YippyItem {
+class YippyTiffCellView: YippyItemBaseCellView, YippyItem {
     
-    static let identifier = NSUserInterfaceItemIdentifier("YippyTiffItem")
+    static let identifier = NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTiffCellView)
     
     static let imagePadding = NSEdgeInsetsZero
     
     var tiffView: NSImageView!
     
-    override func loadView() {
-        super.loadView()
+    override func commonInit() {
+        super.commonInit()
+        
+        identifier = Self.identifier
         
         tiffView = NSImageView(frame: .zero)
         contentView.addSubview(tiffView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         setupTiffView()
     }
@@ -39,22 +37,19 @@ class YippyTiffItem: YippyItemBase, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: tiffView, attribute: .bottom, multiplier: 1, constant: Self.imagePadding.bottom))
     }
     
-    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
-        setHighlight()
-    }
-    
-    func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
         setupShortcutTextView(atIndexPath: indexPath)
-        
+        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
         tiffView.image = historyItem.getTiffImage()
     }
     
-    static func getItemSize(withCollectionView collectionView: NSCollectionView, forHistoryItem historyItem: HistoryItem) -> NSSize {
+    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        let cellWidth = floor(tableView.tableColumns[0].width)
         
+        // TODO: Need placeholder or something
         guard let image = historyItem.getTiffImage() else {
-            return CGSize(width: cellWidth, height: 50)
+            return 50
         }
         
         let imageWidth = cellWidth - imagePadding.xTotal - contentViewInsets.xTotal
@@ -65,10 +60,14 @@ class YippyTiffItem: YippyItemBase, YippyItem {
         let imageHeight = min(image.size.height * imageWidth / image.size.width, maxImageHeight)
         
         // Get max height of cell based on visible on visible height
-        let maxHeight = collectionView.visibleRect.height
+        let maxHeight = tableView.visibleRect.height
         // Calculate cell height
         let height = min(imageHeight + imagePadding.yTotal + contentViewInsets.xTotal, maxHeight)
         
-        return NSSize(width: cellWidth, height: height)
+        return ceil(height)
+    }
+    
+    static func makeItem() -> YippyItem {
+        return YippyTiffCellView(frame: .zero)
     }
 }

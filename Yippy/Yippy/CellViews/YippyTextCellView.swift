@@ -1,5 +1,5 @@
 //
-//  YippyTextItem.swift
+//  YippyTextCellView.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 2/8/19.
@@ -8,18 +8,13 @@
 
 import Cocoa
 
-class YippyTextItem: YippyItemBase, YippyItem {
+class YippyTextCellView: YippyItemBaseCellView, YippyItem {
     
     // MARK: - UI Constants
     
     static let itemStringAttributes: [NSAttributedString.Key: Any] = [
-        .font: YippyTextItem.font,
+        .font: YippyTextCellView.font,
         .foregroundColor: NSColor.textColor
-    ]
-    
-    static let shortcutStringAttributes: [NSAttributedString.Key: Any] = [
-        .font: YippyTextItem.font,
-        .foregroundColor: NSColor.white.withAlphaComponent(0.7)
     ]
     
     static let padding = NSEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
@@ -27,15 +22,17 @@ class YippyTextItem: YippyItemBase, YippyItem {
     static let textInset = NSEdgeInsetsZero // NSEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     
     class var identifier: NSUserInterfaceItemIdentifier {
-        return NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTextItem)
+        return NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTextCellView)
     }
     
     static let font = Constants.fonts.yippyPlainText
     
     // MARK: - Methods
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func commonInit() {
+        super.commonInit()
+        
+        identifier = Self.identifier
         
         setupItemTextView()
     }
@@ -43,12 +40,12 @@ class YippyTextItem: YippyItemBase, YippyItem {
     func setupItemTextView() {
         // Define the maximum size of the text container, so that the text renders correctly when there needs to be clipping.
         // Width can be any value
-        itemTextView.textContainer?.size = NSSize(width: 300, height: Constants.panel.maxCellHeight - YippyTextItem.padding.top - YippyTextItem.padding.bottom - Self.textInset.yTotal - Self.contentViewInsets.yTotal)
+        itemTextView.textContainer?.size = NSSize(width: 300, height: Constants.panel.maxCellHeight - Self.padding.top - Self.padding.bottom - Self.textInset.yTotal - Self.contentViewInsets.yTotal)
         
         itemTextView.translatesAutoresizingMaskIntoConstraints = false
         itemTextView.isSelectable = false
         itemTextView.usingEdgeInsets = true
-        itemTextView.textInset = YippyTextItem.textInset
+        itemTextView.textInset = Self.textInset
         itemTextView.textContainer?.lineFragmentPadding = 0
         
         // Add constraints for the item text view
@@ -58,13 +55,11 @@ class YippyTextItem: YippyItemBase, YippyItem {
         contentView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .bottom, relatedBy: .equal, toItem: itemTextView, attribute: .bottom, multiplier: 1, constant: Self.padding.bottom))
     }
     
-    func willDisplayCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
-        setHighlight()
-    }
-    
-    func setupCell(withHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
-        let itemStr = Self.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextItem.itemStringAttributes)
+    func setupCell(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem, atIndexPath indexPath: IndexPath) {
+        let itemStr = Self.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: Self.itemStringAttributes)
         itemTextView.attributedText = itemStr
+        
+        setHighlight(isSelected: tableView.isRowSelected(indexPath.item))
         
         setupShortcutTextView(atIndexPath: indexPath)
     }
@@ -87,9 +82,9 @@ class YippyTextItem: YippyItemBase, YippyItem {
         }
     }
     
-    static func getItemSize(withCollectionView collectionView: NSCollectionView, forHistoryItem historyItem: HistoryItem) -> NSSize {
+    static func getItemHeight(withTableView tableView: NSTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
-        let cellWidth = floor(collectionView.frame.width - sectionInset.left - sectionInset.right)
+        let cellWidth = floor(tableView.tableColumns[0].width)
         
         // Calculate the width of the text container
         let width = cellWidth - Self.padding.left - Self.padding.right - Self.textInset.xTotal - Self.contentViewInsets.xTotal
@@ -104,8 +99,12 @@ class YippyTextItem: YippyItemBase, YippyItem {
         let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextContainerHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
         
         // Add the padding back to get the height of the cell
-        let height = min(bRect.height, maxTextContainerHeight) + YippyTextItem.padding.top + Self.padding.bottom + Self.textInset.yTotal + Self.contentViewInsets.yTotal
+        let height = min(bRect.height, maxTextContainerHeight) + Self.padding.top + Self.padding.bottom + Self.textInset.yTotal + Self.contentViewInsets.yTotal
         
-        return NSSize(width: cellWidth, height: ceil(height))
+        return ceil(height)
+    }
+    
+    class func makeItem() -> YippyItem {
+        return YippyTextCellView(frame: .zero)
     }
 }

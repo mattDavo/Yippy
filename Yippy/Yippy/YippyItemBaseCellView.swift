@@ -1,5 +1,5 @@
 //
-//  YippyItemBase.swift
+//  YippyItemBaseCellView.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 13/10/19.
@@ -14,7 +14,7 @@ import Cocoa
 /// Creates and sets up the `contentView`, `shortcutTextView` and the `itemTextView`.
 ///
 /// Handles highlight changes.
-class YippyItemBase: NSCollectionViewItem {
+class YippyItemBaseCellView: NSTableCellView {
     
     static let contentViewInsets = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
@@ -22,32 +22,39 @@ class YippyItemBase: NSCollectionViewItem {
     var shortcutTextView: YippyItemCellTextView!
     var itemTextView: YippyItemCellTextView!
     
-    override var isSelected: Bool {
-        didSet {
-            setHighlight()
-        }
+    static let shortcutStringAttributes: [NSAttributedString.Key: Any] = [
+        .font: YippyTextCellView.font,
+        .foregroundColor: NSColor.white.withAlphaComponent(0.7)
+    ]
+    
+    func setHighlight(isSelected: Bool) {
+        layer?.backgroundColor = isSelected ? NSColor.systemBlue.withAlphaComponent(0.7).cgColor : NSColor.lightGray.withAlphaComponent(0.0).cgColor
     }
     
-    func setHighlight() {
-        view.layer?.backgroundColor = self.isSelected ? NSColor.systemBlue.withAlphaComponent(0.7).cgColor : NSColor.lightGray.withAlphaComponent(0.0).cgColor
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        
+        commonInit()
     }
     
-    override func loadView() {
-        view = NSView(frame: .zero)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        commonInit()
+    }
+    
+    func commonInit() {
         contentView = YippyItemContentView(frame: .zero)
-        view.addSubview(contentView)
+        addSubview(contentView)
         itemTextView = YippyItemCellTextView(frame: .zero)
         contentView.addSubview(itemTextView)
         shortcutTextView = YippyItemCellTextView(frame: .zero)
         contentView.addSubview(shortcutTextView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        view.wantsLayer = true
-        view.layer?.cornerRadius = 10
+        wantsLayer = true
+        layer?.cornerRadius = 10
         itemTextView.drawsBackground = false
+        itemTextView.setAccessibilityIdentifier(Accessibility.identifiers.yippyItemTextView)
         
         setupContentView()
         setupShortcutTextView()
@@ -58,10 +65,10 @@ class YippyItemBase: NSCollectionViewItem {
         contentView.wantsLayer = true
         contentView.layer?.cornerRadius = 7
         
-        view.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: Self.contentViewInsets.left))
-        view.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: Self.contentViewInsets.top))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: Self.contentViewInsets.right))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: Self.contentViewInsets.bottom))
+        addConstraint(NSLayoutConstraint(item: contentView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: Self.contentViewInsets.left))
+        addConstraint(NSLayoutConstraint(item: contentView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: Self.contentViewInsets.top))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: Self.contentViewInsets.right))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: Self.contentViewInsets.bottom))
     }
     
     func setupShortcutTextView() {
@@ -73,7 +80,7 @@ class YippyItemBase: NSCollectionViewItem {
         shortcutTextView.textContainerInset = NSSize(width: 5, height: 2.5)
         shortcutTextView.layer?.cornerRadius = 7
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
-        shortcutTextView.isHorizontallyResizable = true
+        shortcutTextView.isHorizontallyResizable = false
         shortcutTextView.backgroundColor = NSColor(named: NSColor.Name("ShortcutBackgroundColor"))!
         shortcutTextView.layer?.zPosition = 1
         
@@ -97,7 +104,7 @@ class YippyItemBase: NSCollectionViewItem {
     }
     
     func setupShortcutTextView(atIndexPath indexPath: IndexPath) {
-        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: YippyTextItem.shortcutStringAttributes)
+        let shortcutStr = NSAttributedString(string: indexPath.item < 10 ? "⌘ + \(indexPath.item)" : "", attributes: Self.shortcutStringAttributes)
         shortcutTextView.attributedText = shortcutStr
         shortcutTextView.isHidden = indexPath.item >= 10
         updateShortcutTextViewContraints()

@@ -12,8 +12,6 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-let sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
-
 class YippyViewController: NSViewController {
     
     @IBOutlet var yippyHistoryView: YippyHistoryView!
@@ -29,10 +27,9 @@ class YippyViewController: NSViewController {
         
         yippyHistoryView.dataSource = self
         yippyHistoryView.delegate = self
-        view.wantsLayer = true
         
         State.main.history.subscribe(onNext: onHistoryChange)
-        State.main.selected.subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
+        State.main.selected.withPrevious(startWith: nil).subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)
@@ -91,7 +88,7 @@ class YippyViewController: NSViewController {
         super.viewWillAppear()
         
         isPreviewShowing = false
-        yippyHistoryView.collectionViewLayout?.invalidateLayout()
+        yippyHistoryView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<yippyHistory.history.count))
         if yippyHistory.history.count > 0 {
             State.main.selected.accept(0)
         }
@@ -106,21 +103,22 @@ class YippyViewController: NSViewController {
         view.displayIfNeeded()
     }
     
-    func onSelectedChange(_ selected: Int?) {
+    func onSelectedChange(_ previous: Int?, _ selected: Int?) {
+        if let previous = previous {
+            yippyHistoryView.deselectItem(previous)
+            yippyHistoryView.reloadItem(previous)
+        }
         if let selected = selected {
-            let currentSelection = self.yippyHistoryView.selected
+            let currentSelection = yippyHistoryView.selected
             if currentSelection == nil || currentSelection != selected {
-                self.yippyHistoryView.selectItem(selected)
+                yippyHistoryView.selectItem(selected)
             }
+            yippyHistoryView.reloadItem(selected)
             
             if isPreviewShowing {
-                State.main.previewHistoryItem.accept(self.yippyHistory.history[selected])
+                State.main.previewHistoryItem.accept(yippyHistory.history[selected])
             }
         }
-    }
-    
-    func frameWillChange() {
-        yippyHistoryView.collectionViewLayout?.invalidateLayout()
     }
     
     func bindHotKeyToYippyWindow(yippyHotKey: YippyHotKey, disposeBag: DisposeBag) {
@@ -133,11 +131,19 @@ class YippyViewController: NSViewController {
     }
     
     func goToNextItem() {
-        yippyHistoryView.moveDown(self)
+        if let selected = yippyHistoryView.selected {
+            if selected < yippyHistory.history.count - 1 {
+                State.main.selected.accept(selected + 1)
+            }
+        }
     }
     
     func goToPreviousItem() {
-        yippyHistoryView.moveUp(self)
+        if let selected = yippyHistoryView.selected {
+            if selected > 0 {
+                State.main.selected.accept(selected - 1)
+            }
+        }
     }
     
     func pasteSelected() {
@@ -194,45 +200,40 @@ class YippyViewController: NSViewController {
     }
 }
 
-extension YippyViewController: NSCollectionViewDataSource {
-    
-    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+extension YippyViewController: NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return yippyHistory.history.count
     }
     
-    func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let historyItem = yippyHistory.history[indexPath.item]
-        let itemType = historyItem.getCollectionViewItemType()
-        let item = itemForRepresentedObjectAtcollectionView.makeItem(withIdentifier: itemType.identifier, for: indexPath)
-        guard let cell = item as? YippyItem else { return item }
-        cell.setupCell(withHistoryItem: historyItem, atIndexPath: indexPath)
-        return cell as! NSCollectionViewItem
-    }
-}
-
-extension YippyViewController: NSCollectionViewDelegate {
-    
-    func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        if let item = item as? YippyItem {
-            item.willDisplayCell(withHistoryItem: yippyHistory.history[indexPath.item], atIndexPath: indexPath)
-        }
-    }
-    
-    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        State.main.selected.accept(indexPaths.first?.item)
-//        for (type, data) in yippyHistory.history[indexPaths.first!.item].data {
-//            if NSPasteboard.PasteboardType.defaultTypes.contains(type) {
-//                print(type, data!)
-//            }
-//        }
-//        print("")
-    }
-}
-
-extension YippyViewController: NSCollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        let historyItem = yippyHistory.history[indexPath.item]
-        return historyItem.getCollectionViewItemType().getItemSize(withCollectionView: collectionView, forHistoryItem: historyItem)
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
+        let historyItem = yippyHistory.history[row]
+        let itemType = historyItem.getTableViewItemType()
+        let cell = tableView.makeView(withIdentifier: itemType.identifier, owner: nil) as? YippyItem ?? itemType.makeItem()
+        cell.setupCell(withTableView: tableView, forHistoryItem: historyItem, atIndexPath: IndexPath(item: row, section: 0))
+        if let cell = cell as? NSTableCellView {
+            cell.setAccessibilityLabel(itemType.identifier.rawValue)
+        }
+        
+        return cell as? NSView
+    }
+    
+    func tableViewSelectionIsChanging(_ notification: Notification) {
+        State.main.selected.accept(yippyHistoryView.selected)
+    }
+    
+    func tableViewColumnDidResize(_ notification: Notification) {
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.current.duration = 0
+        yippyHistoryView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<yippyHistory.history.count))
+        NSAnimationContext.endGrouping()
+        yippyHistoryView.redisplayVisible(yippyHistory: yippyHistory)
+    }
+}
+
+extension YippyViewController: NSTableViewDelegate {
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        let historyItem = yippyHistory.history[row]
+        return historyItem.getTableViewItemType().getItemHeight(withTableView: tableView, forHistoryItem: historyItem)
     }
 }

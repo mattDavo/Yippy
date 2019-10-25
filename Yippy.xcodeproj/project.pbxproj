@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34010D29234AB3F100C1218D /* YippyWindow.swift */; };
+		340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */; };
 		341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */; };
 		341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */; };
 		341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D282337251B008A2BE6 /* KeyActionHandler.swift */; };
@@ -63,8 +64,8 @@
 		345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B02341AF1900C2D0DA /* KeyPressHelperMock.swift */; };
 		345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
 		345B14B42341B37A00C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
-		345BAE2C23500580008ACB4C /* YippyFileIconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */; };
-		345BAE2E235005BB008ACB4C /* YippyFileThumbnailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */; };
+		345BAE2C23500580008ACB4C /* YippyFileIconCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2B23500580008ACB4C /* YippyFileIconCellView.swift */; };
+		345BAE2E235005BB008ACB4C /* YippyFileThumbnailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2D235005BB008ACB4C /* YippyFileThumbnailCellView.swift */; };
 		345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2F235005E7008ACB4C /* YippyItem.swift */; };
 		345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */; };
 		345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
@@ -73,7 +74,7 @@
 		3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */; };
 		3474C1402346E82900232620 /* YippyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13F2346E82900232620 /* YippyHistory.swift */; };
 		3474C14223472A1500232620 /* NSEdgeInset+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */; };
-		347D59A522F43B94005F6EA8 /* YippyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyTextItem.swift */; };
+		347D59A522F43B94005F6EA8 /* YippyTextCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyTextCellView.swift */; };
 		3486C0A6234416A4004B2F2E /* YippyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */; };
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
@@ -109,7 +110,7 @@
 		34B5C43023580CF0005247EB /* HistoryWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42F23580CF0005247EB /* HistoryWarning.swift */; };
 		34B5C43223580CFF005247EB /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43123580CFF005247EB /* Loggable.swift */; };
 		34B5C43423581B7B005247EB /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43323581B7B005247EB /* Alertable.swift */; };
-		34B5C43623582CCB005247EB /* YippyTiffItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43523582CCB005247EB /* YippyTiffItem.swift */; };
+		34B5C43623582CCB005247EB /* YippyTiffCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43523582CCB005247EB /* YippyTiffCellView.swift */; };
 		34CA01FE235D3AE700EB067C /* DataFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA01FD235D3AE700EB067C /* DataFileManager.swift */; };
 		34CA0200235D3D5C00EB067C /* DataFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA01FF235D3D5C00EB067C /* DataFileManagerMock.swift */; };
 		34CA0202235D742000EB067C /* HistoryFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA0201235D742000EB067C /* HistoryFileManagerMock.swift */; };
@@ -119,8 +120,8 @@
 		34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EC232B5139006259E1 /* AboutWindowController.swift */; };
 		34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EE232B514A006259E1 /* AboutViewController.swift */; };
 		34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */; };
-		34E516CB2352AC50008B4256 /* YippyColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CA2352AC50008B4256 /* YippyColorItem.swift */; };
-		34E516CD2352C4AF008B4256 /* YippyItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CC2352C4AF008B4256 /* YippyItemBase.swift */; };
+		34E516CB2352AC50008B4256 /* YippyColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CA2352AC50008B4256 /* YippyColorCellView.swift */; };
+		34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */; };
 		34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */; };
 		34E56483235E777E00E362CF /* NSTextCheckingResult+Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E56482235E777E00E362CF /* NSTextCheckingResult+Groups.swift */; };
 		34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */; };
@@ -155,6 +156,7 @@
 		20E451323A6FFB76FC5CF3CA /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
 		246EEE87F46CD9190F073F27 /* Pods-YippyTests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta release.xcconfig"; sourceTree = "<group>"; };
 		34010D29234AB3F100C1218D /* YippyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindow.swift; sourceTree = "<group>"; };
+		340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+WithPrevious.swift"; sourceTree = "<group>"; };
 		341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMonitor.swift; sourceTree = "<group>"; };
 		341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEventModifierFlags+KeyPressMonitor.swift"; sourceTree = "<group>"; };
 		341D9D282337251B008A2BE6 /* KeyActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyActionHandler.swift; sourceTree = "<group>"; };
@@ -206,8 +208,8 @@
 		345B14AE2341AEEA00C2D0DA /* KeyPressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelper.swift; sourceTree = "<group>"; };
 		345B14B02341AF1900C2D0DA /* KeyPressHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelperMock.swift; sourceTree = "<group>"; };
 		345B14B22341AFB800C2D0DA /* KeyPressMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMock.swift; sourceTree = "<group>"; };
-		345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileIconItem.swift; sourceTree = "<group>"; };
-		345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileThumbnailItem.swift; sourceTree = "<group>"; };
+		345BAE2B23500580008ACB4C /* YippyFileIconCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileIconCellView.swift; sourceTree = "<group>"; };
+		345BAE2D235005BB008ACB4C /* YippyFileThumbnailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileThumbnailCellView.swift; sourceTree = "<group>"; };
 		345BAE2F235005E7008ACB4C /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
 		345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemCellTextView.swift; sourceTree = "<group>"; };
 		345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardType+Codable.swift"; sourceTree = "<group>"; };
@@ -216,7 +218,7 @@
 		3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BoundingRect.swift"; sourceTree = "<group>"; };
 		3474C13F2346E82900232620 /* YippyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistory.swift; sourceTree = "<group>"; };
 		3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEdgeInset+Convenience.swift"; sourceTree = "<group>"; };
-		347D59A322F43B94005F6EA8 /* YippyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTextItem.swift; sourceTree = "<group>"; };
+		347D59A322F43B94005F6EA8 /* YippyTextCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTextCellView.swift; sourceTree = "<group>"; };
 		3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistoryView.swift; sourceTree = "<group>"; };
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -259,7 +261,7 @@
 		34B5C42F23580CF0005247EB /* HistoryWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWarning.swift; sourceTree = "<group>"; };
 		34B5C43123580CFF005247EB /* Loggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loggable.swift; sourceTree = "<group>"; };
 		34B5C43323581B7B005247EB /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
-		34B5C43523582CCB005247EB /* YippyTiffItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTiffItem.swift; sourceTree = "<group>"; };
+		34B5C43523582CCB005247EB /* YippyTiffCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTiffCellView.swift; sourceTree = "<group>"; };
 		34CA01FD235D3AE700EB067C /* DataFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFileManager.swift; sourceTree = "<group>"; };
 		34CA01FF235D3D5C00EB067C /* DataFileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFileManagerMock.swift; sourceTree = "<group>"; };
 		34CA0201235D742000EB067C /* HistoryFileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileManagerMock.swift; sourceTree = "<group>"; };
@@ -269,8 +271,8 @@
 		34D018EC232B5139006259E1 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		34D018EE232B514A006259E1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+AttributedText.swift"; sourceTree = "<group>"; };
-		34E516CA2352AC50008B4256 /* YippyColorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyColorItem.swift; sourceTree = "<group>"; };
-		34E516CC2352C4AF008B4256 /* YippyItemBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemBase.swift; sourceTree = "<group>"; };
+		34E516CA2352AC50008B4256 /* YippyColorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyColorCellView.swift; sourceTree = "<group>"; };
+		34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemBaseCellView.swift; sourceTree = "<group>"; };
 		34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemContentView.swift; sourceTree = "<group>"; };
 		34E56482235E777E00E362CF /* NSTextCheckingResult+Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextCheckingResult+Groups.swift"; sourceTree = "<group>"; };
 		34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+YippyItem.swift"; sourceTree = "<group>"; };
@@ -329,6 +331,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		340D3CA523615E4200C2B335 /* CellViews */ = {
+			isa = PBXGroup;
+			children = (
+				34E516CA2352AC50008B4256 /* YippyColorCellView.swift */,
+				345BAE2B23500580008ACB4C /* YippyFileIconCellView.swift */,
+				345BAE2D235005BB008ACB4C /* YippyFileThumbnailCellView.swift */,
+				347D59A322F43B94005F6EA8 /* YippyTextCellView.swift */,
+				34B5C43523582CCB005247EB /* YippyTiffCellView.swift */,
+			);
+			path = CellViews;
+			sourceTree = "<group>";
+		};
 		341D9D2323372494008A2BE6 /* KeyPressMonitor */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,21 +361,17 @@
 		341D9D38233A1460008A2BE6 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
-				34E516CA2352AC50008B4256 /* YippyColorItem.swift */,
-				345BAE2B23500580008ACB4C /* YippyFileIconItem.swift */,
-				345BAE2D235005BB008ACB4C /* YippyFileThumbnailItem.swift */,
+				340D3CA523615E4200C2B335 /* CellViews */,
 				3474C13F2346E82900232620 /* YippyHistory.swift */,
 				3486C0A5234416A4004B2F2E /* YippyHistoryView.swift */,
 				345BAE2F235005E7008ACB4C /* YippyItem.swift */,
-				34E516CC2352C4AF008B4256 /* YippyItemBase.swift */,
+				34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */,
 				345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */,
 				34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */,
-				347D59A322F43B94005F6EA8 /* YippyTextItem.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				34010D29234AB3F100C1218D /* YippyWindow.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
 				34A1942023553DD60076A717 /* FormatFileUrl.swift */,
-				34B5C43523582CCB005247EB /* YippyTiffItem.swift */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -380,6 +390,7 @@
 				343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */,
 				34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */,
 				34E56482235E777E00E362CF /* NSTextCheckingResult+Groups.swift */,
+				340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -897,10 +908,10 @@
 				34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */,
 				34B27E2C23587E7F004D6B18 /* PreviewTiffViewController.swift in Sources */,
 				341D9D2F233725B3008A2BE6 /* KeyDownEventMonitor.swift in Sources */,
-				347D59A522F43B94005F6EA8 /* YippyTextItem.swift in Sources */,
+				347D59A522F43B94005F6EA8 /* YippyTextCellView.swift in Sources */,
 				34B5C43223580CFF005247EB /* Loggable.swift in Sources */,
 				3426811E233E0A4600BA226A /* Accessibility.swift in Sources */,
-				34E516CD2352C4AF008B4256 /* YippyItemBase.swift in Sources */,
+				34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */,
 				3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */,
 				34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */,
 				34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */,
@@ -937,7 +948,7 @@
 				34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */,
 				341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */,
 				34B2FD9322F988980068D50A /* Settings.swift in Sources */,
-				345BAE2E235005BB008ACB4C /* YippyFileThumbnailItem.swift in Sources */,
+				345BAE2E235005BB008ACB4C /* YippyFileThumbnailCellView.swift in Sources */,
 				345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */,
 				34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */,
 				34D018E5232A2B73006259E1 /* WaitingViewController.swift in Sources */,
@@ -955,6 +966,7 @@
 				34A30CC42356B93900D4C2D6 /* HistoryCache.swift in Sources */,
 				3423B1C3234DA3B700B40715 /* YippyStatusItem.swift in Sources */,
 				341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */,
+				340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
 				34CA01FE235D3AE700EB067C /* DataFileManager.swift in Sources */,
 				34B5C42E23580CD9005247EB /* HistoryError.swift in Sources */,
@@ -962,11 +974,11 @@
 				343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */,
 				34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */,
 				341D9D33233725DE008A2BE6 /* SpecialKeyChangedEventMonitor.swift in Sources */,
-				345BAE2C23500580008ACB4C /* YippyFileIconItem.swift in Sources */,
+				345BAE2C23500580008ACB4C /* YippyFileIconCellView.swift in Sources */,
 				34B5C42A23580CB0005247EB /* ErrorLogger.swift in Sources */,
-				34B5C43623582CCB005247EB /* YippyTiffItem.swift in Sources */,
+				34B5C43623582CCB005247EB /* YippyTiffCellView.swift in Sources */,
 				34A1942123553DD60076A717 /* FormatFileUrl.swift in Sources */,
-				34E516CB2352AC50008B4256 /* YippyColorItem.swift in Sources */,
+				34E516CB2352AC50008B4256 /* YippyColorCellView.swift in Sources */,
 				34AF6CE62358079100E8F6CC /* Logger.swift in Sources */,
 				345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */,
 				34B5C42C23580CC6005247EB /* WarningLogger.swift in Sources */,

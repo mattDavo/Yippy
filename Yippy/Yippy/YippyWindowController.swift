@@ -48,11 +48,6 @@ class YippyWindowController: NSWindowController {
         return position
             .subscribe(onNext: {
                 [] in
-                guard let hvc = self.window?.contentViewController as? YippyViewController else {
-                    print("TODO: Unexpected panel contentViewController")
-                    return
-                }
-                hvc.frameWillChange()
                 self.window?.setFrame($0.frame, display: true)
             })
     }

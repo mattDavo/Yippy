@@ -156,8 +156,8 @@ class YippyUITests: XCTestCase {
         app.pressHotKey()
         
         // Check Yippy window displayed with no cells
-        XCTAssertTrue(app.yippyCollectionView.isDisplayed)
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 0)
+        XCTAssertTrue(app.yippyTableView.isDisplayed)
+        XCTAssertEqual(app.yippyTableViewItems.count, 0)
         
         // Close Yippy window
         app.pressHotKey()
@@ -170,9 +170,9 @@ class YippyUITests: XCTestCase {
         app.pressHotKey()
         
         // Check Yippy window displayed with 1 cell
-        XCTAssertTrue(app.yippyCollectionView.isDisplayed)
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 1)
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "My first test!")
+        XCTAssertTrue(app.yippyTableView.isDisplayed)
+        XCTAssertEqual(app.yippyTableViewItems.count, 1)
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 0), "My first test!")
     }
     
     func testLoadFromDefinedSettings() {
@@ -193,8 +193,8 @@ class YippyUITests: XCTestCase {
         app.pressHotKey()
         
         // Check Yippy window displayed with correct number of cells
-        XCTAssertTrue(app.yippyCollectionView.isDisplayed)
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 5)
+        XCTAssertTrue(app.yippyTableView.isDisplayed)
+        XCTAssertEqual(app.yippyTableViewItems.count, 5)
     }
     
     func testEnterToPaste() {
@@ -239,7 +239,7 @@ class YippyUITests: XCTestCase {
         // Open Yippy window
         app.pressHotKey()
         // Select index 2
-        app.getYippyCollectionViewCell(at: 2).click()
+        app.getYippyTableViewCell(at: 2).click()
         app.typeKey(.return)
         
         // Assert item was pasted
@@ -255,9 +255,9 @@ class YippyUITests: XCTestCase {
         app.pressHotKey()
         
         // Check that the items have been shuffled
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "2")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "My latest copy")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), "1")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 0), "2")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 1), "My latest copy")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 2), "1")
     }
     
     func testPasteFromShortcut() {
@@ -292,9 +292,9 @@ class YippyUITests: XCTestCase {
         app.pressHotKey()
         
         // Check that the items have been shuffled
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "2")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "My latest copy")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), "1")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 0), "2")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 1), "My latest copy")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 2), "1")
     }
     
     func testDelete() {
@@ -314,41 +314,63 @@ class YippyUITests: XCTestCase {
         // Open Yippy window
         app.pressHotKey()
         // Select index 2
-        app.getYippyCollectionViewCell(at: 2).click()
+        app.getYippyTableViewCell(at: 2).click()
         // Delete
         app.typeKey(.delete, modifierFlags: .command)
         
         // Check that the item is gone
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 4)
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "My latest copy")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "1")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 2), "3")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 3), "4")
+        XCTAssertEqual(app.yippyTableViewItems.count, 4)
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 0), "My latest copy")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 1), "1")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 2), "3")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 3), "4")
         
         // Delete again
         app.typeKey(.delete, modifierFlags: .command)
         app.typeKey(.delete, modifierFlags: .command)
         
         // Check that the items are gone
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 2)
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "My latest copy")
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 1), "1")
+        XCTAssertEqual(app.yippyTableViewItems.count, 2)
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 0), "My latest copy")
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 1), "1")
         
         // Delete first item
-        app.getYippyCollectionViewCell(at: 0).click()
+        app.getYippyTableViewCell(at: 0).click()
         app.typeKey(.delete, modifierFlags: .command)
         
         // Check that the item is gone
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 1)
-        XCTAssertEqual(app.getYippyCollectionViewString(at: 0), "1")
+        XCTAssertEqual(app.yippyTableViewItems.count, 1)
+        XCTAssertEqual(app.getYippyTableViewItemString(at: 0), "1")
         
         // Delete final item
         app.typeKey(.delete, modifierFlags: .command)
         
         // Check all items gone
-        XCTAssertEqual(app.yippyCollectionViewItems.count, 0)
+        XCTAssertEqual(app.yippyTableViewItems.count, 0)
         
         // Check pasteboard is empty
         XCTAssertTrue(NSPasteboard.general.types?.isEmpty ?? true)
+    }
+    
+    func testTypes() {
+        // Copy something
+        NSPasteboard.general.declareTypes([.string], owner: nil)
+        NSPasteboard.general.setString("My latest copy", forType: .string)
+        
+        // Basic app support directory
+        app.launchArguments.append("--test-dir=Big")
+        
+        // Launch app
+        app.launch()
+        
+        // Open Yippy window
+        app.pressHotKey()
+        
+        // Assert the types of items: Text, icon, thumbnail, tiff
+        XCTAssertEqual(app.getYippyTableViewCellType(at: 0), Accessibility.identifiers.yippyTextCellView)
+        XCTAssertEqual(app.getYippyTableViewCellType(at: 1), Accessibility.identifiers.yippyColorCellView)
+        XCTAssertEqual(app.getYippyTableViewCellType(at: 2), Accessibility.identifiers.yippyFileIconCellView)
+        XCTAssertEqual(app.getYippyTableViewCellType(at: 3), Accessibility.identifiers.yippyFileThumbnailCellView)
+        XCTAssertEqual(app.getYippyTableViewCellType(at: 4), Accessibility.identifiers.yippyTiffCellView)
     }
 }

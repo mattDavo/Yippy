@@ -61,7 +61,7 @@ class PreviewTextViewController: NSViewController {
     }
     
     func sizeTo(historyItem: HistoryItem) -> NSRect {
-        let text = getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextItem.itemStringAttributes)
+        let text = getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextCellView.itemStringAttributes)
         
         let maxWindowWidth = NSScreen.main!.frame.width * 0.8
         let maxWindowHeight = NSScreen.main!.frame.height * 0.8

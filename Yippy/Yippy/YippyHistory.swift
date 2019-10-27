@@ -11,10 +11,12 @@ import Cocoa
 
 class YippyHistory {
     
-    var history: [HistoryItem]
+    let history: History
+    var items: [HistoryItem]
     
-    init(history: [HistoryItem]) {
+    init(history: History, items: [HistoryItem]) {
         self.history = history
+        self.items = items
     }
     
     func paste(selected: Int) {
@@ -23,21 +25,37 @@ class YippyHistory {
         // Internally action the pasteboard change
         // Our pasteboard monitor will detect the change
         // But our `History` will know that it has already been consumed
-        State.main.history.moveItem(at: selected, to: 0)
+        history.moveItem(at: selected, to: 0)
         let newChangeCount = pasteboard.clearContents()
-        State.main.history.recordPasteboardChange(withCount: newChangeCount)
+        history.recordPasteboardChange(withCount: newChangeCount)
         
         // Write object
-        pasteboard.writeObjects([history[selected]])
+        pasteboard.writeObjects([items[selected]])
         
         Helper.pressCommandV()
     }
     
     func delete(selected: Int) {
-        State.main.history.deleteItem(at: selected)
+        history.deleteItem(at: selected)
         if selected == 0 {
             // If we want to remove this, then we may have to change the `HistoryItem` writingOptions() to not `.promised`, because if something is pasted from history, then deleted, it can no longer satisfy the promise.
             NSPasteboard.general.clearContents()
         }
+        
+        // Assume no selection
+        var select: Int? = nil
+        // If the deleted item is not the last in the list then keep the selection index the same.
+        if selected < items.count {
+            select = selected
+        }
+        // Otherwise if there is any items left, select the previous item
+        else if selected > 0 {
+            select = selected - 1
+        }
+        // No items, select nothing
+        else {
+            select = nil
+        }
+        history.setSelected(select)
     }
 }

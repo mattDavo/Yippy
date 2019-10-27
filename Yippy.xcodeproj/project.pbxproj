@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34010D29234AB3F100C1218D /* YippyWindow.swift */; };
 		340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */; };
+		340FB43B236407D70053D82C /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB43A236407D70053D82C /* Controller.swift */; };
+		340FB43D236550390053D82C /* YippyTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB43C236550390053D82C /* YippyTableViewDelegate.swift */; };
 		341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */; };
 		341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */; };
 		341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D282337251B008A2BE6 /* KeyActionHandler.swift */; };
@@ -157,6 +159,8 @@
 		246EEE87F46CD9190F073F27 /* Pods-YippyTests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta release.xcconfig"; sourceTree = "<group>"; };
 		34010D29234AB3F100C1218D /* YippyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindow.swift; sourceTree = "<group>"; };
 		340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+WithPrevious.swift"; sourceTree = "<group>"; };
+		340FB43A236407D70053D82C /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		340FB43C236550390053D82C /* YippyTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTableViewDelegate.swift; sourceTree = "<group>"; };
 		341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMonitor.swift; sourceTree = "<group>"; };
 		341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEventModifierFlags+KeyPressMonitor.swift"; sourceTree = "<group>"; };
 		341D9D282337251B008A2BE6 /* KeyActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyActionHandler.swift; sourceTree = "<group>"; };
@@ -362,16 +366,17 @@
 			isa = PBXGroup;
 			children = (
 				340D3CA523615E4200C2B335 /* CellViews */,
+				34A1942023553DD60076A717 /* FormatFileUrl.swift */,
 				3474C13F2346E82900232620 /* YippyHistory.swift */,
-				3486C0A5234416A4004B2F2E /* YippyTableView.swift */,
 				345BAE2F235005E7008ACB4C /* YippyItem.swift */,
 				34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */,
 				345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */,
 				34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */,
+				3486C0A5234416A4004B2F2E /* YippyTableView.swift */,
+				340FB43C236550390053D82C /* YippyTableViewDelegate.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				34010D29234AB3F100C1218D /* YippyWindow.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
-				34A1942023553DD60076A717 /* FormatFileUrl.swift */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 				34B2FD9022F986AB0068D50A /* README.md */,
 				343F4116233C5A6F004DA324 /* Settings */,
 				3488B14122FAE9FA0019E7DA /* State.swift */,
+				340FB43A236407D70053D82C /* Controller.swift */,
 				345B149D23404C4300C2D0DA /* UITesting */,
 				34D018E4232A2B73006259E1 /* WaitingViewController.swift */,
 				34734C832330CED20056F855 /* Welcome */,
@@ -921,8 +927,10 @@
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,
+				340FB43D236550390053D82C /* YippyTableViewDelegate.swift in Sources */,
 				345B14AF2341AEEA00C2D0DA /* KeyPressHelper.swift in Sources */,
 				341D9D31233725CA008A2BE6 /* KeyUpEventMonitor.swift in Sources */,
+				340FB43B236407D70053D82C /* Controller.swift in Sources */,
 				34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */,
 				34E56483235E777E00E362CF /* NSTextCheckingResult+Groups.swift in Sources */,
 				3474C1402346E82900232620 /* YippyHistory.swift in Sources */,

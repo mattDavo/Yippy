@@ -13,6 +13,8 @@ class YippyTableView: NSTableView {
     
     var yippyItems = [HistoryItem]()
     
+    var yippyDelegate: YippyTableViewDelegate?
+    
     var cellWidth: CGFloat {
         return tableColumns[0].width
     }
@@ -97,7 +99,9 @@ extension YippyTableView: NSTableViewDataSource {
     }
     
     func tableViewSelectionIsChanging(_ notification: Notification) {
-        State.main.selected.accept(selected)
+        if let delegate = yippyDelegate {
+            delegate.yippyTableView(self, selectedDidChange: selected)
+        }
     }
     
     func tableViewColumnDidResize(_ notification: Notification) {

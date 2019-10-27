@@ -76,7 +76,7 @@ class PreviewTextViewController: NSViewController {
         
         let center = NSPoint(x: NSScreen.main!.frame.midX - windowWidth / 2, y: NSScreen.main!.frame.midY - windowHeight / 2)
         
-        textView.textStorage?.setAttributedString(text)
+        textView.attributedText = text
         
         return NSRect(origin: center, size: NSSize(width: windowWidth, height: windowHeight))
     }

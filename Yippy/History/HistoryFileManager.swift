@@ -119,7 +119,7 @@ class HistoryFileManager {
         guard let order = loadHistoryOrder() else {
             HistoryWarning(localizedDescription: "Failed to retrieve order. Creating new order...").log(with: warningLogger)
             saveHistoryOrder(history: [])
-            return History(items: [])
+            return History(cache: cache, items: [])
         }
         var items = [UUID: HistoryItem]()
         var contents = [URL]()
@@ -138,7 +138,7 @@ class HistoryFileManager {
             historyError.log(with: self.errorLogger)
             historyError.show(with: self.alerter)
             saveHistoryOrder(history: [])
-            return History(items: [])
+            return History(cache: cache, items: [])
         }
         
         for content in contents {
@@ -199,7 +199,7 @@ class HistoryFileManager {
             saveHistoryOrder(history: orderedItems)
         }
         
-        return History(items: orderedItems)
+        return History(cache: cache, items: orderedItems)
     }
     
     func insertItem(newHistory: [HistoryItem], at i: Int, completionHandler handler: ((Bool) -> Void)? = nil) {

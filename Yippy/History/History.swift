@@ -33,6 +33,16 @@ class History {
     /// The file manager for the storage of pasteboard history.
     var historyFM: HistoryFileManager
     
+    /// The cache for the history item.
+    var cache: HistoryCache
+    
+    ///
+    private var _selected: BehaviorRelay<Int?>
+    
+    var selected: Observable<Int?> {
+        _selected.asObservable()
+    }
+    
     typealias InsertHandler = ([HistoryItem], Int) -> Void
     typealias DeleteHandler = ([HistoryItem], HistoryItem) -> Void
     typealias ClearHandler = () -> Void
@@ -45,9 +55,11 @@ class History {
     private var moveObservers = [MoveHandler]()
     private var subscribers = [SubscribeHandler]()
     
-    init(historyFM: HistoryFileManager = .default, items: [HistoryItem]) {
+    init(historyFM: HistoryFileManager = .default, cache: HistoryCache, items: [HistoryItem]) {
         self.historyFM = historyFM
+        self.cache = cache
         self.items = items
+        self._selected = BehaviorRelay<Int?>(value: nil)
     }
     
     static func load(historyFM: HistoryFileManager = .default, cache: HistoryCache) -> History {
@@ -109,13 +121,17 @@ class History {
     func recordPasteboardChange(withCount changeCount: Int) {
         _lastRecordedChangeCount.accept(changeCount)
     }
+    
+    func setSelected(_ selected: Int?) {
+        _selected.accept(selected)
+    }
 }
 
 extension History: PasteboardMonitorDelegate {
     
     func pasteboardDidChange(_ pasteboard: NSPasteboard) {
         // Check if we made this pasteboard change, if so, ignore
-        if pasteboard.changeCount == State.main.history.lastRecordedChangeCount {
+        if pasteboard.changeCount == lastRecordedChangeCount {
             return
         }
         
@@ -136,10 +152,10 @@ extension History: PasteboardMonitorDelegate {
                         print("Warning: new pasteboard data nil for type '\(type.rawValue)'")
                     }
                 }
-                let historyItem = HistoryItem(unsavedData: data, cache: State.main.historyCache)
+                let historyItem = HistoryItem(unsavedData: data, cache: cache)
                 insertItem(historyItem, at: 0)
-                let selected = (State.main.selected.value ?? -1) + 1
-                State.main.selected.accept(selected)
+                let selected = (_selected.value ?? -1) + 1
+                setSelected(selected)
             }
         }
         

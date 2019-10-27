@@ -7,91 +7,59 @@
 //
 
 import Foundation
+import Cocoa
 import RxRelay
+import RxSwift
 
-struct State {
+
+class State {
     
     // MARK: - Singleton
     static var main = State()
     
-    // Enforce singleton
-    private init() {}
     
+    // MARK: - Attributes
+    // RxSwift
+    var isHistoryPanelShown: BehaviorRelay<Bool>
     
-    // MARK: - RxSwift
-    var isHistoryPanelShown = BehaviorRelay<Bool>(value: false)
+    var panelPosition: BehaviorRelay<PanelPosition>
     
-    var panelPosition = BehaviorRelay<PanelPosition>(value: .right)
+    var previewHistoryItem: BehaviorRelay<HistoryItem?>
     
-    var selected = BehaviorRelay<Int?>(value: nil)
+    var disposeBag: DisposeBag
     
-    var previewHistoryItem = BehaviorRelay<HistoryItem?>(value: nil)
-    
-    
-    // MARK: - History
+    // History
     var historyCache: HistoryCache!
     var history: History!
     
-    
-    // MARK: - Status Item
-    // Must exist for the duration of the application so that the status bar does not disappear.
-    var statusItem: NSStatusItem!
-    
-    
-    // MARK: - Pasteboard Monitor
-    // Monitors the pasteboard, here it can be controlled in the future if needed.
+    /// Monitors the pasteboard, here it can be controlled in the future if needed.
     var pasteboardMonitor: PasteboardMonitor!
     
     
-    // MARK: - Window Controllers
-    
-    // Private NSWindowControllers
-    private var _welcomeWC: WelcomeWindowController? = nil
-    private var _helpWC: HelpWindowController? = nil
-    private var _aboutWC: AboutWindowController? = nil
-    
-    // Public NSWindowControllers
-    var yippyWindowController: YippyWindowController!
-    var previewTextWindowController: PreviewTextWindowController!
-    var previewTiffWindowController: PreviewTiffWindowController!
-    var previewController: QLPreviewController!
-    
-    var welcomeWindowController: WelcomeWindowController? {
-        mutating get {
-            if let welcomeWC = _welcomeWC {
-                return welcomeWC
-            }
-            _welcomeWC = WelcomeWindowController.createWelcomeWindowController()
-            return _welcomeWC
-        }
-        set (welcomeVC) {
-            self._welcomeWC = welcomeVC
-        }
+    // MARK: - Constructor
+    init(settings: Settings = Settings.main, disposeBag: DisposeBag = DisposeBag()) {
+        // Setup RxSwift attributes
+        self.isHistoryPanelShown = BehaviorRelay<Bool>(value: false)
+        self.panelPosition = BehaviorRelay<PanelPosition>(value: settings.panelPosition)
+        self.previewHistoryItem = BehaviorRelay<HistoryItem?>(value: nil)
+        self.disposeBag = disposeBag
+        
+        // Setup history
+        self.historyCache = HistoryCache()
+        self.history = History.load(cache: historyCache)
+        self.history.recordPasteboardChange(withCount: settings.pasteboardChangeCount)
+        
+        // Bind settings to state
+        Self.bind(settings: settings, toState: self, disposeBag: disposeBag)
+        
+        // Setup pasteboard monitor
+        self.pasteboardMonitor = PasteboardMonitor(pasteboard: NSPasteboard.general, changeCount: settings.pasteboardChangeCount, delegate: self.history)
     }
     
-    var helpWindowController: HelpWindowController? {
-        mutating get {
-            if let helpWC = _helpWC {
-                return helpWC
-            }
-            _helpWC = HelpWindowController.createHelpWindowController()
-            return _helpWC
-        }
-        set (helpVC) {
-            self._helpWC = helpVC
-        }
-    }
+    // MARK: - Constructor Helpers
     
-    var aboutWindowController: AboutWindowController? {
-        mutating get {
-            if let aboutWC = _aboutWC {
-                return aboutWC
-            }
-            _aboutWC = AboutWindowController.createAboutWindowController()
-            return _aboutWC
-        }
-        set (aboutWC) {
-            self._aboutWC = aboutWC
-        }
+    static func bind(settings: Settings, toState state: State, disposeBag: DisposeBag) {
+        settings.bindPasteboardChangeCountTo(state: state.history!.observableLastRecordedChangeCount).disposed(by: disposeBag)
+        settings.bindPanelPositionTo(state: state.panelPosition).disposed(by: disposeBag)
     }
 }

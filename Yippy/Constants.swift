@@ -17,6 +17,14 @@ struct Constants {
         static let maxCellHeight: CGFloat = 200
     }
     
+    struct statusItemMenu {
+        static let deleteKeyEquivalent = NSString(format: "%c", NSDeleteCharacter) as String
+        static let leftArrowKeyEquivalent = NSString(format: "%C", 0x001c) as String
+        static let rightArrowKeyEquivalent = NSString(format: "%C", 0x001d) as String
+        static let downArrowKeyEquivalent = NSString(format: "%C", 0x001f) as String
+        static let upArrowKeyEquivalent = NSString(format: "%C", 0x001e) as String
+    }
+    
     struct fonts {
         
         static let yippyPlainText = NSFont(name: "Roboto Mono Light for Powerline", size: 12)!

@@ -32,8 +32,6 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
     override func commonInit() {
         super.commonInit()
         
-        identifier = Self.identifier
-        
         setupItemTextView()
     }
     
@@ -47,6 +45,8 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         itemTextView.usingEdgeInsets = true
         itemTextView.textInset = Self.textInset
         itemTextView.textContainer?.lineFragmentPadding = 0
+        itemTextView.isHorizontallyResizable = false
+        itemTextView.isVerticallyResizable = false
         
         // Add constraints for the item text view
         contentView.addConstraint(NSLayoutConstraint(item: itemTextView!, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: Self.padding.left))
@@ -71,7 +71,7 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         else if let plainStr = item.getPlainString() {
             return NSAttributedString(string: plainStr, attributes: attributes)
         }
-        else if let htmlStr = item.getHtmlString() {
+        else if let htmlStr = item.getHtmlRawString() {
             return NSAttributedString(string: htmlStr, attributes: attributes)
         }
         else if let url = item.getFileUrl() {
@@ -95,11 +95,11 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         // Get the max height of the text container
         let maxTextContainerHeight = Constants.panel.maxCellHeight - Self.padding.top - Self.padding.bottom - Self.textInset.yTotal - Self.contentViewInsets.yTotal
         
-        // Determine the height of the text view (capping the cell height)
-        let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextContainerHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
+        // Determine the height of the text
+        let estTextHeight = attrStr.calculateSize(withMaxWidth: width).height
         
         // Add the padding back to get the height of the cell
-        let height = min(bRect.height, maxTextContainerHeight) + Self.padding.top + Self.padding.bottom + Self.textInset.yTotal + Self.contentViewInsets.yTotal
+        let height = min(estTextHeight, maxTextContainerHeight) + Self.padding.top + Self.padding.bottom + Self.textInset.yTotal + Self.contentViewInsets.yTotal
         
         return ceil(height)
     }

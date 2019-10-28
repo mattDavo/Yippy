@@ -38,6 +38,6 @@ class Accessibility {
         static let yippyColorCellView = "YippyColorCellView"
         static let yippyTiffCellView = "YippyTiffCellView"
         static let yippyFileIconCellView = "YippyFileIconCellView"
-        static let yippyFileThumbnailCellView = "YippyFileIconCellView"
+        static let yippyFileThumbnailCellView = "YippyFileThumbnailCellView"
     }
 }

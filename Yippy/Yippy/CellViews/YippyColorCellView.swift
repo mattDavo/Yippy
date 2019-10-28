@@ -18,8 +18,6 @@ class YippyColorCellView: YippyTextCellView {
     override func commonInit() {
         super.commonInit()
         
-        identifier = Self.identifier
-        
         contentView.usesDynamicBackgroundColor = false
     }
     

@@ -25,8 +25,6 @@ class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
     override func commonInit() {
         super.commonInit()
         
-        identifier = Self.identifier
-        
         previewView = NSImageView(frame: .zero)
         contentView.addSubview(previewView)
         
@@ -69,6 +67,7 @@ class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
                     self.previewView.image = image
                 }
                 else {
+                    ErrorLogger.general.log(HistoryError(localizedDescription: "Failed to create thumbnail for file with url '\(url.path)'"))
                     self.previewView.image = nil
                 }
             }
@@ -86,10 +85,10 @@ class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
         let str = formatFileUrl(historyItem.getFileUrl()!)
         
         // Calculate the height of the text
-        let bRect = str.boundingRect(with: NSSize(width: textContainerWidth, height: 100000), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
+        let estHeight = str.calculateSize(withMaxWidth: textContainerWidth).height
         
         // Calculate the height of the cell
-        let height = bRect.height + contentViewInsets.yTotal + fileNamePadding.yTotal + imageSize.height + imageTopPadding
+        let height = estHeight + contentViewInsets.yTotal + fileNamePadding.yTotal + imageSize.height + imageTopPadding
         
         return ceil(height)
     }

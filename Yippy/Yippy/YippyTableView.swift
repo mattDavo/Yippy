@@ -69,10 +69,6 @@ class YippyTableView: NSTableView {
         }
     }
     
-    func checkRowHeights() {
-        noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<yippyItems.count))
-    }
-    
     func reloadData(_ data: [HistoryItem]) {
         yippyItems = data
         reloadData()
@@ -93,8 +89,8 @@ extension YippyTableView: NSTableViewDataSource {
         cell.setupCell(withYippyTableView: self, forHistoryItem: historyItem, at: row)
         if let cell = cell as? NSTableCellView {
             cell.setAccessibilityLabel(itemType.identifier.rawValue)
+            cell.identifier = itemType.identifier
         }
-        
         return cell as? NSView
     }
     

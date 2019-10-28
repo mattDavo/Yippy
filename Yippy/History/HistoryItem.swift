@@ -137,9 +137,14 @@ class HistoryItem: NSObject {
         return NSAttributedString(rtf: data, documentAttributes: nil)
     }
     
-    func getHtmlString() -> String? {
+    func getHtmlRawString() -> String? {
         guard let data = data(forType: .html) else { return nil }
         return String(data: data, encoding: .utf8)
+    }
+    
+    func getHtmlAttributedString() -> NSAttributedString? {
+        guard let data = data(forType: .html) else { return nil }
+        return NSAttributedString(html: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
     }
     
     func getUrl() -> URL? {

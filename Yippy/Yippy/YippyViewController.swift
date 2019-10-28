@@ -87,7 +87,6 @@ class YippyViewController: NSViewController {
         super.viewWillAppear()
         
         isPreviewShowing = false
-        yippyHistoryView.checkRowHeights()
         if yippyHistory.items.count > 0 {
             State.main.history.setSelected(0)
         }

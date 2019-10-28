@@ -21,8 +21,6 @@ class YippyFileIconCellView: YippyItemBaseCellView, YippyItem {
     override func commonInit() {
         super.commonInit()
         
-        identifier = Self.identifier
-        
         iconView = NSImageView(frame: .zero)
         contentView.addSubview(iconView)
         
@@ -86,9 +84,9 @@ class YippyFileIconCellView: YippyItemBaseCellView, YippyItem {
         let maxTextContainerHeight = Constants.panel.maxCellHeight - contentViewInsets.yTotal - textContainerInset.yTotal
         
         // Determine the height of the text view (capping the cell height)
-        let bRect = attrStr.boundingRect(with: NSSize(width: width, height: maxTextContainerHeight), options: NSString.DrawingOptions.usesLineFragmentOrigin.union(.usesFontLeading))
+        let estHeight = attrStr.calculateSize(withMaxWidth: width).height
         
-        return min(bRect.height, maxTextContainerHeight) + textContainerInset.yTotal
+        return min(estHeight, maxTextContainerHeight) + textContainerInset.yTotal
     }
     
     static func makeItem() -> YippyItem {

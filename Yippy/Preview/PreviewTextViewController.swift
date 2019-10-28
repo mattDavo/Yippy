@@ -49,7 +49,7 @@ class PreviewTextViewController: NSViewController {
         else if let plainStr = item.getPlainString() {
             return NSAttributedString(string: plainStr, attributes: attributes)
         }
-        else if let htmlStr = item.getHtmlString() {
+        else if let htmlStr = item.getHtmlRawString() {
             return NSAttributedString(string: htmlStr, attributes: attributes)
         }
         else if let url = item.getFileUrl() {
@@ -68,7 +68,7 @@ class PreviewTextViewController: NSViewController {
         
         let maxTextContainerWidth = maxWindowWidth - padding.xTotal - textView.textContainerInset.width * 2
         
-        let bRect = text.boundingRect(with: NSSize(width: maxTextContainerWidth, height: CGFloat.greatestFiniteMagnitude), options: NSString.DrawingOptions(arrayLiteral: .usesFontLeading, .usesLineFragmentOrigin))
+        let bRect = text.calculateSize(withMaxWidth: maxTextContainerWidth)
         
         let windowWidth = bRect.width + padding.xTotal + textView.textContainerInset.width * 2
         

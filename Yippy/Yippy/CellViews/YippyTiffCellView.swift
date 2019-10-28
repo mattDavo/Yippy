@@ -20,8 +20,6 @@ class YippyTiffCellView: YippyItemBaseCellView, YippyItem {
     override func commonInit() {
         super.commonInit()
         
-        identifier = Self.identifier
-        
         tiffView = NSImageView(frame: .zero)
         contentView.addSubview(tiffView)
         

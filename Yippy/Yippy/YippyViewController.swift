@@ -16,11 +16,15 @@ class YippyViewController: NSViewController {
     
     @IBOutlet var yippyHistoryView: YippyTableView!
     
+    @IBOutlet var itemGroupScrollView: HorizontalButtonScrollView!
+    
     var yippyHistory = YippyHistory(history: State.main.history, items: [])
     
     let disposeBag = DisposeBag()
     
     var isPreviewShowing = false
+    
+    var itemGroups = BehaviorRelay<[String]>(value: ["Clipboard", "Favourites", "Clipboard", "Favourites", "Clipboard", "Favourites"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,9 @@ class YippyViewController: NSViewController {
         
         State.main.history.subscribe(onNext: onHistoryChange)
         State.main.history.selected.withPrevious(startWith: nil).subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
+        
+        itemGroupScrollView.bind(toData: itemGroups.asObservable()).disposed(by: disposeBag)
+        itemGroupScrollView.bind(toSelected: BehaviorRelay<Int>(value: 0).asObservable()).disposed(by: disposeBag)
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)

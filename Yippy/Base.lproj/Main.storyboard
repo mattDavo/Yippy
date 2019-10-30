@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -685,17 +686,17 @@
             <objects>
                 <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="YippyViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="toolTip" state="active" id="EMV-Rg-IFx">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="312"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="0.0" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="KEN-oq-XdO">
-                                <rect key="frame" x="0.0" y="0.0" width="345" height="236"/>
+                                <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="n4q-BA-aA9">
-                                    <rect key="frame" x="0.0" y="0.0" width="345" height="236"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="9QY-RJ-rk6" customClass="YippyTableView" customModule="Yippy" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="236"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="0.0" height="2"/>
                                             <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -756,24 +757,52 @@
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RtE-1d-ash">
-                                <rect key="frame" x="148" y="252" width="50" height="18"/>
+                                <rect key="frame" x="148" y="264" width="50" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Yippy" id="4zx-Je-VkY">
                                     <font key="font" size="15" name="RobotoMonoForPowerline-Medium"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-h8-BYZ" customClass="HorizontalButtonScrollView" customModule="Yippy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="218" width="345" height="30"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="VSw-Be-Uwk">
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view id="twi-fH-yCn">
+                                            <rect key="frame" x="0.0" y="0.0" width="330" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </subviews>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="tXK-XF-4rV"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="coa-QC-Fzg">
+                                    <rect key="frame" x="-100" y="-100" width="183" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="28I-hx-sKj">
+                                    <rect key="frame" x="-100" y="-100" width="16" height="96"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="KEN-oq-XdO" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="16" id="83J-SQ-AEj"/>
                             <constraint firstItem="KEN-oq-XdO" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" id="Gpx-Vg-UyS"/>
                             <constraint firstAttribute="trailing" secondItem="KEN-oq-XdO" secondAttribute="trailing" id="Xg8-K8-sdr"/>
+                            <constraint firstItem="9QY-RJ-rk6" firstAttribute="top" secondItem="e6J-h8-BYZ" secondAttribute="bottom" constant="9" id="dBo-Bs-mV3"/>
+                            <constraint firstItem="e6J-h8-BYZ" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="16" id="fwc-Zo-0KG"/>
                             <constraint firstAttribute="bottom" secondItem="KEN-oq-XdO" secondAttribute="bottom" id="gHe-cc-yVl"/>
                             <constraint firstItem="RtE-1d-ash" firstAttribute="top" secondItem="EMV-Rg-IFx" secondAttribute="top" constant="30" id="oI3-yu-m8a"/>
+                            <constraint firstAttribute="trailing" secondItem="e6J-h8-BYZ" secondAttribute="trailing" id="ox3-2P-ek1"/>
                             <constraint firstItem="RtE-1d-ash" firstAttribute="centerX" secondItem="EMV-Rg-IFx" secondAttribute="centerX" id="uHR-w9-04z"/>
+                            <constraint firstItem="e6J-h8-BYZ" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" id="wrx-et-rXU"/>
                         </constraints>
                     </visualEffectView>
                     <connections>
+                        <outlet property="itemGroupScrollView" destination="e6J-h8-BYZ" id="s4b-oM-7yo"/>
                         <outlet property="yippyHistoryView" destination="9QY-RJ-rk6" id="1ay-62-CPk"/>
                     </connections>
                 </viewController>
@@ -897,7 +926,7 @@
                                 <rect key="frame" x="5" y="5" width="470" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="uDP-iD-cmW">
                                     <rect key="frame" x="0.0" y="0.0" width="470" height="260"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Pw5-Af-jXA">
                                             <rect key="frame" x="0.0" y="0.0" width="470" height="260"/>
@@ -975,7 +1004,7 @@
                                 <rect key="frame" x="20" y="20" width="399" height="80"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BCJ-dP-P7S">
                                     <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" linkDetection="YES" spellingCorrection="YES" smartInsertDelete="YES" id="DEF-3O-Hu2">
                                             <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>

@@ -22,10 +22,18 @@ func formatFileUrl(_ url: URL) -> NSAttributedString {
         .foregroundColor: NSColor.secondaryLabelColor
     ]
     
+    let deletedAttributes: [NSAttributedString.Key: Any] = [
+        .foregroundColor: NSColor.systemRed
+    ]
+    
     let startOfLast = url.path.count - url.lastPathComponent.count
     
     str.addAttributes(pathAttributes, range: NSRange(location: 0, length: startOfLast))
     str.addAttributes(lastComponentAttributes, range: NSRange(location: startOfLast, length: url.lastPathComponent.count))
+    
+    if !FileManager.default.fileExists(atPath: url.path) {
+        str.addAttributes(deletedAttributes, range: NSRange(location: 0, length: url.path.count))
+    }
     
     return str
 }

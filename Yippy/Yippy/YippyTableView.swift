@@ -107,6 +107,14 @@ extension YippyTableView: NSTableViewDataSource {
         NSAnimationContext.endGrouping()
         redisplayVisible(yippyItems: yippyItems)
     }
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        return yippyItems[row]
+    }
+    
+    override func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
+        return NSDragOperation.copy
+    }
 }
 
 extension YippyTableView: NSTableViewDelegate {

@@ -168,13 +168,19 @@ class HistoryItem: NSObject {
     }
     
     func getThumbnailImage() -> NSImage? {
-        guard let url = getFileUrl() else { return nil }
-        let ref = QLThumbnailCreate(kCFAllocatorDefault, url as CFURL, CGSize(width: 300, height: 300), [kQLThumbnailOptionIconModeKey: true] as CFDictionary)
+        var image: NSImage?
+        DispatchQueue.global(qos: .userInteractive).sync {
+            guard let url = getFileUrl() else { return }
+            let ref = QLThumbnailCreate(kCFAllocatorDefault, url as CFURL, CGSize(width: 300, height: 300), [kQLThumbnailOptionIconModeKey: true] as CFDictionary)
+            
+            guard let thumbnail = ref?.takeRetainedValue() else { return }
+            let cgImageRef = QLThumbnailCopyImage(thumbnail)
+            guard let cgImage = cgImageRef?.takeRetainedValue() else { return }
+            image = NSImage(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
+        }
+        return image
         
-        guard let thumbnail = ref?.takeRetainedValue() else { return nil }
-        let cgImageRef = QLThumbnailCopyImage(thumbnail)
-        guard let cgImage = cgImageRef?.takeRetainedValue() else { return nil }
-        return NSImage(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
+        
     }
     
     func getFileIcon() -> NSImage? {

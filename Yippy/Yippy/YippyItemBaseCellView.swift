@@ -109,4 +109,12 @@ class YippyItemBaseCellView: NSTableCellView {
         shortcutTextView.isHidden = i >= 10
         updateShortcutTextViewContraints()
     }
+    
+    override func rightMouseDown(with event: NSEvent) {
+        let menu = NSMenu(title: "Test").with(menuItem: NSMenuItem(title: "Options coming soon", action: nil, keyEquivalent: ""))
+        
+        menu.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
+        
+        
+    }
 }

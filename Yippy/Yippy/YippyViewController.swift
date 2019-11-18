@@ -16,7 +16,7 @@ class YippyViewController: NSViewController {
     
     @IBOutlet var yippyHistoryView: YippyTableView!
     
-    @IBOutlet var itemGroupScrollView: HorizontalButtonScrollView!
+    @IBOutlet var itemGroupScrollView: HorizontalButtonsView!
     
     var yippyHistory = YippyHistory(history: State.main.history, items: [])
     

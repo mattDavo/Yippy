@@ -1,5 +1,5 @@
 //
-//  HorizontalButtonScrollView.swift
+//  HorizontalButtonsView.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 30/10/19.
@@ -11,7 +11,7 @@ import Cocoa
 import RxSwift
 import RxRelay
 
-class HorizontalButtonScrollView: NSScrollView {
+class HorizontalButtonsView: NSScrollView {
     
     private var buttons = [NSButton]()
     private var buttonsDocumentView = NSView(frame: .zero)
@@ -101,4 +101,10 @@ class HorizontalButtonScrollView: NSScrollView {
         
         layoutButtons()
     }
+}
+
+protocol HorizontalButtonsViewDelegate {
+    
+    func horizontalButtonsView(_ horizontalButtonsView: HorizontalButtonsView, didClickButtonAt i: Int)
+    
 }

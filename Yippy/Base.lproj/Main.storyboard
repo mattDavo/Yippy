@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -693,7 +692,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="n4q-BA-aA9">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="9QY-RJ-rk6" customClass="YippyTableView" customModule="Yippy" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
@@ -764,11 +763,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-h8-BYZ" customClass="HorizontalButtonScrollView" customModule="Yippy" customModuleProvider="target">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-h8-BYZ" customClass="HorizontalButtonsView" customModule="Yippy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="218" width="345" height="30"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="VSw-Be-Uwk">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view id="twi-fH-yCn">
                                             <rect key="frame" x="0.0" y="0.0" width="330" height="15"/>
@@ -926,7 +925,7 @@
                                 <rect key="frame" x="5" y="5" width="470" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="uDP-iD-cmW">
                                     <rect key="frame" x="0.0" y="0.0" width="470" height="260"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Pw5-Af-jXA">
                                             <rect key="frame" x="0.0" y="0.0" width="470" height="260"/>
@@ -1004,7 +1003,7 @@
                                 <rect key="frame" x="20" y="20" width="399" height="80"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BCJ-dP-P7S">
                                     <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" linkDetection="YES" spellingCorrection="YES" smartInsertDelete="YES" id="DEF-3O-Hu2">
                                             <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>

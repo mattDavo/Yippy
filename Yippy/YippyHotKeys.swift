@@ -15,6 +15,8 @@ struct YippyHotKeys {
     static var escape = YippyHotKey(key: .escape, modifiers: [])
     static var downArrow = YippyHotKey(key: .downArrow, modifiers: [])
     static var upArrow = YippyHotKey(key: .upArrow, modifiers: [])
+    static var leftArrow = YippyHotKey(key: .leftArrow, modifiers: [])
+    static var rightArrow = YippyHotKey(key: .rightArrow, modifiers: [])
     static var pageDown = YippyHotKey(key: .pageDown, modifiers: [])
     static var pageUp = YippyHotKey(key: .pageUp, modifiers: [])
     static var cmdLeftArrow = YippyHotKey(key: .leftArrow, modifiers: [.command])

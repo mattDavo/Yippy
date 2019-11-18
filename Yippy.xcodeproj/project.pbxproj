@@ -88,7 +88,7 @@
 		349F7948235C56FB000CA5B9 /* ErrorLoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F7947235C56FB000CA5B9 /* ErrorLoggerMock.swift */; };
 		349F794A235C5722000CA5B9 /* WarningLoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F7949235C5722000CA5B9 /* WarningLoggerMock.swift */; };
 		349F794C235C573D000CA5B9 /* AlerterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F794B235C573D000CA5B9 /* AlerterMock.swift */; };
-		34A11C9823693CFD00DA1B14 /* HorizontalButtonScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A11C9723693CFD00DA1B14 /* HorizontalButtonScrollView.swift */; };
+		34A11C9823693CFD00DA1B14 /* HorizontalButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A11C9723693CFD00DA1B14 /* HorizontalButtonsView.swift */; };
 		34A1942123553DD60076A717 /* FormatFileUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1942023553DD60076A717 /* FormatFileUrl.swift */; };
 		34A30CC42356B93900D4C2D6 /* HistoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A30CC32356B93900D4C2D6 /* HistoryCache.swift */; };
 		34A30CC62356B94E00D4C2D6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A30CC52356B94E00D4C2D6 /* History.swift */; };
@@ -235,7 +235,7 @@
 		349F7947235C56FB000CA5B9 /* ErrorLoggerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLoggerMock.swift; sourceTree = "<group>"; };
 		349F7949235C5722000CA5B9 /* WarningLoggerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningLoggerMock.swift; sourceTree = "<group>"; };
 		349F794B235C573D000CA5B9 /* AlerterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlerterMock.swift; sourceTree = "<group>"; };
-		34A11C9723693CFD00DA1B14 /* HorizontalButtonScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalButtonScrollView.swift; sourceTree = "<group>"; };
+		34A11C9723693CFD00DA1B14 /* HorizontalButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalButtonsView.swift; sourceTree = "<group>"; };
 		34A1942023553DD60076A717 /* FormatFileUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatFileUrl.swift; sourceTree = "<group>"; };
 		34A30CC32356B93900D4C2D6 /* HistoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCache.swift; sourceTree = "<group>"; };
 		34A30CC52356B94E00D4C2D6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 				3486C0A5234416A4004B2F2E /* YippyTableView.swift */,
 				340FB43C236550390053D82C /* YippyTableViewDelegate.swift */,
 				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
-				34A11C9723693CFD00DA1B14 /* HorizontalButtonScrollView.swift */,
+				34A11C9723693CFD00DA1B14 /* HorizontalButtonsView.swift */,
 				34010D29234AB3F100C1218D /* YippyWindow.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
 			);
@@ -941,7 +941,7 @@
 				341D9D37233730A5008A2BE6 /* YippyHotKeys.swift in Sources */,
 				3474C14223472A1500232620 /* NSEdgeInset+Convenience.swift in Sources */,
 				34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */,
-				34A11C9823693CFD00DA1B14 /* HorizontalButtonScrollView.swift in Sources */,
+				34A11C9823693CFD00DA1B14 /* HorizontalButtonsView.swift in Sources */,
 				34ACFBBF22EB0B0F004E6E63 /* AppDelegate.swift in Sources */,
 				341D9D40233AE8A1008A2BE6 /* Helper.swift in Sources */,
 				344DF6FD234845E700351310 /* NSView+ConstraintWithIdentifier.swift in Sources */,

@@ -81,6 +81,7 @@ class YippyItemBaseCellView: NSTableCellView {
         shortcutTextView.layer?.cornerRadius = 7
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
         shortcutTextView.isHorizontallyResizable = false
+        shortcutTextView.isVerticallyResizable = false
         shortcutTextView.backgroundColor = NSColor(named: NSColor.Name("ShortcutBackgroundColor"))!
         shortcutTextView.layer?.zPosition = 1
         

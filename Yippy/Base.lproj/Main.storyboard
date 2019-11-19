@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -692,7 +693,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="n4q-BA-aA9">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="9QY-RJ-rk6" customClass="YippyTableView" customModule="Yippy" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
@@ -767,7 +768,7 @@
                                 <rect key="frame" x="0.0" y="218" width="345" height="30"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="VSw-Be-Uwk">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="30"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view id="twi-fH-yCn">
                                             <rect key="frame" x="0.0" y="0.0" width="330" height="15"/>
@@ -893,30 +894,10 @@
             </objects>
             <point key="canvasLocation" x="-603" y="1493"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="pBM-vi-50c">
-            <objects>
-                <windowController storyboardIdentifier="PreviewTextWindowController" id="uRp-cX-pUz" customClass="PreviewTextWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Ejq-Gt-SXr">
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-                        <connections>
-                            <outlet property="delegate" destination="uRp-cX-pUz" id="edu-sx-2X9"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="wLM-tu-sp6" kind="relationship" relationship="window.shadowedContentViewController" id="I7U-e0-xst"/>
-                    </connections>
-                </windowController>
-                <customObject id="vzr-ox-BZH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-614" y="1960"/>
-        </scene>
         <!--Preview Text View Controller-->
         <scene sceneID="B92-uU-EjF">
             <objects>
-                <viewController id="wLM-tu-sp6" customClass="PreviewTextViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewTextViewController" id="wLM-tu-sp6" customClass="PreviewTextViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G2Q-kv-fNF" customClass="YippyItemContentView" customModule="Yippy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -925,7 +906,7 @@
                                 <rect key="frame" x="5" y="5" width="470" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="uDP-iD-cmW">
                                     <rect key="frame" x="0.0" y="0.0" width="470" height="260"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Pw5-Af-jXA">
                                             <rect key="frame" x="0.0" y="0.0" width="470" height="260"/>
@@ -1003,7 +984,7 @@
                                 <rect key="frame" x="20" y="20" width="399" height="80"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BCJ-dP-P7S">
                                     <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" linkDetection="YES" spellingCorrection="YES" smartInsertDelete="YES" id="DEF-3O-Hu2">
                                             <rect key="frame" x="0.0" y="0.0" width="399" height="80"/>
@@ -1290,30 +1271,10 @@ The default position for the Yippy is to float on the right edge of the screen, 
             </objects>
             <point key="canvasLocation" x="761" y="1281.5"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="3m6-E1-13Y">
-            <objects>
-                <windowController storyboardIdentifier="PreviewTiffWindowController" id="Hmd-M3-LGt" customClass="PreviewTiffWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="bpO-GL-4gT">
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-                        <connections>
-                            <outlet property="delegate" destination="Hmd-M3-LGt" id="UbT-bE-U69"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="pfg-tV-l9k" kind="relationship" relationship="window.shadowedContentViewController" id="0DQ-ni-XIt"/>
-                    </connections>
-                </windowController>
-                <customObject id="rmU-6d-9hF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-614" y="2473"/>
-        </scene>
-        <!--Preview Tiff View Controller-->
+        <!--Preview Image View Controller-->
         <scene sceneID="w7v-KV-oDL">
             <objects>
-                <viewController id="pfg-tV-l9k" customClass="PreviewTiffViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewImageViewController" id="pfg-tV-l9k" customClass="PreviewImageViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="PDn-gT-0Go" customClass="YippyItemContentView" customModule="Yippy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1321,7 +1282,20 @@ The default position for the Yippy is to float on the right edge of the screen, 
                 </viewController>
                 <customObject id="CZN-Dw-v7b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="2473"/>
+            <point key="canvasLocation" x="90" y="2320"/>
+        </scene>
+        <!--PreviewQL View Controller-->
+        <scene sceneID="J8A-2x-U3e">
+            <objects>
+                <viewController storyboardIdentifier="PreviewQLViewController" id="Z8M-qD-MAw" customClass="PreviewQLViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="9Jk-B0-ff3">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="GPW-dk-7P7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="2703"/>
         </scene>
     </scenes>
     <resources>

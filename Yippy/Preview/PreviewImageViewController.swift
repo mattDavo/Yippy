@@ -9,19 +9,17 @@
 import Foundation
 import Cocoa
 
-class PreviewTiffViewController: NSViewController {
+class PreviewImageViewController: NSViewController, PreviewViewController {
+    
+    static let identifier = NSStoryboard.SceneIdentifier(stringLiteral: "PreviewImageViewController")
     
     var imageView: NSImageView!
     
-    override func loadView() {
-        super.loadView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         imageView = NSImageView(frame: .zero)
         view.addSubview(imageView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         view.wantsLayer = true
         view.layer?.cornerRadius = 10
@@ -36,12 +34,14 @@ class PreviewTiffViewController: NSViewController {
         view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: imageView, attribute: .bottom, multiplier: 1, constant: 0))
     }
     
-    func sizeTo(historyItem: HistoryItem) -> NSRect {
-        guard let image = historyItem.getTiffImage() else {
-            // TODO: Fix
-            return NSRect(x: 0, y: 0, width: 100, height: 100)
-        }
-        
+    func configureView(forItem item: HistoryItem) -> NSRect {
+        // TODO: Fix with "Missing image" image
+        let image = item.getTiffImage() ?? NSImage(size: NSSize(width: 0, height: 0))
+        imageView.image = image
+        return calculateWindowFrame(forImage: image)
+    }
+    
+    func calculateWindowFrame(forImage image: NSImage) -> NSRect {
         let maxWindowWidth = NSScreen.main!.frame.width * 0.8
         let maxWindowHeight = NSScreen.main!.frame.height * 0.8
         
@@ -58,9 +58,6 @@ class PreviewTiffViewController: NSViewController {
         }
         
         let center = NSPoint(x: NSScreen.main!.frame.midX - windowWidth / 2, y: NSScreen.main!.frame.midY - windowHeight / 2)
-        
-        // TODO: Refactor this to somewhere else. Same with text preview.
-        imageView.image = image
         
         return NSRect(origin: center, size: NSSize(width: windowWidth, height: windowHeight))
     }

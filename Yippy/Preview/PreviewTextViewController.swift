@@ -9,7 +9,9 @@
 import Foundation
 import Cocoa
 
-class PreviewTextViewController: NSViewController {
+class PreviewTextViewController: NSViewController, PreviewViewController {
+    
+    static let identifier = NSStoryboard.SceneIdentifier(stringLiteral: "PreviewTextViewController")
     
     @IBOutlet var textView: NSTextView!
     
@@ -60,9 +62,14 @@ class PreviewTextViewController: NSViewController {
         }
     }
     
-    func sizeTo(historyItem: HistoryItem) -> NSRect {
-        let text = getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextCellView.itemStringAttributes)
+    func configureView(forItem item: HistoryItem) -> NSRect {
+        let text = getAttributedString(forHistoryItem: item, withDefaultAttributes: YippyTextCellView.itemStringAttributes)
         
+        textView.attributedText = text
+        return calculateWindowFrame(forText: text)
+    }
+    
+    func calculateWindowFrame(forText text: NSAttributedString) -> NSRect {
         let maxWindowWidth = NSScreen.main!.frame.width * 0.8
         let maxWindowHeight = NSScreen.main!.frame.height * 0.8
         
@@ -75,8 +82,6 @@ class PreviewTextViewController: NSViewController {
         let windowHeight = min(maxWindowHeight, bRect.height + padding.yTotal + textView.textContainerInset.height * 2)
         
         let center = NSPoint(x: NSScreen.main!.frame.midX - windowWidth / 2, y: NSScreen.main!.frame.midY - windowHeight / 2)
-        
-        textView.attributedText = text
         
         return NSRect(origin: center, size: NSSize(width: windowWidth, height: windowHeight))
     }

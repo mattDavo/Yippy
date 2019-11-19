@@ -27,9 +27,7 @@ class Controller {
     
     // Window Controllers
     var yippyWindowController: YippyWindowController!
-    var previewTextWindowController: PreviewTextWindowController!
-    var previewTiffWindowController: PreviewTiffWindowController!
-    var previewController: QLPreviewController!
+    var previewWindowController: PreviewWindowController!
     
     lazy var welcomeWindowController: WelcomeWindowController = {
         return WelcomeWindowController.createWelcomeWindowController()
@@ -55,10 +53,8 @@ class Controller {
         // Create yippy window controller
         self.yippyWindowController = Self.createYippyWindowController(isHistoryPanelShown: state.isHistoryPanelShown, panelPosition: state.panelPosition, disposeBag: state.disposeBag)
        
-       // Create preview window controllers
-       self.previewTextWindowController = Self.createPreviewTextWindowController(previewHistoryItem: state.previewHistoryItem, disposeBag: state.disposeBag)
-        self.previewTiffWindowController = Self.createPreviewTiffWindowController(previewHistoryItem: state.previewHistoryItem, disposeBag: state.disposeBag)
-       self.previewController = Self.createQLPreviewController(previewHistoryItem: state.previewHistoryItem, disposeBag: state.disposeBag)
+        // Create preview window controllers
+        self.previewWindowController = Self.createPreviewWindowController(previewItem: state.previewHistoryItem, disposeBag: state.disposeBag)
     }
     
     
@@ -160,26 +156,10 @@ class Controller {
         return controller
     }
     
-    static func createPreviewTextWindowController(previewHistoryItem: BehaviorRelay<HistoryItem?>, disposeBag: DisposeBag) -> PreviewTextWindowController {
-        let controller = PreviewTextWindowController.createPreviewTextWindowController()
+    static func createPreviewWindowController(previewItem: BehaviorRelay<HistoryItem?>, disposeBag: DisposeBag) -> PreviewWindowController {
+        let controller = PreviewWindowController.create()
         controller
-            .subscribeTo(previewHistoryItem: previewHistoryItem)
-            .disposed(by: disposeBag)
-        return controller
-    }
-    
-    static func createPreviewTiffWindowController(previewHistoryItem: BehaviorRelay<HistoryItem?>, disposeBag: DisposeBag) -> PreviewTiffWindowController {
-        let controller = PreviewTiffWindowController.createPreviewTiffWindowController()
-        controller
-            .subscribeTo(previewHistoryItem: previewHistoryItem)
-            .disposed(by: disposeBag)
-        return controller
-    }
-    
-    static func createQLPreviewController(previewHistoryItem: BehaviorRelay<HistoryItem?>, disposeBag: DisposeBag) -> QLPreviewController {
-        let controller = QLPreviewController()
-        controller
-            .subscribeTo(previewHistoryItem: previewHistoryItem)
+            .subscribeTo(previewItem: previewItem)
             .disposed(by: disposeBag)
         return controller
     }

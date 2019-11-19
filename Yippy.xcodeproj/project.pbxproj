@@ -38,18 +38,19 @@
 		34268124233EE82200BA226A /* AccessControlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268123233EE82200BA226A /* AccessControlHelper.swift */; };
 		34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268125233EE83700BA226A /* AccessControlHelperMock.swift */; };
 		3426812C233EFD2900BA226A /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3426812B233EFD2900BA226A /* UITesting.swift */; };
-		342D4E4D234F1E2000FC9F42 /* QLPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D4E4C234F1E2000FC9F42 /* QLPreviewController.swift */; };
 		343C0BF1235C57F600129D23 /* ArrayFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C0BF0235C57F600129D23 /* ArrayFileManagerMock.swift */; };
 		343C0BF3235C581000129D23 /* FileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C0BF2235C581000129D23 /* FileManagerMock.swift */; };
 		343F411A233C8C14004DA324 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F4119233C8C14004DA324 /* SettingsTests.swift */; };
 		343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F411B233C97A4004DA324 /* UserDefaults+Blank.swift */; };
 		344C1160234DB23B00B35DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344C115F234DB23B00B35DC9 /* Assets.xcassets */; };
 		344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344C1161234DD2EF00B35DC9 /* Quartz.framework */; };
-		344C1166234E94C600B35DC9 /* PreviewTextWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C1165234E94C600B35DC9 /* PreviewTextWindowController.swift */; };
 		344DF6FB2348459F00351310 /* NSLayoutDimension+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */; };
 		344DF6FD234845E700351310 /* NSView+ConstraintWithIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */; };
 		344EC47C235D9288006792FF /* HistoryItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC47B235D9288006792FF /* HistoryItemTests.swift */; };
 		344EC47E235D9394006792FF /* HistoryCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC47D235D9394006792FF /* HistoryCacheMock.swift */; };
+		345131ED238366B1002D9D03 /* PreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131EC238366B1002D9D03 /* PreviewWindowController.swift */; };
+		345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131EE23836725002D9D03 /* PreviewViewController.swift */; };
+		345131F82383B6EE002D9D03 /* PreviewQLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131F72383B6EE002D9D03 /* PreviewQLViewController.swift */; };
 		345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B149423403B8F00C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B14962340493600C2D0DA /* XCUIApplication+Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */; };
@@ -100,8 +101,7 @@
 		34AF6CE62358079100E8F6CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF6CE52358079100E8F6CC /* Logger.swift */; };
 		34B13758235BF942004AB5ED /* HistoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13757235BF942004AB5ED /* HistoryCacheTests.swift */; };
 		34B1375A235BFB87004AB5ED /* HistoryFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13759235BFB87004AB5ED /* HistoryFileManager.swift */; };
-		34B27E2C23587E7F004D6B18 /* PreviewTiffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27E2B23587E7F004D6B18 /* PreviewTiffViewController.swift */; };
-		34B27E2E23587E9F004D6B18 /* PreviewTiffWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27E2D23587E9F004D6B18 /* PreviewTiffWindowController.swift */; };
+		34B27E2C23587E7F004D6B18 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27E2B23587E7F004D6B18 /* PreviewImageViewController.swift */; };
 		34B2FD9122F986AB0068D50A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 34B2FD9022F986AB0068D50A /* README.md */; };
 		34B2FD9322F988980068D50A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9222F988980068D50A /* Settings.swift */; };
 		34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9422F98B1A0068D50A /* PanelPosition.swift */; };
@@ -188,7 +188,6 @@
 		34268123233EE82200BA226A /* AccessControlHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlHelper.swift; sourceTree = "<group>"; };
 		34268125233EE83700BA226A /* AccessControlHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlHelperMock.swift; sourceTree = "<group>"; };
 		3426812B233EFD2900BA226A /* UITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITesting.swift; sourceTree = "<group>"; };
-		342D4E4C234F1E2000FC9F42 /* QLPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLPreviewController.swift; sourceTree = "<group>"; };
 		343C0BF0235C57F600129D23 /* ArrayFileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFileManagerMock.swift; sourceTree = "<group>"; };
 		343C0BF2235C581000129D23 /* FileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerMock.swift; sourceTree = "<group>"; };
 		343F4119233C8C14004DA324 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
@@ -196,11 +195,13 @@
 		344C115F234DB23B00B35DC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		344C1161234DD2EF00B35DC9 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		344C1163234DD31700B35DC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		344C1165234E94C600B35DC9 /* PreviewTextWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewTextWindowController.swift; sourceTree = "<group>"; };
 		344DF6FA2348459F00351310 /* NSLayoutDimension+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutDimension+Constraint.swift"; sourceTree = "<group>"; };
 		344DF6FC234845E700351310 /* NSView+ConstraintWithIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ConstraintWithIdentifier.swift"; sourceTree = "<group>"; };
 		344EC47B235D9288006792FF /* HistoryItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemTests.swift; sourceTree = "<group>"; };
 		344EC47D235D9394006792FF /* HistoryCacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCacheMock.swift; sourceTree = "<group>"; };
+		345131EC238366B1002D9D03 /* PreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWindowController.swift; sourceTree = "<group>"; };
+		345131EE23836725002D9D03 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		345131F72383B6EE002D9D03 /* PreviewQLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQLViewController.swift; sourceTree = "<group>"; };
 		345B149223403B4100C2D0DA /* AccessControlMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlMock.swift; sourceTree = "<group>"; };
 		345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Windows.swift"; sourceTree = "<group>"; };
 		345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Buttons.swift"; sourceTree = "<group>"; };
@@ -254,8 +255,7 @@
 		34AF6CE52358079100E8F6CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		34B13757235BF942004AB5ED /* HistoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCacheTests.swift; sourceTree = "<group>"; };
 		34B13759235BFB87004AB5ED /* HistoryFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileManager.swift; sourceTree = "<group>"; };
-		34B27E2B23587E7F004D6B18 /* PreviewTiffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewTiffViewController.swift; sourceTree = "<group>"; };
-		34B27E2D23587E9F004D6B18 /* PreviewTiffWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewTiffWindowController.swift; sourceTree = "<group>"; };
+		34B27E2B23587E7F004D6B18 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
 		34B2FD9022F986AB0068D50A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		34B2FD9222F988980068D50A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		34B2FD9422F98B1A0068D50A /* PanelPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPosition.swift; sourceTree = "<group>"; };
@@ -436,11 +436,11 @@
 		344C1167234EB72C00B35DC9 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				34B27E2B23587E7F004D6B18 /* PreviewImageViewController.swift */,
+				345131F72383B6EE002D9D03 /* PreviewQLViewController.swift */,
 				3423B1BC234D8A7F00B40715 /* PreviewTextViewController.swift */,
-				344C1165234E94C600B35DC9 /* PreviewTextWindowController.swift */,
-				342D4E4C234F1E2000FC9F42 /* QLPreviewController.swift */,
-				34B27E2B23587E7F004D6B18 /* PreviewTiffViewController.swift */,
-				34B27E2D23587E9F004D6B18 /* PreviewTiffWindowController.swift */,
+				345131EE23836725002D9D03 /* PreviewViewController.swift */,
+				345131EC238366B1002D9D03 /* PreviewWindowController.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -915,9 +915,10 @@
 				341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */,
 				3423B1C1234D8AFF00B40715 /* HistoryItem.swift in Sources */,
 				34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */,
-				34B27E2C23587E7F004D6B18 /* PreviewTiffViewController.swift in Sources */,
+				34B27E2C23587E7F004D6B18 /* PreviewImageViewController.swift in Sources */,
 				341D9D2F233725B3008A2BE6 /* KeyDownEventMonitor.swift in Sources */,
 				347D59A522F43B94005F6EA8 /* YippyTextCellView.swift in Sources */,
+				345131ED238366B1002D9D03 /* PreviewWindowController.swift in Sources */,
 				34B5C43223580CFF005247EB /* Loggable.swift in Sources */,
 				3426811E233E0A4600BA226A /* Accessibility.swift in Sources */,
 				34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */,
@@ -925,8 +926,8 @@
 				34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */,
 				34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */,
 				345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */,
+				345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */,
 				341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */,
-				342D4E4D234F1E2000FC9F42 /* QLPreviewController.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,
@@ -949,11 +950,11 @@
 				349F7942235C2055000CA5B9 /* ArrayFileManager.swift in Sources */,
 				344DF6FB2348459F00351310 /* NSLayoutDimension+Constraint.swift in Sources */,
 				3426812C233EFD2900BA226A /* UITesting.swift in Sources */,
-				34B27E2E23587E9F004D6B18 /* PreviewTiffWindowController.swift in Sources */,
 				349F7946235C4D2B000CA5B9 /* Alerter.swift in Sources */,
 				34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */,
 				34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */,
 				3486C0A6234416A4004B2F2E /* YippyTableView.swift in Sources */,
+				345131F82383B6EE002D9D03 /* PreviewQLViewController.swift in Sources */,
 				341D9D2D23372592008A2BE6 /* EventMonitor.swift in Sources */,
 				341D9D2B23372550008A2BE6 /* KeyAction.swift in Sources */,
 				34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */,
@@ -972,7 +973,6 @@
 				341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */,
 				3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */,
 				34A30CC62356B94E00D4C2D6 /* History.swift in Sources */,
-				344C1166234E94C600B35DC9 /* PreviewTextWindowController.swift in Sources */,
 				34268124233EE82200BA226A /* AccessControlHelper.swift in Sources */,
 				34B1375A235BFB87004AB5ED /* HistoryFileManager.swift in Sources */,
 				34A30CC42356B93900D4C2D6 /* HistoryCache.swift in Sources */,

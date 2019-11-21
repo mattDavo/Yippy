@@ -718,7 +718,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = MatthewDavidson;
 				TargetAttributes = {
 					34ACFBBA22EB0B0F004E6E63 = {
@@ -1195,9 +1195,12 @@
 			baseConfigurationReference = E5C0D798E1CE27173ECBB0CE /* Pods-Yippy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Yippy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1217,9 +1220,12 @@
 			baseConfigurationReference = 0BC7BBF3DB9F5798801ED97D /* Pods-Yippy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Yippy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1387,9 +1393,12 @@
 			baseConfigurationReference = D97E2FA743B0C4575B467A63 /* Pods-Yippy.beta debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Yippy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1508,9 +1517,12 @@
 			baseConfigurationReference = B59A128B9E9597D688C73935 /* Pods-Yippy.beta release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Yippy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1636,9 +1648,12 @@
 			baseConfigurationReference = 0A2F38EF6959398B0D5C20D6 /* Pods-Yippy.xctest.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Yippy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

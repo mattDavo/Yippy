@@ -28,7 +28,7 @@ __Yippy__ is used for running and archiving a production build of Yippy. __Yippy
 - [ ] Create a bug reporter, if places in code are reached that should not be possible create a unique error and a prompt to report the bug.
 - [ ] Don’t let any of the app be used until access is granted
 - [ ] Toggle for attributed text
-- [ ] Convert history storage to storing each piece of data into a file organised by directory of indexes
+- [x] Convert history storage to storing each piece of data into a file organised by directory of indexes
 - [ ] Favourites
 - [ ] Search
 - [ ] Max history length

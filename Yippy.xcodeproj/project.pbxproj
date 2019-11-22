@@ -60,7 +60,6 @@
 		345B149F23404D8500C2D0DA /* HelpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149E23404D8500C2D0DA /* HelpUITests.swift */; };
 		345B14A3234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14A2234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift */; };
 		345B14A6234061D700C2D0DA /* AboutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14A5234061D700C2D0DA /* AboutUITests.swift */; };
-		345B14A723406DCD00C2D0DA /* PanelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9422F98B1A0068D50A /* PanelPosition.swift */; };
 		345B14A823406E0500C2D0DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		345B14AD2341A08800C2D0DA /* XCUIApplication+Yippy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14AC2341A08800C2D0DA /* XCUIApplication+Yippy.swift */; };
 		345B14AF2341AEEA00C2D0DA /* KeyPressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14AE2341AEEA00C2D0DA /* KeyPressHelper.swift */; };
@@ -81,6 +80,8 @@
 		3486C0A6234416A4004B2F2E /* YippyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486C0A5234416A4004B2F2E /* YippyTableView.swift */; };
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
+		348D526523876B1E0024A5C7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 348D526423876B1E0024A5C7 /* README.md */; };
+		348D526723878E160024A5C7 /* PanelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9422F98B1A0068D50A /* PanelPosition.swift */; };
 		3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */; };
 		3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3490D3982328EFB300BA8747 /* HelpViewController.swift */; };
 		349F7942235C2055000CA5B9 /* ArrayFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F7941235C2055000CA5B9 /* ArrayFileManager.swift */; };
@@ -102,7 +103,6 @@
 		34B13758235BF942004AB5ED /* HistoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13757235BF942004AB5ED /* HistoryCacheTests.swift */; };
 		34B1375A235BFB87004AB5ED /* HistoryFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13759235BFB87004AB5ED /* HistoryFileManager.swift */; };
 		34B27E2C23587E7F004D6B18 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27E2B23587E7F004D6B18 /* PreviewImageViewController.swift */; };
-		34B2FD9122F986AB0068D50A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 34B2FD9022F986AB0068D50A /* README.md */; };
 		34B2FD9322F988980068D50A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9222F988980068D50A /* Settings.swift */; };
 		34B2FD9522F98B1A0068D50A /* PanelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9422F98B1A0068D50A /* PanelPosition.swift */; };
 		34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */; };
@@ -228,6 +228,7 @@
 		3486C0A5234416A4004B2F2E /* YippyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTableView.swift; sourceTree = "<group>"; };
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		348D526423876B1E0024A5C7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3490D3962328D6BD00BA8747 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		3490D3982328EFB300BA8747 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		349F7941235C2055000CA5B9 /* ArrayFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFileManager.swift; sourceTree = "<group>"; };
@@ -256,7 +257,6 @@
 		34B13757235BF942004AB5ED /* HistoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCacheTests.swift; sourceTree = "<group>"; };
 		34B13759235BFB87004AB5ED /* HistoryFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileManager.swift; sourceTree = "<group>"; };
 		34B27E2B23587E7F004D6B18 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
-		34B2FD9022F986AB0068D50A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		34B2FD9222F988980068D50A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		34B2FD9422F98B1A0068D50A /* PanelPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPosition.swift; sourceTree = "<group>"; };
 		34B2FD9622F98C4E0068D50A /* NSMenu+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenu+Functional.swift"; sourceTree = "<group>"; };
@@ -448,9 +448,7 @@
 		345B149D23404C4300C2D0DA /* UITesting */ = {
 			isa = PBXGroup;
 			children = (
-				345B149223403B4100C2D0DA /* AccessControlMock.swift */,
-				3426811D233E0A4600BA226A /* Accessibility.swift */,
-				345B14B22341AFB800C2D0DA /* KeyPressMock.swift */,
+				348D525C238766220024A5C7 /* System Mocks */,
 				3426812B233EFD2900BA226A /* UITesting.swift */,
 			);
 			path = UITesting;
@@ -483,6 +481,7 @@
 			children = (
 				3490D3982328EFB300BA8747 /* HelpViewController.swift */,
 				34D018E8232B4CFC006259E1 /* HelpWindowController.swift */,
+				34D018E4232A2B73006259E1 /* WaitingViewController.swift */,
 			);
 			path = Help;
 			sourceTree = "<group>";
@@ -503,6 +502,101 @@
 				34D018EC232B5139006259E1 /* AboutWindowController.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		348D5259238764740024A5C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				344C115F234DB23B00B35DC9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		348D525A238764E50024A5C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34ACFBC722EB0B11004E6E63 /* Info.plist */,
+				34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		348D525B238765240024A5C7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */,
+				34ACFBC422EB0B11004E6E63 /* Main.storyboard */,
+				348D526223876AAB0024A5C7 /* Constants */,
+				341D9D3A233A1CA1008A2BE6 /* Extensions */,
+				348D526123876A770024A5C7 /* Models */,
+				345B149D23404C4300C2D0DA /* UITesting */,
+				348D525F238769EE0024A5C7 /* Windows */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		348D525C238766220024A5C7 /* System Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				345B149223403B4100C2D0DA /* AccessControlMock.swift */,
+				345B14B22341AFB800C2D0DA /* KeyPressMock.swift */,
+			);
+			path = "System Mocks";
+			sourceTree = "<group>";
+		};
+		348D525E2387667D0024A5C7 /* YippyHotKey */ = {
+			isa = PBXGroup;
+			children = (
+				341D9D3423373083008A2BE6 /* YippyHotKey.swift */,
+				341D9D36233730A5008A2BE6 /* YippyHotKeys.swift */,
+			);
+			path = YippyHotKey;
+			sourceTree = "<group>";
+		};
+		348D525F238769EE0024A5C7 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				34734C842330CEDE0056F855 /* About */,
+				34734C822330CEC00056F855 /* Help */,
+				344C1167234EB72C00B35DC9 /* Preview */,
+				34734C832330CED20056F855 /* Welcome */,
+				341D9D38233A1460008A2BE6 /* Yippy */,
+				348D526323876AD60024A5C7 /* Status Item */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		348D526123876A770024A5C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				340FB43A236407D70053D82C /* Controller.swift */,
+				34268120233EE7F900BA226A /* Helper */,
+				34A30CC22356B92000D4C2D6 /* History */,
+				341D9D2323372494008A2BE6 /* KeyPressMonitor */,
+				34B2FD9422F98B1A0068D50A /* PanelPosition.swift */,
+				34734C7D2330CB6A0056F855 /* PasteboardMonitor */,
+				343F4116233C5A6F004DA324 /* Settings */,
+				3488B14122FAE9FA0019E7DA /* State.swift */,
+				348D525E2387667D0024A5C7 /* YippyHotKey */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		348D526223876AAB0024A5C7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3426811D233E0A4600BA226A /* Accessibility.swift */,
+				3488B13F22FAE8F30019E7DA /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		348D526323876AD60024A5C7 /* Status Item */ = {
+			isa = PBXGroup;
+			children = (
+				3423B1C2234DA3B700B40715 /* YippyStatusItem.swift */,
+			);
+			path = "Status Item";
 			sourceTree = "<group>";
 		};
 		349F794D235C5759000CA5B9 /* Mocks */ = {
@@ -545,6 +639,7 @@
 		34ACFBB222EB0B0E004E6E63 = {
 			isa = PBXGroup;
 			children = (
+				348D526423876B1E0024A5C7 /* README.md */,
 				34ACFBBD22EB0B0F004E6E63 /* Yippy */,
 				34ACFBD022EB0B11004E6E63 /* YippyTests */,
 				34ACFBDB22EB0B11004E6E63 /* YippyUITests */,
@@ -567,32 +662,9 @@
 		34ACFBBD22EB0B0F004E6E63 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
-				34734C842330CEDE0056F855 /* About */,
-				34ACFBBE22EB0B0F004E6E63 /* AppDelegate.swift */,
-				344C115F234DB23B00B35DC9 /* Assets.xcassets */,
-				3488B13F22FAE8F30019E7DA /* Constants.swift */,
-				341D9D3A233A1CA1008A2BE6 /* Extensions */,
-				34734C822330CEC00056F855 /* Help */,
-				34268120233EE7F900BA226A /* Helper */,
-				34A30CC22356B92000D4C2D6 /* History */,
-				34ACFBC722EB0B11004E6E63 /* Info.plist */,
-				341D9D2323372494008A2BE6 /* KeyPressMonitor */,
-				34ACFBC422EB0B11004E6E63 /* Main.storyboard */,
-				34B2FD9422F98B1A0068D50A /* PanelPosition.swift */,
-				34734C7D2330CB6A0056F855 /* PasteboardMonitor */,
-				344C1167234EB72C00B35DC9 /* Preview */,
-				34B2FD9022F986AB0068D50A /* README.md */,
-				343F4116233C5A6F004DA324 /* Settings */,
-				3488B14122FAE9FA0019E7DA /* State.swift */,
-				340FB43A236407D70053D82C /* Controller.swift */,
-				345B149D23404C4300C2D0DA /* UITesting */,
-				34D018E4232A2B73006259E1 /* WaitingViewController.swift */,
-				34734C832330CED20056F855 /* Welcome */,
-				341D9D38233A1460008A2BE6 /* Yippy */,
-				34ACFBC822EB0B11004E6E63 /* Yippy.entitlements */,
-				341D9D3423373083008A2BE6 /* YippyHotKey.swift */,
-				341D9D36233730A5008A2BE6 /* YippyHotKeys.swift */,
-				3423B1C2234DA3B700B40715 /* YippyStatusItem.swift */,
+				348D525B238765240024A5C7 /* Sources */,
+				348D5259238764740024A5C7 /* Resources */,
+				348D525A238764E50024A5C7 /* Supporting Files */,
 			);
 			path = Yippy;
 			sourceTree = "<group>";
@@ -764,8 +836,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348D526523876B1E0024A5C7 /* README.md in Resources */,
 				34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */,
-				34B2FD9122F986AB0068D50A /* README.md in Resources */,
 				344C1160234DB23B00B35DC9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1027,10 +1099,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348D526723878E160024A5C7 /* PanelPosition.swift in Sources */,
 				34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */,
 				345B14B42341B37A00C2D0DA /* KeyPressMock.swift in Sources */,
 				345B14A823406E0500C2D0DA /* Constants.swift in Sources */,
-				345B14A723406DCD00C2D0DA /* PanelPosition.swift in Sources */,
 				345B14962340493600C2D0DA /* XCUIApplication+Windows.swift in Sources */,
 				345B149423403B8F00C2D0DA /* AccessControlMock.swift in Sources */,
 				345B14A3234060BB00C2D0DA /* XCUIApplication+StaticTexts.swift in Sources */,
@@ -1195,13 +1267,13 @@
 			baseConfigurationReference = E5C0D798E1CE27173ECBB0CE /* Pods-Yippy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
-				INFOPLIST_FILE = Yippy/Info.plist;
+				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1220,13 +1292,13 @@
 			baseConfigurationReference = 0BC7BBF3DB9F5798801ED97D /* Pods-Yippy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
-				INFOPLIST_FILE = Yippy/Info.plist;
+				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1393,13 +1465,13 @@
 			baseConfigurationReference = D97E2FA743B0C4575B467A63 /* Pods-Yippy.beta debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
-				INFOPLIST_FILE = Yippy/Info.plist;
+				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1517,13 +1589,13 @@
 			baseConfigurationReference = B59A128B9E9597D688C73935 /* Pods-Yippy.beta release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
-				INFOPLIST_FILE = Yippy/Info.plist;
+				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1648,13 +1720,13 @@
 			baseConfigurationReference = 0A2F38EF6959398B0D5C20D6 /* Pods-Yippy.xctest.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yippy/Yippy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
-				INFOPLIST_FILE = Yippy/Info.plist;
+				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

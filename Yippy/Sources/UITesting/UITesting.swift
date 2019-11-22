@@ -64,44 +64,4 @@ struct UITesting {
             ])
         }
     }
-    
-    /*
-    struct testHistory {
-        static let a = [
-            stringItem("Should be below whatever is on the pasteboard."),
-            stringItem(
-                """
-                func testYippyToggle() {
-                    // Launch app
-                    app.launch()
-                    
-                    // Check window isn't displayed
-                    XCTAssertFalse(app.yippyWindow.isDisplayed)
-                    
-                    // Toggle window
-                    app.statusItemButton.click()
-                    app.toggleYippyWindowButton.click()
-                    
-                    // Check window is displayed
-                    XCTAssertTrue(app.yippyWindow.isDisplayed)
-                    
-                    // Toggle window
-                    app.statusItemButton.click()
-                    app.toggleYippyWindowButton.click()
-                    
-                    // Check window isn't displayed
-                    XCTAssertFalse(app.yippyWindow.isDisplayed)
-                }
-                """),
-            stringItem("https://stackoverflow.com/questions/41966151/how-to-access-the-detailtextlabel-in-a-tableviewcell-at-uitests"),
-            stringItem("Hello world")
-        ]
-    }
-    
-    static func stringItem(_ str: String) -> HistoryItem {
-        return HistoryItem(unsavedData: [
-            .string: str.data(using: .utf8)!
-        ], cache: HistoryCache())
-    }
-    */
 }

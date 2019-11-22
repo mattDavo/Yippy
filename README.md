@@ -26,6 +26,14 @@ There are 3 different schemes:
 
 __Yippy__ is used for running and archiving a production build of Yippy. __Yippy Beta__ is used for development and archiving a beta release. __Yippy XCTest__ is used exclusively for running the unit and UI tests.
 
+### Using `create-installer.sh`
+First install <a href="https://github.com/andreyvit/create-dmg" target="_blank">create-dmg</a>. Then place `X.app` in the same folder as `create-installer.sh`. Execute script:
+```
+./create-installer.sh X
+```
+
+You will find the installer disk image `X.dmg` in the same folder.
+
 ### TODO
 - [ ] Support more types of pasteboard items
 - [ ] Allow setting preferences for keyboard shortcuts

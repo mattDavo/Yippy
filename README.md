@@ -10,9 +10,9 @@ Read about the progress and learnings at <a href="https://yippy.mattdavo.com/blo
 Find all releases at <a href="https://yippy.mattdavo.com/releases" target="_blank">yippy.mattdavo.com/releases</a>
 
 ## Installation
-The latest release can be downloaded from Follow progress at <a href="https://yippy.mattdavo.com" target="_blank">yippy.mattdavo.com</a>.
+The latest release can be downloaded from <a href="https://yippy.mattdavo.com" target="_blank">yippy.mattdavo.com</a>.
 
-For help with installation see: Follow progress at <a href="https://yippy.mattdavo.com/installation" target="_blank">yippy.mattdavo.com/installation</a>.
+For help with installation see: <a href="https://yippy.mattdavo.com/installation" target="_blank">yippy.mattdavo.com/installation</a>.
 
 ## Developing Yippy
 ### Contributions

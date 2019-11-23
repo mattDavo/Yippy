@@ -1,5 +1,5 @@
 //
-//  HistoryError.swift
+//  YippyError.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 17/10/19.
@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-struct HistoryError: Loggable, Alertable, Error {
+struct YippyError: Loggable, Alertable, Error {
     
     var error: Error
     
@@ -46,5 +46,10 @@ struct HistoryError: Loggable, Alertable, Error {
     
     func createAlert() -> NSAlert {
         return NSAlert(error: error)
+    }
+    
+    func logAndShow(withLogger logger: Logger, andAlerter alerter: Alerter = .general) {
+        logger.log(self)
+        alerter.show(self)
     }
 }

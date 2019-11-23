@@ -67,7 +67,7 @@ class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
                     self.previewView.image = image
                 }
                 else {
-                    ErrorLogger.general.log(HistoryError(localizedDescription: "Failed to create thumbnail for file with url '\(url.path)'"))
+                    ErrorLogger.general.log(YippyError(localizedDescription: "Failed to create thumbnail for file with url '\(url.path)'"))
                     self.previewView.image = nil
                 }
             }

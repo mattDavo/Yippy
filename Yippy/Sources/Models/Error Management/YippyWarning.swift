@@ -1,5 +1,5 @@
 //
-//  HistoryWarning.swift
+//  YippyWarning.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 17/10/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HistoryWarning: Loggable {
+struct YippyWarning: Loggable {
     
     var localizedDescription: String
     

@@ -56,7 +56,7 @@ class HistoryFileManager {
             return true
         }
         catch {
-            let historyError = HistoryError(localizedDescription: "Failed to write history order due to error: \(error.localizedDescription)")
+            let historyError = YippyError(localizedDescription: "Failed to write history order due to error: \(error.localizedDescription)")
             historyError.log(with: self.errorLogger)
             historyError.show(with: self.alerter)
             return false
@@ -90,7 +90,7 @@ class HistoryFileManager {
     
     func loadHistoryOrder() -> [UUID]? {
         guard let order = orderManager.read() as? [String] else {
-            HistoryWarning(localizedDescription: "Failed to load the history order.").log(with: warningLogger)
+            YippyWarning(localizedDescription: "Failed to load the history order.").log(with: warningLogger)
             return nil
         }
         var uuidOrder = [UUID]()
@@ -99,7 +99,7 @@ class HistoryFileManager {
                 uuidOrder.append(id)
             }
             else {
-                HistoryWarning(localizedDescription: "Found string '\(str)' in history order, which is not of the expected UUID format.").log(with: warningLogger)
+                YippyWarning(localizedDescription: "Found string '\(str)' in history order, which is not of the expected UUID format.").log(with: warningLogger)
             }
         }
         return uuidOrder
@@ -110,14 +110,14 @@ class HistoryFileManager {
             return try dataFileManager.loadData(contentsOf: getUrl(forItemWithId: id, andPasteboardType: type))
         }
         catch {
-            HistoryError(localizedDescription: "Error: Failed to retrieve data with type \(type.rawValue) for item with id \(id.uuidString) due to error: \(error.localizedDescription)").log(with: self.errorLogger)
+            YippyError(localizedDescription: "Error: Failed to retrieve data with type \(type.rawValue) for item with id \(id.uuidString) due to error: \(error.localizedDescription)").log(with: self.errorLogger)
             return nil
         }
     }
     
     func loadHistory(cache: HistoryCache) -> History {
         guard let order = loadHistoryOrder() else {
-            HistoryWarning(localizedDescription: "Failed to retrieve order. Creating new order...").log(with: warningLogger)
+            YippyWarning(localizedDescription: "Failed to retrieve order. Creating new order...").log(with: warningLogger)
             saveHistoryOrder(history: [])
             return History(cache: cache, items: [])
         }
@@ -132,7 +132,7 @@ class HistoryFileManager {
             contents.removeAll(where: {$0.lastPathComponent == ".DS_Store"})
         }
         catch {
-            let historyError = HistoryError(code: 0, userInfo: [
+            let historyError = YippyError(code: 0, userInfo: [
                 NSLocalizedDescriptionKey: "Creating an empty history because we failed to load history due to error: \(error.localizedDescription)"
             ])
             historyError.log(with: self.errorLogger)
@@ -152,7 +152,7 @@ class HistoryFileManager {
                     items[id] = HistoryItem(fsId: id, types: types, cache: cache)
                 }
                 catch {
-                    let historyError = HistoryError(code: 0, userInfo: [
+                    let historyError = YippyError(code: 0, userInfo: [
                         NSLocalizedDescriptionKey: "Failed to load clipboard data for history item with id '\(id.uuidString)' due to error: \(error.localizedDescription). Will continue anyway."
                     ])
                     historyError.log(with: self.errorLogger)
@@ -161,7 +161,7 @@ class HistoryFileManager {
             }
             else {
                 // Skip
-                HistoryWarning(localizedDescription: "Directory '\(content.lastPathComponent)' in history directory could not be interpreted as a history item.").log(with: self.warningLogger)
+                YippyWarning(localizedDescription: "Directory '\(content.lastPathComponent)' in history directory could not be interpreted as a history item.").log(with: self.warningLogger)
             }
         }
         
@@ -177,7 +177,7 @@ class HistoryFileManager {
         }
         if !unfoundItems.isEmpty {
             let unfound = unfoundItems.map({"'\($0)'"}).joined(separator: ", ")
-            let historyError = HistoryError(code: 0, userInfo: [
+            let historyError = YippyError(code: 0, userInfo: [
                 NSLocalizedDescriptionKey: "We cannot find the saved clipboard items with ids: \(unfound). You may notice them missing from the history."
             ])
             historyError.log(with: self.errorLogger)
@@ -190,7 +190,7 @@ class HistoryFileManager {
         
         if !items.isEmpty {
             let unfound = items.map({$0.key.uuidString}).joined(separator: ", ")
-            let historyError = HistoryError(code: 0, userInfo: [
+            let historyError = YippyError(code: 0, userInfo: [
                 NSLocalizedDescriptionKey: "We could not find the order for the saved clipboard items with ids: \(unfound). So they will be added to the most recent history."
             ])
             historyError.log(with: self.errorLogger)
@@ -206,7 +206,7 @@ class HistoryFileManager {
         dispatchQueue.async {
             // First check that we have unsaved data to save
             guard let unsavedData = newHistory[i].unsavedData else {
-                let historyError = HistoryError(code: 0, userInfo: [
+                let historyError = YippyError(code: 0, userInfo: [
                     NSLocalizedDescriptionKey: "Failed to save new item due to error: unsavedError is nil"
                 ])
                 historyError.log(with: self.errorLogger)
@@ -220,7 +220,7 @@ class HistoryFileManager {
                 try self.fileManager.createDirectory(at: self.getUrl(forItemWithId: newHistory[i].fsId), withIntermediateDirectories: true)
             }
             catch {
-                let historyError = HistoryError(code: 0, userInfo: [
+                let historyError = YippyError(code: 0, userInfo: [
                     NSLocalizedDescriptionKey: "Failed to save new item due to error: \(error.localizedDescription)"
                 ])
                 historyError.log(with: self.errorLogger)
@@ -235,7 +235,7 @@ class HistoryFileManager {
                     try self.dataFileManager.writeData(data, to: self.getUrl(forItemWithId: newHistory[i].fsId, andPasteboardType: type), options: Data.WritingOptions())
                 }
                 catch {
-                    let historyError = HistoryError(code: 0, userInfo: [
+                    let historyError = YippyError(code: 0, userInfo: [
                         NSLocalizedDescriptionKey: "Failed to save new pasteboard item due to error: \(error.localizedDescription)"
                     ])
                     historyError.log(with: self.errorLogger)
@@ -260,7 +260,7 @@ class HistoryFileManager {
                 try self.fileManager.removeItem(at: self.getUrl(forItemWithId: deleted.fsId))
             }
             catch {
-                let historyError = HistoryError(code: 0, userInfo: [
+                let historyError = YippyError(code: 0, userInfo: [
                     NSLocalizedDescriptionKey: "Failed to delete item due to error: \(error.localizedDescription)"
                 ])
                 historyError.log(with: self.errorLogger)
@@ -288,7 +288,7 @@ class HistoryFileManager {
                 try self.fileManager.removeItem(at: Constants.urls.history)
             }
             catch {
-                let historyError = HistoryError(code: 0, userInfo: [
+                let historyError = YippyError(code: 0, userInfo: [
                     NSLocalizedDescriptionKey: "Failed to delete old history due to error: \(error.localizedDescription)"
                 ])
                 historyError.log(with: self.errorLogger)
@@ -302,7 +302,7 @@ class HistoryFileManager {
                 try self.fileManager.createDirectory(at: Constants.urls.history, withIntermediateDirectories: true)
             }
             catch {
-                let historyError = HistoryError(code: 0, userInfo: [
+                let historyError = YippyError(code: 0, userInfo: [
                     NSLocalizedDescriptionKey: "Failed to create directory for new history due to error: \(error.localizedDescription)"
                 ])
                 historyError.log(with: self.errorLogger)

@@ -174,7 +174,7 @@ class HistoryCache {
             _currentCacheSize -= data[removed.id]!.removeValue(forKey: removed.type)!.count
         }
         else {
-            HistoryError(localizedDescription: "Error: Didn't find data with type \(removed.type.rawValue) for item with id \(removed.id.uuidString) to remove from the cache.").log(with: errorLogger)
+            YippyError(localizedDescription: "Error: Didn't find data with type \(removed.type.rawValue) for item with id \(removed.id.uuidString) to remove from the cache.").log(with: errorLogger)
         }
     }
 }

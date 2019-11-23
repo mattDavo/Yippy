@@ -109,8 +109,8 @@
 		34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */; };
 		34B5C42A23580CB0005247EB /* ErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42923580CB0005247EB /* ErrorLogger.swift */; };
 		34B5C42C23580CC6005247EB /* WarningLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42B23580CC6005247EB /* WarningLogger.swift */; };
-		34B5C42E23580CD9005247EB /* HistoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42D23580CD9005247EB /* HistoryError.swift */; };
-		34B5C43023580CF0005247EB /* HistoryWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42F23580CF0005247EB /* HistoryWarning.swift */; };
+		34B5C42E23580CD9005247EB /* YippyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42D23580CD9005247EB /* YippyError.swift */; };
+		34B5C43023580CF0005247EB /* YippyWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42F23580CF0005247EB /* YippyWarning.swift */; };
 		34B5C43223580CFF005247EB /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43123580CFF005247EB /* Loggable.swift */; };
 		34B5C43423581B7B005247EB /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43323581B7B005247EB /* Alertable.swift */; };
 		34B5C43623582CCB005247EB /* YippyTiffCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43523582CCB005247EB /* YippyTiffCellView.swift */; };
@@ -263,8 +263,8 @@
 		34B2FD9822F98C570068D50A /* NSMenuItem+Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+Functional.swift"; sourceTree = "<group>"; };
 		34B5C42923580CB0005247EB /* ErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogger.swift; sourceTree = "<group>"; };
 		34B5C42B23580CC6005247EB /* WarningLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningLogger.swift; sourceTree = "<group>"; };
-		34B5C42D23580CD9005247EB /* HistoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryError.swift; sourceTree = "<group>"; };
-		34B5C42F23580CF0005247EB /* HistoryWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWarning.swift; sourceTree = "<group>"; };
+		34B5C42D23580CD9005247EB /* YippyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyError.swift; sourceTree = "<group>"; };
+		34B5C42F23580CF0005247EB /* YippyWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWarning.swift; sourceTree = "<group>"; };
 		34B5C43123580CFF005247EB /* Loggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loggable.swift; sourceTree = "<group>"; };
 		34B5C43323581B7B005247EB /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		34B5C43523582CCB005247EB /* YippyTiffCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTiffCellView.swift; sourceTree = "<group>"; };
@@ -401,6 +401,21 @@
 				340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		341F8EBB2388CEA4003A375F /* Error Management */ = {
+			isa = PBXGroup;
+			children = (
+				34B5C43323581B7B005247EB /* Alertable.swift */,
+				349F7945235C4D2B000CA5B9 /* Alerter.swift */,
+				34B5C42923580CB0005247EB /* ErrorLogger.swift */,
+				34B5C42D23580CD9005247EB /* YippyError.swift */,
+				34B5C42F23580CF0005247EB /* YippyWarning.swift */,
+				34B5C43123580CFF005247EB /* Loggable.swift */,
+				34AF6CE52358079100E8F6CC /* Logger.swift */,
+				34B5C42B23580CC6005247EB /* WarningLogger.swift */,
+			);
+			path = "Error Management";
 			sourceTree = "<group>";
 		};
 		34268116233DACC100BA226A /* ExtensionsTests */ = {
@@ -570,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				340FB43A236407D70053D82C /* Controller.swift */,
+				341F8EBB2388CEA4003A375F /* Error Management */,
 				34268120233EE7F900BA226A /* Helper */,
 				34A30CC22356B92000D4C2D6 /* History */,
 				341D9D2323372494008A2BE6 /* KeyPressMonitor */,
@@ -617,20 +633,12 @@
 		34A30CC22356B92000D4C2D6 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				34B5C43323581B7B005247EB /* Alertable.swift */,
-				349F7945235C4D2B000CA5B9 /* Alerter.swift */,
 				349F7941235C2055000CA5B9 /* ArrayFileManager.swift */,
-				34B5C42923580CB0005247EB /* ErrorLogger.swift */,
 				34A30CC52356B94E00D4C2D6 /* History.swift */,
 				34A30CC32356B93900D4C2D6 /* HistoryCache.swift */,
-				34B5C42D23580CD9005247EB /* HistoryError.swift */,
 				34B13759235BFB87004AB5ED /* HistoryFileManager.swift */,
 				3423B1C0234D8AFF00B40715 /* HistoryItem.swift */,
 				34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */,
-				34B5C42F23580CF0005247EB /* HistoryWarning.swift */,
-				34B5C43123580CFF005247EB /* Loggable.swift */,
-				34AF6CE52358079100E8F6CC /* Logger.swift */,
-				34B5C42B23580CC6005247EB /* WarningLogger.swift */,
 				34CA01FD235D3AE700EB067C /* DataFileManager.swift */,
 			);
 			path = History;
@@ -1041,7 +1049,7 @@
 				345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */,
 				3490D3972328D6BD00BA8747 /* WelcomeViewController.swift in Sources */,
 				34B5C43423581B7B005247EB /* Alertable.swift in Sources */,
-				34B5C43023580CF0005247EB /* HistoryWarning.swift in Sources */,
+				34B5C43023580CF0005247EB /* YippyWarning.swift in Sources */,
 				341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */,
 				3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */,
 				34A30CC62356B94E00D4C2D6 /* History.swift in Sources */,
@@ -1053,7 +1061,7 @@
 				340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
 				34CA01FE235D3AE700EB067C /* DataFileManager.swift in Sources */,
-				34B5C42E23580CD9005247EB /* HistoryError.swift in Sources */,
+				34B5C42E23580CD9005247EB /* YippyError.swift in Sources */,
 				34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */,
 				343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */,
 				34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */,

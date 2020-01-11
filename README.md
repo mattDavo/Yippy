@@ -1,7 +1,7 @@
 # Yippy
 macOS open source clipboard manager
 
-<img src="https://yippy.mattdavo.com/static/media/screenshot.431c578d.jpg"/>
+![screenshot](images/screenshot.jpg)
 
 Follow progress at <a href="https://yippy.mattdavo.com" target="_blank">yippy.mattdavo.com</a>
 

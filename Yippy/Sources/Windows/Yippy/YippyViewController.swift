@@ -36,6 +36,8 @@ class YippyViewController: NSViewController {
         
         itemGroupScrollView.bind(toData: itemGroups.asObservable()).disposed(by: disposeBag)
         itemGroupScrollView.bind(toSelected: BehaviorRelay<Int>(value: 0).asObservable()).disposed(by: disposeBag)
+        // TODO: Remove this when implemented
+        itemGroupScrollView.constraint(withIdentifier: "height")?.constant = 0
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)

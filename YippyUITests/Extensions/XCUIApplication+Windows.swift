@@ -23,7 +23,6 @@ extension XCUIApplication {
     }
     
     var yippyWindow: XCUIElement {
-        // Not a window because it's a floating panel
-        return otherElements[Accessibility.identifiers.yippyWindow]
+        return windows[Accessibility.identifiers.yippyWindow]
     }
 }

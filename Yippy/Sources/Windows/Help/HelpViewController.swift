@@ -18,9 +18,6 @@ class HelpViewController: NSViewController {
     
     var hasControl = false
     
-    let waitingViewSize = NSSize(width: 457, height: 255)
-    let instructionsViewSize = NSSize(width: 568, height: 435)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +44,7 @@ class HelpViewController: NSViewController {
     }
     
     func updateSize() {
-        self.view.window?.setContentSize(self.hasControl ? instructionsViewSize : waitingViewSize)
+        self.view.window?.setContentSize(self.hasControl ? instructionsView.fittingSize : waitingView.fittingSize)
         self.view.window?.center()
     }
 }

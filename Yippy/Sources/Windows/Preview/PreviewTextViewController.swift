@@ -15,7 +15,7 @@ class PreviewTextViewController: NSViewController, PreviewViewController {
     
     @IBOutlet var textView: NSTextView!
     
-    let padding = NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    let padding = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     @IBOutlet var topPaddingConstraint: NSLayoutConstraint!
     @IBOutlet var bottomPaddingConstraint: NSLayoutConstraint!
     @IBOutlet var rightPaddingConstraint: NSLayoutConstraint!
@@ -28,6 +28,8 @@ class PreviewTextViewController: NSViewController, PreviewViewController {
         
         view.wantsLayer = true
         view.layer?.cornerRadius = 10
+        view.layer?.borderColor = NSColor.systemBlue.withAlphaComponent(0.7).cgColor
+        view.layer?.borderWidth = padding.left
         
         topPaddingConstraint.constant = padding.top
         bottomPaddingConstraint.constant = padding.bottom

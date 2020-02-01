@@ -77,7 +77,7 @@ class YippyItemBaseCellView: NSTableCellView {
         shortcutTextView.isSelectable = false
         shortcutTextView.textContainer?.lineFragmentPadding = 0
         shortcutTextView.alignment = .right
-        shortcutTextView.textContainerInset = NSSize(width: 5, height: 2.5)
+        shortcutTextView.textContainerInset = NSSize(width: 5, height: 2)
         shortcutTextView.layer?.cornerRadius = 7
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
         shortcutTextView.isHorizontallyResizable = false
@@ -94,14 +94,13 @@ class YippyItemBaseCellView: NSTableCellView {
     func getShortcutTextViewSize() -> NSSize {
         // Determine the size of the text in one line
         let bRect = shortcutTextView.attributedString().getSingleLineSize()
-        
-        return NSSize(width: bRect.width + shortcutTextView.textContainerInset.width * 2, height: bRect.height + shortcutTextView.textContainerInset.height * 2)
+        return NSSize(width: bRect.width + shortcutTextView.textContainer!.lineFragmentPadding + shortcutTextView.textContainerInset.width * 2, height: bRect.height + shortcutTextView.textContainerInset.height * 2)
     }
     
     func updateShortcutTextViewContraints() {
         let size = getShortcutTextViewSize()
-        shortcutTextView.constraint(withIdentifier: "width")?.constant = size.width
-        shortcutTextView.constraint(withIdentifier: "height")?.constant = size.height
+        shortcutTextView.constraint(withIdentifier: "width")?.constant = ceil(size.width)
+        shortcutTextView.constraint(withIdentifier: "height")?.constant = ceil(size.height)
     }
     
     func setupShortcutTextView(at i: Int) {

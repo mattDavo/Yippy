@@ -101,7 +101,7 @@ class Controller {
                     )
             ))
             .with(menuItem: NSMenuItem.separator())
-            .with(menuItem: NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+            .with(menuItem: NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.quitButton)
         )
         menu.autoenablesItems = false
@@ -206,5 +206,9 @@ class Controller {
         
         // Bring the window to front
         NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    @objc func quit() {
+        NSApplication.shared.terminate(self)
     }
 }

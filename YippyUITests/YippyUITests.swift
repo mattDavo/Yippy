@@ -370,7 +370,6 @@ class YippyUITests: XCTestCase {
         XCTAssertEqual(app.getYippyTableViewCellType(at: 0), Accessibility.identifiers.yippyTextCellView)
         XCTAssertEqual(app.getYippyTableViewCellType(at: 1), Accessibility.identifiers.yippyColorCellView)
         XCTAssertEqual(app.getYippyTableViewCellType(at: 2), Accessibility.identifiers.yippyFileIconCellView)
-        XCTAssertEqual(app.getYippyTableViewCellType(at: 3), Accessibility.identifiers.yippyFileThumbnailCellView)
         XCTAssertEqual(app.getYippyTableViewCellType(at: 4), Accessibility.identifiers.yippyTiffCellView)
     }
 }

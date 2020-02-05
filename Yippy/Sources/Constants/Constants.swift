@@ -27,8 +27,23 @@ struct Constants {
     
     struct fonts {
         
-        static let yippyPlainText = NSFont(name: "Roboto Mono Light for Powerline", size: 12)!
-        static let yippyFileNameText = NSFont(name: "Roboto Mono Light for Powerline", size: 12)!
+        static var yippyPlainText: NSFont {
+            if #available(OSX 10.15, *) {
+                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+            }
+            else {
+                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.systemFont(ofSize: 12)
+            }
+        }
+        
+        static var yippyFileNameText: NSFont {
+            if #available(OSX 10.15, *) {
+                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+            }
+            else {
+                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.systemFont(ofSize: 12)
+            }
+        }
     }
     
     struct urls {

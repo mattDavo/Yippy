@@ -24,7 +24,7 @@ class HistoryCache {
     // MARK: - Private attributes
     
     /// Cached data
-    private var data = [UUID: [NSPasteboard.PasteboardType: Data]]()
+    private var cachedData = [UUID: [NSPasteboard.PasteboardType: Data]]()
     
     /// Queue identifying the usage of data, so that when it becomes full the least recently used can be removed from the cache. The first item in the list is the next item to be removed.
     private var usage = [Usage]()
@@ -86,7 +86,7 @@ class HistoryCache {
     ///
     func data(withId id: UUID, forType type: NSPasteboard.PasteboardType) -> Data? {
         // Try and get the data from the cache.
-        if let data = data[id]?[type] {
+        if let data = cachedData[id]?[type] {
             usedData(withId: id, andType: type)
             return data
         }
@@ -109,7 +109,7 @@ class HistoryCache {
             removeLRU()
         }
         // Save to cache
-        self.data[id]![type] = data
+        self.cachedData[id]![type] = data
         // Record usage
         usedData(withId: id, andType: type)
         // Increase current cache size
@@ -123,8 +123,8 @@ class HistoryCache {
     ///
     /// - Parameter id: the id of the item to regsiter for caching.
     func registerItem(withId id: UUID) {
-        if !data.keys.contains(id) {
-            data[id] = [:]
+        if !cachedData.keys.contains(id) {
+            cachedData[id] = [:]
         }
     }
     
@@ -134,7 +134,7 @@ class HistoryCache {
     ///
     /// - Parameter id: the id of the item to unregsiter from caching.
     func unregisterItem(withId id: UUID) {
-        if let data = data.removeValue(forKey: id) {
+        if let data = cachedData.removeValue(forKey: id) {
             _currentCacheSize -= data.reduce(0, {$0 + $1.value.count})
             usage.removeAll(where: {$0.id == id})
         }
@@ -145,7 +145,7 @@ class HistoryCache {
     /// - Parameter id: The id of the item to register.
     /// - Returns: `true` if the item is registered, `false` otherwise.
     func isItemRegistered(_ id: UUID) -> Bool {
-        return data.keys.contains(id)
+        return cachedData.keys.contains(id)
     }
     
     
@@ -170,8 +170,8 @@ class HistoryCache {
     /// Removes the least recently used data in the cache.
     private func removeLRU() {
         let removed = usage.removeFirst()
-        if data.keys.contains(removed.id) && data[removed.id]!.keys.contains(removed.type) {
-            _currentCacheSize -= data[removed.id]!.removeValue(forKey: removed.type)!.count
+        if cachedData.keys.contains(removed.id) && cachedData[removed.id]!.keys.contains(removed.type) {
+            _currentCacheSize -= cachedData[removed.id]!.removeValue(forKey: removed.type)!.count
         }
         else {
             YippyError(localizedDescription: "Error: Didn't find data with type \(removed.type.rawValue) for item with id \(removed.id.uuidString) to remove from the cache.").log(with: errorLogger)

@@ -171,7 +171,7 @@ class Controller {
             state.panelPosition.accept(position)
         }
         else {
-            print("TODO: WARNING INVALID PANEL POSITION")
+            YippyError(localizedDescription: "Received invalid panel position from \(sender)").log(with: ErrorLogger.general)
         }
     }
 

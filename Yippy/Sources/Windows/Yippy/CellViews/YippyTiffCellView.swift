@@ -11,7 +11,9 @@ import Cocoa
 
 class YippyTiffCellView: YippyItemBaseCellView, YippyItem {
     
-    static let identifier = NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTiffCellView)
+    override class var identifier: NSUserInterfaceItemIdentifier {
+        NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTiffCellView)
+    }
     
     static let imagePadding = NSEdgeInsetsZero
     

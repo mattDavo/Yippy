@@ -51,6 +51,7 @@
 		345131ED238366B1002D9D03 /* PreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131EC238366B1002D9D03 /* PreviewWindowController.swift */; };
 		345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131EE23836725002D9D03 /* PreviewViewController.swift */; };
 		345131F82383B6EE002D9D03 /* PreviewQLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131F72383B6EE002D9D03 /* PreviewQLViewController.swift */; };
+		345A900723ED422400A21334 /* CellHeightCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A900623ED422400A21334 /* CellHeightCache.swift */; };
 		345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B149423403B8F00C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B14962340493600C2D0DA /* XCUIApplication+Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */; };
@@ -71,6 +72,7 @@
 		345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2F235005E7008ACB4C /* YippyItem.swift */; };
 		345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */; };
 		345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
+		3465A90023EF84A2009EE52B /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A8FF23EF84A2009EE52B /* Cache.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
 		3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */; };
@@ -202,6 +204,7 @@
 		345131EC238366B1002D9D03 /* PreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWindowController.swift; sourceTree = "<group>"; };
 		345131EE23836725002D9D03 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		345131F72383B6EE002D9D03 /* PreviewQLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQLViewController.swift; sourceTree = "<group>"; };
+		345A900623ED422400A21334 /* CellHeightCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellHeightCache.swift; sourceTree = "<group>"; };
 		345B149223403B4100C2D0DA /* AccessControlMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlMock.swift; sourceTree = "<group>"; };
 		345B14952340493600C2D0DA /* XCUIApplication+Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Windows.swift"; sourceTree = "<group>"; };
 		345B14972340494300C2D0DA /* XCUIApplication+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Buttons.swift"; sourceTree = "<group>"; };
@@ -219,6 +222,7 @@
 		345BAE2F235005E7008ACB4C /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
 		345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemCellTextView.swift; sourceTree = "<group>"; };
 		345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardType+Codable.swift"; sourceTree = "<group>"; };
+		3465A8FF23EF84A2009EE52B /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitorDelegate.swift; sourceTree = "<group>"; };
 		3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BoundingRect.swift"; sourceTree = "<group>"; };
@@ -584,6 +588,8 @@
 		348D526123876A770024A5C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				345A900623ED422400A21334 /* CellHeightCache.swift */,
+				3465A8FF23EF84A2009EE52B /* Cache.swift */,
 				340FB43A236407D70053D82C /* Controller.swift */,
 				341F8EBB2388CEA4003A375F /* Error Management */,
 				34268120233EE7F900BA226A /* Helper */,
@@ -1001,6 +1007,7 @@
 				345131ED238366B1002D9D03 /* PreviewWindowController.swift in Sources */,
 				34B5C43223580CFF005247EB /* Loggable.swift in Sources */,
 				3426811E233E0A4600BA226A /* Accessibility.swift in Sources */,
+				3465A90023EF84A2009EE52B /* Cache.swift in Sources */,
 				34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */,
 				3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */,
 				34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */,
@@ -1018,6 +1025,7 @@
 				34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */,
 				34E56483235E777E00E362CF /* NSTextCheckingResult+Groups.swift in Sources */,
 				3474C1402346E82900232620 /* YippyHistory.swift in Sources */,
+				345A900723ED422400A21334 /* CellHeightCache.swift in Sources */,
 				345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */,
 				341D9D37233730A5008A2BE6 /* YippyHotKeys.swift in Sources */,
 				3474C14223472A1500232620 /* NSEdgeInset+Convenience.swift in Sources */,
@@ -1287,7 +1295,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.4;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1312,7 +1320,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.4;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1485,7 +1493,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.4;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME) Beta";
@@ -1609,7 +1617,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.4;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME) Beta";
@@ -1740,7 +1748,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.4;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyXCTest;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

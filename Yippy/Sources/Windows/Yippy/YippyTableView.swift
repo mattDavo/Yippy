@@ -19,6 +19,8 @@ class YippyTableView: NSTableView {
         return tableColumns[0].width
     }
     
+    var cellHeightsCache = CellHeightsCache()
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         
@@ -40,6 +42,8 @@ class YippyTableView: NSTableView {
         
         delegate = self
         dataSource = self
+        
+        registerForDraggedTypes([HistoryItem.historyItemIdType])
     }
     
     var selected: Int? {
@@ -113,7 +117,65 @@ extension YippyTableView: NSTableViewDataSource {
     }
     
     override func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
-        return NSDragOperation.copy
+        if context == .outsideApplication {
+            return NSDragOperation.copy
+        }
+        else {
+            return .move
+        }
+    }
+    
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        if dropOperation == .above {
+            return .move
+        }
+        else {
+            return []
+        }
+    }
+    
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        
+        var id: UUID?
+        info.enumerateDraggingItems(options: [], for: tableView, classes: [NSPasteboardItem.self], searchOptions: [:]) { dragItem, _, _ in
+            
+            if let idStr = (dragItem.item as! NSPasteboardItem).string(forType: HistoryItem.historyItemIdType) {
+                id = UUID(uuidString: idStr)
+            }
+        }
+        
+        guard let droppedId = id else {
+            return false
+        }
+        
+        guard let originalIndex = yippyItems.map({ $0.fsId }).firstIndex(of: droppedId) else {
+            return false
+        }
+        
+        let newIndex = originalIndex < row ? row - 1 : row
+        
+        if originalIndex == newIndex {
+            return false
+        }
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            self.reloadData(forRowIndexes: IndexSet(integersIn: 0..<10), columnIndexes: IndexSet(arrayLiteral: 0))
+            if let delegate = self.yippyDelegate {
+                delegate.yippyTableView(self, didMoveItem: originalIndex, to: newIndex)
+            }
+        })
+        tableView.beginUpdates()
+        
+        let removed = yippyItems.remove(at: originalIndex)
+        
+        tableView.moveRow(at: originalIndex, to: newIndex)
+        yippyItems.insert(removed, at: newIndex)
+        
+        tableView.endUpdates()
+        CATransaction.commit()
+
+        return true
     }
 }
 
@@ -121,6 +183,16 @@ extension YippyTableView: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         let historyItem = yippyItems[row]
-        return historyItem.getTableViewItemType().getItemHeight(withYippyTableView: tableView as! YippyTableView, forHistoryItem: historyItem)
+        let itemType = historyItem.getTableViewItemType()
+        
+        if let height = cellHeightsCache.cellHeight(forId: historyItem.fsId, withCellIdentifier: itemType.identifier.rawValue, cellWidth: cellWidth) {
+            return height
+        }
+        
+        let height = historyItem.getTableViewItemType().getItemHeight(withYippyTableView: tableView as! YippyTableView, forHistoryItem: historyItem)
+        
+        cellHeightsCache.storeCellHeight(height, forId: historyItem.fsId, withCellIdentifier: itemType.identifier.rawValue, cellWidth: cellWidth)
+        
+        return height
     }
 }

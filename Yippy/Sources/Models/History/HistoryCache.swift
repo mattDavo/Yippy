@@ -55,6 +55,9 @@ class HistoryCache {
     var warningLogger: WarningLogger
     
     
+    private let accessQueue = DispatchQueue(label: "SynchronizedCacheAccess", attributes: .concurrent)
+
+    
     // MARK: - Constructor
     
     init(
@@ -85,36 +88,45 @@ class HistoryCache {
     /// - Returns: The data if successful.
     ///
     func data(withId id: UUID, forType type: NSPasteboard.PasteboardType) -> Data? {
-        // Try and get the data from the cache.
-        if let data = cachedData[id]?[type] {
-            usedData(withId: id, andType: type)
-            return data
+        var retData: Data?
+        accessQueue.sync(flags: .barrier) {
+            // Try and get the data from the cache.
+            if let data = self.cachedData[id]?[type] {
+                self.usedData(withId: id, andType: type)
+                retData = data
+                return
+            }
+            // Get the data from file, save to cache and return
+            guard let data = self.historyFM.loadData(forItemWithId: id, andType: type) else {
+                return
+            }
+            // If we're not caching the item, just return the data
+            if !self.isItemRegistered(id) {
+                retData = data
+                return
+            }
+            // Check data size
+            // TODO: Might want to optimize this, doesn't make much sense to cache if it's taking up 99% of the room anyway
+            if data.count > self.maxCacheSize {
+                // So large we can't store it in our cache
+                retData = data
+                return
+            }
+            // Remove LRU data until there is enough room
+            while data.count + self.currentCacheSize > self.maxCacheSize {
+                self.removeLRU()
+            }
+            // Save to cache
+            self.cachedData[id]![type] = data
+            // Record usage
+            self.usedData(withId: id, andType: type)
+            // Increase current cache size
+            self._currentCacheSize += data.count
+            retData = data
+            return
         }
-        // Get the data from file, save to cache and return
-        guard let data = historyFM.loadData(forItemWithId: id, andType: type) else {
-            return nil
-        }
-        // If we're not caching the item, just return the data
-        if !isItemRegistered(id) {
-            return data
-        }
-        // Check data size
-        // TODO: Might want to optimize this, doesn't make much sense to cache if it's taking up 99% of the room anyway
-        if data.count > maxCacheSize {
-            // So large we can't store it in our cache
-            return data
-        }
-        // Remove LRU data until there is enough room
-        while data.count + currentCacheSize > maxCacheSize {
-            removeLRU()
-        }
-        // Save to cache
-        self.cachedData[id]![type] = data
-        // Record usage
-        usedData(withId: id, andType: type)
-        // Increase current cache size
-        _currentCacheSize += data.count
-        return data
+        
+        return retData
     }
     
     /// Registers the item with the given id to be cached.
@@ -123,8 +135,10 @@ class HistoryCache {
     ///
     /// - Parameter id: the id of the item to regsiter for caching.
     func registerItem(withId id: UUID) {
-        if !cachedData.keys.contains(id) {
-            cachedData[id] = [:]
+        accessQueue.async(flags: .barrier) {
+            if !self.cachedData.keys.contains(id) {
+                self.cachedData[id] = [:]
+            }
         }
     }
     
@@ -134,9 +148,11 @@ class HistoryCache {
     ///
     /// - Parameter id: the id of the item to unregsiter from caching.
     func unregisterItem(withId id: UUID) {
-        if let data = cachedData.removeValue(forKey: id) {
-            _currentCacheSize -= data.reduce(0, {$0 + $1.value.count})
-            usage.removeAll(where: {$0.id == id})
+        accessQueue.async(flags: .barrier) {
+            if let data = self.cachedData.removeValue(forKey: id) {
+                self._currentCacheSize -= data.reduce(0, {$0 + $1.value.count})
+                self.usage.removeAll(where: {$0.id == id})
+            }
         }
     }
     
@@ -156,7 +172,7 @@ class HistoryCache {
     /// - Parameter id: The id of the item data retrieved.
     /// - Parameter type: The type of data retrieved.
     private func usedData(withId id: UUID, andType type: NSPasteboard.PasteboardType) {
-        // See if we've used the data before, if so, moved it to the back of the queue
+        // See if we've used the data before, if so, move it to the back of the queue
         if let i = usage.firstIndex(where: {$0.id == id && $0.type == type}) {
             let usage = self.usage.remove(at: i)
             self.usage.append(usage)

@@ -194,4 +194,8 @@ extension YippyViewController: YippyTableViewDelegate {
     func yippyTableView(_ yippyTableView: YippyTableView, selectedDidChange selected: Int?) {
         State.main.history.setSelected(selected)
     }
+    
+    func yippyTableView(_ yippyTableView: YippyTableView, didMoveItem from: Int, to: Int) {
+        yippyHistory.move(from: from, to: to)
+    }
 }

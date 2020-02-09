@@ -12,7 +12,9 @@ import Quartz
 
 class YippyFileThumbnailCellView: YippyItemBaseCellView, YippyItem {
     
-    static let identifier = NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyFileThumbnailCellView)
+    override class var identifier: NSUserInterfaceItemIdentifier {
+        NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyFileThumbnailCellView)
+    }
     
     static let fileNamePadding = NSEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
     

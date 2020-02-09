@@ -45,3 +45,6 @@ You will find the installer disk image `X.dmg` in the same folder.
 - [ ] Favourites
 - [ ] Search
 - [ ] Max history length
+- [ ] Cell height cache improvements. Will improve window size changes and launch time.
+    - [ ] Find a cheap way to clear the cell height cache
+    - [ ] Store cell heights on disk

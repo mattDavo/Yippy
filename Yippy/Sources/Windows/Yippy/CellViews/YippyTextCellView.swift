@@ -21,7 +21,7 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
     
     static let textInset = NSEdgeInsetsZero // NSEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     
-    class var identifier: NSUserInterfaceItemIdentifier {
+    override class var identifier: NSUserInterfaceItemIdentifier {
         return NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTextCellView)
     }
     
@@ -82,26 +82,43 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         }
     }
     
-    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
+    static func getTextContainerWidth(cellWidth: CGFloat) -> CGFloat {
+        return cellWidth - Self.padding.left - Self.padding.right - Self.textInset.xTotal - Self.contentViewInsets.xTotal
+    }
+    
+    static func getTextContainerMaxHeight() -> CGFloat {
+        return Constants.panel.maxCellHeight - Self.padding.top - Self.padding.bottom - Self.textInset.yTotal - Self.contentViewInsets.yTotal
+    }
+    
+    static func getCellHeight(estTextHeight: CGFloat) -> CGFloat {
+        // Get the max height of the text container
+        let maxTextContainerHeight = getTextContainerMaxHeight()
+        
+        return min(estTextHeight, maxTextContainerHeight) + Self.padding.top + Self.padding.bottom + Self.textInset.yTotal + Self.contentViewInsets.yTotal
+    }
+    
+    static func calculateCellHeight(yippyTableView: YippyTableView, historyItem: HistoryItem) -> CGFloat {
         // Calculate the width of the cell
         let cellWidth = floor(yippyTableView.cellWidth)
         
         // Calculate the width of the text container
-        let width = cellWidth - Self.padding.left - Self.padding.right - Self.textInset.xTotal - Self.contentViewInsets.xTotal
+        let width = YippyTextCellView.getTextContainerWidth(cellWidth: cellWidth)
         
         // Create an attributed string of the text
-        let attrStr = getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: Self.itemStringAttributes)
-        
-        // Get the max height of the text container
-        let maxTextContainerHeight = Constants.panel.maxCellHeight - Self.padding.top - Self.padding.bottom - Self.textInset.yTotal - Self.contentViewInsets.yTotal
+        let attrStr = YippyTextCellView.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextCellView.itemStringAttributes)
         
         // Determine the height of the text
         let estTextHeight = attrStr.calculateSize(withMaxWidth: width).height
         
         // Add the padding back to get the height of the cell
-        let height = min(estTextHeight, maxTextContainerHeight) + Self.padding.top + Self.padding.bottom + Self.textInset.yTotal + Self.contentViewInsets.yTotal
+        let height = YippyTextCellView.getCellHeight(estTextHeight: estTextHeight)
         
         return ceil(height)
+    }
+    
+    static func getItemHeight(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem) -> CGFloat {
+        
+        return calculateCellHeight(yippyTableView: yippyTableView, historyItem: historyItem)
     }
     
     class func makeItem() -> YippyItem {

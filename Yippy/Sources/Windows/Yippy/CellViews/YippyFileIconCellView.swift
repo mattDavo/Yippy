@@ -11,7 +11,9 @@ import Cocoa
 
 class YippyFileIconCellView: YippyItemBaseCellView, YippyItem {
     
-    static let identifier = NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyFileIconCellView)
+    override class var identifier: NSUserInterfaceItemIdentifier {
+        NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyFileIconCellView)
+    }
     static let textContainerInset = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let iconViewPadding = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let iconSize = NSSize(width: 32, height: 32)

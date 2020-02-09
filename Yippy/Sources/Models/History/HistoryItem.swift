@@ -44,6 +44,8 @@ class HistoryItem: NSObject {
         return cache.isItemRegistered(fsId)
     }
     
+    static let historyItemIdType = NSPasteboard.PasteboardType(rawValue: "MatthewDavidson.Yippy.historyItemId")
+    
     
     // MARK: - Constructors
     
@@ -200,10 +202,13 @@ class HistoryItem: NSObject {
 // MARK: - HistoryItem+NSPasteboardWriting
 extension HistoryItem: NSPasteboardWriting {
     func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
-        return types
+        return types + [Self.historyItemIdType]
     }
     
     func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
+        if type == Self.historyItemIdType {
+            return fsId.uuidString
+        }
         return data(forType: type)
     }
     

@@ -18,6 +18,10 @@ class YippyItemBaseCellView: NSTableCellView {
     
     static let contentViewInsets = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
+    class var identifier: NSUserInterfaceItemIdentifier {
+        NSUserInterfaceItemIdentifier("YippyItemBaseCellView")
+    }
+    
     var contentView: YippyItemContentView!
     var shortcutTextView: YippyItemCellTextView!
     var itemTextView: YippyItemCellTextView!

@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 import RxRelay
 import RxSwift
-
+import LoginServiceKit
 
 class State {
     
@@ -25,6 +25,8 @@ class State {
     var panelPosition: BehaviorRelay<PanelPosition>
     
     var previewHistoryItem: BehaviorRelay<HistoryItem?>
+    
+    var launchAtLogin: BehaviorRelay<Bool>
     
     var disposeBag: DisposeBag
     
@@ -42,6 +44,7 @@ class State {
         self.isHistoryPanelShown = BehaviorRelay<Bool>(value: false)
         self.panelPosition = BehaviorRelay<PanelPosition>(value: settings.panelPosition)
         self.previewHistoryItem = BehaviorRelay<HistoryItem?>(value: nil)
+        self.launchAtLogin = BehaviorRelay<Bool>(value: LoginServiceKit.isExistLoginItems())
         self.disposeBag = disposeBag
         
         // Setup history

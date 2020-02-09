@@ -10,6 +10,7 @@ import Foundation
 import Cocoa
 import RxSwift
 import RxRelay
+import LoginServiceKit
 
 class Controller {
     
@@ -72,6 +73,9 @@ class Controller {
             .with(menuItem: NSMenuItem(title: "Toggle Window", action: #selector(togglePopover), keyEquivalent: "V")
                 .with(accessibilityIdentifier: Accessibility.identifiers.toggleYippyWindowButton)
             )
+            .with(menuItem: NSMenuItem(title: "Launch at Login", action: #selector(launchAtLogin), keyEquivalent: "")
+                .with(accessibilityIdentifier: Accessibility.identifiers.launchAtLoginButton)
+            )
             .with(menuItem: NSMenuItem(title: "Delete Selected", action: #selector(deleteSelectedClicked), keyEquivalent: Constants.statusItemMenu.deleteKeyEquivalent)
                 .with(state: .off)
             )
@@ -107,6 +111,12 @@ class Controller {
         menu.autoenablesItems = false
         
         Self.setMenuItemsTarget(target: target, menu: menu)
+        
+        state.launchAtLogin
+            .subscribe (onNext: {
+                menu.item(withTitle: "Launch at Login")?.state = $0 ? .on : .off
+            })
+            .disposed(by: state.disposeBag)
         
         state.panelPosition
             .subscribe(onNext: {
@@ -210,5 +220,16 @@ class Controller {
     
     @objc func quit() {
         NSApplication.shared.terminate(self)
+    }
+    
+    @objc func launchAtLogin() {
+        let launchAtLogin = !state.launchAtLogin.value
+        state.launchAtLogin.accept(launchAtLogin)
+        if launchAtLogin {
+            LoginServiceKit.addLoginItems()
+        }
+        else {
+            LoginServiceKit.removeLoginItems()
+        }
     }
 }

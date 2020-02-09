@@ -171,19 +171,22 @@ class HistoryCacheTests: XCTestCase {
         let cacheSizeBefore = cache.currentCacheSize
         // Unregister the id
         cache.unregisterItem(withId: id)
-        // Get the new cache size
-        let cacheSizeAfter = cache.currentCacheSize
+        // Cache size should now be 0
+        
         // Load the data again
         let res1 = cache.data(withId: id, forType: type)
-        // Get the cache size one last time
-        let cacheSizeFinal = cache.currentCacheSize
+        
+        // Cache size should still be 0
         
         // 3. Assert the result is what we expect, the cache reduces after unregsitering the item, and that the file manager is called twice
+        self.expectation(for: NSPredicate(block: { (_, _) -> Bool in
+            return self.cache.currentCacheSize == 0
+        }), evaluatedWith: nil, handler: nil)
+        
         XCTAssertEqual(res, data)
         XCTAssertEqual(res1, data)
         XCTAssertEqual(cacheSizeBefore, data.count)
-        XCTAssertEqual(cacheSizeAfter, 0)
-        XCTAssertEqual(cacheSizeFinal, 0)
+        waitForExpectations(timeout: 2)
         XCTAssertEqual(historyFM.dataCallCount, 2)
     }
     
@@ -196,8 +199,20 @@ class HistoryCacheTests: XCTestCase {
         
         // 2. Register the id
         cache.registerItem(withId: id)
-        XCTAssertTrue(cache.isItemRegistered(id))
-        cache.unregisterItem(withId: id)
-        XCTAssertFalse(cache.isItemRegistered(id))
+        
+        // Wait for confirmation it is registered. Then unregister the item
+        self.expectation(for: NSPredicate(block: { (_,_) -> Bool in
+            return self.cache.isItemRegistered(id)
+        }), evaluatedWith: nil) { () -> Bool in
+            self.cache.unregisterItem(withId: id)
+            return true
+        }
+        
+        // Wait for confirmation the item is unregistered.
+        self.expectation(for: NSPredicate(block: { (_,_) -> Bool in
+            return !self.cache.isItemRegistered(id)
+        }), evaluatedWith: nil, handler: nil)
+        
+        waitForExpectations(timeout: 2, handler: nil)
     }
 }

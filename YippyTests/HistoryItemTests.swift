@@ -82,19 +82,29 @@ class HistoryItemTests: XCTestCase {
         unsavedItem.startCaching()
         
         // 3. Unsaved data should be nil and should be caching
-        XCTAssertTrue(unsavedItem.isCached)
-        XCTAssertNil(unsavedItem.unsavedData)
+        self.expectation(for: NSPredicate(block: { (_, _) -> Bool in
+            return self.unsavedItem.isCached && self.unsavedItem.unsavedData == nil
+        }), evaluatedWith: nil, handler: nil)
+        
+        waitForExpectations(timeout: 2, handler: nil)
     }
     
     // MARK: - stopCaching()
     func testStopCaching() {
-        // 1. Start caching
-        XCTAssertTrue(savedItem.isCached)
+        // 1. Need to make sure caching has started.
+        self.expectation(for: NSPredicate(block: { (_, _) -> Bool in
+            return self.savedItem.isCached
+        }), evaluatedWith: nil, handler: { () -> Bool in
+            // 2. Start caching
+            self.savedItem.stopCaching()
+            return true
+        })
         
-        // 2. Start caching
-        savedItem.stopCaching()
+        // 3. Unsaved data should be nil and should not be caching
+        self.expectation(for: NSPredicate(block: { (_, _) -> Bool in
+            return !self.savedItem.isCached && self.savedItem.unsavedData == nil
+        }), evaluatedWith: nil, handler: nil)
         
-        // 3. Unsaved data should be nil and should be caching
-        XCTAssertFalse(savedItem.isCached)
+        waitForExpectations(timeout: 2, handler: nil)
     }
 }

@@ -163,6 +163,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Default/Default.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HotKey/HotKey.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
@@ -172,6 +173,7 @@ fi
 if [[ "$CONFIGURATION" == "XCTest" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Default/Default.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HotKey/HotKey.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
@@ -181,6 +183,7 @@ fi
 if [[ "$CONFIGURATION" == "Beta Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Default/Default.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HotKey/HotKey.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
@@ -190,6 +193,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Default/Default.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HotKey/HotKey.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
@@ -199,6 +203,7 @@ fi
 if [[ "$CONFIGURATION" == "Beta Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Default/Default.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HotKey/HotKey.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"

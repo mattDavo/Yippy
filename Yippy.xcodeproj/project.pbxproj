@@ -1287,6 +1287,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1312,6 +1313,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1485,6 +1487,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1609,6 +1612,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1740,6 +1744,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";

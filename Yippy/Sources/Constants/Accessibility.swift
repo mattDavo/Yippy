@@ -18,6 +18,7 @@ class Accessibility {
         
         static let statusItemButton = "statusItemButton"
         static let toggleYippyWindowButton = "toggleWindowButton"
+        static let launchAtLoginButton = "launchAtLoginButton"
         static let quitButton = "quitButton"
         static let helpButton = "helpButton"
         static let aboutButton = "aboutButton"

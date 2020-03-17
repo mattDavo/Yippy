@@ -792,6 +792,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				345DCFBF2420CB92003E214D /* PBXTargetDependency */,
 				34ACFBCF22EB0B11004E6E63 /* PBXTargetDependency */,
 			);
 			name = YippyTests;
@@ -1165,6 +1166,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		345DCFBF2420CB92003E214D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 345DCFBE2420CB92003E214D /* HotKey */;
+		};
 		34ACFBCF22EB0B11004E6E63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 34ACFBBA22EB0B0F004E6E63 /* Yippy */;
@@ -1900,6 +1905,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		345DCFBC2420C2D2003E214D /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+		345DCFBE2420CB92003E214D /* HotKey */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;

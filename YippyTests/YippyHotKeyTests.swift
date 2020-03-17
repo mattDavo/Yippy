@@ -7,8 +7,8 @@
 //
 
 import XCTest
+import HotKey  // Normally this would be a @testable import, but this is not currently supported by the Swift Package Manager. See: https://stackoverflow.com/a/52672307
 @testable import Yippy
-@testable import HotKey
 
 class YippyHotKeyTests: XCTestCase {
     

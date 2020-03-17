@@ -198,6 +198,7 @@ class Controller {
         // If the window isn't visible, show it
         if !self.helpWindowController.window!.isVisible {
             self.helpWindowController.showWindow(nil)
+            self.helpWindowController.window?.center()
         }
         
         // Bring the window to front
@@ -208,6 +209,7 @@ class Controller {
         // If the window isn't visible, show it
         if !self.aboutWindowController.window!.isVisible {
             self.aboutWindowController.showWindow(nil)
+            self.aboutWindowController.window?.center()
         }
         
         // Bring the window to front
@@ -218,6 +220,7 @@ class Controller {
         // If the window isn't visible, show it
         if !self.settingsWindowController.window!.isVisible {
             self.settingsWindowController.showWindow(nil)
+            self.settingsWindowController.window?.center()
         }
         
         // Bring the window to front

@@ -29,6 +29,5 @@ class AboutViewController: NSViewController {
         infoTextView.isEditable = true
         infoTextView.checkTextInDocument(nil)
         infoTextView.isEditable = false
-        infoTextView.isSelectable = false
     }
 }

@@ -36,7 +36,7 @@ class PreviewImageViewController: NSViewController, PreviewViewController {
     
     func configureView(forItem item: HistoryItem) -> NSRect {
         // TODO: Fix with "Missing image" image
-        let image = item.getTiffImage() ?? NSImage(size: NSSize(width: 0, height: 0))
+        let image = item.getImage() ?? NSImage(size: NSSize(width: 0, height: 0))
         imageView.image = image
         return calculateWindowFrame(forImage: image)
     }

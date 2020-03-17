@@ -63,7 +63,7 @@ class PreviewWindowController: NSWindowController {
         if item.getFileUrl() != nil {
             return previewQLViewController
         }
-        else if item.types.contains(.tiff) {
+        else if item.types.contains(.tiff) || item.types.contains(.png) {
             return previewImageViewController
         }
         else {

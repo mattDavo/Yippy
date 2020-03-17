@@ -53,6 +53,17 @@ extension NSEvent.ModifierFlags {
         return list
     }
     
+    func toStringCharacters() -> [String] {
+        var list = [String]()
+        if self.contains(.capsLock) { list.append("⇪") }
+        if self.contains(.command) { list.append("⌘") }
+        if self.contains(.control) { list.append("⌃") }
+        if self.contains(.function) { list.append("fn") }
+        if self.contains(.option) { list.append("⌥") }
+        if self.contains(.shift) { list.append("⇧") }
+        return list
+    }
+    
     static var recommended: NSEvent.ModifierFlags = NSEvent.ModifierFlags(arrayLiteral: .command, .control, .option, .shift)
     static var all: NSEvent.ModifierFlags = NSEvent.ModifierFlags(arrayLiteral: .capsLock, .command, .control, .deviceIndependentFlagsMask, .function, .help, .numericPad, .option, .shift)
     static var none: NSEvent.ModifierFlags = .init()

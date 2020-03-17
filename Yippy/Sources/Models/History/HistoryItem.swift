@@ -124,6 +124,16 @@ class HistoryItem: NSObject {
         cache.unregisterItem(withId: fsId)
     }
     
+    func getImage() -> NSImage? {
+        if let image = getTiffImage() {
+            return image
+        }
+        if let image = getPng() {
+            return image
+        }
+        return nil
+    }
+    
     func getTiffImage() -> NSImage? {
         guard let tiffData = data(forType: .tiff) else { return nil }
         return NSImage(data: tiffData)

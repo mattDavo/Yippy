@@ -29,6 +29,10 @@ class Accessibility {
         static let positionLeftButton = "positionLeftButton"
         static let positionTopButton = "positionTopButton"
         static let positionBottomButton = "positionBottomButton"
+        static let positionCenterSmall = "positionCenterSmall"
+        static let positionCenterMedium = "positionCenterMedium"
+        static let positionCenterLarge = "positionCenterLarge"
+        static let positionFullScreen = "positionFullScreen"
         
         static let waitingForControlLabel = "waitingForControlLabel"
         static let howToUseLabel = "howToUseLabel"

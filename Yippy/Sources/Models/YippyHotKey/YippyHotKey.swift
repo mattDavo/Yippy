@@ -68,7 +68,15 @@ class YippyHotKey {
     init(hotKey: HotKey) {
         self.hotKey = hotKey
         self.isPaused = hotKey.isPaused
-        self.hotKey.keyDownHandler = {
+        initHotKey(hotKey: self.hotKey)
+    }
+    
+    convenience init(key: Key, modifiers: NSEvent.ModifierFlags) {
+        self.init(hotKey: HotKey(key: key, modifiers: modifiers))
+    }
+    
+    private func initHotKey(hotKey: HotKey) {
+        hotKey.keyDownHandler = {
             // Handle key down observers
             for obv in self.keyDownObservers {
                 obv()
@@ -78,7 +86,7 @@ class YippyHotKey {
             self.setLongPressTimer(withInterval: self.longPressStartingInterval)
         }
         
-        self.hotKey.keyUpHandler = {
+        hotKey.keyUpHandler = {
             // Handle key up observers
             for obv in self.keyUpObservers {
                 obv()
@@ -87,10 +95,6 @@ class YippyHotKey {
             // Terminate long press observers
             self.stopLongPressTimer()
         }
-    }
-    
-    convenience init(key: Key, modifiers: NSEvent.ModifierFlags) {
-        self.init(hotKey: HotKey(key: key, modifiers: modifiers))
     }
     
     // MARK: - Public Methods
@@ -122,6 +126,13 @@ class YippyHotKey {
      */
     func onLong(_ obv: @escaping Handler) {
         longPressObservers.append(obv)
+    }
+    
+    func changeHotKey(keyCombo: KeyCombo) {
+        self.hotKey.isPaused = true
+        self.hotKey = HotKey(keyCombo: keyCombo)
+        self.isPaused = hotKey.isPaused
+        initHotKey(hotKey: self.hotKey)
     }
     
     func simulateOnDown() {

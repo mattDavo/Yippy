@@ -15,7 +15,6 @@ target 'Yippy' do
     use_frameworks!
 
     # Pods for Yippy
-    pod 'HotKey'
     pod 'Default'
     pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
     pod 'RxSwift', '~> 5'
@@ -26,7 +25,6 @@ target 'Yippy' do
         # Pods for testing
         pod 'RxBlocking', '~> 5'
         pod 'RxTest', '~> 5'
-        pod 'HotKey'
         pod 'Default'
         pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
         pod 'RxSwift', '~> 5'
@@ -38,7 +36,6 @@ target 'Yippy' do
         # Pods for testing
         pod 'RxBlocking', '~> 5'
         pod 'RxTest', '~> 5'
-        pod 'HotKey'
         pod 'Default'
         pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
         pod 'RxSwift', '~> 5'

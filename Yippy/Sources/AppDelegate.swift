@@ -44,7 +44,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func checkBuildFlags() {
         #if BETA
-        YippyHotKeys.toggle.hotKey = HotKey(key: .b, modifiers: NSEvent.ModifierFlags(arrayLiteral: .command, .shift))
         YippyStatusItem.statusItemButtonImage = NSImage(named: NSImage.Name("YippyBetaStatusBarIcon"))
         #endif
     }
@@ -63,6 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func setupHotKey() {
+        YippyHotKeys.toggle.changeHotKey(keyCombo: Settings.main.toggleHotKey)
         YippyHotKeys.toggle.onDown {
             Controller.main.togglePopover()
         }

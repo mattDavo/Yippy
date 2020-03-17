@@ -10,14 +10,16 @@ import Foundation
 import Default
 import RxSwift
 import RxRelay
+import HotKey
 
 struct Settings: Codable, DefaultStorable {
     
     // MARK: - Singleton
     
-    private init(panelPosition: PanelPosition, pasteboardChangeCount: Int) {
+    private init(panelPosition: PanelPosition, pasteboardChangeCount: Int, toggleHotKey: KeyCombo) {
         self.panelPosition = panelPosition
         self.pasteboardChangeCount = pasteboardChangeCount
+        self.toggleHotKey = toggleHotKey
     }
     
     static var main: Settings! {
@@ -37,7 +39,8 @@ struct Settings: Codable, DefaultStorable {
     
     static let `default` = Settings(
         panelPosition: .right,
-        pasteboardChangeCount: -1
+        pasteboardChangeCount: -1,
+        toggleHotKey: KeyCombo(key: .v, modifiers: [.command, .shift])
     )
     
     // MARK: - Settings
@@ -45,6 +48,8 @@ struct Settings: Codable, DefaultStorable {
     var panelPosition: PanelPosition
     
     var pasteboardChangeCount: Int
+    
+    var toggleHotKey: KeyCombo
     
     
     // MARK: - State Binding Methods

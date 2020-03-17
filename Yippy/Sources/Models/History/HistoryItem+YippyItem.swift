@@ -22,7 +22,7 @@ extension HistoryItem {
         else if getColor() != nil {
             return YippyColorCellView.self
         }
-        else if types.contains(.tiff) {
+        else if types.contains(.tiff) || types.contains(.png) {
             return YippyTiffCellView.self
         }
         else {

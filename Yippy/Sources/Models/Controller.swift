@@ -42,6 +42,10 @@ class Controller {
         return AboutWindowController.createAboutWindowController()
     }()
     
+    lazy var settingsWindowController: SettingsWindowController = {
+        return SettingsWindowController.createSettingsWindowController()
+    }()
+    
     
     // MARK: - Constructor
     
@@ -82,28 +86,11 @@ class Controller {
             .with(menuItem: NSMenuItem(title: "Clear history", action: #selector(clearHistoryClicked), keyEquivalent: ""))
             .with(menuItem: NSMenuItem(title: "Position", action: nil, keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.positionButton)
-                .with(submenu: NSMenu(title: "")
-                    .with(menuItem: NSMenuItem(title: "Left", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
-                        .with(accessibilityIdentifier: Accessibility.identifiers.positionLeftButton)
-                        .with(state: settings.panelPosition == .left ? .on : .off)
-                        .with(tag: PanelPosition.left.rawValue)
-                    )
-                    .with(menuItem: NSMenuItem(title: "Right", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
-                        .with(accessibilityIdentifier: Accessibility.identifiers.positionRightButton)
-                        .with(state: settings.panelPosition == .right ? .on : .off)
-                        .with(tag: PanelPosition.right.rawValue)
-                    )
-                    .with(menuItem: NSMenuItem(title: "Top", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
-                        .with(accessibilityIdentifier: Accessibility.identifiers.positionTopButton)
-                        .with(state: settings.panelPosition == .top ? .on : .off)
-                        .with(tag: PanelPosition.top.rawValue)
-                    )
-                    .with(menuItem: NSMenuItem(title: "Bottom", action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
-                        .with(accessibilityIdentifier: Accessibility.identifiers.positionBottomButton)
-                        .with(state: settings.panelPosition == .bottom ? .on : .off)
-                        .with(tag: PanelPosition.bottom.rawValue)
-                    )
-            ))
+                .with(submenu: createWindowPositionSubmenu(settings: settings))
+            )
+            .with(menuItem: NSMenuItem(title: "Settings", action: #selector(showSettings), keyEquivalent: "")
+                .with(accessibilityIdentifier: "")
+            )
             .with(menuItem: NSMenuItem.separator())
             .with(menuItem: NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "")
                 .with(accessibilityIdentifier: Accessibility.identifiers.quitButton)
@@ -119,12 +106,10 @@ class Controller {
             .disposed(by: state.disposeBag)
         
         state.panelPosition
-            .subscribe(onNext: {
-                [] in
-                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.left.rawValue)?.state = $0 == .left ? .on : .off
-                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.right.rawValue)?.state = $0 == .right ? .on : .off
-                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.top.rawValue)?.state = $0 == .top ? .on : .off
-                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.bottom.rawValue)?.state = $0 == .bottom ? .on : .off
+            .subscribe(onNext: { next in
+                PanelPosition.allCases.forEach { pos in
+                    menu.item(withTitle: "Position")?.submenu?.item(withTag: pos.rawValue)?.state = next == pos ? .on : .off
+                }
             })
             .disposed(by: state.disposeBag)
         
@@ -143,6 +128,17 @@ class Controller {
             })
             .disposed(by: state.disposeBag)
         
+        return menu
+    }
+    
+    static func createWindowPositionSubmenu(settings: Settings) -> NSMenu {
+        let menu = NSMenu(title: "")
+        menu.items = PanelPosition.allCases.map({pos in
+            return NSMenuItem(title: pos.title, action: #selector(panelPositionSelected(_:)), keyEquivalent: "")
+                .with(accessibilityIdentifier: pos.identifier)
+                .with(state: settings.panelPosition == pos ? .on : .off)
+                .with(tag: pos.rawValue)
+        })
         return menu
     }
     
@@ -212,6 +208,16 @@ class Controller {
         // If the window isn't visible, show it
         if !self.aboutWindowController.window!.isVisible {
             self.aboutWindowController.showWindow(nil)
+        }
+        
+        // Bring the window to front
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    @objc func showSettings() {
+        // If the window isn't visible, show it
+        if !self.settingsWindowController.window!.isVisible {
+            self.settingsWindowController.showWindow(nil)
         }
         
         // Bring the window to front

@@ -16,18 +16,22 @@ class KeyPressMonitor {
     var keyDownMonitor: EventMonitor!
     var specialKeyMonitor: SpecialKeyChangedEventMonitor!
     
-    var allowedModifierFlags = NSEvent.ModifierFlags.recommended
+    var allowedModifierFlags: NSEvent.ModifierFlags
     
     var keysDown = Set<Key>()
     var modifiers: NSEvent.ModifierFlags = .init()
     
     var keyActionHandlers = Set<KeyActionHandler>()
     
+    typealias KeyDownHandler = ([Key], NSEvent.ModifierFlags) -> Void
+    
+    var keyDownHandlers = [KeyDownHandler]()
+    
     init(allowedModifierFlags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.recommended) {
+        self.allowedModifierFlags = allowedModifierFlags
         self.keyUpMonitor = KeyUpEventMonitor(handler: onKeyUp)
         self.keyDownMonitor = KeyDownEventMonitor(handler: onKeyDown)
         self.specialKeyMonitor = SpecialKeyChangedEventMonitor(handler: onSpecialKeyChange)
-        self.allowedModifierFlags = allowedModifierFlags
     }
     
     func handleAction(_ action: KeyAction, forKey key: Key, withModifiers modifiers: NSEvent.ModifierFlags, isExclusive: Bool = false, handler: @escaping () -> Void) {
@@ -42,6 +46,10 @@ class KeyPressMonitor {
             print("Already contained a handler for that key action. Removed and replaced")
         }
         keyActionHandlers.insert(keyActionHandler)
+    }
+    
+    func subscribeToKeyDown(_ handler: @escaping KeyDownHandler) {
+        keyDownHandlers.append(handler)
     }
     
     private func checkKeyUpHandlers(forKey key: Key) {
@@ -84,6 +92,7 @@ class KeyPressMonitor {
         keysDown.insert(key)
         print("Key '\(key)' added to down set")
         checkHandlers(forKey: key, withAction: .down)
+        keyDownHandlers.forEach { $0(self.keysDown.map{$0}, self.modifiers) }
     }
     
     private func onSpecialKeyChange(_ event: NSEvent) {

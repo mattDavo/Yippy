@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "HotKey",
+        "repositoryURL": "https://github.com/mattDavo/HotKey",
+        "state": {
+          "branch": null,
+          "revision": "fd5493d0e30e1f8ae4bce708a2446746c11e7a15",
+          "version": "0.1.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

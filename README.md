@@ -37,6 +37,7 @@ You will find the installer disk image `X.dmg` in the same folder.
 ### TODO
 - [ ] Support more types of pasteboard items
 - [ ] Allow setting preferences for keyboard shortcuts
+    - [x] Customize toggle hotkey
 - [ ] Automatic updates (maybe use Sparkle?)
 - [ ] Create a bug reporter, if places in code are reached that should not be possible create a unique error and a prompt to report the bug.
 - [ ] Don’t let any of the app be used until access is granted

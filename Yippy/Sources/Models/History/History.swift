@@ -39,8 +39,14 @@ class History {
     ///
     private var _selected: BehaviorRelay<Int?>
     
+    private var _maxItems: BehaviorRelay<Int>
+    
     var selected: Observable<Int?> {
         _selected.asObservable()
+    }
+    
+    var maxItems: Observable<Int> {
+        _maxItems.asObservable()
     }
     
     typealias InsertHandler = ([HistoryItem], Int) -> Void
@@ -55,11 +61,16 @@ class History {
     private var moveObservers = [MoveHandler]()
     private var subscribers = [SubscribeHandler]()
     
-    init(historyFM: HistoryFileManager = .default, cache: HistoryCache, items: [HistoryItem]) {
+    init(historyFM: HistoryFileManager = .default, cache: HistoryCache, items: [HistoryItem], maxItems: Int = Constants.system.maxHistoryItems) {
         self.historyFM = historyFM
         self.cache = cache
         self.items = items
         self._selected = BehaviorRelay<Int?>(value: nil)
+        self._maxItems = BehaviorRelay<Int>(value: maxItems)
+        
+        if items.count > maxItems {
+            reduceHistory(to: maxItems)
+        }
     }
     
     static func load(historyFM: HistoryFileManager = .default, cache: HistoryCache) -> History {
@@ -92,6 +103,10 @@ class History {
         insertObservers.forEach({$0(items, i)})
         subscribers.forEach({$0(items)})
         historyFM.insertItem(newHistory: items, at: i)
+        
+        if items.count > _maxItems.value {
+            deleteItem(at: items.count - 1)
+        }
     }
     
     func deleteItem(at i: Int) {
@@ -107,7 +122,6 @@ class History {
         clearObservers.forEach({$0()})
         subscribers.forEach({$0(items)})
         historyFM.clearHistory()
-        
     }
     
     func moveItem(at i: Int, to j: Int) {
@@ -124,6 +138,19 @@ class History {
     
     func setSelected(_ selected: Int?) {
         _selected.accept(selected)
+    }
+    
+    func setMaxItems(_ maxItems: Int) {
+        if maxItems < _maxItems.value {
+            reduceHistory(to: maxItems)
+        }
+        _maxItems.accept(maxItems)
+    }
+    
+    private func reduceHistory(to maxItems: Int) {
+        historyFM.reduce(oldHistory: items, toSize: maxItems)
+        items = Array(items.prefix(maxItems))
+        subscribers.forEach({$0(items)})
     }
 }
 

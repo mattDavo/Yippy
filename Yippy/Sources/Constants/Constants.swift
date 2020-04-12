@@ -29,7 +29,8 @@ struct Constants {
         
         static var yippyPlainText: NSFont {
             if #available(OSX 10.15, *) {
-                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+                return NSFont(name: "SF Mono Regular", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+//                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
             }
             else {
                 return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.systemFont(ofSize: 12)
@@ -77,5 +78,19 @@ struct Constants {
         static let historyErrorDomain = "YippyHistoryErrorDomain"
         
         static let historyWarningDomain = "YippyHistoryWarningDomain"
+    }
+    
+    struct system {
+        
+        static let maxHistoryItems = 5000
+    }
+    
+    struct settings {
+        
+        static let maxHistoryItemsOptions = [50, 100, 200, 500, 750, 1000, 1500]
+        
+        static let maxHistoryItemsDefaultIndex = 3
+        
+        static let maxHistoryItemsDefault = Constants.settings.maxHistoryItemsOptions[Constants.settings.maxHistoryItemsDefaultIndex]
     }
 }

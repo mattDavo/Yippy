@@ -46,6 +46,11 @@ class HistoryItem: NSObject {
     
     static let historyItemIdType = NSPasteboard.PasteboardType(rawValue: "MatthewDavidson.Yippy.historyItemId")
     
+    /// Static definition of whether the history items should write RTF data to the pasteboard.
+    ///
+    /// This value is used when determining the writable types for an item.
+    static var pastesRichText = true
+    
     
     // MARK: - Constructors
     
@@ -212,7 +217,7 @@ class HistoryItem: NSObject {
 // MARK: - HistoryItem+NSPasteboardWriting
 extension HistoryItem: NSPasteboardWriting {
     func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
-        return types + [Self.historyItemIdType]
+        return types.filter{ HistoryItem.pastesRichText || $0 != .rtf } + [Self.historyItemIdType]
     }
     
     func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {

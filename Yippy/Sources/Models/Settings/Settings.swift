@@ -16,10 +16,20 @@ struct Settings: Codable, DefaultStorable {
     
     // MARK: - Singleton
     
-    private init(panelPosition: PanelPosition, pasteboardChangeCount: Int, toggleHotKey: KeyCombo) {
+    private init(
+        panelPosition: PanelPosition,
+        pasteboardChangeCount: Int,
+        toggleHotKey: KeyCombo,
+        maxHistory: Int,
+        showsRichText: Bool,
+        pastesRichText: Bool
+    ) {
         self.panelPosition = panelPosition
         self.pasteboardChangeCount = pasteboardChangeCount
         self.toggleHotKey = toggleHotKey
+        self.maxHistory = maxHistory
+        self.showsRichText = showsRichText
+        self.pastesRichText = pastesRichText
     }
     
     static var main: Settings! {
@@ -40,7 +50,10 @@ struct Settings: Codable, DefaultStorable {
     static let `default` = Settings(
         panelPosition: .right,
         pasteboardChangeCount: -1,
-        toggleHotKey: KeyCombo(key: .v, modifiers: [.command, .shift])
+        toggleHotKey: KeyCombo(key: .v, modifiers: [.command, .shift]),
+        maxHistory: Constants.settings.maxHistoryItemsDefault,
+        showsRichText: true,
+        pastesRichText: true
     )
     
     // MARK: - Settings
@@ -50,6 +63,12 @@ struct Settings: Codable, DefaultStorable {
     var pasteboardChangeCount: Int
     
     var toggleHotKey: KeyCombo
+    
+    var maxHistory: Int
+    
+    var showsRichText: Bool
+    
+    var pastesRichText: Bool
     
     
     // MARK: - State Binding Methods
@@ -63,6 +82,24 @@ struct Settings: Codable, DefaultStorable {
     func bindPasteboardChangeCountTo(state: Observable<Int>) -> Disposable {
         return state.bind { (x) in
             Settings.main.pasteboardChangeCount = x
+        }
+    }
+    
+    func bindMaxHistoryTo(state: Observable<Int>) -> Disposable {
+        return state.bind { (x) in
+            Settings.main.maxHistory = x
+        }
+    }
+    
+    func bindShowsRichTextTo(state: Observable<Bool>) -> Disposable {
+        return state.bind { (x) in
+            Settings.main.showsRichText = x
+        }
+    }
+    
+    func bindPastesRichTextTo(state: Observable<Bool>) -> Disposable {
+        return state.bind { (x) in
+            Settings.main.pastesRichText = x
         }
     }
 }

@@ -12,11 +12,6 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
     
     // MARK: - UI Constants
     
-    static let itemStringAttributes: [NSAttributedString.Key: Any] = [
-        .font: YippyTextCellView.font,
-        .foregroundColor: NSColor.textColor
-    ]
-    
     static let padding = NSEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     
     static let textInset = NSEdgeInsetsZero // NSEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
@@ -24,8 +19,6 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
     override class var identifier: NSUserInterfaceItemIdentifier {
         return NSUserInterfaceItemIdentifier(Accessibility.identifiers.yippyTextCellView)
     }
-    
-    static let font = Constants.fonts.yippyPlainText
     
     // MARK: - Methods
     
@@ -56,30 +49,11 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
     }
     
     func setupCell(withYippyTableView yippyTableView: YippyTableView, forHistoryItem historyItem: HistoryItem, at i: Int) {
-        let itemStr = Self.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: Self.itemStringAttributes)
-        itemTextView.attributedText = itemStr
+        itemTextView.attributedText = HistoryItemText.getAttributedString(forItem: historyItem, usingItemRtf: yippyTableView.isRichText)
         
         setHighlight(isSelected: yippyTableView.isRowSelected(i))
         
         setupShortcutTextView(at: i)
-    }
-    
-    static func getAttributedString(forHistoryItem item: HistoryItem, withDefaultAttributes attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
-        if let attrStr = item.getRtfAttributedString() {
-            return attrStr
-        }
-        else if let plainStr = item.getPlainString() {
-            return NSAttributedString(string: plainStr, attributes: attributes)
-        }
-        else if let htmlStr = item.getHtmlRawString() {
-            return NSAttributedString(string: htmlStr, attributes: attributes)
-        }
-        else if let url = item.getFileUrl() {
-            return NSAttributedString(string: url.path, attributes: attributes)
-        }
-        else {
-            return NSAttributedString(string: "Unknown format", attributes: attributes)
-        }
     }
     
     static func getTextContainerWidth(cellWidth: CGFloat) -> CGFloat {
@@ -105,7 +79,7 @@ class YippyTextCellView: YippyItemBaseCellView, YippyItem {
         let width = YippyTextCellView.getTextContainerWidth(cellWidth: cellWidth)
         
         // Create an attributed string of the text
-        let attrStr = YippyTextCellView.getAttributedString(forHistoryItem: historyItem, withDefaultAttributes: YippyTextCellView.itemStringAttributes)
+        let attrStr = HistoryItemText.getAttributedString(forItem: historyItem, usingItemRtf: yippyTableView.isRichText)
         
         // Determine the height of the text
         let estTextHeight = attrStr.calculateSize(withMaxWidth: width).height

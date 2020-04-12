@@ -277,6 +277,36 @@ class HistoryFileManager {
         }
     }
     
+    func reduce(oldHistory: [HistoryItem], toSize size: Int, completionHandler handler: ((Bool) -> Void)? = nil) {
+        if oldHistory.count <= size {
+            callHander(handler, withVal: true)
+            return
+        }
+        
+        dispatchQueue.async {
+            let newHistory = Array(oldHistory.prefix(size))
+            
+            for item in oldHistory.suffix(from: size) {
+                do {
+                    try self.fileManager.removeItem(at: self.getUrl(forItemWithId: item.fsId))
+                }
+                catch {
+                    let historyError = YippyError(code: 0, userInfo: [
+                        NSLocalizedDescriptionKey: "Failed to delete item due to error: \(error.localizedDescription)"
+                    ])
+                    historyError.log(with: self.errorLogger)
+                    historyError.show(with: self.alerter)
+                    self.callHander(handler, withVal: false)
+                }
+                
+                item.stopCaching()
+            }
+            
+            // Update order
+            self.saveHistoryOrder(history: newHistory, completionHandler: handler)
+        }
+    }
+    
     func moveItem(newHistory: [HistoryItem], from: Int, to: Int, completionHandler: ((Bool) -> Void)? = nil) {
         saveHistoryOrder(history: newHistory, completionHandler: completionHandler)
     }

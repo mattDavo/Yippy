@@ -28,6 +28,10 @@ class State {
     
     var launchAtLogin: BehaviorRelay<Bool>
     
+    var showsRichText: BehaviorRelay<Bool>
+    
+    var pastesRichText: BehaviorRelay<Bool>
+    
     var disposeBag: DisposeBag
     
     // History
@@ -45,18 +49,24 @@ class State {
         self.panelPosition = BehaviorRelay<PanelPosition>(value: settings.panelPosition)
         self.previewHistoryItem = BehaviorRelay<HistoryItem?>(value: nil)
         self.launchAtLogin = BehaviorRelay<Bool>(value: LoginServiceKit.isExistLoginItems())
+        self.showsRichText = BehaviorRelay<Bool>(value: settings.showsRichText)
+        self.pastesRichText = BehaviorRelay<Bool>(value: settings.pastesRichText)
         self.disposeBag = disposeBag
         
         // Setup history
         self.historyCache = HistoryCache()
         self.history = History.load(cache: historyCache)
         self.history.recordPasteboardChange(withCount: settings.pasteboardChangeCount)
+        self.history.setMaxItems(settings.maxHistory)
         
         // Bind settings to state
         Self.bind(settings: settings, toState: self, disposeBag: disposeBag)
         
         // Setup pasteboard monitor
         self.pasteboardMonitor = PasteboardMonitor(pasteboard: NSPasteboard.general, changeCount: settings.pasteboardChangeCount, delegate: self.history)
+        
+        //
+        Self.monitorPastesRichText(state: self)
     }
     
     // MARK: - Constructor Helpers
@@ -64,5 +74,14 @@ class State {
     static func bind(settings: Settings, toState state: State, disposeBag: DisposeBag) {
         settings.bindPasteboardChangeCountTo(state: state.history!.observableLastRecordedChangeCount).disposed(by: disposeBag)
         settings.bindPanelPositionTo(state: state.panelPosition).disposed(by: disposeBag)
+        settings.bindMaxHistoryTo(state: state.history.maxItems).disposed(by: disposeBag)
+        settings.bindShowsRichTextTo(state: state.showsRichText.asObservable()).disposed(by: disposeBag)
+        settings.bindPastesRichTextTo(state: state.pastesRichText.asObservable()).disposed(by: disposeBag)
+    }
+    
+    static func monitorPastesRichText(state: State) {
+        state.pastesRichText.distinctUntilChanged().subscribe(onNext: {
+            HistoryItem.pastesRichText = $0
+        }).disposed(by: state.disposeBag)
     }
 }

@@ -27,6 +27,14 @@ class KeyPressMonitor {
     
     var keyDownHandlers = [KeyDownHandler]()
     
+    var isPaused: Bool = true {
+        didSet {
+            keyUpMonitor.isActive = !isPaused
+            keyDownMonitor.isActive = !isPaused
+            specialKeyMonitor.isActive = !isPaused
+        }
+    }
+    
     init(allowedModifierFlags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.recommended) {
         self.allowedModifierFlags = allowedModifierFlags
         self.keyUpMonitor = KeyUpEventMonitor(handler: onKeyUp)

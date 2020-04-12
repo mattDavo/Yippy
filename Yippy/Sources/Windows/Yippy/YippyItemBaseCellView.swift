@@ -27,7 +27,7 @@ class YippyItemBaseCellView: NSTableCellView {
     var itemTextView: YippyItemCellTextView!
     
     static let shortcutStringAttributes: [NSAttributedString.Key: Any] = [
-        .font: YippyTextCellView.font,
+        .font: Constants.fonts.yippyPlainText,
         .foregroundColor: NSColor.white.withAlphaComponent(0.7)
     ]
     

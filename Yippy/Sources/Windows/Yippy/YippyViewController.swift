@@ -17,6 +17,7 @@ class YippyViewController: NSViewController {
     @IBOutlet var yippyHistoryView: YippyTableView!
     
     @IBOutlet var itemGroupScrollView: HorizontalButtonsView!
+    @IBOutlet var itemCountLabel: NSTextField!
     
     var yippyHistory = YippyHistory(history: State.main.history, items: [])
     
@@ -26,6 +27,8 @@ class YippyViewController: NSViewController {
     
     var itemGroups = BehaviorRelay<[String]>(value: ["Clipboard", "Favourites", "Clipboard", "Favourites", "Clipboard", "Favourites"])
     
+    var isRichText = Settings.main.showsRichText
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +36,8 @@ class YippyViewController: NSViewController {
         
         State.main.history.subscribe(onNext: onHistoryChange)
         State.main.history.selected.withPrevious(startWith: nil).subscribe(onNext: onSelectedChange).disposed(by: disposeBag)
+        
+        State.main.showsRichText.distinctUntilChanged().subscribe(onNext: onShowsRichText).disposed(by: disposeBag)
         
         itemGroupScrollView.bind(toData: itemGroups.asObservable()).disposed(by: disposeBag)
         itemGroupScrollView.bind(toSelected: BehaviorRelay<Int>(value: 0).asObservable()).disposed(by: disposeBag)
@@ -105,8 +110,15 @@ class YippyViewController: NSViewController {
     }
     
     func onHistoryChange(_ history: [HistoryItem]) {
+        itemCountLabel.stringValue = "\(history.count) items"
+        
         yippyHistory = YippyHistory(history: State.main.history, items: history)
-        yippyHistoryView.reloadData(yippyHistory.items)
+        yippyHistoryView.reloadData(yippyHistory.items, isRichText: isRichText)
+    }
+    
+    func onShowsRichText(_ showsRichText: Bool) {
+        isRichText = showsRichText
+        yippyHistoryView.reloadData(yippyHistory.items, isRichText: isRichText)
     }
     
     func onSelectedChange(_ previous: Int?, _ selected: Int?) {

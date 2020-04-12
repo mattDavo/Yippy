@@ -43,21 +43,21 @@ class YippyUITests: XCTestCase {
         app.launch()
         
         // Check window isn't displayed
-        XCTAssertFalse(app.yippyWindow.isDisplayed)
+        XCTAssertFalse(app.yippyWindow.exists)
         
         // Toggle window
         app.statusItemButton.click()
         app.toggleYippyWindowButton.click()
         
         // Check window is displayed
-        XCTAssertTrue(app.yippyWindow.isDisplayed)
+        XCTAssertTrue(app.yippyWindow.exists)
         
         // Toggle window
         app.statusItemButton.click()
         app.toggleYippyWindowButton.click()
         
         // Check window isn't displayed
-        XCTAssertFalse(app.yippyWindow.isDisplayed)
+        XCTAssertFalse(app.yippyWindow.exists)
     }
     
     func testHotKeyToggle() {
@@ -97,13 +97,13 @@ class YippyUITests: XCTestCase {
         app.launch()
         
         // Check window isn't displayed
-        XCTAssertFalse(app.yippyWindow.isDisplayed)
+        XCTAssertFalse(app.yippyWindow.exists)
         
         // HotKey toggle
         app.pressHotKey()
         
         // Check window is displayed
-        XCTAssertTrue(app.yippyWindow.isDisplayed)
+        XCTAssertTrue(app.yippyWindow.exists)
         
         // Check window location is .right
         XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.right.frame.midX)

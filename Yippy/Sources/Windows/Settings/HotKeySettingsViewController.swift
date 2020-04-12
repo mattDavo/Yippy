@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  HotKeySettingsViewController.swift
 //  Yippy
 //
 //  Created by Matthew Davidson on 28/2/20.
@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import HotKey
 
-class SettingsViewController: NSViewController {
+class HotKeySettingsViewController: NSViewController {
     
     @IBOutlet var hotkeyLabel: NSTextField!
     @IBOutlet var saveHotKeyButton: NSButton!
@@ -24,6 +24,7 @@ class SettingsViewController: NSViewController {
         
         showSavedToggleHotKey()
         
+        keyPressMonitor.isPaused = true
         keyPressMonitor.subscribeToKeyDown { (keys, modifiers) in
             if let toggleHotKey = self.createToggleHotKey(keys: keys, modifiers: modifiers) {
                 self.showNewToggleHotKey(toggleHotKey)
@@ -36,6 +37,18 @@ class SettingsViewController: NSViewController {
                 self.newToggleHotKey = nil
             }
         }
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        keyPressMonitor.isPaused = false
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        
+        keyPressMonitor.isPaused = true
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {

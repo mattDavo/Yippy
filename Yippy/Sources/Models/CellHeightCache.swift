@@ -12,6 +12,7 @@ class CellHeightsCache {
     
     struct Context: Equatable {
         var cellWidth: CGFloat
+        var isRichText: Bool
     }
     
     var caches: [String: Cache<CGFloat, UUID, Context>]
@@ -25,20 +26,20 @@ class CellHeightsCache {
         caches[cellIdentifier] = Cache()
     }
     
-    func cellHeight(forId id: UUID, withCellIdentifier cellIdentifier: String, cellWidth: CGFloat) -> CGFloat? {
+    func cellHeight(forId id: UUID, withCellIdentifier cellIdentifier: String, cellWidth: CGFloat, isRichText: Bool) -> CGFloat? {
         if !caches.keys.contains(cellIdentifier) {
             createCache(forCellIdentifier: cellIdentifier)
         }
         
-        return caches[cellIdentifier]?.cellHeight(forId: id, withContext: Context(cellWidth: cellWidth))
+        return caches[cellIdentifier]?.cellHeight(forId: id, withContext: Context(cellWidth: cellWidth, isRichText: isRichText))
     }
     
-    func storeCellHeight(_ height: CGFloat, forId id: UUID, withCellIdentifier cellIdentifier: String, cellWidth: CGFloat) {
+    func storeCellHeight(_ height: CGFloat, forId id: UUID, withCellIdentifier cellIdentifier: String, cellWidth: CGFloat, isRichText: Bool) {
         if !caches.keys.contains(cellIdentifier) {
             createCache(forCellIdentifier: cellIdentifier)
         }
         
-        caches[cellIdentifier]?.storeCellHeight(height, forId: id, withContext: Context(cellWidth: cellWidth))
+        caches[cellIdentifier]?.storeCellHeight(height, forId: id, withContext: Context(cellWidth: cellWidth, isRichText: isRichText))
     }
     
     func removeCellHeight(forId id: UUID) {

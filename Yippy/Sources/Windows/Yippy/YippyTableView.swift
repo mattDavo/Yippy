@@ -21,6 +21,8 @@ class YippyTableView: NSTableView {
     
     var cellHeightsCache = CellHeightsCache()
     
+    var isRichText: Bool = true
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         
@@ -73,8 +75,9 @@ class YippyTableView: NSTableView {
         }
     }
     
-    func reloadData(_ data: [HistoryItem]) {
+    func reloadData(_ data: [HistoryItem], isRichText: Bool) {
         yippyItems = data
+        self.isRichText = isRichText
         reloadData()
     }
 }
@@ -185,13 +188,13 @@ extension YippyTableView: NSTableViewDelegate {
         let historyItem = yippyItems[row]
         let itemType = historyItem.getTableViewItemType()
         
-        if let height = cellHeightsCache.cellHeight(forId: historyItem.fsId, withCellIdentifier: itemType.identifier.rawValue, cellWidth: cellWidth) {
+        if let height = cellHeightsCache.cellHeight(forId: historyItem.fsId, withCellIdentifier: itemType.identifier.rawValue, cellWidth: cellWidth, isRichText: isRichText) {
             return height
         }
         
         let height = historyItem.getTableViewItemType().getItemHeight(withYippyTableView: tableView as! YippyTableView, forHistoryItem: historyItem)
         
-        cellHeightsCache.storeCellHeight(height, forId: historyItem.fsId, withCellIdentifier: itemType.identifier.rawValue, cellWidth: cellWidth)
+        cellHeightsCache.storeCellHeight(height, forId: historyItem.fsId, withCellIdentifier: itemType.identifier.rawValue, cellWidth: cellWidth, isRichText: isRichText)
         
         return height
     }

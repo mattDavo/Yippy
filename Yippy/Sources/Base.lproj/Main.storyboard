@@ -704,12 +704,12 @@
                                             <tableColumns>
                                                 <tableColumn width="345" minWidth="40" maxWidth="3000" id="IJM-IL-D8x">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="1kL-3U-ZdY">
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="message"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -725,7 +725,7 @@
                                                                         <constraint firstAttribute="height" constant="17" id="bye-K2-cDR"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="7C2-NM-iTj">
-                                                                        <font key="font" metaFont="system"/>
+                                                                        <font key="font" metaFont="message"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -788,9 +788,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zja-Rc-WlR">
+                                <rect key="frame" x="247" y="265" width="80" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="10000 items" id="bbS-MI-bFc">
+                                    <font key="font" metaFont="message"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="zja-Rc-WlR" firstAttribute="centerY" secondItem="RtE-1d-ash" secondAttribute="centerY" id="4d2-uT-aGa"/>
                             <constraint firstItem="KEN-oq-XdO" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" id="Gpx-Vg-UyS"/>
+                            <constraint firstAttribute="trailing" secondItem="zja-Rc-WlR" secondAttribute="trailing" constant="20" id="QgI-hU-DhB"/>
                             <constraint firstAttribute="trailing" secondItem="KEN-oq-XdO" secondAttribute="trailing" id="Xg8-K8-sdr"/>
                             <constraint firstItem="9QY-RJ-rk6" firstAttribute="top" secondItem="e6J-h8-BYZ" secondAttribute="bottom" constant="9" id="dBo-Bs-mV3"/>
                             <constraint firstItem="e6J-h8-BYZ" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="16" id="fwc-Zo-0KG"/>
@@ -802,6 +812,7 @@
                         </constraints>
                     </visualEffectView>
                     <connections>
+                        <outlet property="itemCountLabel" destination="zja-Rc-WlR" id="HRp-OV-FaZ"/>
                         <outlet property="itemGroupScrollView" destination="e6J-h8-BYZ" id="s4b-oM-7yo"/>
                         <outlet property="yippyHistoryView" destination="9QY-RJ-rk6" id="1ay-62-CPk"/>
                     </connections>
@@ -1002,7 +1013,7 @@ Source code available at: https://github.com/mattDavo/Yippy
 Website: https://yippy.mattdavo.com</string>
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" metaFont="system"/>
+                                                        <font key="NSFont" metaFont="message"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -1071,7 +1082,7 @@ Website: https://yippy.mattdavo.com</string>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ili-Q1-k3U">
                                 <rect key="frame" x="18" y="50" width="414" height="32"/>
                                 <textFieldCell key="cell" alignment="center" title="For Yippy to be able to paste into your applications it requires you to provide it with full control to your computer." id="YWR-Ur-mdX">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1080,7 +1091,7 @@ Website: https://yippy.mattdavo.com</string>
                                 <rect key="frame" x="165" y="9" width="120" height="37"/>
                                 <buttonCell key="cell" type="push" title="Allow Access" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="S68-2Z-YZi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="allowAccessTapped:" target="bkn-HD-Efn" id="DW3-wX-om7"/>
@@ -1175,7 +1186,7 @@ Website: https://yippy.mattdavo.com</string>
                                     <constraint firstAttribute="width" constant="417" id="IoB-HR-7l5"/>
                                 </constraints>
                                 <textFieldCell key="cell" alignment="center" title="Yippy cannot be used until it is given full control." id="L7o-9q-Yhu">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1184,7 +1195,7 @@ Website: https://yippy.mattdavo.com</string>
                                 <rect key="frame" x="169" y="13" width="120" height="32"/>
                                 <buttonCell key="cell" type="push" title="Allow Access" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hCz-fJ-Af5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="allowAccessClicked:" target="Voc-fT-dUv" id="pOW-sC-QtP"/>
@@ -1241,7 +1252,7 @@ Website: https://yippy.mattdavo.com</string>
                                     <constraint firstAttribute="width" constant="528" id="Xw5-Hm-4Os"/>
                                 </constraints>
                                 <textFieldCell key="cell" alignment="center" id="wE9-ee-EOr">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message"/>
                                     <string key="title">Yippy is a simple tool for clipboard/pasteboard history. Yippy is best used by taking advantage of its keyboard controls.
 
 To launch the Yippy clipboard history window simply use the keyboard shortcut: Command (⌘) + Shift + v.
@@ -1293,47 +1304,18 @@ The default position for the Yippy is to float on the right edge of the screen, 
             </objects>
             <point key="canvasLocation" x="90" y="2320"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="1Cq-31-5PN">
-            <objects>
-                <windowController storyboardIdentifier="SettingsWindowController" id="I5N-sS-DiS" customClass="SettingsWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="yYG-qd-bx0">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-                        <connections>
-                            <outlet property="delegate" destination="I5N-sS-DiS" id="g3u-g2-XEy"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="Wum-9h-2Ea" kind="relationship" relationship="window.shadowedContentViewController" id="xu0-5l-Djp"/>
-                    </connections>
-                </windowController>
-                <customObject id="7o2-sw-BeE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-592" y="3106"/>
-        </scene>
-        <!--Settings View Controller-->
+        <!--Hot Key-->
         <scene sceneID="S9k-Vv-WrA">
             <objects>
-                <viewController id="Wum-9h-2Ea" customClass="SettingsViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Hot Key" id="Wum-9h-2Ea" customClass="HotKeySettingsViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="A7f-h4-8IB">
-                        <rect key="frame" x="0.0" y="0.0" width="429" height="293"/>
+                        <rect key="frame" x="0.0" y="0.0" width="429" height="257"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nLI-vg-om4">
                                 <rect key="frame" x="18" y="221" width="393" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Hold down the keys you would like to use for the hotkey." id="sEB-ft-Hiw">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Hold down the keys you would like to use for the hot key." id="sEB-ft-Hiw">
                                     <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="76v-qD-obg">
-                                <rect key="frame" x="170" y="245" width="90" height="28"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Settings" id="b7v-SE-ru7">
-                                    <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1353,7 +1335,7 @@ The default position for the Yippy is to float on the right edge of the screen, 
                                 <rect key="frame" x="193" y="19" width="44" height="23"/>
                                 <buttonCell key="cell" type="roundTextured" title="Save" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PbM-CT-4yB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="saveButtonClicked:" target="Wum-9h-2Ea" id="Ahj-aB-gum"/>
@@ -1363,14 +1345,12 @@ The default position for the Yippy is to float on the right edge of the screen, 
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="nLI-vg-om4" secondAttribute="trailing" constant="20" id="09C-dk-dIf"/>
                             <constraint firstAttribute="bottom" secondItem="rNB-pp-tM7" secondAttribute="bottom" constant="104" id="4lF-V7-f6w"/>
-                            <constraint firstItem="76v-qD-obg" firstAttribute="centerX" secondItem="A7f-h4-8IB" secondAttribute="centerX" id="5x7-Tp-EMn"/>
                             <constraint firstItem="nLI-vg-om4" firstAttribute="leading" secondItem="A7f-h4-8IB" secondAttribute="leading" constant="20" id="9ug-bw-3hM"/>
                             <constraint firstItem="rNB-pp-tM7" firstAttribute="top" secondItem="nLI-vg-om4" secondAttribute="bottom" constant="50" id="Raa-7K-Iw0"/>
-                            <constraint firstItem="76v-qD-obg" firstAttribute="top" secondItem="A7f-h4-8IB" secondAttribute="top" constant="20" id="W7D-3h-neu"/>
+                            <constraint firstItem="nLI-vg-om4" firstAttribute="top" secondItem="A7f-h4-8IB" secondAttribute="top" constant="20" id="W6f-Ao-wPg"/>
                             <constraint firstAttribute="bottom" secondItem="7zv-Of-yde" secondAttribute="bottom" constant="20" id="Y4J-dy-jy1"/>
                             <constraint firstAttribute="trailing" secondItem="rNB-pp-tM7" secondAttribute="trailing" constant="20" id="cch-pp-zgn"/>
                             <constraint firstItem="rNB-pp-tM7" firstAttribute="leading" secondItem="A7f-h4-8IB" secondAttribute="leading" constant="20" id="kc7-LT-gqM"/>
-                            <constraint firstItem="nLI-vg-om4" firstAttribute="top" secondItem="76v-qD-obg" secondAttribute="bottom" constant="8" id="whs-gB-WGf"/>
                             <constraint firstItem="7zv-Of-yde" firstAttribute="centerX" secondItem="A7f-h4-8IB" secondAttribute="centerX" id="zlL-NE-ytQ"/>
                         </constraints>
                     </view>
@@ -1381,7 +1361,134 @@ The default position for the Yippy is to float on the right edge of the screen, 
                 </viewController>
                 <customObject id="iLd-bF-VuO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64.5" y="3117.5"/>
+            <point key="canvasLocation" x="745" y="3158"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="00y-gN-Y6R">
+            <objects>
+                <windowController storyboardIdentifier="SettingsWindowController" id="Ze9-Rd-o41" customClass="SettingsWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="PhP-kx-FVe">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="Ze9-Rd-o41" id="PCK-i0-Le6"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="kqG-oJ-AgN" kind="relationship" relationship="window.shadowedContentViewController" id="mbL-mL-aES"/>
+                    </connections>
+                </windowController>
+                <customObject id="0Gy-C7-yrI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-550" y="3338"/>
+        </scene>
+        <!--Settings Tab View Controller-->
+        <scene sceneID="rFm-5Y-8Oy">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="kqG-oJ-AgN" customClass="SettingsTabViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="nAF-ho-7Ke"/>
+                        <tabViewItem id="FGK-V7-Rko"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="Eub-jG-HKM">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="kqG-oJ-AgN" id="c2G-gM-6XP"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="Eub-jG-HKM" id="ngi-h2-iBM"/>
+                        <segue destination="qdX-2T-Rhg" kind="relationship" relationship="tabItems" id="7vV-9R-3AD"/>
+                        <segue destination="Wum-9h-2Ea" kind="relationship" relationship="tabItems" id="2bb-E1-Fk3"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="Mdc-pc-WgL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="3338"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="XrK-N2-qKT">
+            <objects>
+                <viewController title="General" id="qdX-2T-Rhg" customClass="GeneralSettingsViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="IOm-qm-krs">
+                        <rect key="frame" x="0.0" y="0.0" width="429" height="293"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ey7-Xm-tk8">
+                                <rect key="frame" x="18" y="257" width="208" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Maximum number of items saved:" id="XNv-eZ-nFH">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pEh-ph-rnW">
+                                <rect key="frame" x="165" y="222" width="61" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Rich text:" id="Git-BT-vhA">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TWN-WL-Sbc">
+                                <rect key="frame" x="230" y="221" width="181" height="18"/>
+                                <buttonCell key="cell" type="check" title="Shows rich text" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="w28-Pw-Fov">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="message"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="du7-gj-uyC">
+                                <rect key="frame" x="230" y="195" width="182" height="18"/>
+                                <buttonCell key="cell" type="check" title="Pastes rich text" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Jm5-cb-S0n">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="message"/>
+                                </buttonCell>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hp5-Bs-j3i">
+                                <rect key="frame" x="230" y="251" width="117" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="fxc-JU-bFw" id="I0k-qn-2Wt">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="message"/>
+                                    <menu key="menu" id="O4b-zy-xzF">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="fxc-JU-bFw"/>
+                                            <menuItem title="Item 2" id="6Aj-4o-g6L"/>
+                                            <menuItem title="Item 3" id="mHv-ls-mGH"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="du7-gj-uyC" firstAttribute="top" secondItem="TWN-WL-Sbc" secondAttribute="bottom" constant="12" id="2ta-IX-xOH"/>
+                            <constraint firstItem="pEh-ph-rnW" firstAttribute="top" secondItem="Ey7-Xm-tk8" secondAttribute="bottom" constant="19" id="51F-3M-Zw7"/>
+                            <constraint firstItem="Ey7-Xm-tk8" firstAttribute="leading" secondItem="IOm-qm-krs" secondAttribute="leading" constant="20" id="GyD-hQ-Hlc"/>
+                            <constraint firstAttribute="trailing" secondItem="TWN-WL-Sbc" secondAttribute="trailing" constant="20" id="UYx-Og-REo"/>
+                            <constraint firstItem="Hp5-Bs-j3i" firstAttribute="top" secondItem="Ey7-Xm-tk8" secondAttribute="bottom" constant="-18" id="Xuy-hv-rsO"/>
+                            <constraint firstItem="TWN-WL-Sbc" firstAttribute="leading" secondItem="pEh-ph-rnW" secondAttribute="trailing" constant="8" id="YyO-Cb-bta"/>
+                            <constraint firstItem="Ey7-Xm-tk8" firstAttribute="top" secondItem="IOm-qm-krs" secondAttribute="top" constant="20" id="aha-gM-yS7"/>
+                            <constraint firstAttribute="trailing" secondItem="du7-gj-uyC" secondAttribute="trailing" constant="19" id="csB-0C-P8T"/>
+                            <constraint firstItem="pEh-ph-rnW" firstAttribute="leading" secondItem="Ey7-Xm-tk8" secondAttribute="trailing" constant="-57" id="dAN-mX-3AL"/>
+                            <constraint firstItem="Hp5-Bs-j3i" firstAttribute="leading" secondItem="Ey7-Xm-tk8" secondAttribute="trailing" constant="8" id="fcI-8I-tPL"/>
+                            <constraint firstAttribute="bottom" secondItem="du7-gj-uyC" secondAttribute="bottom" constant="197" id="gg2-eG-1kO"/>
+                            <constraint firstItem="TWN-WL-Sbc" firstAttribute="top" secondItem="pEh-ph-rnW" secondAttribute="bottom" constant="-15" id="nle-tM-fXF"/>
+                            <constraint firstItem="du7-gj-uyC" firstAttribute="leading" secondItem="pEh-ph-rnW" secondAttribute="trailing" constant="8" id="x3t-0B-g1a"/>
+                            <constraint firstAttribute="trailing" secondItem="Hp5-Bs-j3i" secondAttribute="trailing" constant="85" id="z9N-Qs-cFd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="maxHistoryItemsPopUpButton" destination="Hp5-Bs-j3i" id="P65-36-aSl"/>
+                        <outlet property="pastesRichTextButton" destination="du7-gj-uyC" id="R8j-OG-z48"/>
+                        <outlet property="showsRichTextButton" destination="TWN-WL-Sbc" id="E7e-6s-ZRQ"/>
+                    </connections>
+                </viewController>
+                <customObject id="M66-w0-FLJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744.5" y="3512.5"/>
         </scene>
         <!--PreviewQL View Controller-->
         <scene sceneID="J8A-2x-U3e">

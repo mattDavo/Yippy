@@ -17,6 +17,10 @@ class PreviewWindowController: NSWindowController {
     var previewImageViewController: PreviewImageViewController!
     var previewQLViewController: PreviewQLViewController!
     
+    var disposeBag = DisposeBag()
+    
+    var previewItem: HistoryItem?
+    
     private static func createPreviewViewController<T>() -> T where T: PreviewViewController {
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
         guard let controller = storyboard.instantiateController(withIdentifier: T.identifier) as? T else {
@@ -37,12 +41,15 @@ class PreviewWindowController: NSWindowController {
         previewWC.previewImageViewController = createPreviewViewController()
         previewWC.previewQLViewController = createPreviewViewController()
         
+        State.main.showsRichText.distinctUntilChanged().subscribe(onNext: previewWC.onShowsRichText).disposed(by: previewWC.disposeBag)
+        
         return previewWC
     }
     
     func subscribeTo(previewItem: BehaviorRelay<HistoryItem?>) -> Disposable {
         return previewItem
             .subscribe(onNext: {
+                self.previewItem = $0
                 if let item = $0 {
                     self.showWindow(nil)
                     self.updateController(forItem: item)
@@ -68,6 +75,15 @@ class PreviewWindowController: NSWindowController {
         }
         else {
             return previewTextViewController
+        }
+    }
+    
+    func onShowsRichText(_ showsRichText: Bool) {
+        if let item = previewItem {
+            previewTextViewController.isRichText = showsRichText
+            if getViewController(forItem: item) is PreviewTextViewController {
+                updateController(forItem: item)
+            }
         }
     }
 }

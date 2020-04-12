@@ -21,6 +21,8 @@ class PreviewTextViewController: NSViewController, PreviewViewController {
     @IBOutlet var rightPaddingConstraint: NSLayoutConstraint!
     @IBOutlet var leftPaddingConstraint: NSLayoutConstraint!
     
+    var isRichText: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,26 +48,8 @@ class PreviewTextViewController: NSViewController, PreviewViewController {
         textView.isHorizontallyResizable = false
     }
     
-    func getAttributedString(forHistoryItem item: HistoryItem, withDefaultAttributes attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
-        if let attrStr = item.getRtfAttributedString() {
-            return attrStr
-        }
-        else if let plainStr = item.getPlainString() {
-            return NSAttributedString(string: plainStr, attributes: attributes)
-        }
-        else if let htmlStr = item.getHtmlRawString() {
-            return NSAttributedString(string: htmlStr, attributes: attributes)
-        }
-        else if let url = item.getFileUrl() {
-            return NSAttributedString(string: url.path, attributes: attributes)
-        }
-        else {
-            return NSAttributedString(string: "Unknown format", attributes: attributes)
-        }
-    }
-    
     func configureView(forItem item: HistoryItem) -> NSRect {
-        let text = getAttributedString(forHistoryItem: item, withDefaultAttributes: YippyTextCellView.itemStringAttributes)
+        let text = HistoryItemText.getAttributedString(forItem: item, usingItemRtf: isRichText)
         
         textView.attributedText = text
         return calculateWindowFrame(forText: text)

@@ -41,12 +41,12 @@ You will find the installer disk image `X.dmg` in the same folder.
 - [ ] Automatic updates (maybe use Sparkle?)
 - [ ] Create a bug reporter, if places in code are reached that should not be possible create a unique error and a prompt to report the bug.
 - [ ] Don’t let any of the app be used until access is granted
-- [ ] Toggle for attributed text
+- [x] Toggle for attributed text
 - [x] Launch at login
 - [x] Convert history storage to storing each piece of data into a file organised by directory of indexes
 - [ ] Favourites
 - [ ] Search (https://github.com/krisk/fuse-swift)
-- [ ] Max history length
+- [x] Max history length
 - [ ] Cell height cache improvements. Will improve window size changes and launch time.
     - [ ] Find a cheap way to clear the cell height cache
     - [ ] Store cell heights on disk

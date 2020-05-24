@@ -19,33 +19,32 @@ enum PanelPosition: Int, Codable, CaseIterable {
     case centerLarge = 6
     case fullScreen = 7
     
-    var frame: NSRect {
-        // TODO: Use NSEvent.mouseLocation to choose which screen
+    public func getFrame(forScreen screen: NSScreen) -> NSRect {
         switch self {
         case .right:
-            return NSRect(x: NSScreen.main!.frame.maxX - Constants.panel.menuWidth, y: 0, width: Constants.panel.menuWidth, height: NSScreen.main!.frame.maxY)
+            return NSRect(x: screen.frame.maxX - Constants.panel.menuWidth, y: screen.frame.minY, width: Constants.panel.menuWidth, height: screen.frame.maxY)
         case .left:
-            return NSRect(x: 0, y: 0, width: Constants.panel.menuWidth, height: NSScreen.main!.frame.maxY)
+            return NSRect(x: screen.frame.minX, y: screen.frame.minY, width: Constants.panel.menuWidth, height: screen.frame.maxY)
         case .top:
-            return NSRect(x: 0, y: NSScreen.main!.frame.maxY - Constants.panel.menuHeight, width: NSScreen.main!.frame.width, height: Constants.panel.menuHeight)
+            return NSRect(x: screen.frame.minX, y: screen.frame.maxY - Constants.panel.menuHeight, width: screen.frame.width, height: Constants.panel.menuHeight)
         case .bottom:
-            return NSRect(x: 0, y: 0, width: NSScreen.main!.frame.width, height: Constants.panel.menuHeight)
+            return NSRect(x: screen.frame.minX, y: screen.frame.minY, width: screen.frame.width, height: Constants.panel.menuHeight)
         case .centerSmall:
-            let size = NSSize(width: NSScreen.main!.frame.width / 2, height: NSScreen.main!.frame.height / 2)
-            return Self.centerRect(ofSize: size, inRect: NSScreen.main!.frame)
+            let size = NSSize(width: screen.frame.width / 2, height: screen.frame.height / 2)
+            return Self.centerRect(ofSize: size, inRect: screen.frame)
         case .centerMedium:
-            let size = NSSize(width: NSScreen.main!.frame.width * 0.7, height: NSScreen.main!.frame.height * 0.7)
-            return Self.centerRect(ofSize: size, inRect: NSScreen.main!.frame)
+            let size = NSSize(width: screen.frame.width * 0.7, height: screen.frame.height * 0.7)
+            return Self.centerRect(ofSize: size, inRect: screen.frame)
         case .centerLarge:
-            let size = NSSize(width: NSScreen.main!.frame.width * 0.85, height: NSScreen.main!.frame.height * 0.85)
-            return Self.centerRect(ofSize: size, inRect: NSScreen.main!.frame)
+            let size = NSSize(width: screen.frame.width * 0.85, height: screen.frame.height * 0.85)
+            return Self.centerRect(ofSize: size, inRect: screen.frame)
         case .fullScreen:
-            return NSScreen.main!.frame
+            return screen.frame
         }
     }
     
     private static func centerRect(ofSize size: NSSize, inRect rect: NSRect) -> NSRect {
-        return NSRect(origin: NSPoint(x: (rect.width - size.width) / 2, y: (rect.height - size.height) / 2), size: size)
+        return NSRect(origin: NSPoint(x: (rect.width - size.width) / 2 + rect.minX, y: (rect.height - size.height) / 2 + rect.minY), size: size)
     }
     
     var title: String {

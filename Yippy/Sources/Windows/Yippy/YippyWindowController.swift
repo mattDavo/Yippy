@@ -44,11 +44,10 @@ class YippyWindowController: NSWindowController {
             })
     }
     
-    func subscribePositionTo(position: BehaviorRelay<PanelPosition>) -> Disposable {
-        return position
-            .subscribe(onNext: {
-                [] in
-                self.window?.setFrame($0.frame, display: true)
-            })
+    func subscribeFrameTo(position: Observable<PanelPosition>, screen: Observable<NSScreen>) -> Disposable {
+        Observable.combineLatest(position, screen).subscribe(onNext: {
+            (position, screen) in
+            self.window?.setFrame(position.getFrame(forScreen: screen), display: true)
+        })
     }
 }

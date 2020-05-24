@@ -106,7 +106,7 @@ class YippyUITests: XCTestCase {
         XCTAssertTrue(app.yippyWindow.exists)
         
         // Check window location is .right
-        XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.right.frame.midX)
+        XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.right.getFrame(forScreen: NSScreen.main!).midX)
         
         // Change to position left
         app.statusItemButton.click()
@@ -114,7 +114,7 @@ class YippyUITests: XCTestCase {
         app.positionLeftButton.click()
         
         // Check window location is .left
-        XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.left.frame.midX)
+        XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.left.getFrame(forScreen: NSScreen.main!).midX)
         
         // Change to position bottom
         app.statusItemButton.click()
@@ -139,7 +139,7 @@ class YippyUITests: XCTestCase {
         app.positionRightButton.click()
         
         // Check window location is .right
-        XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.right.frame.midX)
+        XCTAssertEqual(app.yippyWindow.frame.midX, PanelPosition.right.getFrame(forScreen: NSScreen.main!).midX)
     }
     
     func testEmptyYippyHistory() {

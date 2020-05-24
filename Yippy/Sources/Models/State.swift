@@ -24,6 +24,8 @@ class State {
     
     var panelPosition: BehaviorRelay<PanelPosition>
     
+    var currentScreen: BehaviorRelay<NSScreen>
+    
     var previewHistoryItem: BehaviorRelay<HistoryItem?>
     
     var launchAtLogin: BehaviorRelay<Bool>
@@ -51,6 +53,7 @@ class State {
         self.launchAtLogin = BehaviorRelay<Bool>(value: LoginServiceKit.isExistLoginItems())
         self.showsRichText = BehaviorRelay<Bool>(value: settings.showsRichText)
         self.pastesRichText = BehaviorRelay<Bool>(value: settings.pastesRichText)
+        self.currentScreen = BehaviorRelay<NSScreen>(value: Self.getCurrentScreen(forMouseLocation: NSEvent.mouseLocation))
         self.disposeBag = disposeBag
         
         // Setup history
@@ -65,8 +68,8 @@ class State {
         // Setup pasteboard monitor
         self.pasteboardMonitor = PasteboardMonitor(pasteboard: NSPasteboard.general, changeCount: settings.pasteboardChangeCount, delegate: self.history)
         
-        //
         Self.monitorPastesRichText(state: self)
+        Self.monitorMousePosition(state: self)
     }
     
     // MARK: - Constructor Helpers
@@ -83,5 +86,23 @@ class State {
         state.pastesRichText.distinctUntilChanged().subscribe(onNext: {
             HistoryItem.pastesRichText = $0
         }).disposed(by: state.disposeBag)
+    }
+    
+    static func monitorMousePosition(state: State) {
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (_) in
+            let currentScreen = getCurrentScreen(forMouseLocation: NSEvent.mouseLocation)
+            if currentScreen != state.currentScreen.value {
+                state.currentScreen.accept(currentScreen)
+            }
+        }
+    }
+    
+    static func getCurrentScreen(forMouseLocation location: NSPoint) -> NSScreen {
+        for screen in NSScreen.screens {
+            if screen.frame.contains(location) {
+                return screen
+            }
+        }
+        return NSScreen.main!
     }
 }

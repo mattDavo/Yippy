@@ -56,7 +56,7 @@ class Controller {
         self.statusItem.menu = Self.createMenu(settings: settings, state: state, target: self)
         
         // Create yippy window controller
-        self.yippyWindowController = Self.createYippyWindowController(isHistoryPanelShown: state.isHistoryPanelShown, panelPosition: state.panelPosition, disposeBag: state.disposeBag)
+        self.yippyWindowController = Self.createYippyWindowController(state: state, disposeBag: state.disposeBag)
        
         // Create preview window controllers
         self.previewWindowController = Self.createPreviewWindowController(previewItem: state.previewHistoryItem, disposeBag: state.disposeBag)
@@ -152,13 +152,13 @@ class Controller {
         }
     }
     
-    static func createYippyWindowController(isHistoryPanelShown: BehaviorRelay<Bool>, panelPosition: BehaviorRelay<PanelPosition>, disposeBag: DisposeBag) -> YippyWindowController {
+    static func createYippyWindowController(state: State, disposeBag: DisposeBag) -> YippyWindowController {
         let controller = YippyWindowController.createYippyWindowController()
         controller
-            .subscribeTo(toggle: isHistoryPanelShown)
+            .subscribeTo(toggle: state.isHistoryPanelShown)
             .disposed(by: disposeBag)
         controller
-            .subscribePositionTo(position: panelPosition)
+            .subscribeFrameTo(position: state.panelPosition.asObservable(), screen: state.currentScreen.asObservable())
             .disposed(by: disposeBag)
         return controller
     }

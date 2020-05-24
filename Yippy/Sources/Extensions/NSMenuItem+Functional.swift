@@ -10,6 +10,7 @@ import Cocoa
 
 extension NSMenuItem {
     
+    @discardableResult
     func with(submenu: NSMenu) -> NSMenuItem {
         self.submenu = submenu
         return self

@@ -54,12 +54,12 @@ class YippyViewController: NSViewController {
         YippyHotKeys.pageUp.onLong(goToPreviousItem)
         YippyHotKeys.escape.onDown(close)
         YippyHotKeys.return.onDown(pasteSelected)
-        YippyHotKeys.cmdLeftArrow.onDown { State.main.panelPosition.accept(.left) }
-        YippyHotKeys.cmdRightArrow.onDown { State.main.panelPosition.accept(.right) }
-        YippyHotKeys.cmdDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
-        YippyHotKeys.cmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
-        YippyHotKeys.cmdDelete.onDown(deleteSelected)
-        YippyHotKeys.space.onDown(togglePreview)
+        YippyHotKeys.ctrlAltLeftArrow.onDown { State.main.panelPosition.accept(.left) }
+        YippyHotKeys.ctrlAltRightArrow.onDown { State.main.panelPosition.accept(.right) }
+        YippyHotKeys.ctrlAltDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
+        YippyHotKeys.ctrlAltUpArrow.onDown { State.main.panelPosition.accept(.top) }
+        YippyHotKeys.ctrlDelete.onDown(deleteSelected)
+        YippyHotKeys.ctrlSpace.onDown(togglePreview)
         
         // Paste hot keys
         YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }
@@ -79,10 +79,10 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(YippyHotKeys.escape, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.pageDown, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.pageUp, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.cmdLeftArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.cmdRightArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.cmdDownArrow, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.cmdUpArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.ctrlAltLeftArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.ctrlAltRightArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.ctrlAltDownArrow, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.ctrlAltUpArrow, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.cmd0, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.cmd1, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.cmd2, disposeBag: disposeBag)
@@ -93,8 +93,8 @@ class YippyViewController: NSViewController {
         bindHotKeyToYippyWindow(YippyHotKeys.cmd7, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.cmd8, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.cmd9, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.cmdDelete, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.space, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.ctrlDelete, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.ctrlSpace, disposeBag: disposeBag)
     }
     
     override func viewWillAppear() {

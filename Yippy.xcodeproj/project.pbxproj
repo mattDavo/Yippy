@@ -136,6 +136,7 @@
 		34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */; };
 		34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */; };
 		34E56483235E777E00E362CF /* NSTextCheckingResult+Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E56482235E777E00E362CF /* NSTextCheckingResult+Groups.swift */; };
+		34EC0FF42504A599004E1A63 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = 34EC0FF32504A599004E1A63 /* Fuse */; };
 		34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */; };
 		34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
 		4DA70C61A2E219F209B604B1 /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDD229A1CAFCD029FAE0A53 /* Pods_Yippy.framework */; };
@@ -321,6 +322,7 @@
 				345DCFBD2420C2D2003E214D /* HotKey in Frameworks */,
 				344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */,
 				4DA70C61A2E219F209B604B1 /* Pods_Yippy.framework in Frameworks */,
+				34EC0FF42504A599004E1A63 /* Fuse in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +785,7 @@
 			name = Yippy;
 			packageProductDependencies = (
 				345DCFBC2420C2D2003E214D /* HotKey */,
+				34EC0FF32504A599004E1A63 /* Fuse */,
 			);
 			productName = Yippy;
 			productReference = 34ACFBBB22EB0B0F004E6E63 /* Yippy.app */;
@@ -868,6 +871,7 @@
 			mainGroup = 34ACFBB222EB0B0E004E6E63;
 			packageReferences = (
 				345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */,
+				34EC0FF22504A599004E1A63 /* XCRemoteSwiftPackageReference "fuse-swift" */,
 			);
 			productRefGroup = 34ACFBBC22EB0B0F004E6E63 /* Products */;
 			projectDirPath = "";
@@ -1913,6 +1917,14 @@
 				version = 0.1.5;
 			};
 		};
+		34EC0FF22504A599004E1A63 /* XCRemoteSwiftPackageReference "fuse-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krisk/fuse-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1925,6 +1937,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;
+		};
+		34EC0FF32504A599004E1A63 /* Fuse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34EC0FF22504A599004E1A63 /* XCRemoteSwiftPackageReference "fuse-swift" */;
+			productName = Fuse;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

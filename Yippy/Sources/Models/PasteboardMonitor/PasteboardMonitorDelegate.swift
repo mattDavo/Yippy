@@ -16,5 +16,5 @@ protocol PasteboardMonitorDelegate {
      
      - Parameter pasteboard: The pasteboard that changed.
      */
-    func pasteboardDidChange(_ pasteboard: NSPasteboard)
+    func pasteboardDidChange(_ pasteboard: NSPasteboard, originBundleId: String?)
 }

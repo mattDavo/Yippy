@@ -19,7 +19,11 @@ class YippyViewController: NSViewController {
     @IBOutlet var itemGroupScrollView: HorizontalButtonsView!
     @IBOutlet var itemCountLabel: NSTextField!
     
+    @IBOutlet var textField: NSTextField!
+    
     var yippyHistory = YippyHistory(history: State.main.history, items: [])
+    
+    var searchEngine = SearchEngine(data: [])
     
     let disposeBag = DisposeBag()
     
@@ -43,6 +47,8 @@ class YippyViewController: NSViewController {
         itemGroupScrollView.bind(toSelected: BehaviorRelay<Int>(value: 0).asObservable()).disposed(by: disposeBag)
         // TODO: Remove this when implemented
         itemGroupScrollView.constraint(withIdentifier: "height")?.constant = 0
+        
+        textField.delegate = self
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
         YippyHotKeys.downArrow.onLong(goToNextItem)
@@ -114,6 +120,7 @@ class YippyViewController: NSViewController {
         
         yippyHistory = YippyHistory(history: State.main.history, items: history)
         yippyHistoryView.reloadData(yippyHistory.items, isRichText: isRichText)
+        self.searchEngine = SearchEngine(data: history.compactMap({$0.getPlainString()}))
     }
     
     func onShowsRichText(_ showsRichText: Bool) {
@@ -199,6 +206,23 @@ class YippyViewController: NSViewController {
                 State.main.previewHistoryItem.accept(nil)
             }
         }
+    }
+}
+
+extension YippyViewController: NSTextFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        searchEngine.search(query: textField.stringValue, completion: { result in
+            print("Query: '\(result.query.query)' [\(result.completed)/\(result.items)] \(result.results.count) matches")
+            
+            var filteredData = [HistoryItem]()
+            for i in result.results {
+                filteredData.append(self.yippyHistory.items[i])
+            }
+            
+            DispatchQueue.main.async {
+                self.yippyHistoryView.reloadData(filteredData, isRichText: self.isRichText)
+            }
+        })
     }
 }
 

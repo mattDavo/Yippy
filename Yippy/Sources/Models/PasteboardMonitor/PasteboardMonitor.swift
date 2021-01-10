@@ -27,6 +27,7 @@ class PasteboardMonitor {
         self.lastChangeCount = changeCount
         
         // Registers if any application becomes active (or comes frontmost) and calls a method if it's the case.
+        // https://stackoverflow.com/a/49402868
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(activeApp(sender:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
         
         // TODO: Is it best to do a check straight away?

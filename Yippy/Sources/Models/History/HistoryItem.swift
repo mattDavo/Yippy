@@ -222,12 +222,20 @@ class HistoryItem: NSObject {
         }
         return false
     }
+    
+    private let richTextPasteboardTypes = [
+        NSPasteboard.PasteboardType.rtf.rawValue,
+        NSPasteboard.PasteboardType.html.rawValue,
+        "public.utf16-external-plain-text",
+    ]
 }
 
 // MARK: - HistoryItem+NSPasteboardWriting
 extension HistoryItem: NSPasteboardWriting {
     func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
-        return types.filter{ HistoryItem.pastesRichText || $0 != .rtf } + [Self.historyItemIdType]
+        return types.filter{
+            HistoryItem.pastesRichText || !richTextPasteboardTypes.contains($0.rawValue)
+        } + [Self.historyItemIdType]
     }
     
     func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {

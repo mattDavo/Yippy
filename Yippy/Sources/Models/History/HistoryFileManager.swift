@@ -216,12 +216,13 @@ class HistoryFileManager {
             }
             
             // Create folder for the new item
+            let directoryUrl = self.getUrl(forItemWithId: newHistory[i].fsId)
             do {
-                try self.fileManager.createDirectory(at: self.getUrl(forItemWithId: newHistory[i].fsId), withIntermediateDirectories: true)
+                try self.fileManager.createDirectory(at: directoryUrl, withIntermediateDirectories: true)
             }
             catch {
                 let historyError = YippyError(code: 0, userInfo: [
-                    NSLocalizedDescriptionKey: "Failed to save new item due to error: \(error.localizedDescription)"
+                    NSLocalizedDescriptionKey: "Failed to save new item due to error: \(error.localizedDescription) Attempted to create directory at '\(directoryUrl.absoluteString)'."
                 ])
                 historyError.log(with: self.errorLogger)
                 historyError.show(with: self.alerter)
@@ -231,15 +232,15 @@ class HistoryFileManager {
             
             // Save the data
             for (type, data) in unsavedData {
+                let itemUrl = self.getUrl(forItemWithId: newHistory[i].fsId, andPasteboardType: type)
                 do {
-                    try self.dataFileManager.writeData(data, to: self.getUrl(forItemWithId: newHistory[i].fsId, andPasteboardType: type), options: Data.WritingOptions())
+                    try self.dataFileManager.writeData(data, to: itemUrl, options: Data.WritingOptions())
                 }
                 catch {
                     let historyError = YippyError(code: 0, userInfo: [
-                        NSLocalizedDescriptionKey: "Failed to save new pasteboard item due to error: \(error.localizedDescription)"
+                        NSLocalizedDescriptionKey: "Failed to save new pasteboard item due to error: \(error.localizedDescription) Attempted to save pasteboard item at '\(itemUrl)'."
                     ])
                     historyError.log(with: self.errorLogger)
-                    historyError.show(with: self.alerter)
                     self.callHander(handler, withVal: false)
                     return
                 }

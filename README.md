@@ -12,7 +12,7 @@ Find all releases at <a href="https://yippy.mattdavo.com/releases" target="_blan
 ## Installation
 Downloaded from <a href="https://yippy.mattdavo.com" target="_blank">yippy.mattdavo.com</a> or install with [Homebrew Cask](https://github.com/Homebrew/homebrew-cask):
 ```
-brew install yippy
+brew install --cask yippy
 ```
 
 For help with installation see: <a href="https://yippy.mattdavo.com/installation" target="_blank">yippy.mattdavo.com/installation</a>.

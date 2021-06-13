@@ -62,7 +62,7 @@ class History {
     private var subscribers = [SubscribeHandler]()
     
     private let bundleIdDenylist = [String]()
-    /// If a pasteboard item types contains any of these, it will not be saved.
+    /// If a pasteboard item's types contains any of these, it will not be saved.
     private let pasteboardTypeDenylist: Set = [
         "org.nspasteboard.TransientType",
         "org.nspasteboard.ConcealedType",
@@ -73,6 +73,10 @@ class History {
         "Pasteboard generator type",
         "net.antelle.keeweb",
     ]
+    /// These pasteboard item types will not be saved.
+    private let pasteboardTypeIgnoreList = Set([
+        "dyn.ah62d4rv4gu8zg55zsmv0nvperf4g86varvu0635zqfx0nkdsqf00nkduqf31k3pcr7u1e3basv61a3k",
+    ].map({NSPasteboard.PasteboardType(rawValue: $0)}));
     
     init(historyFM: HistoryFileManager = .default, cache: HistoryCache, items: [HistoryItem], maxItems: Int = Constants.system.maxHistoryItems) {
         self.historyFM = historyFM
@@ -181,20 +185,30 @@ extension History: PasteboardMonitorDelegate {
         }
         
         for item in items {
-            if !item.types.isEmpty && Set(item.types.map({ $0.rawValue })).isDisjoint(with: pasteboardTypeDenylist) {
+            let filteredTypes = Set(item.types).subtracting(self.pasteboardTypeIgnoreList)
+            let hasTypes = !filteredTypes.isEmpty
+            let hasNoDeniedTypes = Set(filteredTypes.map({ $0.rawValue })).isDisjoint(with: pasteboardTypeDenylist)
+            
+            if hasTypes && hasNoDeniedTypes {
                 var data = [NSPasteboard.PasteboardType: Data]()
-                for type in item.types {
+                for type in filteredTypes {
                     if let d = item.data(forType: type) {
-                        data[type] = d
+                        let firstData = self.items.first?.data(forType: type)
+                        let isNewData = firstData == nil || firstData?.hashValue != d.hashValue
+                        if isNewData {
+                            data[type] = d
+                        }
                     }
                     else {
                         print("Warning: new pasteboard data nil for type '\(type.rawValue)'")
                     }
                 }
-                let historyItem = HistoryItem(unsavedData: data, cache: cache)
-                insertItem(historyItem, at: 0)
-                let selected = (_selected.value ?? -1) + 1
-                setSelected(selected)
+                if !data.isEmpty {
+                    let historyItem = HistoryItem(unsavedData: data, cache: cache)
+                    insertItem(historyItem, at: 0)
+                    let selected = (_selected.value ?? -1) + 1
+                    setSelected(selected)
+                }
             }
         }
         

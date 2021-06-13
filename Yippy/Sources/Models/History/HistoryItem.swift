@@ -86,7 +86,7 @@ class HistoryItem: NSObject {
     /// Returns the data for given type.
     ///
     /// If the data is available in `unsavedData` it will be returned.
-    /// Otherwise if the item is not being cached, the data will be load from disk using the cache, but it will not be cached.
+    /// Otherwise if the item is not being cached, the data will be loaded from disk using the cache, but it will not be cached.
     /// Otherwise it will use the cache to get the data.
     ///
     /// - Parameter type: The type of pasteboard data to get.

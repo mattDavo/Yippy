@@ -227,6 +227,7 @@ class HistoryItem: NSObject {
         NSPasteboard.PasteboardType.rtf.rawValue,
         NSPasteboard.PasteboardType.html.rawValue,
         "public.utf16-external-plain-text",
+        "org.chromium.web-custom-data",
     ]
 }
 

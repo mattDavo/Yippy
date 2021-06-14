@@ -141,9 +141,9 @@
 		34EC0FF92504ADE7004E1A63 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC0FF82504ADE7004E1A63 /* SearchEngine.swift */; };
 		34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */; };
 		34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
-		4DA70C61A2E219F209B604B1 /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDD229A1CAFCD029FAE0A53 /* Pods_Yippy.framework */; };
-		AA1DDF0D9AA72B5024F21A54 /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B3059BFACE38F8E4B917E9 /* Pods_YippyTests.framework */; };
-		E796523E36EA7895A1135B57 /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C6FC5F58436C64AD674B4D /* Pods_YippyUITests.framework */; };
+		8785A84DB972F69B9A0585E9 /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ACFCB0B26BF8B8E6EF42EA /* Pods_Yippy.framework */; };
+		B8A057305B33D2028FC0EC05 /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */; };
+		D104B1D4E210055A8E6424F0 /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,12 +164,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		022F85634786F551A0E733FB /* Pods-YippyTests.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta debug.xcconfig"; sourceTree = "<group>"; };
-		0A2F38EF6959398B0D5C20D6 /* Pods-Yippy.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.xctest.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.xctest.xcconfig"; sourceTree = "<group>"; };
-		0BC7BBF3DB9F5798801ED97D /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
-		200B1D634417C20472C821EE /* Pods-YippyUITests.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.beta debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.beta debug.xcconfig"; sourceTree = "<group>"; };
-		20E451323A6FFB76FC5CF3CA /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
-		246EEE87F46CD9190F073F27 /* Pods-YippyTests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta release.xcconfig"; sourceTree = "<group>"; };
+		04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		202453EF7CD6236AEDFC2D28 /* Pods-Yippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.debug.xcconfig"; sourceTree = "<group>"; };
+		292479A169E6616BA796405B /* Pods-Yippy.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.xctest.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.xctest.xcconfig"; sourceTree = "<group>"; };
+		2D2B3E00E7AF930AA001E27C /* Pods-Yippy.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.beta release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.beta release.xcconfig"; sourceTree = "<group>"; };
 		34010D29234AB3F100C1218D /* YippyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindow.swift; sourceTree = "<group>"; };
 		340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+WithPrevious.swift"; sourceTree = "<group>"; };
 		340FB43A236407D70053D82C /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
@@ -304,18 +303,19 @@
 		34EC0FF62504AC9C004E1A63 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		34EC0FF82504ADE7004E1A63 /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 		34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+YippyItem.swift"; sourceTree = "<group>"; };
-		40A72B590B757755DA12A107 /* Pods-YippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5BDD229A1CAFCD029FAE0A53 /* Pods_Yippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		670437FC201E4A966D5EDE14 /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
-		89C6FC5F58436C64AD674B4D /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B59A128B9E9597D688C73935 /* Pods-Yippy.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.beta release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.beta release.xcconfig"; sourceTree = "<group>"; };
-		C3A96C12C18573E13C3A10C3 /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		D2B3059BFACE38F8E4B917E9 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D97E2FA743B0C4575B467A63 /* Pods-Yippy.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.beta debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.beta debug.xcconfig"; sourceTree = "<group>"; };
-		E2D94715BDF4FC2002D2826D /* Pods-YippyTests.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.xctest.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.xctest.xcconfig"; sourceTree = "<group>"; };
-		E50B633A8320AA7329B1C827 /* Pods-YippyUITests.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.xctest.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.xctest.xcconfig"; sourceTree = "<group>"; };
-		E5C0D798E1CE27173ECBB0CE /* Pods-Yippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.debug.xcconfig"; sourceTree = "<group>"; };
-		E90A3AE80B2D91E44AAF3DBF /* Pods-YippyUITests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.beta release.xcconfig"; sourceTree = "<group>"; };
+		473D1B2417E6C47B92751AA6 /* Pods-YippyTests.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta debug.xcconfig"; sourceTree = "<group>"; };
+		497AE5F620140FB1A3632D80 /* Pods-YippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6345AD4696DA11C3A58F38CB /* Pods-Yippy.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.beta debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.beta debug.xcconfig"; sourceTree = "<group>"; };
+		B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7B2145CEF513C8B71E739A5 /* Pods-YippyUITests.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.xctest.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.xctest.xcconfig"; sourceTree = "<group>"; };
+		C0ACFCB0B26BF8B8E6EF42EA /* Pods_Yippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C555279B4167FBDCA36E01CC /* Pods-YippyUITests.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.beta debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.beta debug.xcconfig"; sourceTree = "<group>"; };
+		D494A85C58610499F7B77533 /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
+		D645D0527FE8FF6EF353F28D /* Pods-YippyUITests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.beta release.xcconfig"; sourceTree = "<group>"; };
+		DB08CF772E2DDB5EB572EC69 /* Pods-YippyTests.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.xctest.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.xctest.xcconfig"; sourceTree = "<group>"; };
+		DD6B8A620296CD50E196DD19 /* Pods-YippyTests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta release.xcconfig"; sourceTree = "<group>"; };
+		E64E0EE8F7B5AE23FF150E45 /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
+		FEE6024221D8C9C221BBE212 /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,7 +334,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA1DDF0D9AA72B5024F21A54 /* Pods_YippyTests.framework in Frameworks */,
+				D104B1D4E210055A8E6424F0 /* Pods_YippyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +342,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E796523E36EA7895A1135B57 /* Pods_YippyUITests.framework in Frameworks */,
+				B8A057305B33D2028FC0EC05 /* Pods_YippyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,9 +354,9 @@
 			children = (
 				344C1163234DD31700B35DC9 /* QuartzCore.framework */,
 				344C1161234DD2EF00B35DC9 /* Quartz.framework */,
-				5BDD229A1CAFCD029FAE0A53 /* Pods_Yippy.framework */,
-				D2B3059BFACE38F8E4B917E9 /* Pods_YippyTests.framework */,
-				89C6FC5F58436C64AD674B4D /* Pods_YippyUITests.framework */,
+				C0ACFCB0B26BF8B8E6EF42EA /* Pods_Yippy.framework */,
+				B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */,
+				06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -760,21 +760,21 @@
 		E25B1BF673F15B06A7F5367C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E5C0D798E1CE27173ECBB0CE /* Pods-Yippy.debug.xcconfig */,
-				0A2F38EF6959398B0D5C20D6 /* Pods-Yippy.xctest.xcconfig */,
-				D97E2FA743B0C4575B467A63 /* Pods-Yippy.beta debug.xcconfig */,
-				0BC7BBF3DB9F5798801ED97D /* Pods-Yippy.release.xcconfig */,
-				B59A128B9E9597D688C73935 /* Pods-Yippy.beta release.xcconfig */,
-				40A72B590B757755DA12A107 /* Pods-YippyTests.debug.xcconfig */,
-				E2D94715BDF4FC2002D2826D /* Pods-YippyTests.xctest.xcconfig */,
-				022F85634786F551A0E733FB /* Pods-YippyTests.beta debug.xcconfig */,
-				20E451323A6FFB76FC5CF3CA /* Pods-YippyTests.release.xcconfig */,
-				246EEE87F46CD9190F073F27 /* Pods-YippyTests.beta release.xcconfig */,
-				C3A96C12C18573E13C3A10C3 /* Pods-YippyUITests.debug.xcconfig */,
-				E50B633A8320AA7329B1C827 /* Pods-YippyUITests.xctest.xcconfig */,
-				200B1D634417C20472C821EE /* Pods-YippyUITests.beta debug.xcconfig */,
-				670437FC201E4A966D5EDE14 /* Pods-YippyUITests.release.xcconfig */,
-				E90A3AE80B2D91E44AAF3DBF /* Pods-YippyUITests.beta release.xcconfig */,
+				202453EF7CD6236AEDFC2D28 /* Pods-Yippy.debug.xcconfig */,
+				292479A169E6616BA796405B /* Pods-Yippy.xctest.xcconfig */,
+				6345AD4696DA11C3A58F38CB /* Pods-Yippy.beta debug.xcconfig */,
+				E64E0EE8F7B5AE23FF150E45 /* Pods-Yippy.release.xcconfig */,
+				2D2B3E00E7AF930AA001E27C /* Pods-Yippy.beta release.xcconfig */,
+				497AE5F620140FB1A3632D80 /* Pods-YippyTests.debug.xcconfig */,
+				DB08CF772E2DDB5EB572EC69 /* Pods-YippyTests.xctest.xcconfig */,
+				473D1B2417E6C47B92751AA6 /* Pods-YippyTests.beta debug.xcconfig */,
+				D494A85C58610499F7B77533 /* Pods-YippyTests.release.xcconfig */,
+				DD6B8A620296CD50E196DD19 /* Pods-YippyTests.beta release.xcconfig */,
+				04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */,
+				B7B2145CEF513C8B71E739A5 /* Pods-YippyUITests.xctest.xcconfig */,
+				C555279B4167FBDCA36E01CC /* Pods-YippyUITests.beta debug.xcconfig */,
+				FEE6024221D8C9C221BBE212 /* Pods-YippyUITests.release.xcconfig */,
+				D645D0527FE8FF6EF353F28D /* Pods-YippyUITests.beta release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -786,11 +786,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE122EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "Yippy" */;
 			buildPhases = (
-				33522E513D48141E4A6E0BAF /* [CP] Check Pods Manifest.lock */,
+				750D5CFCA0BAE22103480DDB /* [CP] Check Pods Manifest.lock */,
 				34ACFBB722EB0B0F004E6E63 /* Sources */,
 				34ACFBB822EB0B0F004E6E63 /* Frameworks */,
 				34ACFBB922EB0B0F004E6E63 /* Resources */,
-				C9192B99B9F120EAA69AF8E3 /* [CP] Embed Pods Frameworks */,
+				D04500AD22B2AEF42A36F940 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -809,11 +809,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE422EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyTests" */;
 			buildPhases = (
-				4BE961C05184CBFA66B6BCA7 /* [CP] Check Pods Manifest.lock */,
+				7DDB83DEAFAC1A134A439734 /* [CP] Check Pods Manifest.lock */,
 				34ACFBC922EB0B11004E6E63 /* Sources */,
 				34ACFBCA22EB0B11004E6E63 /* Frameworks */,
 				34ACFBCB22EB0B11004E6E63 /* Resources */,
-				E537A7C65BC9401566CA2781 /* [CP] Embed Pods Frameworks */,
+				4A0057EE70700FCD977DF106 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -830,11 +830,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE722EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyUITests" */;
 			buildPhases = (
-				070B9956F76412324ABC11CC /* [CP] Check Pods Manifest.lock */,
+				2A60A7B814DF5E6C64690AA7 /* [CP] Check Pods Manifest.lock */,
 				34ACFBD422EB0B11004E6E63 /* Sources */,
 				34ACFBD522EB0B11004E6E63 /* Frameworks */,
 				34ACFBD622EB0B11004E6E63 /* Resources */,
-				E7A71819ED0A5B9E056C531F /* [CP] Embed Pods Frameworks */,
+				651949D2B65A134E8F9E664E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -926,7 +926,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		070B9956F76412324ABC11CC /* [CP] Check Pods Manifest.lock */ = {
+		2A60A7B814DF5E6C64690AA7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -948,7 +948,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		33522E513D48141E4A6E0BAF /* [CP] Check Pods Manifest.lock */ = {
+		4A0057EE70700FCD977DF106 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		651949D2B65A134E8F9E664E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		750D5CFCA0BAE22103480DDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -970,7 +1004,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4BE961C05184CBFA66B6BCA7 /* [CP] Check Pods Manifest.lock */ = {
+		7DDB83DEAFAC1A134A439734 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -992,7 +1026,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C9192B99B9F120EAA69AF8E3 /* [CP] Embed Pods Frameworks */ = {
+		D04500AD22B2AEF42A36F940 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1007,40 +1041,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E537A7C65BC9401566CA2781 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E7A71819ED0A5B9E056C531F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1200,7 +1200,6 @@
 /* Begin PBXTargetDependency section */
 		345DCFBF2420CB92003E214D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 345DCFBE2420CB92003E214D /* HotKey */;
 		};
 		34ACFBCF22EB0B11004E6E63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1345,14 +1344,14 @@
 		};
 		34ACFBE222EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5C0D798E1CE27173ECBB0CE /* Pods-Yippy.debug.xcconfig */;
+			baseConfigurationReference = 202453EF7CD6236AEDFC2D28 /* Pods-Yippy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1361,24 +1360,25 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		34ACFBE322EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BC7BBF3DB9F5798801ED97D /* Pods-Yippy.release.xcconfig */;
+			baseConfigurationReference = E64E0EE8F7B5AE23FF150E45 /* Pods-Yippy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1387,17 +1387,18 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		34ACFBE522EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A72B590B757755DA12A107 /* Pods-YippyTests.debug.xcconfig */;
+			baseConfigurationReference = 497AE5F620140FB1A3632D80 /* Pods-YippyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1419,7 +1420,7 @@
 		};
 		34ACFBE622EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20E451323A6FFB76FC5CF3CA /* Pods-YippyTests.release.xcconfig */;
+			baseConfigurationReference = D494A85C58610499F7B77533 /* Pods-YippyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1441,7 +1442,7 @@
 		};
 		34ACFBE822EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3A96C12C18573E13C3A10C3 /* Pods-YippyUITests.debug.xcconfig */;
+			baseConfigurationReference = 04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1462,7 +1463,7 @@
 		};
 		34ACFBE922EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 670437FC201E4A966D5EDE14 /* Pods-YippyUITests.release.xcconfig */;
+			baseConfigurationReference = FEE6024221D8C9C221BBE212 /* Pods-YippyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1545,14 +1546,14 @@
 		};
 		34F104802354323100B65251 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D97E2FA743B0C4575B467A63 /* Pods-Yippy.beta debug.xcconfig */;
+			baseConfigurationReference = 6345AD4696DA11C3A58F38CB /* Pods-Yippy.beta debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1561,10 +1562,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME) Beta";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG BETA";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1572,7 +1574,7 @@
 		};
 		34F104812354323100B65251 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 022F85634786F551A0E733FB /* Pods-YippyTests.beta debug.xcconfig */;
+			baseConfigurationReference = 473D1B2417E6C47B92751AA6 /* Pods-YippyTests.beta debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1594,7 +1596,7 @@
 		};
 		34F104822354323100B65251 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 200B1D634417C20472C821EE /* Pods-YippyUITests.beta debug.xcconfig */;
+			baseConfigurationReference = C555279B4167FBDCA36E01CC /* Pods-YippyUITests.beta debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1670,14 +1672,14 @@
 		};
 		34F104842354325400B65251 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B59A128B9E9597D688C73935 /* Pods-Yippy.beta release.xcconfig */;
+			baseConfigurationReference = 2D2B3E00E7AF930AA001E27C /* Pods-Yippy.beta release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1686,10 +1688,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME) Beta";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = BETA;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1697,7 +1700,7 @@
 		};
 		34F104852354325400B65251 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 246EEE87F46CD9190F073F27 /* Pods-YippyTests.beta release.xcconfig */;
+			baseConfigurationReference = DD6B8A620296CD50E196DD19 /* Pods-YippyTests.beta release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1719,7 +1722,7 @@
 		};
 		34F104862354325400B65251 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E90A3AE80B2D91E44AAF3DBF /* Pods-YippyUITests.beta release.xcconfig */;
+			baseConfigurationReference = D645D0527FE8FF6EF353F28D /* Pods-YippyUITests.beta release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1802,14 +1805,14 @@
 		};
 		34F104882354325E00B65251 /* XCTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A2F38EF6959398B0D5C20D6 /* Pods-Yippy.xctest.xcconfig */;
+			baseConfigurationReference = 292479A169E6616BA796405B /* Pods-Yippy.xctest.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
@@ -1818,7 +1821,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyXCTest;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1829,7 +1832,7 @@
 		};
 		34F104892354325E00B65251 /* XCTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2D94715BDF4FC2002D2826D /* Pods-YippyTests.xctest.xcconfig */;
+			baseConfigurationReference = DB08CF772E2DDB5EB572EC69 /* Pods-YippyTests.xctest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1852,7 +1855,7 @@
 		};
 		34F1048A2354325E00B65251 /* XCTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E50B633A8320AA7329B1C827 /* Pods-YippyUITests.xctest.xcconfig */;
+			baseConfigurationReference = B7B2145CEF513C8B71E739A5 /* Pods-YippyUITests.xctest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1944,11 +1947,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		345DCFBC2420C2D2003E214D /* HotKey */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */;
-			productName = HotKey;
-		};
 		345DCFBE2420CB92003E214D /* HotKey */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */;

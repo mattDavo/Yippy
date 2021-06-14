@@ -26,13 +26,30 @@ class YippyItemBaseCellView: NSTableCellView {
     var shortcutTextView: YippyItemCellTextView!
     var itemTextView: YippyItemCellTextView!
     
+    private var lastSetSelected: Bool?
+    
+    override func updateLayer() {
+        super.updateLayer()
+        
+        guard let lastSetSelected = self.lastSetSelected else { return }
+        if !lastSetSelected { return }
+        guard #available(OSX 10.14, *) else { return }
+        layer?.backgroundColor = NSColor.controlAccentColor.cgColor
+    }
+    
     static let shortcutStringAttributes: [NSAttributedString.Key: Any] = [
         .font: Constants.fonts.yippyPlainText,
         .foregroundColor: NSColor.white.withAlphaComponent(0.7)
     ]
     
     func setHighlight(isSelected: Bool) {
-        layer?.backgroundColor = isSelected ? NSColor.systemBlue.withAlphaComponent(0.7).cgColor : NSColor.lightGray.withAlphaComponent(0.0).cgColor
+        var highlightColor = NSColor.systemBlue.withAlphaComponent(0.7).cgColor
+        if #available(OSX 10.14, *) {
+            highlightColor = NSColor.controlAccentColor.cgColor
+        }
+        
+        layer?.backgroundColor = isSelected ? highlightColor : NSColor.clear.cgColor
+        self.lastSetSelected = isSelected
     }
     
     override init(frame frameRect: NSRect) {
@@ -87,6 +104,9 @@ class YippyItemBaseCellView: NSTableCellView {
         shortcutTextView.isHorizontallyResizable = false
         shortcutTextView.isVerticallyResizable = false
         shortcutTextView.backgroundColor = NSColor(named: NSColor.Name("ShortcutBackgroundColor"))!
+        if #available(OSX 10.14, *) {
+            shortcutTextView.backgroundColor = NSColor.controlAccentColor
+        }
         shortcutTextView.layer?.zPosition = 1
         
         contentView.addConstraint(NSLayoutConstraint(item: shortcutTextView!, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0))
@@ -118,7 +138,5 @@ class YippyItemBaseCellView: NSTableCellView {
         let menu = NSMenu(title: "Test").with(menuItem: NSMenuItem(title: "Options coming soon", action: nil, keyEquivalent: ""))
         
         menu.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
-        
-        
     }
 }

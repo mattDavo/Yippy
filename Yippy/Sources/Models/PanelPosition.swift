@@ -14,6 +14,7 @@ enum PanelPosition: Int, Codable, CaseIterable {
     case left = 1
     case top = 2
     case bottom = 3
+    case centerExtraSmall = 8
     case centerSmall = 4
     case centerMedium = 5
     case centerLarge = 6
@@ -22,13 +23,16 @@ enum PanelPosition: Int, Codable, CaseIterable {
     public func getFrame(forScreen screen: NSScreen) -> NSRect {
         switch self {
         case .right:
-            return NSRect(x: screen.frame.maxX - Constants.panel.menuWidth, y: screen.frame.minY, width: Constants.panel.menuWidth, height: screen.frame.maxY)
+            return NSRect(x: screen.frame.maxX - Constants.panel.menuWidth, y: screen.frame.minY, width: Constants.panel.menuWidth, height: screen.frame.height)
         case .left:
-            return NSRect(x: screen.frame.minX, y: screen.frame.minY, width: Constants.panel.menuWidth, height: screen.frame.maxY)
+            return NSRect(x: screen.frame.minX, y: screen.frame.minY, width: Constants.panel.menuWidth, height: screen.frame.height)
         case .top:
             return NSRect(x: screen.frame.minX, y: screen.frame.maxY - Constants.panel.menuHeight, width: screen.frame.width, height: Constants.panel.menuHeight)
         case .bottom:
             return NSRect(x: screen.frame.minX, y: screen.frame.minY, width: screen.frame.width, height: Constants.panel.menuHeight)
+        case .centerExtraSmall:
+            let size = NSSize(width: screen.frame.width / 3, height: screen.frame.height / 3)
+            return Self.centerRect(ofSize: size, inRect: screen.frame)
         case .centerSmall:
             let size = NSSize(width: screen.frame.width / 2, height: screen.frame.height / 2)
             return Self.centerRect(ofSize: size, inRect: screen.frame)
@@ -57,6 +61,8 @@ enum PanelPosition: Int, Codable, CaseIterable {
             return "Top"
         case .bottom:
             return "Bottom"
+        case .centerExtraSmall:
+            return "Center (Extra Small)"
         case .centerSmall:
             return "Center (Small)"
         case .centerMedium:
@@ -78,6 +84,8 @@ enum PanelPosition: Int, Codable, CaseIterable {
             return Accessibility.identifiers.positionTopButton
         case .bottom:
             return Accessibility.identifiers.positionBottomButton
+        case.centerExtraSmall:
+            return Accessibility.identifiers.positionCenterExtraSmall
         case .centerSmall:
             return Accessibility.identifiers.positionCenterSmall
         case .centerMedium:

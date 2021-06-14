@@ -30,7 +30,6 @@ class PreviewTextViewController: NSViewController, PreviewViewController {
         
         view.wantsLayer = true
         view.layer?.cornerRadius = 10
-        view.layer?.borderColor = NSColor.systemBlue.withAlphaComponent(0.7).cgColor
         view.layer?.borderWidth = padding.left
         
         topPaddingConstraint.constant = padding.top

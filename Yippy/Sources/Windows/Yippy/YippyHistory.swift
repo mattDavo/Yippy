@@ -54,7 +54,8 @@ class YippyHistory {
         }
     }
     
-    func delete(selected: Int) {
+    /// Returns the next item to select
+    func delete(selected: Int) -> Int? {
         history.deleteItem(at: selected)
         if selected == 0 {
             // If we want to remove this, then we may have to change the `HistoryItem` writingOptions() to not `.promised`, because if something is pasted from history, then deleted, it can no longer satisfy the promise.
@@ -75,7 +76,7 @@ class YippyHistory {
         else {
             select = nil
         }
-        history.setSelected(select)
+        return select
     }
     
     func move(from: Int, to: Int) {
@@ -88,8 +89,6 @@ class YippyHistory {
             // Write object
             pasteboard.writeObjects([items[from]])
         }
-        
-        history.setSelected(to)
     }
 }
 

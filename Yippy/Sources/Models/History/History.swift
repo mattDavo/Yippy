@@ -36,19 +36,12 @@ class History {
     /// The cache for the history item.
     var cache: HistoryCache
     
-    ///
-    private var _selected: BehaviorRelay<Int?>
-    
     private var _maxItems: BehaviorRelay<Int>
     
     var items: [HistoryItem] {
         get {
             return self._items
         }
-    }
-    
-    var selected: Observable<Int?> {
-        _selected.asObservable()
     }
     
     var maxItems: Observable<Int> {
@@ -88,7 +81,6 @@ class History {
         self.historyFM = historyFM
         self.cache = cache
         self._items = items
-        self._selected = BehaviorRelay<Int?>(value: nil)
         self._maxItems = BehaviorRelay<Int>(value: maxItems)
         
         if items.count > maxItems {
@@ -139,19 +131,6 @@ class History {
     
     func recordPasteboardChange(withCount changeCount: Int) {
         _lastRecordedChangeCount.accept(changeCount)
-    }
-    
-    func setSelected(_ selected: Int?) {
-        _selected.accept(selected)
-    }
-    
-    func incrementSelected() {
-        if let selected = _selected.value {
-            _selected.accept(selected + 1)
-        }
-        else {
-            _selected.accept(0)
-        }
     }
     
     func setMaxItems(_ maxItems: Int) {

@@ -704,7 +704,7 @@
                                             <tableColumns>
                                                 <tableColumn width="345" minWidth="40" maxWidth="3000" id="IJM-IL-D8x">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -801,8 +801,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="etk-1P-t6u"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" placeholderString="Search For Something" usesSingleLineMode="YES" bezelStyle="round" id="U37-KP-EHb">
-                                    <font key="font" size="13" name="HelveticaNeue"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" placeholderString="Search For Something (􀆔\)" usesSingleLineMode="YES" bezelStyle="round" id="U37-KP-EHb">
+                                    <font key="font" size="13" name="RobotoMonoForPowerline-Regular"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -828,7 +828,7 @@
                     <connections>
                         <outlet property="itemCountLabel" destination="zja-Rc-WlR" id="HRp-OV-FaZ"/>
                         <outlet property="itemGroupScrollView" destination="e6J-h8-BYZ" id="s4b-oM-7yo"/>
-                        <outlet property="textField" destination="nog-IU-3eG" id="QV7-gQ-iQh"/>
+                        <outlet property="searchBar" destination="nog-IU-3eG" id="QV7-gQ-iQh"/>
                         <outlet property="yippyHistoryView" destination="9QY-RJ-rk6" id="1ay-62-CPk"/>
                     </connections>
                 </viewController>

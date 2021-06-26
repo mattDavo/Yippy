@@ -14,7 +14,7 @@ import RxRelay
 /// Representation of all the history
 class History {
     
-    private var items = [HistoryItem]()
+    private var _items = [HistoryItem]()
     
     /// Behaviour relay for the last change count of the pasteboard.
     /// Private so that it cannot be manipulated outside of the class.
@@ -41,6 +41,12 @@ class History {
     
     private var _maxItems: BehaviorRelay<Int>
     
+    var items: [HistoryItem] {
+        get {
+            return self._items
+        }
+    }
+    
     var selected: Observable<Int?> {
         _selected.asObservable()
     }
@@ -49,16 +55,16 @@ class History {
         _maxItems.asObservable()
     }
     
-    typealias InsertHandler = ([HistoryItem], Int) -> Void
-    typealias DeleteHandler = ([HistoryItem], HistoryItem) -> Void
-    typealias ClearHandler = () -> Void
-    typealias MoveHandler = ([HistoryItem], Int, Int) -> Void
-    typealias SubscribeHandler = ([HistoryItem]) -> Void
+    enum Change {
+        case initial
+        case insert(index: Int)
+        case delete(deletedItem: HistoryItem)
+        case clear
+        case move(from: Int, to: Int)
+        case itemLimitDecreased(deletedItems: [HistoryItem])
+    }
     
-    private var insertObservers = [InsertHandler]()
-    private var deleteObservers = [DeleteHandler]()
-    private var clearObservers = [ClearHandler]()
-    private var moveObservers = [MoveHandler]()
+    typealias SubscribeHandler = ([HistoryItem], Change) -> Void
     private var subscribers = [SubscribeHandler]()
     
     private let bundleIdDenylist = [String]()
@@ -81,7 +87,7 @@ class History {
     init(historyFM: HistoryFileManager = .default, cache: HistoryCache, items: [HistoryItem], maxItems: Int = Constants.system.maxHistoryItems) {
         self.historyFM = historyFM
         self.cache = cache
-        self.items = items
+        self._items = items
         self._selected = BehaviorRelay<Int?>(value: nil)
         self._maxItems = BehaviorRelay<Int>(value: maxItems)
         
@@ -94,59 +100,41 @@ class History {
         return historyFM.loadHistory(cache: cache)
     }
     
-    func onInsert(handler: @escaping InsertHandler) {
-        insertObservers.append(handler)
-    }
-    
-    func onDelete(handler: @escaping DeleteHandler) {
-        deleteObservers.append(handler)
-    }
-    
-    func onClear(handler: @escaping ClearHandler) {
-        clearObservers.append(handler)
-    }
-    
-    func onMove(handler: @escaping MoveHandler) {
-        moveObservers.append(handler)
-    }
-    
     func subscribe(onNext: @escaping SubscribeHandler) {
         subscribers.append(onNext)
-        onNext(items)
+        onNext(_items, Change.initial)
     }
     
     func insertItem(_ item: HistoryItem, at i: Int) {
-        items.insert(item, at: i)
-        insertObservers.forEach({$0(items, i)})
-        subscribers.forEach({$0(items)})
-        historyFM.insertItem(newHistory: items, at: i)
+        _items.insert(item, at: i)
+        subscribers.forEach({$0(_items, Change.insert(index: i))})
+        historyFM.insertItem(newHistory: _items, at: i)
         
-        if items.count > _maxItems.value {
-            deleteItem(at: items.count - 1)
+        if _items.count > _maxItems.value {
+            let deletedItem = _items[_items.count - 1]
+            deleteItem(at: _items.count - 1)
+            subscribers.forEach({$0(_items, Change.delete(deletedItem: deletedItem))})
         }
     }
     
     func deleteItem(at i: Int) {
-        let removed = items.remove(at: i)
-        deleteObservers.forEach({$0(items, removed)})
-        subscribers.forEach({$0(items)})
-        historyFM.deleteItem(newHistory: items, deleted: removed)
+        let removed = _items.remove(at: i)
+        subscribers.forEach({$0(_items, Change.delete(deletedItem: removed))})
+        historyFM.deleteItem(newHistory: _items, deleted: removed)
     }
     
     func clear() {
-        items.forEach({$0.stopCaching()})
-        items = []
-        clearObservers.forEach({$0()})
-        subscribers.forEach({$0(items)})
+        _items.forEach({$0.stopCaching()})
+        _items = []
+        subscribers.forEach({$0(_items, Change.clear)})
         historyFM.clearHistory()
     }
     
     func moveItem(at i: Int, to j: Int) {
-        let item = items.remove(at: i)
-        items.insert(item, at: j)
-        moveObservers.forEach({$0(items, i, j)})
-        subscribers.forEach({$0(items)})
-        historyFM.moveItem(newHistory: items, from: i, to: j)
+        let item = _items.remove(at: i)
+        _items.insert(item, at: j)
+        subscribers.forEach({$0(_items, Change.move(from: i, to: j))})
+        historyFM.moveItem(newHistory: _items, from: i, to: j)
     }
     
     func recordPasteboardChange(withCount changeCount: Int) {
@@ -157,6 +145,15 @@ class History {
         _selected.accept(selected)
     }
     
+    func incrementSelected() {
+        if let selected = _selected.value {
+            _selected.accept(selected + 1)
+        }
+        else {
+            _selected.accept(0)
+        }
+    }
+    
     func setMaxItems(_ maxItems: Int) {
         if maxItems < _maxItems.value {
             reduceHistory(to: maxItems)
@@ -165,9 +162,13 @@ class History {
     }
     
     private func reduceHistory(to maxItems: Int) {
-        historyFM.reduce(oldHistory: items, toSize: maxItems)
-        items = Array(items.prefix(maxItems))
-        subscribers.forEach({$0(items)})
+        guard _items.count > maxItems else {
+            return;
+        }
+        historyFM.reduce(oldHistory: _items, toSize: maxItems)
+        let deletedItems = Array(_items.suffix(_items.count - maxItems))
+        _items = Array(_items.prefix(maxItems))
+        subscribers.forEach({$0(_items, Change.itemLimitDecreased(deletedItems: deletedItems))})
     }
 }
 
@@ -193,7 +194,7 @@ extension History: PasteboardMonitorDelegate {
                 var data = [NSPasteboard.PasteboardType: Data]()
                 for type in filteredTypes {
                     if let d = item.data(forType: type) {
-                        let firstData = self.items.first?.data(forType: type)
+                        let firstData = self._items.first?.data(forType: type)
                         let isNewData = firstData == nil || firstData?.hashValue != d.hashValue
                         if isNewData {
                             data[type] = d
@@ -206,8 +207,6 @@ extension History: PasteboardMonitorDelegate {
                 if !data.isEmpty {
                     let historyItem = HistoryItem(unsavedData: data, cache: cache)
                     insertItem(historyItem, at: 0)
-                    let selected = (_selected.value ?? -1) + 1
-                    setSelected(selected)
                 }
             }
         }

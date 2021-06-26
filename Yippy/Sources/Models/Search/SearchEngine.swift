@@ -67,7 +67,7 @@ public class SearchEngine {
         let searchQuery = SearchQuery.fromRawText(query)
         
         if let result = findResult(forQuery: searchQuery) {
-            completion(result)
+            return completion(result)
         }
         
         DispatchQueue.global().async {
@@ -108,7 +108,6 @@ public class SearchEngine {
             completion()
             return
         }
-        update(searchResult)
         
         DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             self.finishSearch(searchResult: searchResult, update: update, completion: completion)

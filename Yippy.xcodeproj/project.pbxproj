@@ -54,6 +54,7 @@
 		345131ED238366B1002D9D03 /* PreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131EC238366B1002D9D03 /* PreviewWindowController.swift */; };
 		345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131EE23836725002D9D03 /* PreviewViewController.swift */; };
 		345131F82383B6EE002D9D03 /* PreviewQLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345131F72383B6EE002D9D03 /* PreviewQLViewController.swift */; };
+		34545E50267715D600D6404D /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 34545E4F267715D600D6404D /* HotKey */; };
 		345A900723ED422400A21334 /* CellHeightCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A900623ED422400A21334 /* CellHeightCache.swift */; };
 		345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
 		345B149423403B8F00C2D0DA /* AccessControlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B149223403B4100C2D0DA /* AccessControlMock.swift */; };
@@ -75,7 +76,6 @@
 		345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2F235005E7008ACB4C /* YippyItem.swift */; };
 		345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */; };
 		345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
-		345DCFBD2420C2D2003E214D /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 345DCFBC2420C2D2003E214D /* HotKey */; };
 		3465A90023EF84A2009EE52B /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A8FF23EF84A2009EE52B /* Cache.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
 		34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7F2330CB6A0056F855 /* PasteboardMonitorDelegate.swift */; };
@@ -141,7 +141,6 @@
 		34EC0FF92504ADE7004E1A63 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC0FF82504ADE7004E1A63 /* SearchEngine.swift */; };
 		34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */; };
 		34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
-		8785A84DB972F69B9A0585E9 /* Pods_Yippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ACFCB0B26BF8B8E6EF42EA /* Pods_Yippy.framework */; };
 		B8A057305B33D2028FC0EC05 /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */; };
 		D104B1D4E210055A8E6424F0 /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */; };
 /* End PBXBuildFile section */
@@ -323,9 +322,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				345DCFBD2420C2D2003E214D /* HotKey in Frameworks */,
 				344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */,
-				4DA70C61A2E219F209B604B1 /* Pods_Yippy.framework in Frameworks */,
+				34545E50267715D600D6404D /* HotKey in Frameworks */,
 				34EC0FF42504A599004E1A63 /* Fuse in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,8 +796,8 @@
 			);
 			name = Yippy;
 			packageProductDependencies = (
-				345DCFBC2420C2D2003E214D /* HotKey */,
 				34EC0FF32504A599004E1A63 /* Fuse */,
+				34545E4F267715D600D6404D /* HotKey */,
 			);
 			productName = Yippy;
 			productReference = 34ACFBBB22EB0B0F004E6E63 /* Yippy.app */;
@@ -1947,7 +1945,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		345DCFBE2420CB92003E214D /* HotKey */ = {
+		34545E4F267715D600D6404D /* HotKey */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;

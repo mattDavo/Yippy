@@ -686,17 +686,17 @@
             <objects>
                 <viewController storyboardIdentifier="QuotesViewController" id="Maf-jn-umO" customClass="YippyViewController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" blendingMode="behindWindow" material="toolTip" state="active" id="EMV-Rg-IFx">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="312"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="308"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="0.0" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="KEN-oq-XdO">
-                                <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
+                                <rect key="frame" x="0.0" y="0.0" width="345" height="171"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="n4q-BA-aA9">
-                                    <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="171"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="9QY-RJ-rk6" customClass="YippyTableView" customModule="Yippy" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="209"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="171"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="0.0" height="2"/>
                                             <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -704,12 +704,12 @@
                                             <tableColumns>
                                                 <tableColumn width="345" minWidth="40" maxWidth="3000" id="IJM-IL-D8x">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="1kL-3U-ZdY">
-                                                        <font key="font" metaFont="message"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -725,7 +725,7 @@
                                                                         <constraint firstAttribute="height" constant="17" id="bye-K2-cDR"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="7C2-NM-iTj">
-                                                                        <font key="font" metaFont="message"/>
+                                                                        <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -757,7 +757,7 @@
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RtE-1d-ash">
-                                <rect key="frame" x="148" y="264" width="50" height="18"/>
+                                <rect key="frame" x="148" y="260" width="50" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Yippy" id="4zx-Je-VkY">
                                     <font key="font" size="15" name="RobotoMonoForPowerline-Medium"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -765,7 +765,7 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-h8-BYZ" customClass="HorizontalButtonsView" customModule="Yippy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="218" width="345" height="30"/>
+                                <rect key="frame" x="0.0" y="179" width="345" height="30"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="VSw-Be-Uwk">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -789,24 +789,38 @@
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zja-Rc-WlR">
-                                <rect key="frame" x="247" y="265" width="80" height="16"/>
+                                <rect key="frame" x="247" y="261" width="80" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="10000 items" id="bbS-MI-bFc">
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nog-IU-3eG">
+                                <rect key="frame" x="20" y="224" width="305" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="etk-1P-t6u"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" placeholderString="Search For Something (􀆔\)" usesSingleLineMode="YES" bezelStyle="round" id="U37-KP-EHb">
+                                    <font key="font" size="13" name="RobotoMonoForPowerline-Regular"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="zja-Rc-WlR" firstAttribute="centerY" secondItem="RtE-1d-ash" secondAttribute="centerY" id="4d2-uT-aGa"/>
+                            <constraint firstItem="nog-IU-3eG" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" constant="20" id="Fg3-Te-KA5"/>
                             <constraint firstItem="KEN-oq-XdO" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" id="Gpx-Vg-UyS"/>
+                            <constraint firstItem="nog-IU-3eG" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="8" id="Jza-sW-7vC"/>
                             <constraint firstAttribute="trailing" secondItem="zja-Rc-WlR" secondAttribute="trailing" constant="20" id="QgI-hU-DhB"/>
                             <constraint firstAttribute="trailing" secondItem="KEN-oq-XdO" secondAttribute="trailing" id="Xg8-K8-sdr"/>
-                            <constraint firstItem="9QY-RJ-rk6" firstAttribute="top" secondItem="e6J-h8-BYZ" secondAttribute="bottom" constant="9" id="dBo-Bs-mV3"/>
-                            <constraint firstItem="e6J-h8-BYZ" firstAttribute="top" secondItem="RtE-1d-ash" secondAttribute="bottom" constant="16" id="fwc-Zo-0KG"/>
+                            <constraint firstAttribute="trailing" secondItem="nog-IU-3eG" secondAttribute="trailing" constant="20" id="cQf-mY-yRq"/>
+                            <constraint firstItem="9QY-RJ-rk6" firstAttribute="top" secondItem="e6J-h8-BYZ" secondAttribute="bottom" constant="8" id="dBo-Bs-mV3"/>
                             <constraint firstAttribute="bottom" secondItem="KEN-oq-XdO" secondAttribute="bottom" id="gHe-cc-yVl"/>
                             <constraint firstItem="RtE-1d-ash" firstAttribute="top" secondItem="EMV-Rg-IFx" secondAttribute="top" constant="30" id="oI3-yu-m8a"/>
                             <constraint firstAttribute="trailing" secondItem="e6J-h8-BYZ" secondAttribute="trailing" id="ox3-2P-ek1"/>
+                            <constraint firstItem="VSw-Be-Uwk" firstAttribute="top" secondItem="nog-IU-3eG" secondAttribute="bottom" constant="15" id="p33-pi-ze4"/>
                             <constraint firstItem="RtE-1d-ash" firstAttribute="centerX" secondItem="EMV-Rg-IFx" secondAttribute="centerX" id="uHR-w9-04z"/>
                             <constraint firstItem="e6J-h8-BYZ" firstAttribute="leading" secondItem="EMV-Rg-IFx" secondAttribute="leading" id="wrx-et-rXU"/>
                         </constraints>
@@ -814,6 +828,7 @@
                     <connections>
                         <outlet property="itemCountLabel" destination="zja-Rc-WlR" id="HRp-OV-FaZ"/>
                         <outlet property="itemGroupScrollView" destination="e6J-h8-BYZ" id="s4b-oM-7yo"/>
+                        <outlet property="searchBar" destination="nog-IU-3eG" id="QV7-gQ-iQh"/>
                         <outlet property="yippyHistoryView" destination="9QY-RJ-rk6" id="1ay-62-CPk"/>
                     </connections>
                 </viewController>
@@ -1013,7 +1028,7 @@ Source code available at: https://github.com/mattDavo/Yippy
 Website: https://yippy.mattdavo.com</string>
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" metaFont="message"/>
+                                                        <font key="NSFont" metaFont="system"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -1082,7 +1097,7 @@ Website: https://yippy.mattdavo.com</string>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ili-Q1-k3U">
                                 <rect key="frame" x="18" y="50" width="414" height="32"/>
                                 <textFieldCell key="cell" alignment="center" title="For Yippy to be able to paste into your applications it requires you to provide it with full control to your computer." id="YWR-Ur-mdX">
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1091,7 +1106,7 @@ Website: https://yippy.mattdavo.com</string>
                                 <rect key="frame" x="165" y="9" width="120" height="37"/>
                                 <buttonCell key="cell" type="push" title="Allow Access" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="S68-2Z-YZi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="allowAccessTapped:" target="bkn-HD-Efn" id="DW3-wX-om7"/>
@@ -1186,7 +1201,7 @@ Website: https://yippy.mattdavo.com</string>
                                     <constraint firstAttribute="width" constant="417" id="IoB-HR-7l5"/>
                                 </constraints>
                                 <textFieldCell key="cell" alignment="center" title="Yippy cannot be used until it is given full control." id="L7o-9q-Yhu">
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1195,7 +1210,7 @@ Website: https://yippy.mattdavo.com</string>
                                 <rect key="frame" x="169" y="13" width="120" height="32"/>
                                 <buttonCell key="cell" type="push" title="Allow Access" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hCz-fJ-Af5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="allowAccessClicked:" target="Voc-fT-dUv" id="pOW-sC-QtP"/>
@@ -1252,7 +1267,7 @@ Website: https://yippy.mattdavo.com</string>
                                     <constraint firstAttribute="width" constant="528" id="Xw5-Hm-4Os"/>
                                 </constraints>
                                 <textFieldCell key="cell" alignment="center" id="wE9-ee-EOr">
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                     <string key="title">Yippy is a simple tool for clipboard/pasteboard history. Yippy is best used by taking advantage of its keyboard controls.
 
 To launch the Yippy clipboard history window simply use the keyboard shortcut: Command (⌘) + Shift + v.
@@ -1335,7 +1350,7 @@ The default position for the Yippy is to float on the right edge of the screen, 
                                 <rect key="frame" x="193" y="19" width="44" height="23"/>
                                 <buttonCell key="cell" type="roundTextured" title="Save" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PbM-CT-4yB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="saveButtonClicked:" target="Wum-9h-2Ea" id="Ahj-aB-gum"/>
@@ -1395,7 +1410,7 @@ The default position for the Yippy is to float on the right edge of the screen, 
                     <tabView key="tabView" type="noTabsNoBorder" id="Eub-jG-HKM">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
+                        <font key="font" metaFont="system"/>
                         <connections>
                             <outlet property="delegate" destination="kqG-oJ-AgN" id="c2G-gM-6XP"/>
                         </connections>
@@ -1438,21 +1453,21 @@ The default position for the Yippy is to float on the right edge of the screen, 
                                 <rect key="frame" x="230" y="221" width="181" height="18"/>
                                 <buttonCell key="cell" type="check" title="Shows rich text" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="w28-Pw-Fov">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="du7-gj-uyC">
                                 <rect key="frame" x="230" y="195" width="182" height="18"/>
                                 <buttonCell key="cell" type="check" title="Pastes rich text" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Jm5-cb-S0n">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hp5-Bs-j3i">
                                 <rect key="frame" x="230" y="251" width="117" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="fxc-JU-bFw" id="I0k-qn-2Wt">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="O4b-zy-xzF">
                                         <items>
                                             <menuItem title="Item 1" state="on" id="fxc-JU-bFw"/>

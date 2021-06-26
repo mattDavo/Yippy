@@ -33,7 +33,26 @@ class YippyHistory {
         // Write object
         pasteboard.writeObjects([items[selected]])
         
-        Helper.pressCommandV()
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                self.executePaste(startTime: Date())
+            }
+        }
+    }
+    
+    private func executePaste(startTime: Date) {
+        if NSApp.isActive {
+            print(Date().timeIntervalSince(startTime))
+            if Date().timeIntervalSince(startTime) > 2 {
+                return
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.03) {
+                self.executePaste(startTime: startTime)
+            }
+        }
+        else {
+            Helper.pressCommandV()
+        }
     }
     
     func delete(selected: Int) {

@@ -118,14 +118,19 @@ class Controller {
         state.isHistoryPanelShown
             .subscribe(onNext: {
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.left.rawValue)?.keyEquivalent = $0 ? Constants.statusItemMenu.leftArrowKeyEquivalent : ""
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.left.rawValue)?.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: .control, .option, .command)
                 
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.right.rawValue)?.keyEquivalent = $0 ? Constants.statusItemMenu.rightArrowKeyEquivalent : ""
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.right.rawValue)?.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: .control, .option, .command)
                 
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.top.rawValue)?.keyEquivalent = $0 ? Constants.statusItemMenu.upArrowKeyEquivalent : ""
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.top.rawValue)?.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: .control, .option, .command)
                 
                 menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.bottom.rawValue)?.keyEquivalent = $0 ? Constants.statusItemMenu.downArrowKeyEquivalent : ""
+                menu.item(withTitle: "Position")?.submenu?.item(withTag: PanelPosition.bottom.rawValue)?.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: .control, .option, .command)
                 
                 menu.item(withTitle: "Delete Selected")?.isEnabled = $0
+                menu.item(withTitle: "Delete Selected")?.keyEquivalentModifierMask = .control
             })
             .disposed(by: state.disposeBag)
         
@@ -187,7 +192,7 @@ class Controller {
     }
     
     @objc func deleteSelectedClicked() {
-        YippyHotKeys.cmdDelete.simulateOnDown()
+        YippyHotKeys.ctrlDelete.simulateOnDown()
     }
     
     @objc func clearHistoryClicked() {

@@ -132,12 +132,6 @@ class YippyViewController: NSViewController {
         resetSelected()
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
-//        resetSelected()
-    }
-    
     func resetSelected() {
         if yippyHistory.items.count > 0 {
             selected.accept(0)

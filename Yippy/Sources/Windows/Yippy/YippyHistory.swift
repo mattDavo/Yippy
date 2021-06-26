@@ -42,7 +42,6 @@ class YippyHistory {
     
     private func executePaste(startTime: Date) {
         if NSApp.isActive {
-            print(Date().timeIntervalSince(startTime))
             if Date().timeIntervalSince(startTime) > 2 {
                 return
             }

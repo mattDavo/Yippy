@@ -38,7 +38,8 @@ class YippyViewController: NSViewController {
     
     var isRichText = Settings.main.showsRichText
     
-    var results = BehaviorRelay(value: Results(items: [], isSearchResult: false))
+    let results = BehaviorRelay(value: Results(items: [], isSearchResult: false))
+    let selected = BehaviorRelay<Int?>(value: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,15 +57,16 @@ class YippyViewController: NSViewController {
         
         Observable.combineLatest(
             results,
-            State.main.history.selected.distinctUntilChanged().withPrevious(startWith: nil)
+            selected.distinctUntilChanged().withPrevious(startWith: nil)
         )
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: onAllChange)
             .disposed(by: disposeBag)
         
         searchBar.delegate = self
         
         // TODO: Fix hack to make onAllChange run initially
-        State.main.history.setSelected(1)
+        selected.accept(1)
         resetSelected()
         
         YippyHotKeys.downArrow.onDown(goToNextItem)
@@ -132,10 +134,10 @@ class YippyViewController: NSViewController {
     
     func resetSelected() {
         if yippyHistory.items.count > 0 {
-            State.main.history.setSelected(0)
+            selected.accept(0)
         }
         else {
-            State.main.history.setSelected(nil)
+            selected.accept(nil)
         }
     }
     
@@ -149,11 +151,10 @@ class YippyViewController: NSViewController {
             switch change {
             case .insert(let i):
                 if i == 0 {
-                    State.main.history.incrementSelected()
+                    incrementSelected()
                 }
                 break;
-            default:
-                break;
+            default: break;
             }
         }
     }
@@ -163,8 +164,7 @@ class YippyViewController: NSViewController {
     }
     
     func onAllChange(_ results: Results, _ selected: (Int?, Int?)) {
-        DispatchQueue.main.async {
-            if results.items != self.yippyHistory.items {
+        if results.items != self.yippyHistory.items {
                 if results.isSearchResult {
                     self.itemCountLabel.stringValue = "\(results.items.count) matches"
                 }
@@ -175,21 +175,20 @@ class YippyViewController: NSViewController {
                 self.yippyHistory = YippyHistory(history: State.main.history, items: results.items)
                 self.yippyHistoryView.reloadData(self.yippyHistory.items, isRichText: self.isRichText)
             }
-            
-            if let previous = selected.0 {
-                self.yippyHistoryView.deselectItem(previous)
-                self.yippyHistoryView.reloadItem(previous)
+        
+        if let previous = selected.0 {
+            self.yippyHistoryView.deselectItem(previous)
+            self.yippyHistoryView.reloadItem(previous)
+        }
+        if let selected = selected.1 {
+            let currentSelection = self.yippyHistoryView.selected
+            if currentSelection == nil || currentSelection != selected {
+                self.yippyHistoryView.selectItem(selected)
             }
-            if let selected = selected.1 {
-                let currentSelection = self.yippyHistoryView.selected
-                if currentSelection == nil || currentSelection != selected {
-                    self.yippyHistoryView.selectItem(selected)
-                }
-                self.yippyHistoryView.reloadItem(selected)
-                
-                if self.isPreviewShowing {
-                    State.main.previewHistoryItem.accept(self.yippyHistory.items[selected])
-                }
+            self.yippyHistoryView.reloadItem(selected)
+            
+            if self.isPreviewShowing {
+                State.main.previewHistoryItem.accept(self.yippyHistory.items[selected])
             }
         }
     }
@@ -209,44 +208,34 @@ class YippyViewController: NSViewController {
     }
     
     func goToNextItem() {
-        if let selected = yippyHistoryView.selected {
-            if selected < yippyHistory.items.count - 1 {
-                State.main.history.setSelected(selected + 1)
-            }
-        }
+        incrementSelected()
     }
     
     func goToPreviousItem() {
-        if let selected = yippyHistoryView.selected {
-            if selected > 0 {
-                State.main.history.setSelected(selected - 1)
-            }
-        }
+        decrementSelected()
     }
     
     func pasteSelected() {
         if let selected = self.yippyHistoryView.selected {
-            State.main.isHistoryPanelShown.accept(false)
-            State.main.history.setSelected(nil)
-            yippyHistory.paste(selected: selected)
+            paste(selected: selected)
         }
     }
     
     func deleteSelected() {
         if let selected = self.yippyHistoryView.selected {
-            yippyHistory.delete(selected: selected)
+            self.selected.accept(yippyHistory.delete(selected: selected))
         }
     }
     
     func close() {
+        isPreviewShowing = false
         State.main.isHistoryPanelShown.accept(false)
         State.main.previewHistoryItem.accept(nil)
-        isPreviewShowing = false
+        resetSelected()
     }
     
     func shortcutPressed(key: Int) {
-        State.main.history.setSelected(key)
-        pasteSelected()
+        paste(selected: key)
     }
     
     func togglePreview() {
@@ -281,6 +270,35 @@ class YippyViewController: NSViewController {
             self.results.accept(Results(items: filteredData, isSearchResult: true))
         })
     }
+    
+    private func incrementSelected() {
+        guard let s = selected.value else {
+            if yippyHistory.items.count > 0 {
+                selected.accept(0)
+            }
+            return
+        }
+        if s < yippyHistory.items.count - 1 {
+            selected.accept(s + 1)
+        }
+    }
+    
+    private func decrementSelected() {
+        guard let s = selected.value else {
+            if yippyHistory.items.count > 0 {
+                selected.accept(0)
+            }
+            return
+        }
+        if s > 0 {
+            selected.accept(s - 1)
+        }
+    }
+    
+    private func paste(selected: Int) {
+        self.close()
+        yippyHistory.paste(selected: selected)
+    }
 }
 
 extension YippyViewController: NSTextFieldDelegate {
@@ -291,10 +309,11 @@ extension YippyViewController: NSTextFieldDelegate {
 
 extension YippyViewController: YippyTableViewDelegate {
     func yippyTableView(_ yippyTableView: YippyTableView, selectedDidChange selected: Int?) {
-        State.main.history.setSelected(selected)
+        self.selected.accept(selected)
     }
     
     func yippyTableView(_ yippyTableView: YippyTableView, didMoveItem from: Int, to: Int) {
         yippyHistory.move(from: from, to: to)
+        selected.accept(to)
     }
 }

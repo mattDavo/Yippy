@@ -196,7 +196,6 @@ class Controller {
     }
     
     @objc func clearHistoryClicked() {
-        state.history.setSelected(nil)
         state.history.clear()
     }
     

@@ -71,6 +71,7 @@ class History {
         "de.petermaurer.TransientPasteboardType",
         "Pasteboard generator type",
         "net.antelle.keeweb",
+        "com.1password.1password",
     ]
     /// These pasteboard item types will not be saved.
     private let pasteboardTypeIgnoreList = Set([

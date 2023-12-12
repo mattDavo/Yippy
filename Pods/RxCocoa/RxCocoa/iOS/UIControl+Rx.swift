@@ -12,21 +12,6 @@ import RxSwift
 import UIKit
 
 extension Reactive where Base: UIControl {
-    
-    /// Bindable sink for `enabled` property.
-    public var isEnabled: Binder<Bool> {
-        return Binder(self.base) { control, value in
-            control.isEnabled = value
-        }
-    }
-
-    /// Bindable sink for `selected` property.
-    public var isSelected: Binder<Bool> {
-        return Binder(self.base) { control, selected in
-            control.isSelected = selected
-        }
-    }
-
     /// Reactive wrapper for target action pattern.
     ///
     /// - parameter controlEvents: Filter for observed event types.
@@ -45,7 +30,7 @@ extension Reactive where Base: UIControl {
 
                 return Disposables.create(with: controlTarget.dispose)
             }
-            .takeUntil(deallocated)
+            .take(until: deallocated)
 
         return ControlEvent(events: source)
     }
@@ -76,7 +61,7 @@ extension Reactive where Base: UIControl {
                 
                 return Disposables.create(with: controlTarget.dispose)
             }
-            .takeUntil(deallocated)
+            .take(until: deallocated)
 
         let bindingObserver = Binder(base, binding: setter)
 

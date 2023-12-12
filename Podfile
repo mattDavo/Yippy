@@ -17,28 +17,28 @@ target 'Yippy' do
     # Pods for Yippy
     pod 'Default'
     pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
-    pod 'RxSwift', '~> 5'
-    pod 'RxCocoa', '~> 5'
+    pod 'RxSwift', '~> 6'
+    pod 'RxCocoa', '~> 6'
 
     target 'YippyTests' do
         inherit! :search_paths
         # Pods for testing
-        pod 'RxBlocking', '~> 5'
-        pod 'RxTest', '~> 5'
+        pod 'RxBlocking', '~> 6'
+        pod 'RxTest', '~> 6'
         pod 'Default'
         pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
-        pod 'RxSwift', '~> 5'
-        pod 'RxCocoa', '~> 5'
+        pod 'RxSwift', '~> 6'
+        pod 'RxCocoa', '~> 6'
     end
 
     target 'YippyUITests' do
         inherit! :search_paths
         # Pods for testing
-        pod 'RxBlocking', '~> 5'
-        pod 'RxTest', '~> 5'
+        pod 'RxBlocking', '~> 6'
+        pod 'RxTest', '~> 6'
         pod 'Default'
         pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
-        pod 'RxSwift', '~> 5'
-        pod 'RxCocoa', '~> 5'
+        pod 'RxSwift', '~> 6'
+        pod 'RxCocoa', '~> 6'
     end
 end

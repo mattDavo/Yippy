@@ -112,7 +112,7 @@ extension Reactive where Base: UITableView {
         -> Disposable
         where DataSource.Element == Source.Element {
         return { source in
-            // This is called for sideeffects only, and to make sure delegate proxy is in place when
+            // This is called for side effects only, and to make sure delegate proxy is in place when
             // data source is being bound.
             // This is needed because theoretically the data source subscription itself might
             // call `self.rx.delegate`. If that happens, it might cause weird side effects since
@@ -138,7 +138,7 @@ extension Reactive where Base: UITableView {
     For more information take a look at `DelegateProxyType` protocol documentation.
     */
     public var dataSource: DelegateProxy<UITableView, UITableViewDataSource> {
-        return RxTableViewDataSourceProxy.proxy(for: base)
+        RxTableViewDataSourceProxy.proxy(for: base)
     }
    
     /**
@@ -152,7 +152,7 @@ extension Reactive where Base: UITableView {
     */
     public func setDataSource(_ dataSource: UITableViewDataSource)
         -> Disposable {
-        return RxTableViewDataSourceProxy.installForwardDelegate(dataSource, retainDelegate: false, onProxyForObject: self.base)
+        RxTableViewDataSourceProxy.installForwardDelegate(dataSource, retainDelegate: false, onProxyForObject: self.base)
     }
     
     // events
@@ -174,6 +174,30 @@ extension Reactive where Base: UITableView {
      */
     public var itemDeselected: ControlEvent<IndexPath> {
         let source = self.delegate.methodInvoked(#selector(UITableViewDelegate.tableView(_:didDeselectRowAt:)))
+            .map { a in
+                return try castOrThrow(IndexPath.self, a[1])
+            }
+
+        return ControlEvent(events: source)
+    }
+    
+    /**
+     Reactive wrapper for `delegate` message `tableView:didHighlightRowAt:`.
+     */
+    public var itemHighlighted: ControlEvent<IndexPath> {
+        let source = self.delegate.methodInvoked(#selector(UITableViewDelegate.tableView(_:didHighlightRowAt:)))
+            .map { a in
+                return try castOrThrow(IndexPath.self, a[1])
+            }
+
+        return ControlEvent(events: source)
+    }
+
+    /**
+     Reactive wrapper for `delegate` message `tableView:didUnhighlightRowAt:`.
+     */
+    public var itemUnhighlighted: ControlEvent<IndexPath> {
+        let source = self.delegate.methodInvoked(#selector(UITableViewDelegate.tableView(_:didUnhighlightRowAt:)))
             .map { a in
                 return try castOrThrow(IndexPath.self, a[1])
             }
@@ -347,7 +371,7 @@ extension Reactive where Base: UITableView {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var prefetchDataSource: DelegateProxy<UITableView, UITableViewDataSourcePrefetching> {
-        return RxTableViewDataSourcePrefetchingProxy.proxy(for: base)
+        RxTableViewDataSourcePrefetchingProxy.proxy(for: base)
     }
 
     /**

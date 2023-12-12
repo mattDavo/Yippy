@@ -25,6 +25,24 @@ extension SharedSequenceConvertibleType {
     }
 }
 
+// MARK: compactMap
+extension SharedSequenceConvertibleType {
+    
+    /**
+     Projects each element of an observable sequence into an optional form and filters all optional results.
+     
+     - parameter selector: A transform function to apply to each source element and which returns an element or nil.
+     - returns: An observable sequence whose elements are the result of filtering the transform function for each element of the source.
+     
+     */
+    public func compactMap<Result>(_ selector: @escaping (Element) -> Result?) -> SharedSequence<SharingStrategy, Result> {
+        let source = self
+            .asObservable()
+            .compactMap(selector)
+        return SharedSequence<SharingStrategy, Result>(source)
+    }
+}
+
 // MARK: filter
 extension SharedSequenceConvertibleType {
     /**
@@ -42,7 +60,7 @@ extension SharedSequenceConvertibleType {
 }
 
 // MARK: switchLatest
-extension SharedSequenceConvertibleType where Element : SharedSequenceConvertibleType {
+extension SharedSequenceConvertibleType where Element: SharedSequenceConvertibleType {
     
     /**
     Transforms an observable sequence of observable sequences into an observable sequence
@@ -261,7 +279,7 @@ extension SharedSequenceConvertibleType {
 }
 
 // MARK: merge
-extension SharedSequenceConvertibleType where Element : SharedSequenceConvertibleType {
+extension SharedSequenceConvertibleType where Element: SharedSequenceConvertibleType {
     /**
     Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence.
     
@@ -425,6 +443,56 @@ extension SharedSequence {
     }
 }
 
+// MARK: - withUnretained
+extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingStrategy {
+    /**
+     Provides an unretained, safe to use (i.e. not implicitly unwrapped), reference to an object along with the events emitted by the sequence.
+     
+     In the case the provided object cannot be retained successfully, the sequence will complete.
+     
+     - note: Be careful when using this operator in a sequence that has a buffer or replay, for example `share(replay: 1)`, as the sharing buffer will also include the provided object, which could potentially cause a retain cycle.
+     
+     - parameter obj: The object to provide an unretained reference on.
+     - parameter resultSelector: A function to combine the unretained referenced on `obj` and the value of the observable sequence.
+     - returns: An observable sequence that contains the result of `resultSelector` being called with an unretained reference on `obj` and the values of the original sequence.
+     */
+    public func withUnretained<Object: AnyObject, Out>(
+        _ obj: Object,
+        resultSelector: @escaping (Object, Element) -> Out
+    ) -> SharedSequence<SharingStrategy, Out> {
+        SharedSequence(self.asObservable().withUnretained(obj, resultSelector: resultSelector))
+    }
+
+    /**
+     Provides an unretained, safe to use (i.e. not implicitly unwrapped), reference to an object along with the events emitted by the sequence.
+     
+     In the case the provided object cannot be retained successfully, the sequence will complete.
+     
+     - note: Be careful when using this operator in a sequence that has a buffer or replay, for example `share(replay: 1)`, as the sharing buffer will also include the provided object, which could potentially cause a retain cycle.
+     
+     - parameter obj: The object to provide an unretained reference on.
+     - returns: An observable sequence of tuples that contains both an unretained reference on `obj` and the values of the original sequence.
+     */
+    public func withUnretained<Object: AnyObject>(_ obj: Object) -> SharedSequence<SharingStrategy, (Object, Element)> {
+        withUnretained(obj) { ($0, $1) }
+    }
+}
+
+extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy {
+    @available(*, message: "withUnretained has been deprecated for Driver. Consider using `drive(with:onNext:onCompleted:onDisposed:)`, instead", unavailable)
+    public func withUnretained<Object: AnyObject, Out>(
+        _ obj: Object,
+        resultSelector: @escaping (Object, Element) -> Out
+    ) -> SharedSequence<SharingStrategy, Out> {
+        SharedSequence(self.asObservable().withUnretained(obj, resultSelector: resultSelector))
+    }
+    
+    @available(*, message: "withUnretained has been deprecated for Driver. Consider using `drive(with:onNext:onCompleted:onDisposed:)`, instead", unavailable)
+    public func withUnretained<Object: AnyObject>(_ obj: Object) -> SharedSequence<SharingStrategy, (Object, Element)> {
+        SharedSequence(self.asObservable().withUnretained(obj) { ($0, $1) })
+    }
+}
+
 // MARK: withLatestFrom
 extension SharedSequenceConvertibleType {
 
@@ -504,7 +572,6 @@ extension SharedSequenceConvertibleType {
      - seealso: [delay operator on reactivex.io](http://reactivex.io/documentation/operators/delay.html)
 
      - parameter dueTime: Relative time shift of the source by.
-     - parameter scheduler: Scheduler to run the subscription delay timer on.
      - returns: the source Observable shifted in time by the specified delay.
      */
     public func delay(_ dueTime: RxTimeInterval)

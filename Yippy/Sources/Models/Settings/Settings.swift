@@ -123,7 +123,3 @@ extension Settings {
         }
     }
 }
-
-extension Settings: Equatable {
-    
-}

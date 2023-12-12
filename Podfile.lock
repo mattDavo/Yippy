@@ -1,27 +1,27 @@
 PODS:
   - Default (3.0.0)
-  - LoginServiceKit (2.1.0)
-  - RxBlocking (5.0.0):
-    - RxSwift (~> 5)
-  - RxCocoa (5.0.0):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.0.0):
-    - RxSwift (~> 5)
-  - RxSwift (5.0.0)
-  - RxTest (5.0.0):
-    - RxSwift (~> 5)
+  - LoginServiceKit (2.5.0)
+  - RxBlocking (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
+  - RxTest (6.6.0):
+    - RxSwift (= 6.6.0)
 
 DEPENDENCIES:
   - Default
   - LoginServiceKit (from `https://github.com/Clipy/LoginServiceKit.git`)
-  - RxBlocking (~> 5)
-  - RxCocoa (~> 5)
-  - RxSwift (~> 5)
-  - RxTest (~> 5)
+  - RxBlocking (~> 6)
+  - RxCocoa (~> 6)
+  - RxSwift (~> 6)
+  - RxTest (~> 6)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Default
     - RxBlocking
     - RxCocoa
@@ -35,18 +35,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LoginServiceKit:
-    :commit: 0b25f256e07ca110c2883f4f5072a7fe525b5805
+    :commit: 56dce9dbf4367c1445ef2343a2a912bbe5019a6c
     :git: https://github.com/Clipy/LoginServiceKit.git
 
 SPEC CHECKSUMS:
   Default: df6f5067d92a350e908125bf269a7317df86b3bb
-  LoginServiceKit: 9a8b258c3111fa0d9585615052f778b08be92302
-  RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
+  LoginServiceKit: 87c3d42ddb80d39ee8ea6b7a93f8c654ff58781b
+  RxBlocking: fbd1f8501443024f686e556f36dac79b0d5f4d7c
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  RxTest: a23f26bb53a5e146a0a69db4f0fa0b69001ce7f4
 
-PODFILE CHECKSUM: 761050f66b2024a7df36afd24f992faada51e0be
+PODFILE CHECKSUM: eb258cca22cfb3079509b31cce3826d842f600db
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.12.1

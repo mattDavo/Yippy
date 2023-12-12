@@ -8,7 +8,7 @@
 
 #if !os(Linux)
 
-import Foundation.NSObject
+import Foundation
 import RxSwift
 #if SWIFT_PACKAGE && !DISABLE_SWIZZLING && !os(Linux)
     import RxCocoaRuntime
@@ -57,14 +57,39 @@ extension Reactive where Base: NSObject {
 
      If support for weak properties is needed or observing arbitrary or unknown relationships in the
      ownership tree, `observeWeakly` is the preferred option.
-
+     - parameter type: Optional type hint of the observed sequence elements.
      - parameter keyPath: Key path of property names to observe.
      - parameter options: KVO mechanism notification options.
      - parameter retainSelf: Retains self during observation if set `true`.
      - returns: Observable sequence of objects on `keyPath`.
      */
-    public func observe<Element>(_ type: Element.Type, _ keyPath: String, options: KeyValueObservingOptions = [.new, .initial], retainSelf: Bool = true) -> Observable<Element?> {
-        return KVOObservable(object: self.base, keyPath: keyPath, options: options, retainTarget: retainSelf).asObservable()
+    public func observe<Element>(_ type: Element.Type,
+                                 _ keyPath: String,
+                                 options: KeyValueObservingOptions = [.new, .initial],
+                                 retainSelf: Bool = true) -> Observable<Element?> {
+        KVOObservable(object: self.base, keyPath: keyPath, options: options, retainTarget: retainSelf).asObservable()
+    }
+
+    /**
+    Observes values at the provided key path using the provided options.
+
+     - parameter keyPath: A key path between the object and one of its properties.
+     - parameter options: Key-value observation options, defaults to `.new` and `.initial`.
+
+     - note: When the object is deallocated, a completion event is emitted.
+
+     - returns: An observable emitting value changes at the provided key path.
+    */
+    public func observe<Element>(_ keyPath: KeyPath<Base, Element>,
+                                 options: NSKeyValueObservingOptions = [.new, .initial]) -> Observable<Element> {
+        Observable<Element>.create { [weak base] observer in
+            let observation = base?.observe(keyPath, options: options) { obj, _ in
+                observer.on(.next(obj[keyPath: keyPath]))
+            }
+
+            return Disposables.create { observation?.invalidate() }
+        }
+        .take(until: base.rx.deallocated)
     }
 }
 
@@ -82,7 +107,7 @@ extension Reactive where Base: NSObject {
      * it can be used to observe `weak` properties
 
      **Since it needs to intercept object deallocation process it needs to perform swizzling of `dealloc` method on observed object.**
-
+     - parameter type: Optional type hint of the observed sequence elements.
      - parameter keyPath: Key path of property names to observe.
      - parameter options: KVO mechanism notification options.
      - returns: Observable sequence of objects on `keyPath`.
@@ -109,13 +134,13 @@ extension Reactive where Base: AnyObject {
     public var deallocated: Observable<Void> {
         return self.synchronized {
             if let deallocObservable = objc_getAssociatedObject(self.base, &deallocatedSubjectContext) as? DeallocObservable {
-                return deallocObservable._subject
+                return deallocObservable.subject
             }
 
             let deallocObservable = DeallocObservable()
 
             objc_setAssociatedObject(self.base, &deallocatedSubjectContext, deallocObservable, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            return deallocObservable._subject
+            return deallocObservable.subject
         }
     }
 
@@ -202,7 +227,7 @@ extension Reactive where Base: AnyObject {
         }
     }
 
-    fileprivate func registerMessageInterceptor<T: MessageInterceptorSubject>(_ selector: Selector) throws -> T {
+    private func registerMessageInterceptor<T: MessageInterceptorSubject>(_ selector: Selector) throws -> T {
         let rxSelector = RX_selector(selector)
         let selectorReference = RX_reference_from_selector(rxSelector)
 
@@ -241,7 +266,7 @@ extension Reactive where Base: AnyObject {
 
 #if !DISABLE_SWIZZLING && !os(Linux)
 
-    private protocol MessageInterceptorSubject: class {
+    private protocol MessageInterceptorSubject: AnyObject {
         init()
 
         var isActive: Bool {
@@ -251,7 +276,7 @@ extension Reactive where Base: AnyObject {
         var targetImplementation: IMP { get set }
     }
 
-    fileprivate final class DeallocatingProxy
+    private final class DeallocatingProxy
         : MessageInterceptorSubject
         , RXDeallocatingObserver {
         typealias Element = ()
@@ -276,7 +301,7 @@ extension Reactive where Base: AnyObject {
         }
     }
 
-    fileprivate final class MessageSentProxy
+    private final class MessageSentProxy
         : MessageInterceptorSubject
         , RXMessageSentObserver {
         typealias Element = [AnyObject]
@@ -310,15 +335,15 @@ extension Reactive where Base: AnyObject {
 #endif
 
 
-fileprivate final class DeallocObservable {
-    let _subject = ReplaySubject<Void>.create(bufferSize:1)
+private final class DeallocObservable {
+    let subject = ReplaySubject<Void>.create(bufferSize:1)
 
     init() {
     }
 
     deinit {
-        self._subject.on(.next(()))
-        self._subject.on(.completed)
+        self.subject.on(.next(()))
+        self.subject.on(.completed)
     }
 }
 
@@ -333,7 +358,7 @@ private protocol KVOObservableProtocol {
     var options: KeyValueObservingOptions { get }
 }
 
-fileprivate final class KVOObserver
+private final class KVOObserver
     : _RXKVOObserver
     , Disposable {
     typealias Callback = (Any?) -> Void
@@ -361,7 +386,7 @@ fileprivate final class KVOObserver
     }
 }
 
-fileprivate final class KVOObservable<Element>
+private final class KVOObservable<Element>
     : ObservableType
     , KVOObservableProtocol {
     typealias Element = Element?
@@ -397,7 +422,7 @@ fileprivate final class KVOObservable<Element>
 
 }
 
-fileprivate extension KeyValueObservingOptions {
+private extension KeyValueObservingOptions {
     var nsOptions: NSKeyValueObservingOptions {
         var result: UInt = 0
         if self.contains(.new) {
@@ -435,10 +460,10 @@ fileprivate extension KeyValueObservingOptions {
     // is as a delimiter.
     // This means there is `W` as element in an array of property attributes.
     private func isWeakProperty(_ properyRuntimeInfo: String) -> Bool {
-        return properyRuntimeInfo.range(of: ",W,") != nil
+        properyRuntimeInfo.range(of: ",W,") != nil
     }
 
-    fileprivate extension ObservableType where Element == AnyObject? {
+    private extension ObservableType where Element == AnyObject? {
         func finishWithNilWhenDealloc(_ target: NSObject)
             -> Observable<AnyObject?> {
                 let deallocating = target.rx.deallocating

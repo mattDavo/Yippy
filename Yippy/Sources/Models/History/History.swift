@@ -71,6 +71,10 @@ class History {
         "de.petermaurer.TransientPasteboardType",
         "Pasteboard generator type",
         "net.antelle.keeweb",
+        "com.bitwarden.desktop",
+        "com.8bit.bitwarden",
+        "com.hicknhacksoftware.MacPass",
+        "com.keepassium.ios",
     ]
     /// These pasteboard item types will not be saved.
     private let pasteboardTypeIgnoreList = Set([

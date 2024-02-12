@@ -59,9 +59,9 @@ class YippyViewController: NSViewController {
             results,
             selected.distinctUntilChanged().withPrevious(startWith: nil)
         )
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: onAllChange)
-            .disposed(by: disposeBag)
+        .observe(on: MainScheduler.instance)
+        .subscribe(onNext: onAllChange)
+        .disposed(by: disposeBag)
         
         searchBar.delegate = self
         

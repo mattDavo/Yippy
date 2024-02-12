@@ -1,6 +1,0 @@
-${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks.sh
-${BUILT_PRODUCTS_DIR}/Default/Default.framework
-${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework
-${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
-${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
-${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework

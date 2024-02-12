@@ -29,4 +29,32 @@ extension HistoryItem {
             return YippyTextCellView.self
         }
     }
+    
+    var content: HistoryItemContent {
+        if getFileUrl() != nil {
+            if getThumbnailImage() != nil {
+                return .thumbnailImage
+            }
+            else {
+                return .fileIcon
+            }
+        }
+        else if getColor() != nil {
+            return .color
+        }
+        else if types.contains(.tiff) || types.contains(.png) {
+            return .tiffOrPng
+        }
+        else {
+            return .text
+        }
+    }
+}
+
+enum HistoryItemContent {
+    case thumbnailImage
+    case fileIcon
+    case text
+    case tiffOrPng
+    case color
 }

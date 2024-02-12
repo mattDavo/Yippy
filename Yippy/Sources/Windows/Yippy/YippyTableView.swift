@@ -89,7 +89,6 @@ extension YippyTableView: NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         let historyItem = yippyItems[row]
         let itemType = historyItem.getTableViewItemType()
         let cell = tableView.makeView(withIdentifier: itemType.identifier, owner: nil) as? YippyItem ?? itemType.makeItem()

@@ -155,6 +155,8 @@
 		DB8E79362B7ACBCC006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79352B7ACBCC006860F1 /* Default */; };
 		DB8E79382B7ACBE2006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79372B7ACBE2006860F1 /* Default */; };
 		DB8E793A2B7ACBE7006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79392B7ACBE7006860F1 /* Default */; };
+		DB8E793C2B7AD158006860F1 /* YippyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793B2B7AD158006860F1 /* YippyView.swift */; };
+		DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +311,8 @@
 		34EC0FF62504AC9C004E1A63 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		34EC0FF82504ADE7004E1A63 /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 		34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+YippyItem.swift"; sourceTree = "<group>"; };
+		DB8E793B2B7AD158006860F1 /* YippyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyView.swift; sourceTree = "<group>"; };
+		DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +396,7 @@
 		341D9D38233A1460008A2BE6 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
+				DB8E793D2B7AD1EE006860F1 /* SwiftUI */,
 				340D3CA523615E4200C2B335 /* CellViews */,
 				34A1942023553DD60076A717 /* FormatFileUrl.swift */,
 				3474C13F2346E82900232620 /* YippyHistory.swift */,
@@ -757,6 +762,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		DB8E793D2B7AD1EE006860F1 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				DB8E793B2B7AD158006860F1 /* YippyView.swift */,
+				DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -946,8 +960,10 @@
 				341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
+				DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,
 				340FB43D236550390053D82C /* YippyTableViewDelegate.swift in Sources */,
+				DB8E793C2B7AD158006860F1 /* YippyView.swift in Sources */,
 				345B14AF2341AEEA00C2D0DA /* KeyPressHelper.swift in Sources */,
 				341D9D31233725CA008A2BE6 /* KeyUpEventMonitor.swift in Sources */,
 				340FB43B236407D70053D82C /* Controller.swift in Sources */,
@@ -1153,7 +1169,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1212,7 +1228,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1240,7 +1256,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1268,7 +1284,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1422,7 +1438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1450,7 +1466,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1554,7 +1570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1581,7 +1597,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1691,7 +1707,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1719,7 +1735,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyXCTest;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";

@@ -11,7 +11,11 @@ import Cocoa
 import Quartz
 
 /// Interface for an item that was on the pasteboard
-class HistoryItem: NSObject {
+class HistoryItem: NSObject, Identifiable {
+    
+    var id: UUID {
+        return fsId
+    }
     
     // MARK: - Private attributes
     

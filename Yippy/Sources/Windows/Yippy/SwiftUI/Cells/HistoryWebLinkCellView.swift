@@ -28,7 +28,7 @@ struct HistoryWebLinkCellView: View {
         Group {
             if isLoading {
                  RoundedRectangle(cornerRadius: 7)
-                    .frame(width: width, height: width)
+                    .frame(width: width, height: width / 2)
                     .skeletonable()
             } else {
                 if let metadata = self.metadata {
@@ -52,7 +52,7 @@ struct HistoryWebLinkCellView: View {
                 self.isLoading = false
             }
         }
-        .setSkeleton($isLoading, animationType: .solid(Color.yippySkeleton))
+        .setSkeleton($isLoading, animationType: .gradient(Color.yippySkeleton.makeGradient()))
     }
 }
 

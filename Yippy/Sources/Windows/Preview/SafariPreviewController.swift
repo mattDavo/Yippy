@@ -53,7 +53,7 @@ struct SafariPreviewView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ZStack(alignment: .top) {
+        VStack(spacing: 0) {
             HStack {
                 Spacer()
                 
@@ -63,16 +63,43 @@ struct SafariPreviewView: View {
                         dismiss()
                     }
                 }
-                .buttonBorderShape(.roundedRectangle)
+                .buttonStyle(BorderStrokeButtonStyle(cornerRadius: 8))
             }
-            .frame(height: 24)
             .padding(.all, 16)
-            .materialBlur(style: .headerView)
+            .background(Color(NSColor.windowBackgroundColor))
             
             WebViewView(url: viewModel.url)
-                .safeAreaPadding(.top, 48)
         }
-        .cornerRadius(16)
+        .overlay {
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.accentColor, lineWidth: 10)
+        }
+        .clipShape(
+            RoundedRectangle(cornerRadius: 16)
+        )
+    }
+}
+
+struct BorderStrokeButtonStyle: ButtonStyle {
+    
+    let cornerRadius: CGFloat
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, 6)
+            .padding(.vertical, 4)
+            .foregroundStyle(Color(NSColor.controlTextColor))
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(Color(.controlBackgroundColor))
+            )
+            .overlay {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color(NSColor.separatorColor))
+            }
+            .clipShape(
+                RoundedRectangle(cornerRadius: cornerRadius)
+            )
     }
 }
 
@@ -82,7 +109,8 @@ struct WebViewView: NSViewRepresentable {
     
     func makeNSView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
-        return WKWebView(frame: .zero, configuration: config)
+        let webView = WKWebView(frame: .zero, configuration: config)
+        return webView
     }
     
     func updateNSView(_ nsView: WKWebView, context: Context) {

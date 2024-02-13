@@ -24,6 +24,7 @@ class YippyViewModel {
     
     var searchBarValue: String = ""
     var itemCountLabel: String = ""
+    var isSearchBarFocused: Bool = false
     
     var yippyHistory = YippyHistory(history: State.main.history, items: [])
     
@@ -44,18 +45,11 @@ class YippyViewModel {
     private let selected = BehaviorRelay<Int?>(value: nil)
     
     func onAppear() {
-        //        yippyHistoryView.yippyDelegate = self
-        
         State.main.history.subscribe(onNext: onHistoryChange)
         
         State.main.panelPosition.subscribe(onNext: onWindowPanelPositionChanged).disposed(by: disposeBag)
         
         State.main.showsRichText.distinctUntilChanged().subscribe(onNext: onShowsRichText).disposed(by: disposeBag)
-        
-        //        itemGroupScrollView.bind(toData: itemGroups.asObservable()).disposed(by: disposeBag)
-        //        itemGroupScrollView.bind(toSelected: BehaviorRelay<Int>(value: 0).asObservable()).disposed(by: disposeBag)
-        //        // TODO: Remove this when implemented
-        //        itemGroupScrollView.constraint(withIdentifier: "height")?.constant = 0
         
         Observable.combineLatest(
             results,
@@ -64,8 +58,6 @@ class YippyViewModel {
         .observe(on: MainScheduler.instance)
         .subscribe(onNext: onAllChange)
         .disposed(by: disposeBag)
-        
-        //        searchBar.delegate = self
         
         // TODO: Fix hack to make onAllChange run initially
         selected.accept(1)
@@ -87,7 +79,7 @@ class YippyViewModel {
         YippyHotKeys.ctrlAltCmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
         YippyHotKeys.ctrlDelete.onDown(deleteSelected)
         YippyHotKeys.space.onDown(togglePreview)
-//            YippyHotKeys.cmdBackslash.onDown(focusSearchBar)
+        YippyHotKeys.cmdBackslash.onDown(focusSearchBar)
         
         // Paste hot keys
         YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }
@@ -179,7 +171,7 @@ class YippyViewModel {
             self.yippyHistory = YippyHistory(history: State.main.history, items: results.items)
         }
         
-        if let selectedIndex = selected.1 {
+        if let selectedIndex = selected.1, yippyHistory.items.indices.contains(selectedIndex) {
             self.selectedItem = yippyHistory.items[selectedIndex]
             
             if self.isPreviewShowing {
@@ -221,11 +213,16 @@ class YippyViewModel {
         }
     }
     
-    func onSelectItem(_ item: HistoryItem) {
-        if let index = self.yippyHistory.items.firstIndex(where: { $0.id == item.id }) {
-            self.selected.accept(index)
-            self.selectedItem = item
-        }
+    func paste(at index: Int) {
+        paste(selected: index)
+    }
+    
+    func delete(at index: Int) {
+        self.selected.accept(yippyHistory.delete(selected: index))
+    }
+    
+    func onSelectItem(at index: Int) {
+        self.selected.accept(index)
     }
     
     func close() {
@@ -253,7 +250,7 @@ class YippyViewModel {
     
     func focusSearchBar() {
         NSApp.activate(ignoringOtherApps: true)
-        //        self.searchBar.becomeFirstResponder()
+        self.isSearchBarFocused = true
     }
     
     func runSearch() {

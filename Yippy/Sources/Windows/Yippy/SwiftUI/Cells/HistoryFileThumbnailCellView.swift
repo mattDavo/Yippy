@@ -59,7 +59,7 @@ struct HistoryFileThumbnailCellView: View {
         }
         .accessibilityIdentifier(Accessibility.identifiers.yippyFileThumbnailCellView)
         .onAppear(perform: self.onAppear)
-        .setSkeleton($isLoading, animationType: .solid(Color.yippySkeleton))
+        .setSkeleton($isLoading, animationType: .gradient(Color.yippySkeleton.makeGradient()))
     }
     
     // MARK: - Private

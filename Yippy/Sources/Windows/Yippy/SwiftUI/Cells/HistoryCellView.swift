@@ -19,7 +19,7 @@ struct HistoryCellView: View {
         case .thumbnailImage:
             HistoryFileThumbnailCellView(item: item, proxy: proxy)
         case .fileIcon:
-            Text("1")
+            HistoryFileIconCellView(item: item, proxy: proxy)
         case .text:
             HistoryTextCellView(item: item, proxy: proxy, usingItemRtf: usingItemRtf)
         case .tiffOrPng:

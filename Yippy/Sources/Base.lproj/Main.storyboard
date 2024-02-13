@@ -772,7 +772,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isl-pw-ujY">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isl-pw-ujY">
                                 <rect key="frame" x="5" y="5" width="440" height="290"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="dg3-Gw-LuU">
                                     <rect key="frame" x="0.0" y="0.0" width="440" height="290"/>
@@ -793,8 +793,8 @@
                                     <rect key="frame" x="-100" y="-100" width="240" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Ayj-Kj-NL4">
-                                    <rect key="frame" x="424" y="0.0" width="16" height="290"/>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Ayj-Kj-NL4">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="290"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -806,6 +806,13 @@
                             <constraint firstItem="Isl-pw-ujY" firstAttribute="leading" secondItem="SA9-EA-KKj" secondAttribute="leading" constant="5" id="i46-21-Ls6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomPaddingConstraint" destination="TBK-5z-RVm" id="0XT-IW-oFk"/>
+                        <outlet property="leftPaddingConstraint" destination="i46-21-Ls6" id="3LU-mR-w8O"/>
+                        <outlet property="rightPaddingConstraint" destination="IbF-CK-r7q" id="wXM-rY-eYF"/>
+                        <outlet property="textView" destination="wjA-9q-NXx" id="9QA-xk-HMH"/>
+                        <outlet property="topPaddingConstraint" destination="Xb9-15-JaD" id="8cg-3o-AL5"/>
+                    </connections>
                 </viewController>
                 <customObject id="0PF-Cx-TOz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

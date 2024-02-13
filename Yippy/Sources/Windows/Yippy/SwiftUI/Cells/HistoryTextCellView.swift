@@ -17,21 +17,23 @@ struct HistoryTextCellView: View {
     let usingItemRtf: Bool
     
     var body: some View {
-        VStack(alignment: .leading) {
+        HStack(spacing: 0) {
             Text(AttributedString(HistoryItemText.getAttributedString(forItem: item, usingItemRtf: usingItemRtf)))
-                .frame(
-                    width: width,
-                    height: Self.calculateCellHeight(
-                        historyItem: item,
-                        proxy: proxy,
-                        availableWidth: width,
-                        settings: settings,
-                        usingItemRtf: usingItemRtf
-                    )
-                )
                 .multilineTextAlignment(.leading)
-                .padding(.vertical, 10)
+            
+            Spacer()
         }
+        .padding(settings.textInset)
+        .frame(
+            width: width,
+            height: Self.calculateCellHeight(
+                historyItem: item,
+                proxy: proxy,
+                availableWidth: width,
+                settings: settings,
+                usingItemRtf: usingItemRtf
+            )
+        )
         .accessibilityIdentifier(Accessibility.identifiers.yippyTextCellView)
     }
     

@@ -39,6 +39,9 @@ extension HistoryItem {
                 return .fileIcon
             }
         }
+        else if getUrl() != nil {
+            return .webLink
+        }
         else if getColor() != nil {
             return .color
         }
@@ -57,4 +60,5 @@ enum HistoryItemContent {
     case text
     case tiffOrPng
     case color
+    case webLink
 }

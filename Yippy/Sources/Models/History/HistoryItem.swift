@@ -200,8 +200,6 @@ class HistoryItem: NSObject, Identifiable {
             image = NSImage(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
         }
         return image
-        
-        
     }
     
     func getFileIcon() -> NSImage? {

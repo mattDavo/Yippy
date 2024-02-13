@@ -25,21 +25,35 @@ struct YippyView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 4) {
+                Image("YippyIconColored")
+                    .resizable()
+                    .frame(width: 36, height: 36)
+                
                 HStack {
                     Spacer()
                     
                     Text(viewModel.itemCountLabel)
                         .font(.subheadline)
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 32)
+                
+                TextField(text: $viewModel.searchBarValue, prompt: Text("Search...")) {
+                    Image(systemName: "magnifyingglass")
+                }
+                .onChange(of: viewModel.searchBarValue) { _, _ in
+                    viewModel.runSearch()
+                }
+                .padding(.horizontal, 32)
+                .padding(.bottom, 16)
+                
                 
                 YippyHistoryTableView(viewModel: viewModel)
                     .onAppear(perform: viewModel.onAppear)
-                    .searchable(text: $viewModel.searchBarValue, placement: .sidebar, prompt: Text("Search"))
             }
         }
         .safeAreaPadding(.top, 32)
+        .materialBlur(style: .sidebar)
     }
 }
 
@@ -49,31 +63,47 @@ struct YippyHistoryTableView: View {
     
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
-                LazyVStack(spacing: 12) {
-                    ForEach(viewModel.yippyHistory.items) { item in
-                        HistoryCellView(item: item, proxy: proxy, usingItemRtf: viewModel.isRichText)
-                            .background(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .fill(viewModel.selectedItem == item ? Color.accentColor : Color.white.opacity(0.7))
-                            )
-                            .onTapGesture {
-                                viewModel.onSelectItem(item)
-                            }
-                            .contextMenu(
-                                ContextMenu(menuItems: {
-                                    Button("Copy") {
-                                        viewModel.pasteSelected()
-                                    }
-                                    
-                                    Button("Delete") {
-                                        viewModel.deleteSelected()
-                                    }
-                                })
-                            )
+            ScrollView(viewModel.panelPosition) {
+                if viewModel.panelPosition == .horizontal {
+                    LazyHStack(spacing: 12) {
+                        content(proxy: proxy)
+                    }
+                } else {
+                    LazyVStack(spacing: 12) {
+                        content(proxy: proxy)
                     }
                 }
             }
+        }
+    }
+    
+    func content(proxy: GeometryProxy) -> some View {
+        ForEach(viewModel.yippyHistory.items) { item in
+            HistoryCellView(item: item, proxy: proxy, usingItemRtf: viewModel.isRichText)
+                .background(
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(viewModel.selectedItem == item ? Color.accentColor : Color.white.opacity(0.7))
+                )
+                .overlay {
+                    if viewModel.selectedItem == item {
+                        RoundedRectangle(cornerRadius: 7)
+                            .stroke(Color.accentColor, lineWidth: 4)
+                    }
+                }
+                .onTapGesture {
+                    viewModel.onSelectItem(item)
+                }
+                .contextMenu(
+                    ContextMenu(menuItems: {
+                        Button("Copy") {
+                            viewModel.pasteSelected()
+                        }
+                        
+                        Button("Delete") {
+                            viewModel.deleteSelected()
+                        }
+                    })
+                )
         }
     }
 }
@@ -98,7 +128,50 @@ struct HistoryCellView: View {
             HistoryImageCellView(item: item, proxy: proxy)
         case .color:
             HistoryColorCellView(item: item)
+        case .webLink:
+            HistoryWebLinkCellView(item: item, proxy: proxy)
         }
+    }
+}
+
+import LinkPresentation
+
+struct HistoryWebLinkCellView: View {
+    let item: HistoryItem
+    let proxy: GeometryProxy
+    
+    @SwiftUI.State private var metadata: LPLinkMetadata?
+    
+    var body: some View {
+        Group {
+            if let metadata = self.metadata {
+                LinkPreview(metadata: metadata)
+            } else {
+                Text(item.getUrl()?.absoluteString ?? "Unknown format")
+            }
+        }
+        .accessibilityIdentifier(Accessibility.identifiers.yippyWebLinkCellView)
+        .task {
+            if let url = item.getUrl() {
+                let provider = LPMetadataProvider()
+                self.metadata = try? await provider.startFetchingMetadata(for: url)
+            }
+        }
+        .frame
+    }
+}
+
+struct LinkPreview: NSViewRepresentable {
+    
+    let metadata: LPLinkMetadata
+    
+    func makeNSView(context: Context) -> some NSView {
+        let view = LPLinkView(metadata: metadata)
+        return view
+    }
+    
+    func updateNSView(_ nsView: NSViewType, context: Context) {
+        
     }
 }
 
@@ -133,10 +206,11 @@ struct HistoryImageCellView: View {
             }
         }
         .frame(height: Self.imageHeight(for: item, proxy: proxy))
+        .clipped()
         .accessibilityIdentifier(Accessibility.identifiers.yippyTiffCellView)
     }
     
-    // MARK: Private
+    // MARK: - Private
     
     private static func imageHeight(for historyItem: HistoryItem, proxy: GeometryProxy) -> CGFloat {
         
@@ -174,10 +248,12 @@ struct HistoryTextCellView: View {
     
     var body: some View {
         Text(AttributedString(HistoryItemText.getAttributedString(forItem: item, usingItemRtf: usingItemRtf)))
-            .accessibilityIdentifier(Accessibility.identifiers.yippyTextCellView)
             .frame(width: 300, height: Self.calculateCellHeight(historyItem: item, proxy: proxy, usingItemRtf: usingItemRtf))
             .multilineTextAlignment(.leading)
+            .accessibilityIdentifier(Accessibility.identifiers.yippyTextCellView)
     }
+    
+    // MARK: - Private
     
     static func getTextContainerWidth(cellWidth: CGFloat) -> CGFloat {
         return cellWidth - Self.padding.left - Self.padding.right - Self.textInset.xTotal - contentViewInsets.xTotal

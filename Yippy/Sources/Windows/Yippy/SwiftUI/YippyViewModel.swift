@@ -27,6 +27,8 @@ class YippyViewModel {
     
     var isPreviewShowing = false
     
+    var panelPosition: Axis.Set = .vertical
+    
     var itemGroups = BehaviorRelay<[String]>(value: ["Clipboard", "Favourites", "Clipboard", "Favourites", "Clipboard", "Favourites"])
     
     var isRichText = Settings.main.showsRichText
@@ -40,6 +42,8 @@ class YippyViewModel {
         //        yippyHistoryView.yippyDelegate = self
         
         State.main.history.subscribe(onNext: onHistoryChange)
+        
+        State.main.panelPosition.subscribe(onNext: onWindowPanelPositionChanged).disposed(by: disposeBag)
         
         State.main.showsRichText.distinctUntilChanged().subscribe(onNext: onShowsRichText).disposed(by: disposeBag)
         
@@ -140,6 +144,17 @@ class YippyViewModel {
                 break;
             default: break;
             }
+        }
+    }
+    
+    func onWindowPanelPositionChanged(_ position: PanelPosition) {
+        switch position {
+        case .right, .left:
+            panelPosition = .vertical
+        case .top, .bottom:
+            panelPosition = .horizontal
+        default:
+            panelPosition = .vertical
         }
     }
     

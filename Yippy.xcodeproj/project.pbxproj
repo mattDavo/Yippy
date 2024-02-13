@@ -157,6 +157,7 @@
 		DB8E793A2B7ACBE7006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79392B7ACBE7006860F1 /* Default */; };
 		DB8E793C2B7AD158006860F1 /* YippyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793B2B7AD158006860F1 /* YippyView.swift */; };
 		DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */; };
+		DB93406F2B7AE28800157394 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93406E2B7AE28800157394 /* BlurView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +314,7 @@
 		34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+YippyItem.swift"; sourceTree = "<group>"; };
 		DB8E793B2B7AD158006860F1 /* YippyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyView.swift; sourceTree = "<group>"; };
 		DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyViewModel.swift; sourceTree = "<group>"; };
+		DB93406E2B7AE28800157394 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -767,6 +769,7 @@
 			children = (
 				DB8E793B2B7AD158006860F1 /* YippyView.swift */,
 				DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */,
+				DB93406E2B7AE28800157394 /* BlurView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -959,6 +962,7 @@
 				345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */,
 				341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
+				DB93406F2B7AE28800157394 /* BlurView.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
 				DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,

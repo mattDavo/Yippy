@@ -172,22 +172,13 @@ class YippyViewModel {
             }
             
             self.yippyHistory = YippyHistory(history: State.main.history, items: results.items)
-            //                self.yippyHistoryView.reloadData(self.yippyHistory.items, isRichText: self.isRichText)
         }
         
-        if let previous = selected.0 {
-            //            self.yippyHistoryView.deselectItem(previous)
-            //            self.yippyHistoryView.reloadItem(previous)
-        }
-        if let selected = selected.1 {
-            //            let currentSelection = self.yippyHistoryView.selected
-            //            if currentSelection == nil || currentSelection != selected {
-            //                self.yippyHistoryView.selectItem(selected)
-            //            }
-            //            self.yippyHistoryView.reloadItem(selected)
+        if let selectedIndex = selected.1 {
+            self.selectedItem = yippyHistory.items[selectedIndex]
             
             if self.isPreviewShowing {
-                State.main.previewHistoryItem.accept(self.yippyHistory.items[selected])
+                State.main.previewHistoryItem.accept(self.yippyHistory.items[selectedIndex])
             }
         }
     }

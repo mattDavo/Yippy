@@ -158,6 +158,15 @@
 		DB8E793C2B7AD158006860F1 /* YippyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793B2B7AD158006860F1 /* YippyView.swift */; };
 		DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */; };
 		DB93406F2B7AE28800157394 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93406E2B7AE28800157394 /* BlurView.swift */; };
+		DB93407C2B7B8FBF00157394 /* HistoryTextCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93407B2B7B8FBF00157394 /* HistoryTextCellView.swift */; };
+		DB93407E2B7B900A00157394 /* HistoryWebLinkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93407D2B7B900A00157394 /* HistoryWebLinkCellView.swift */; };
+		DB9340802B7B902400157394 /* HistoryImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93407F2B7B902400157394 /* HistoryImageCellView.swift */; };
+		DB9340822B7B905300157394 /* HistoryCellSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9340812B7B905300157394 /* HistoryCellSettings.swift */; };
+		DB9340842B7B906200157394 /* HistoryColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9340832B7B906200157394 /* HistoryColorCellView.swift */; };
+		DB9340872B7B930700157394 /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = DB9340862B7B930700157394 /* EasySkeleton */; };
+		DB9340892B7B96C600157394 /* HistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9340882B7B96C600157394 /* HistoryCellView.swift */; };
+		DB93408B2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93408A2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift */; };
+		DB93408D2B7B9D8C00157394 /* HistoryItem+Transferrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93408C2B7B9D8C00157394 /* HistoryItem+Transferrable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,6 +324,14 @@
 		DB8E793B2B7AD158006860F1 /* YippyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyView.swift; sourceTree = "<group>"; };
 		DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyViewModel.swift; sourceTree = "<group>"; };
 		DB93406E2B7AE28800157394 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		DB93407B2B7B8FBF00157394 /* HistoryTextCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTextCellView.swift; sourceTree = "<group>"; };
+		DB93407D2B7B900A00157394 /* HistoryWebLinkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWebLinkCellView.swift; sourceTree = "<group>"; };
+		DB93407F2B7B902400157394 /* HistoryImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryImageCellView.swift; sourceTree = "<group>"; };
+		DB9340812B7B905300157394 /* HistoryCellSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellSettings.swift; sourceTree = "<group>"; };
+		DB9340832B7B906200157394 /* HistoryColorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryColorCellView.swift; sourceTree = "<group>"; };
+		DB9340882B7B96C600157394 /* HistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellView.swift; sourceTree = "<group>"; };
+		DB93408A2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileThumbnailCellView.swift; sourceTree = "<group>"; };
+		DB93408C2B7B9D8C00157394 /* HistoryItem+Transferrable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+Transferrable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +342,7 @@
 				DB8E79212B7ACB64006860F1 /* RxSwift in Frameworks */,
 				344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */,
 				34545E50267715D600D6404D /* HotKey in Frameworks */,
+				DB9340872B7B930700157394 /* EasySkeleton in Frameworks */,
 				DB8E79232B7ACB6A006860F1 /* RxCocoa in Frameworks */,
 				DB8E79362B7ACBCC006860F1 /* Default in Frameworks */,
 				34EC0FF42504A599004E1A63 /* Fuse in Frameworks */,
@@ -689,6 +707,7 @@
 				3423B1C0234D8AFF00B40715 /* HistoryItem.swift */,
 				34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */,
 				34CA01FD235D3AE700EB067C /* DataFileManager.swift */,
+				DB93408C2B7B9D8C00157394 /* HistoryItem+Transferrable.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -767,11 +786,26 @@
 		DB8E793D2B7AD1EE006860F1 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				DB9340702B7B801B00157394 /* Cells */,
 				DB8E793B2B7AD158006860F1 /* YippyView.swift */,
 				DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */,
 				DB93406E2B7AE28800157394 /* BlurView.swift */,
+				DB9340812B7B905300157394 /* HistoryCellSettings.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		DB9340702B7B801B00157394 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DB93407B2B7B8FBF00157394 /* HistoryTextCellView.swift */,
+				DB93407D2B7B900A00157394 /* HistoryWebLinkCellView.swift */,
+				DB93407F2B7B902400157394 /* HistoryImageCellView.swift */,
+				DB9340832B7B906200157394 /* HistoryColorCellView.swift */,
+				DB9340882B7B96C600157394 /* HistoryCellView.swift */,
+				DB93408A2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -797,6 +831,7 @@
 				DB8E79202B7ACB64006860F1 /* RxSwift */,
 				DB8E79222B7ACB6A006860F1 /* RxCocoa */,
 				DB8E79352B7ACBCC006860F1 /* Default */,
+				DB9340862B7B930700157394 /* EasySkeleton */,
 			);
 			productName = Yippy;
 			productReference = 34ACFBBB22EB0B0F004E6E63 /* Yippy.app */;
@@ -897,6 +932,7 @@
 				DB8E791C2B7ACAEE006860F1 /* XCRemoteSwiftPackageReference "LoginServiceKit" */,
 				DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */,
+				DB9340852B7B930700157394 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 			);
 			productRefGroup = 34ACFBBC22EB0B0F004E6E63 /* Products */;
 			projectDirPath = "";
@@ -942,6 +978,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */,
+				DB9340842B7B906200157394 /* HistoryColorCellView.swift in Sources */,
 				341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */,
 				3423B1C1234D8AFF00B40715 /* HistoryItem.swift in Sources */,
 				34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */,
@@ -957,12 +994,15 @@
 				3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */,
 				34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */,
 				34EC0FF72504AC9C004E1A63 /* Search.swift in Sources */,
+				DB93407E2B7B900A00157394 /* HistoryWebLinkCellView.swift in Sources */,
 				34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */,
 				345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */,
 				345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */,
 				341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */,
+				DB9340802B7B902400157394 /* HistoryImageCellView.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
 				DB93406F2B7AE28800157394 /* BlurView.swift in Sources */,
+				DB93408D2B7B9D8C00157394 /* HistoryItem+Transferrable.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
 				DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,
@@ -993,12 +1033,14 @@
 				34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */,
 				3486C0A6234416A4004B2F2E /* YippyTableView.swift in Sources */,
 				345131F82383B6EE002D9D03 /* PreviewQLViewController.swift in Sources */,
+				DB9340892B7B96C600157394 /* HistoryCellView.swift in Sources */,
 				341D9D2D23372592008A2BE6 /* EventMonitor.swift in Sources */,
 				341D9D2B23372550008A2BE6 /* KeyAction.swift in Sources */,
 				341FFEE92442EDA500C47E6D /* HistoryItemText.swift in Sources */,
 				34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */,
 				34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */,
 				341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */,
+				DB93408B2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift in Sources */,
 				34B2FD9322F988980068D50A /* Settings.swift in Sources */,
 				345BAE2E235005BB008ACB4C /* YippyFileThumbnailCellView.swift in Sources */,
 				345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */,
@@ -1020,6 +1062,7 @@
 				34EC0FF92504ADE7004E1A63 /* SearchEngine.swift in Sources */,
 				341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */,
 				340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */,
+				DB9340822B7B905300157394 /* HistoryCellSettings.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
 				34CA01FE235D3AE700EB067C /* DataFileManager.swift in Sources */,
 				34B5C42E23580CD9005247EB /* YippyError.swift in Sources */,
@@ -1031,6 +1074,7 @@
 				344176792408640D0076BEDA /* HotKeySettingsViewController.swift in Sources */,
 				34B5C42A23580CB0005247EB /* ErrorLogger.swift in Sources */,
 				34A0E5522414F42D00B6A470 /* NSEvent.ModifierFlags+Codable.swift in Sources */,
+				DB93407C2B7B8FBF00157394 /* HistoryTextCellView.swift in Sources */,
 				34B5C43623582CCB005247EB /* YippyTiffCellView.swift in Sources */,
 				34A1942123553DD60076A717 /* FormatFileUrl.swift in Sources */,
 				34E516CB2352AC50008B4256 /* YippyColorCellView.swift in Sources */,
@@ -1889,6 +1933,14 @@
 				kind = branch;
 			};
 		};
+		DB9340852B7B930700157394 /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1971,6 +2023,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */;
 			productName = Default;
+		};
+		DB9340862B7B930700157394 /* EasySkeleton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB9340852B7B930700157394 /* XCRemoteSwiftPackageReference "EasySkeleton" */;
+			productName = EasySkeleton;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

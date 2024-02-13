@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "easyskeleton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SpectralDragon/EasySkeleton",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1cfdd165da0619053a931df3b03d22b6f42a7924"
+      }
+    },
+    {
       "identity" : "fuse-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krisk/fuse-swift",

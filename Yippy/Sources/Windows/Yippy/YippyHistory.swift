@@ -8,7 +8,9 @@
 
 import Foundation
 import Cocoa
+import SwiftUI
 
+@Observable
 class YippyHistory {
     
     let history: History

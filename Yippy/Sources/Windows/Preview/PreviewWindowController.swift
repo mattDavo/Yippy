@@ -16,6 +16,7 @@ class PreviewWindowController: NSWindowController {
     var previewTextViewController: PreviewTextViewController!
     var previewImageViewController: PreviewImageViewController!
     var previewQLViewController: PreviewQLViewController!
+    var safariPreviewController: SafariPreviewController!
     
     var disposeBag = DisposeBag()
     
@@ -40,6 +41,7 @@ class PreviewWindowController: NSWindowController {
         previewWC.previewTextViewController = createPreviewViewController()
         previewWC.previewImageViewController = createPreviewViewController()
         previewWC.previewQLViewController = createPreviewViewController()
+        previewWC.safariPreviewController = createPreviewViewController()
         
         State.main.showsRichText.distinctUntilChanged().subscribe(onNext: previewWC.onShowsRichText).disposed(by: previewWC.disposeBag)
         
@@ -69,6 +71,9 @@ class PreviewWindowController: NSWindowController {
     func getViewController(forItem item: HistoryItem) -> PreviewViewController {
         if item.getFileUrl() != nil {
             return previewQLViewController
+        }
+        else if item.getUrl() != nil {
+            return safariPreviewController
         }
         else if item.types.contains(.tiff) || item.types.contains(.png) {
             return previewImageViewController

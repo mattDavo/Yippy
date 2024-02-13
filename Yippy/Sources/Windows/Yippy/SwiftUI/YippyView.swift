@@ -26,21 +26,25 @@ struct YippyView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 4) {
-                Image("YippyIconColored")
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                
-                HStack {
-                    Spacer()
+                ZStack {
+                    Text("Yippy")
+                        .font(.title)
                     
-                    Text(viewModel.itemCountLabel)
-                        .font(.subheadline)
+                    HStack {
+                        Spacer()
+                        
+                        Text(viewModel.itemCountLabel)
+                            .font(.subheadline)
+                    }
                 }
                 .padding(.horizontal, 32)
+                .padding(.bottom, 8)
                 
-                TextField(text: $viewModel.searchBarValue, prompt: Text("Search...")) {
+                TextField(text: $viewModel.searchBarValue, prompt: Text("Search For Something (􀆔\\)")) {
                     Image(systemName: "magnifyingglass")
                 }
+                .autocorrectionDisabled()
+                .border(.secondary)
                 .onChange(of: viewModel.searchBarValue) { _, _ in
                     viewModel.runSearch()
                 }

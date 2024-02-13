@@ -34,6 +34,7 @@ struct HistoryWebLinkCellView: View {
                 if let metadata = self.metadata {
                     LinkPreview(metadata: metadata)
                         .frame(width: width)
+                        .allowsHitTesting(false)
                 } else {
                     HistoryTextCellView(item: item, proxy: proxy, usingItemRtf: false)
                 }

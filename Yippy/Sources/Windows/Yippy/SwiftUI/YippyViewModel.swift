@@ -14,6 +14,11 @@ import RxCocoa
 import SwiftUI
 import Observation
 
+struct Results {
+    let items: [HistoryItem]
+    let isSearchResult: Bool
+}
+
 @Observable
 class YippyViewModel {
     
@@ -81,8 +86,8 @@ class YippyViewModel {
         YippyHotKeys.ctrlAltCmdDownArrow.onDown { State.main.panelPosition.accept(.bottom) }
         YippyHotKeys.ctrlAltCmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
         YippyHotKeys.ctrlDelete.onDown(deleteSelected)
-        YippyHotKeys.ctrlSpace.onDown(togglePreview)
-        //        YippyHotKeys.cmdBackslash.onDown(focusSearchBar)
+        YippyHotKeys.space.onDown(togglePreview)
+//            YippyHotKeys.cmdBackslash.onDown(focusSearchBar)
         
         // Paste hot keys
         YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }
@@ -117,7 +122,7 @@ class YippyViewModel {
         bindHotKeyToYippyWindow(YippyHotKeys.cmd8, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.cmd9, disposeBag: disposeBag)
         bindHotKeyToYippyWindow(YippyHotKeys.ctrlDelete, disposeBag: disposeBag)
-        bindHotKeyToYippyWindow(YippyHotKeys.ctrlSpace, disposeBag: disposeBag)
+        bindHotKeyToYippyWindow(YippyHotKeys.space, disposeBag: disposeBag)
     }
     
     func resetSelected() {
@@ -235,15 +240,15 @@ class YippyViewModel {
     }
     
     func togglePreview() {
-        //        if let selected = yippyHistoryView.selected {
-        //            isPreviewShowing = !isPreviewShowing
-        //            if isPreviewShowing {
-        //                State.main.previewHistoryItem.accept(yippyHistory.items[selected])
-        //            }
-        //            else {
-        //                State.main.previewHistoryItem.accept(nil)
-        //            }
-        //        }
+        if let selected = self.selected.value {
+            isPreviewShowing = !isPreviewShowing
+            if isPreviewShowing {
+                State.main.previewHistoryItem.accept(yippyHistory.items[selected])
+            }
+            else {
+                State.main.previewHistoryItem.accept(nil)
+            }
+        }
     }
     
     func focusSearchBar() {

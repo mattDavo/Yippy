@@ -13,11 +13,6 @@ import RxRelay
 import RxCocoa
 import SwiftUI
 
-struct Results {
-    let items: [HistoryItem]
-    let isSearchResult: Bool
-}
-
 class YippyViewController: NSViewController {
     
     @IBOutlet var yippyHistoryView: YippyTableView!

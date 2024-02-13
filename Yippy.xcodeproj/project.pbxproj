@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34010D29234AB3F100C1218D /* YippyWindow.swift */; };
 		340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */; };
 		340FB43B236407D70053D82C /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB43A236407D70053D82C /* Controller.swift */; };
-		340FB43D236550390053D82C /* YippyTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB43C236550390053D82C /* YippyTableViewDelegate.swift */; };
 		341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */; };
 		341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */; };
 		341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D9D282337251B008A2BE6 /* KeyActionHandler.swift */; };
@@ -71,10 +70,6 @@
 		345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B02341AF1900C2D0DA /* KeyPressHelperMock.swift */; };
 		345B14B32341AFB800C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
 		345B14B42341B37A00C2D0DA /* KeyPressMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B14B22341AFB800C2D0DA /* KeyPressMock.swift */; };
-		345BAE2C23500580008ACB4C /* YippyFileIconCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2B23500580008ACB4C /* YippyFileIconCellView.swift */; };
-		345BAE2E235005BB008ACB4C /* YippyFileThumbnailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2D235005BB008ACB4C /* YippyFileThumbnailCellView.swift */; };
-		345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE2F235005E7008ACB4C /* YippyItem.swift */; };
-		345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */; };
 		345BAE3423500E4B008ACB4C /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
 		3465A90023EF84A2009EE52B /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A8FF23EF84A2009EE52B /* Cache.swift */; };
 		34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */; };
@@ -82,8 +77,6 @@
 		3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */; };
 		3474C1402346E82900232620 /* YippyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C13F2346E82900232620 /* YippyHistory.swift */; };
 		3474C14223472A1500232620 /* NSEdgeInset+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */; };
-		347D59A522F43B94005F6EA8 /* YippyTextCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D59A322F43B94005F6EA8 /* YippyTextCellView.swift */; };
-		3486C0A6234416A4004B2F2E /* YippyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486C0A5234416A4004B2F2E /* YippyTableView.swift */; };
 		3488B14022FAE8F30019E7DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B13F22FAE8F30019E7DA /* Constants.swift */; };
 		3488B14222FAE9FA0019E7DA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3488B14122FAE9FA0019E7DA /* State.swift */; };
 		348D526523876B1E0024A5C7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 348D526423876B1E0024A5C7 /* README.md */; };
@@ -107,7 +100,6 @@
 		34ACFBC622EB0B11004E6E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACFBC422EB0B11004E6E63 /* Main.storyboard */; };
 		34ACFBD222EB0B11004E6E63 /* YippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBD122EB0B11004E6E63 /* YippyTests.swift */; };
 		34ACFBDD22EB0B11004E6E63 /* YippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */; };
-		34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */; };
 		34AF6CE62358079100E8F6CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF6CE52358079100E8F6CC /* Logger.swift */; };
 		34B13758235BF942004AB5ED /* HistoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13757235BF942004AB5ED /* HistoryCacheTests.swift */; };
 		34B1375A235BFB87004AB5ED /* HistoryFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13759235BFB87004AB5ED /* HistoryFileManager.swift */; };
@@ -122,7 +114,6 @@
 		34B5C43023580CF0005247EB /* YippyWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C42F23580CF0005247EB /* YippyWarning.swift */; };
 		34B5C43223580CFF005247EB /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43123580CFF005247EB /* Loggable.swift */; };
 		34B5C43423581B7B005247EB /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43323581B7B005247EB /* Alertable.swift */; };
-		34B5C43623582CCB005247EB /* YippyTiffCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5C43523582CCB005247EB /* YippyTiffCellView.swift */; };
 		34CA01FE235D3AE700EB067C /* DataFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA01FD235D3AE700EB067C /* DataFileManager.swift */; };
 		34CA0200235D3D5C00EB067C /* DataFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA01FF235D3D5C00EB067C /* DataFileManagerMock.swift */; };
 		34CA0202235D742000EB067C /* HistoryFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA0201235D742000EB067C /* HistoryFileManagerMock.swift */; };
@@ -132,8 +123,6 @@
 		34D018ED232B5139006259E1 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EC232B5139006259E1 /* AboutWindowController.swift */; };
 		34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D018EE232B514A006259E1 /* AboutViewController.swift */; };
 		34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */; };
-		34E516CB2352AC50008B4256 /* YippyColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CA2352AC50008B4256 /* YippyColorCellView.swift */; };
-		34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */; };
 		34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */; };
 		34E56483235E777E00E362CF /* NSTextCheckingResult+Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E56482235E777E00E362CF /* NSTextCheckingResult+Groups.swift */; };
 		34EC0FF42504A599004E1A63 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = 34EC0FF32504A599004E1A63 /* Fuse */; };
@@ -141,8 +130,34 @@
 		34EC0FF92504ADE7004E1A63 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC0FF82504ADE7004E1A63 /* SearchEngine.swift */; };
 		34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */; };
 		34F1047E23542D1600B65251 /* PasteboardType+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */; };
-		B8A057305B33D2028FC0EC05 /* Pods_YippyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */; };
-		D104B1D4E210055A8E6424F0 /* Pods_YippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */; };
+		DB2C2EF12B7BE864007B007A /* HistoryFileIconCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C2EF02B7BE864007B007A /* HistoryFileIconCellView.swift */; };
+		DB8E791E2B7ACAEE006860F1 /* LoginServiceKit in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E791D2B7ACAEE006860F1 /* LoginServiceKit */; };
+		DB8E79212B7ACB64006860F1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79202B7ACB64006860F1 /* RxSwift */; };
+		DB8E79232B7ACB6A006860F1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79222B7ACB6A006860F1 /* RxCocoa */; };
+		DB8E79252B7ACB7E006860F1 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79242B7ACB7E006860F1 /* RxTest */; };
+		DB8E79272B7ACB82006860F1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79262B7ACB82006860F1 /* RxSwift */; };
+		DB8E79292B7ACB85006860F1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79282B7ACB85006860F1 /* RxCocoa */; };
+		DB8E792B2B7ACB89006860F1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E792A2B7ACB89006860F1 /* RxSwift */; };
+		DB8E792D2B7ACB8D006860F1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E792C2B7ACB8D006860F1 /* RxCocoa */; };
+		DB8E792F2B7ACB90006860F1 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E792E2B7ACB90006860F1 /* RxBlocking */; };
+		DB8E79312B7ACB94006860F1 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79302B7ACB94006860F1 /* RxTest */; };
+		DB8E79332B7ACB98006860F1 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79322B7ACB98006860F1 /* RxBlocking */; };
+		DB8E79362B7ACBCC006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79352B7ACBCC006860F1 /* Default */; };
+		DB8E79382B7ACBE2006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79372B7ACBE2006860F1 /* Default */; };
+		DB8E793A2B7ACBE7006860F1 /* Default in Frameworks */ = {isa = PBXBuildFile; productRef = DB8E79392B7ACBE7006860F1 /* Default */; };
+		DB8E793C2B7AD158006860F1 /* YippyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793B2B7AD158006860F1 /* YippyView.swift */; };
+		DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */; };
+		DB93406F2B7AE28800157394 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93406E2B7AE28800157394 /* BlurView.swift */; };
+		DB93407C2B7B8FBF00157394 /* HistoryTextCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93407B2B7B8FBF00157394 /* HistoryTextCellView.swift */; };
+		DB93407E2B7B900A00157394 /* HistoryWebLinkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93407D2B7B900A00157394 /* HistoryWebLinkCellView.swift */; };
+		DB9340802B7B902400157394 /* HistoryImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93407F2B7B902400157394 /* HistoryImageCellView.swift */; };
+		DB9340822B7B905300157394 /* HistoryCellSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9340812B7B905300157394 /* HistoryCellSettings.swift */; };
+		DB9340842B7B906200157394 /* HistoryColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9340832B7B906200157394 /* HistoryColorCellView.swift */; };
+		DB9340872B7B930700157394 /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = DB9340862B7B930700157394 /* EasySkeleton */; };
+		DB9340892B7B96C600157394 /* HistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9340882B7B96C600157394 /* HistoryCellView.swift */; };
+		DB93408B2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93408A2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift */; };
+		DB93408D2B7B9D8C00157394 /* HistoryItem+Transferrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB93408C2B7B9D8C00157394 /* HistoryItem+Transferrable.swift */; };
+		DBF3F3742B7BB77300581C6B /* SafariPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3F3732B7BB77300581C6B /* SafariPreviewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,15 +178,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		202453EF7CD6236AEDFC2D28 /* Pods-Yippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.debug.xcconfig"; sourceTree = "<group>"; };
-		292479A169E6616BA796405B /* Pods-Yippy.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.xctest.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.xctest.xcconfig"; sourceTree = "<group>"; };
-		2D2B3E00E7AF930AA001E27C /* Pods-Yippy.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.beta release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.beta release.xcconfig"; sourceTree = "<group>"; };
 		34010D29234AB3F100C1218D /* YippyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWindow.swift; sourceTree = "<group>"; };
 		340D3CA62361957100C2B335 /* ObservableType+WithPrevious.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+WithPrevious.swift"; sourceTree = "<group>"; };
 		340FB43A236407D70053D82C /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		340FB43C236550390053D82C /* YippyTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTableViewDelegate.swift; sourceTree = "<group>"; };
 		341D9D24233724A2008A2BE6 /* KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMonitor.swift; sourceTree = "<group>"; };
 		341D9D26233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEventModifierFlags+KeyPressMonitor.swift"; sourceTree = "<group>"; };
 		341D9D282337251B008A2BE6 /* KeyActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyActionHandler.swift; sourceTree = "<group>"; };
@@ -228,10 +237,6 @@
 		345B14AE2341AEEA00C2D0DA /* KeyPressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelper.swift; sourceTree = "<group>"; };
 		345B14B02341AF1900C2D0DA /* KeyPressHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressHelperMock.swift; sourceTree = "<group>"; };
 		345B14B22341AFB800C2D0DA /* KeyPressMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressMock.swift; sourceTree = "<group>"; };
-		345BAE2B23500580008ACB4C /* YippyFileIconCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileIconCellView.swift; sourceTree = "<group>"; };
-		345BAE2D235005BB008ACB4C /* YippyFileThumbnailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyFileThumbnailCellView.swift; sourceTree = "<group>"; };
-		345BAE2F235005E7008ACB4C /* YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItem.swift; sourceTree = "<group>"; };
-		345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemCellTextView.swift; sourceTree = "<group>"; };
 		345BAE3323500E4B008ACB4C /* PasteboardType+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardType+Codable.swift"; sourceTree = "<group>"; };
 		3465A8FF23EF84A2009EE52B /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		34734C7E2330CB6A0056F855 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
@@ -239,8 +244,6 @@
 		3474C13D2346E70F00232620 /* NSAttributedString+BoundingRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BoundingRect.swift"; sourceTree = "<group>"; };
 		3474C13F2346E82900232620 /* YippyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyHistory.swift; sourceTree = "<group>"; };
 		3474C14123472A1500232620 /* NSEdgeInset+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEdgeInset+Convenience.swift"; sourceTree = "<group>"; };
-		347D59A322F43B94005F6EA8 /* YippyTextCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTextCellView.swift; sourceTree = "<group>"; };
-		3486C0A5234416A4004B2F2E /* YippyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTableView.swift; sourceTree = "<group>"; };
 		3488B13F22FAE8F30019E7DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3488B14122FAE9FA0019E7DA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		348D526423876B1E0024A5C7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -270,7 +273,6 @@
 		34ACFBD822EB0B11004E6E63 /* YippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACFBDC22EB0B11004E6E63 /* YippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyUITests.swift; sourceTree = "<group>"; };
 		34ACFBDE22EB0B11004E6E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyViewController.swift; sourceTree = "<group>"; };
 		34AF6CE52358079100E8F6CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		34B13757235BF942004AB5ED /* HistoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCacheTests.swift; sourceTree = "<group>"; };
 		34B13759235BFB87004AB5ED /* HistoryFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileManager.swift; sourceTree = "<group>"; };
@@ -285,7 +287,6 @@
 		34B5C42F23580CF0005247EB /* YippyWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyWarning.swift; sourceTree = "<group>"; };
 		34B5C43123580CFF005247EB /* Loggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loggable.swift; sourceTree = "<group>"; };
 		34B5C43323581B7B005247EB /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
-		34B5C43523582CCB005247EB /* YippyTiffCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyTiffCellView.swift; sourceTree = "<group>"; };
 		34CA01FD235D3AE700EB067C /* DataFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFileManager.swift; sourceTree = "<group>"; };
 		34CA01FF235D3D5C00EB067C /* DataFileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFileManagerMock.swift; sourceTree = "<group>"; };
 		34CA0201235D742000EB067C /* HistoryFileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileManagerMock.swift; sourceTree = "<group>"; };
@@ -295,26 +296,24 @@
 		34D018EC232B5139006259E1 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		34D018EE232B514A006259E1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		34E516C823528AE5008B4256 /* NSTextView+AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+AttributedText.swift"; sourceTree = "<group>"; };
-		34E516CA2352AC50008B4256 /* YippyColorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyColorCellView.swift; sourceTree = "<group>"; };
-		34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemBaseCellView.swift; sourceTree = "<group>"; };
 		34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyItemContentView.swift; sourceTree = "<group>"; };
 		34E56482235E777E00E362CF /* NSTextCheckingResult+Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextCheckingResult+Groups.swift"; sourceTree = "<group>"; };
 		34EC0FF62504AC9C004E1A63 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		34EC0FF82504ADE7004E1A63 /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 		34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+YippyItem.swift"; sourceTree = "<group>"; };
-		473D1B2417E6C47B92751AA6 /* Pods-YippyTests.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta debug.xcconfig"; sourceTree = "<group>"; };
-		497AE5F620140FB1A3632D80 /* Pods-YippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.debug.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6345AD4696DA11C3A58F38CB /* Pods-Yippy.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.beta debug.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.beta debug.xcconfig"; sourceTree = "<group>"; };
-		B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7B2145CEF513C8B71E739A5 /* Pods-YippyUITests.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.xctest.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.xctest.xcconfig"; sourceTree = "<group>"; };
-		C0ACFCB0B26BF8B8E6EF42EA /* Pods_Yippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C555279B4167FBDCA36E01CC /* Pods-YippyUITests.beta debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.beta debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.beta debug.xcconfig"; sourceTree = "<group>"; };
-		D494A85C58610499F7B77533 /* Pods-YippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.release.xcconfig"; sourceTree = "<group>"; };
-		D645D0527FE8FF6EF353F28D /* Pods-YippyUITests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.beta release.xcconfig"; sourceTree = "<group>"; };
-		DB08CF772E2DDB5EB572EC69 /* Pods-YippyTests.xctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.xctest.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.xctest.xcconfig"; sourceTree = "<group>"; };
-		DD6B8A620296CD50E196DD19 /* Pods-YippyTests.beta release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyTests.beta release.xcconfig"; path = "Target Support Files/Pods-YippyTests/Pods-YippyTests.beta release.xcconfig"; sourceTree = "<group>"; };
-		E64E0EE8F7B5AE23FF150E45 /* Pods-Yippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yippy.release.xcconfig"; path = "Target Support Files/Pods-Yippy/Pods-Yippy.release.xcconfig"; sourceTree = "<group>"; };
-		FEE6024221D8C9C221BBE212 /* Pods-YippyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.release.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DB2C2EF02B7BE864007B007A /* HistoryFileIconCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileIconCellView.swift; sourceTree = "<group>"; };
+		DB8E793B2B7AD158006860F1 /* YippyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyView.swift; sourceTree = "<group>"; };
+		DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YippyViewModel.swift; sourceTree = "<group>"; };
+		DB93406E2B7AE28800157394 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		DB93407B2B7B8FBF00157394 /* HistoryTextCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTextCellView.swift; sourceTree = "<group>"; };
+		DB93407D2B7B900A00157394 /* HistoryWebLinkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWebLinkCellView.swift; sourceTree = "<group>"; };
+		DB93407F2B7B902400157394 /* HistoryImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryImageCellView.swift; sourceTree = "<group>"; };
+		DB9340812B7B905300157394 /* HistoryCellSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellSettings.swift; sourceTree = "<group>"; };
+		DB9340832B7B906200157394 /* HistoryColorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryColorCellView.swift; sourceTree = "<group>"; };
+		DB9340882B7B96C600157394 /* HistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellView.swift; sourceTree = "<group>"; };
+		DB93408A2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFileThumbnailCellView.swift; sourceTree = "<group>"; };
+		DB93408C2B7B9D8C00157394 /* HistoryItem+Transferrable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItem+Transferrable.swift"; sourceTree = "<group>"; };
+		DBF3F3732B7BB77300581C6B /* SafariPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariPreviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,9 +321,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB8E79212B7ACB64006860F1 /* RxSwift in Frameworks */,
 				344C1162234DD2EF00B35DC9 /* Quartz.framework in Frameworks */,
 				34545E50267715D600D6404D /* HotKey in Frameworks */,
+				DB9340872B7B930700157394 /* EasySkeleton in Frameworks */,
+				DB8E79232B7ACB6A006860F1 /* RxCocoa in Frameworks */,
+				DB8E79362B7ACBCC006860F1 /* Default in Frameworks */,
 				34EC0FF42504A599004E1A63 /* Fuse in Frameworks */,
+				DB8E791E2B7ACAEE006860F1 /* LoginServiceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +336,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D104B1D4E210055A8E6424F0 /* Pods_YippyTests.framework in Frameworks */,
+				DB8E79382B7ACBE2006860F1 /* Default in Frameworks */,
+				DB8E79272B7ACB82006860F1 /* RxSwift in Frameworks */,
+				DB8E79252B7ACB7E006860F1 /* RxTest in Frameworks */,
+				DB8E79292B7ACB85006860F1 /* RxCocoa in Frameworks */,
+				DB8E79332B7ACB98006860F1 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +348,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A057305B33D2028FC0EC05 /* Pods_YippyUITests.framework in Frameworks */,
+				DB8E793A2B7ACBE7006860F1 /* Default in Frameworks */,
+				DB8E79312B7ACB94006860F1 /* RxTest in Frameworks */,
+				DB8E792D2B7ACB8D006860F1 /* RxCocoa in Frameworks */,
+				DB8E792F2B7ACB90006860F1 /* RxBlocking in Frameworks */,
+				DB8E792B2B7ACB89006860F1 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,23 +364,8 @@
 			children = (
 				344C1163234DD31700B35DC9 /* QuartzCore.framework */,
 				344C1161234DD2EF00B35DC9 /* Quartz.framework */,
-				C0ACFCB0B26BF8B8E6EF42EA /* Pods_Yippy.framework */,
-				B1AA8E9C3FA65CDE7DA527C7 /* Pods_YippyTests.framework */,
-				06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		340D3CA523615E4200C2B335 /* CellViews */ = {
-			isa = PBXGroup;
-			children = (
-				34E516CA2352AC50008B4256 /* YippyColorCellView.swift */,
-				345BAE2B23500580008ACB4C /* YippyFileIconCellView.swift */,
-				345BAE2D235005BB008ACB4C /* YippyFileThumbnailCellView.swift */,
-				347D59A322F43B94005F6EA8 /* YippyTextCellView.swift */,
-				34B5C43523582CCB005247EB /* YippyTiffCellView.swift */,
-			);
-			path = CellViews;
 			sourceTree = "<group>";
 		};
 		341D9D2323372494008A2BE6 /* KeyPressMonitor */ = {
@@ -389,16 +386,10 @@
 		341D9D38233A1460008A2BE6 /* Yippy */ = {
 			isa = PBXGroup;
 			children = (
-				340D3CA523615E4200C2B335 /* CellViews */,
+				DB8E793D2B7AD1EE006860F1 /* SwiftUI */,
 				34A1942023553DD60076A717 /* FormatFileUrl.swift */,
 				3474C13F2346E82900232620 /* YippyHistory.swift */,
-				345BAE2F235005E7008ACB4C /* YippyItem.swift */,
-				34E516CC2352C4AF008B4256 /* YippyItemBaseCellView.swift */,
-				345BAE3123500600008ACB4C /* YippyItemCellTextView.swift */,
 				34E516CE2352C4D4008B4256 /* YippyItemContentView.swift */,
-				3486C0A5234416A4004B2F2E /* YippyTableView.swift */,
-				340FB43C236550390053D82C /* YippyTableViewDelegate.swift */,
-				34ACFBEA22EB0D6A004E6E63 /* YippyViewController.swift */,
 				34A11C9723693CFD00DA1B14 /* HorizontalButtonsView.swift */,
 				34010D29234AB3F100C1218D /* YippyWindow.swift */,
 				341D9D3B233ADE6E008A2BE6 /* YippyWindowController.swift */,
@@ -490,6 +481,7 @@
 				3423B1BC234D8A7F00B40715 /* PreviewTextViewController.swift */,
 				345131EE23836725002D9D03 /* PreviewViewController.swift */,
 				345131EC238366B1002D9D03 /* PreviewWindowController.swift */,
+				DBF3F3732B7BB77300581C6B /* SafariPreviewController.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -679,6 +671,7 @@
 				3423B1C0234D8AFF00B40715 /* HistoryItem.swift */,
 				34F1047C23542CCE00B65251 /* HistoryItem+YippyItem.swift */,
 				34CA01FD235D3AE700EB067C /* DataFileManager.swift */,
+				DB93408C2B7B9D8C00157394 /* HistoryItem+Transferrable.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -691,7 +684,6 @@
 				34ACFBD022EB0B11004E6E63 /* YippyTests */,
 				34ACFBDB22EB0B11004E6E63 /* YippyUITests */,
 				34ACFBBC22EB0B0F004E6E63 /* Products */,
-				E25B1BF673F15B06A7F5367C /* Pods */,
 				2F6C79B4B534D194417375B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -755,26 +747,30 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		E25B1BF673F15B06A7F5367C /* Pods */ = {
+		DB8E793D2B7AD1EE006860F1 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				202453EF7CD6236AEDFC2D28 /* Pods-Yippy.debug.xcconfig */,
-				292479A169E6616BA796405B /* Pods-Yippy.xctest.xcconfig */,
-				6345AD4696DA11C3A58F38CB /* Pods-Yippy.beta debug.xcconfig */,
-				E64E0EE8F7B5AE23FF150E45 /* Pods-Yippy.release.xcconfig */,
-				2D2B3E00E7AF930AA001E27C /* Pods-Yippy.beta release.xcconfig */,
-				497AE5F620140FB1A3632D80 /* Pods-YippyTests.debug.xcconfig */,
-				DB08CF772E2DDB5EB572EC69 /* Pods-YippyTests.xctest.xcconfig */,
-				473D1B2417E6C47B92751AA6 /* Pods-YippyTests.beta debug.xcconfig */,
-				D494A85C58610499F7B77533 /* Pods-YippyTests.release.xcconfig */,
-				DD6B8A620296CD50E196DD19 /* Pods-YippyTests.beta release.xcconfig */,
-				04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */,
-				B7B2145CEF513C8B71E739A5 /* Pods-YippyUITests.xctest.xcconfig */,
-				C555279B4167FBDCA36E01CC /* Pods-YippyUITests.beta debug.xcconfig */,
-				FEE6024221D8C9C221BBE212 /* Pods-YippyUITests.release.xcconfig */,
-				D645D0527FE8FF6EF353F28D /* Pods-YippyUITests.beta release.xcconfig */,
+				DB9340702B7B801B00157394 /* Cells */,
+				DB8E793B2B7AD158006860F1 /* YippyView.swift */,
+				DB8E793E2B7AD1F8006860F1 /* YippyViewModel.swift */,
+				DB93406E2B7AE28800157394 /* BlurView.swift */,
+				DB9340812B7B905300157394 /* HistoryCellSettings.swift */,
 			);
-			path = Pods;
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		DB9340702B7B801B00157394 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DB93407B2B7B8FBF00157394 /* HistoryTextCellView.swift */,
+				DB93407D2B7B900A00157394 /* HistoryWebLinkCellView.swift */,
+				DB93407F2B7B902400157394 /* HistoryImageCellView.swift */,
+				DB9340832B7B906200157394 /* HistoryColorCellView.swift */,
+				DB9340882B7B96C600157394 /* HistoryCellView.swift */,
+				DB93408A2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift */,
+				DB2C2EF02B7BE864007B007A /* HistoryFileIconCellView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -784,11 +780,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE122EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "Yippy" */;
 			buildPhases = (
-				750D5CFCA0BAE22103480DDB /* [CP] Check Pods Manifest.lock */,
 				34ACFBB722EB0B0F004E6E63 /* Sources */,
 				34ACFBB822EB0B0F004E6E63 /* Frameworks */,
 				34ACFBB922EB0B0F004E6E63 /* Resources */,
-				D04500AD22B2AEF42A36F940 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -798,6 +792,11 @@
 			packageProductDependencies = (
 				34EC0FF32504A599004E1A63 /* Fuse */,
 				34545E4F267715D600D6404D /* HotKey */,
+				DB8E791D2B7ACAEE006860F1 /* LoginServiceKit */,
+				DB8E79202B7ACB64006860F1 /* RxSwift */,
+				DB8E79222B7ACB6A006860F1 /* RxCocoa */,
+				DB8E79352B7ACBCC006860F1 /* Default */,
+				DB9340862B7B930700157394 /* EasySkeleton */,
 			);
 			productName = Yippy;
 			productReference = 34ACFBBB22EB0B0F004E6E63 /* Yippy.app */;
@@ -807,11 +806,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE422EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyTests" */;
 			buildPhases = (
-				7DDB83DEAFAC1A134A439734 /* [CP] Check Pods Manifest.lock */,
 				34ACFBC922EB0B11004E6E63 /* Sources */,
 				34ACFBCA22EB0B11004E6E63 /* Frameworks */,
 				34ACFBCB22EB0B11004E6E63 /* Resources */,
-				4A0057EE70700FCD977DF106 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -820,6 +817,13 @@
 				34ACFBCF22EB0B11004E6E63 /* PBXTargetDependency */,
 			);
 			name = YippyTests;
+			packageProductDependencies = (
+				DB8E79242B7ACB7E006860F1 /* RxTest */,
+				DB8E79262B7ACB82006860F1 /* RxSwift */,
+				DB8E79282B7ACB85006860F1 /* RxCocoa */,
+				DB8E79322B7ACB98006860F1 /* RxBlocking */,
+				DB8E79372B7ACBE2006860F1 /* Default */,
+			);
 			productName = YippyTests;
 			productReference = 34ACFBCD22EB0B11004E6E63 /* YippyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -828,11 +832,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34ACFBE722EB0B11004E6E63 /* Build configuration list for PBXNativeTarget "YippyUITests" */;
 			buildPhases = (
-				2A60A7B814DF5E6C64690AA7 /* [CP] Check Pods Manifest.lock */,
 				34ACFBD422EB0B11004E6E63 /* Sources */,
 				34ACFBD522EB0B11004E6E63 /* Frameworks */,
 				34ACFBD622EB0B11004E6E63 /* Resources */,
-				651949D2B65A134E8F9E664E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -840,6 +842,13 @@
 				34ACFBDA22EB0B11004E6E63 /* PBXTargetDependency */,
 			);
 			name = YippyUITests;
+			packageProductDependencies = (
+				DB8E792A2B7ACB89006860F1 /* RxSwift */,
+				DB8E792C2B7ACB8D006860F1 /* RxCocoa */,
+				DB8E792E2B7ACB90006860F1 /* RxBlocking */,
+				DB8E79302B7ACB94006860F1 /* RxTest */,
+				DB8E79392B7ACBE7006860F1 /* Default */,
+			);
 			productName = YippyUITests;
 			productReference = 34ACFBD822EB0B11004E6E63 /* YippyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -850,8 +859,9 @@
 		34ACFBB322EB0B0E004E6E63 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = MatthewDavidson;
 				TargetAttributes = {
 					34ACFBBA22EB0B0F004E6E63 = {
@@ -884,6 +894,10 @@
 			packageReferences = (
 				345DCFBB2420C2D2003E214D /* XCRemoteSwiftPackageReference "HotKey" */,
 				34EC0FF22504A599004E1A63 /* XCRemoteSwiftPackageReference "fuse-swift" */,
+				DB8E791C2B7ACAEE006860F1 /* XCRemoteSwiftPackageReference "LoginServiceKit" */,
+				DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */,
+				DB9340852B7B930700157394 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 			);
 			productRefGroup = 34ACFBBC22EB0B0F004E6E63 /* Products */;
 			projectDirPath = "";
@@ -923,159 +937,42 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		2A60A7B814DF5E6C64690AA7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YippyUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A0057EE70700FCD977DF106 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyTests/Pods-YippyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		651949D2B65A134E8F9E664E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YippyUITests/Pods-YippyUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		750D5CFCA0BAE22103480DDB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Yippy-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7DDB83DEAFAC1A134A439734 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YippyTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D04500AD22B2AEF42A36F940 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yippy/Pods-Yippy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		34ACFBB722EB0B0F004E6E63 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */,
+				DB9340842B7B906200157394 /* HistoryColorCellView.swift in Sources */,
 				341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */,
 				3423B1C1234D8AFF00B40715 /* HistoryItem.swift in Sources */,
 				34B2FD9922F98C570068D50A /* NSMenuItem+Functional.swift in Sources */,
 				34B27E2C23587E7F004D6B18 /* PreviewImageViewController.swift in Sources */,
 				341D9D2F233725B3008A2BE6 /* KeyDownEventMonitor.swift in Sources */,
-				347D59A522F43B94005F6EA8 /* YippyTextCellView.swift in Sources */,
 				345131ED238366B1002D9D03 /* PreviewWindowController.swift in Sources */,
 				34B5C43223580CFF005247EB /* Loggable.swift in Sources */,
 				3426811E233E0A4600BA226A /* Accessibility.swift in Sources */,
 				3496BADB2442B28A00D110AE /* SettingsTabViewController.swift in Sources */,
 				3465A90023EF84A2009EE52B /* Cache.swift in Sources */,
-				34E516CD2352C4AF008B4256 /* YippyItemBaseCellView.swift in Sources */,
 				3490D3992328EFB300BA8747 /* HelpViewController.swift in Sources */,
 				34E516CF2352C4D4008B4256 /* YippyItemContentView.swift in Sources */,
 				34EC0FF72504AC9C004E1A63 /* Search.swift in Sources */,
+				DB93407E2B7B900A00157394 /* HistoryWebLinkCellView.swift in Sources */,
 				34734C812330CB6A0056F855 /* PasteboardMonitorDelegate.swift in Sources */,
 				345B149323403B4100C2D0DA /* AccessControlMock.swift in Sources */,
 				345131EF23836725002D9D03 /* PreviewViewController.swift in Sources */,
 				341D9D27233724FE008A2BE6 /* NSEventModifierFlags+KeyPressMonitor.swift in Sources */,
+				DB9340802B7B902400157394 /* HistoryImageCellView.swift in Sources */,
 				3488B14222FAE9FA0019E7DA /* State.swift in Sources */,
+				DB93406F2B7AE28800157394 /* BlurView.swift in Sources */,
+				DB93408D2B7B9D8C00157394 /* HistoryItem+Transferrable.swift in Sources */,
 				34B2FD9722F98C4E0068D50A /* NSMenu+Functional.swift in Sources */,
+				DB8E793F2B7AD1F8006860F1 /* YippyViewModel.swift in Sources */,
 				345B14B12341AF1900C2D0DA /* KeyPressHelperMock.swift in Sources */,
-				340FB43D236550390053D82C /* YippyTableViewDelegate.swift in Sources */,
+				DB8E793C2B7AD158006860F1 /* YippyView.swift in Sources */,
 				345B14AF2341AEEA00C2D0DA /* KeyPressHelper.swift in Sources */,
 				341D9D31233725CA008A2BE6 /* KeyUpEventMonitor.swift in Sources */,
 				340FB43B236407D70053D82C /* Controller.swift in Sources */,
-				34ACFBEB22EB0D6A004E6E63 /* YippyViewController.swift in Sources */,
 				34E56483235E777E00E362CF /* NSTextCheckingResult+Groups.swift in Sources */,
 				3474C1402346E82900232620 /* YippyHistory.swift in Sources */,
 				3496BAD92442A90000D110AE /* GeneralSettingsViewController.swift in Sources */,
@@ -1095,17 +992,17 @@
 				349F7946235C4D2B000CA5B9 /* Alerter.swift in Sources */,
 				34D018EF232B514A006259E1 /* AboutViewController.swift in Sources */,
 				34734C802330CB6A0056F855 /* PasteboardMonitor.swift in Sources */,
-				3486C0A6234416A4004B2F2E /* YippyTableView.swift in Sources */,
 				345131F82383B6EE002D9D03 /* PreviewQLViewController.swift in Sources */,
+				DB9340892B7B96C600157394 /* HistoryCellView.swift in Sources */,
+				DBF3F3742B7BB77300581C6B /* SafariPreviewController.swift in Sources */,
 				341D9D2D23372592008A2BE6 /* EventMonitor.swift in Sources */,
 				341D9D2B23372550008A2BE6 /* KeyAction.swift in Sources */,
 				341FFEE92442EDA500C47E6D /* HistoryItemText.swift in Sources */,
 				34D018E9232B4CFC006259E1 /* HelpWindowController.swift in Sources */,
 				34E516C923528AE5008B4256 /* NSTextView+AttributedText.swift in Sources */,
 				341D9D42233B48E4008A2BE6 /* Array+Functional.swift in Sources */,
+				DB93408B2B7B98FE00157394 /* HistoryFileThumbnailCellView.swift in Sources */,
 				34B2FD9322F988980068D50A /* Settings.swift in Sources */,
-				345BAE2E235005BB008ACB4C /* YippyFileThumbnailCellView.swift in Sources */,
-				345BAE3223500600008ACB4C /* YippyItemCellTextView.swift in Sources */,
 				34F1047D23542CCE00B65251 /* HistoryItem+YippyItem.swift in Sources */,
 				34D018E5232A2B73006259E1 /* WaitingViewController.swift in Sources */,
 				341D9D3523373083008A2BE6 /* YippyHotKey.swift in Sources */,
@@ -1115,6 +1012,7 @@
 				34B5C43423581B7B005247EB /* Alertable.swift in Sources */,
 				34B5C43023580CF0005247EB /* YippyWarning.swift in Sources */,
 				341D9D25233724A2008A2BE6 /* KeyPressMonitor.swift in Sources */,
+				DB2C2EF12B7BE864007B007A /* HistoryFileIconCellView.swift in Sources */,
 				3474C13E2346E70F00232620 /* NSAttributedString+BoundingRect.swift in Sources */,
 				34A30CC62356B94E00D4C2D6 /* History.swift in Sources */,
 				34268124233EE82200BA226A /* AccessControlHelper.swift in Sources */,
@@ -1124,6 +1022,7 @@
 				34EC0FF92504ADE7004E1A63 /* SearchEngine.swift in Sources */,
 				341D9D3C233ADE6E008A2BE6 /* YippyWindowController.swift in Sources */,
 				340D3CA72361957100C2B335 /* ObservableType+WithPrevious.swift in Sources */,
+				DB9340822B7B905300157394 /* HistoryCellSettings.swift in Sources */,
 				34D018EB232B4D70006259E1 /* WelcomeWindowController.swift in Sources */,
 				34CA01FE235D3AE700EB067C /* DataFileManager.swift in Sources */,
 				34B5C42E23580CD9005247EB /* YippyError.swift in Sources */,
@@ -1131,15 +1030,12 @@
 				343F411C233C97A4004DA324 /* UserDefaults+Blank.swift in Sources */,
 				34268126233EE83700BA226A /* AccessControlHelperMock.swift in Sources */,
 				341D9D33233725DE008A2BE6 /* SpecialKeyChangedEventMonitor.swift in Sources */,
-				345BAE2C23500580008ACB4C /* YippyFileIconCellView.swift in Sources */,
 				344176792408640D0076BEDA /* HotKeySettingsViewController.swift in Sources */,
 				34B5C42A23580CB0005247EB /* ErrorLogger.swift in Sources */,
 				34A0E5522414F42D00B6A470 /* NSEvent.ModifierFlags+Codable.swift in Sources */,
-				34B5C43623582CCB005247EB /* YippyTiffCellView.swift in Sources */,
+				DB93407C2B7B8FBF00157394 /* HistoryTextCellView.swift in Sources */,
 				34A1942123553DD60076A717 /* FormatFileUrl.swift in Sources */,
-				34E516CB2352AC50008B4256 /* YippyColorCellView.swift in Sources */,
 				34AF6CE62358079100E8F6CC /* Logger.swift in Sources */,
-				345BAE30235005E7008ACB4C /* YippyItem.swift in Sources */,
 				34B5C42C23580CC6005247EB /* WarningLogger.swift in Sources */,
 				3488B14022FAE8F30019E7DA /* Constants.swift in Sources */,
 			);
@@ -1249,6 +1145,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1257,9 +1154,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1274,7 +1173,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1311,6 +1210,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1319,9 +1219,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1330,7 +1232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1342,22 +1244,23 @@
 		};
 		34ACFBE222EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 202453EF7CD6236AEDFC2D28 /* Pods-Yippy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1369,22 +1272,23 @@
 		};
 		34ACFBE322EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E64E0EE8F7B5AE23FF150E45 /* Pods-Yippy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1396,12 +1300,12 @@
 		};
 		34ACFBE522EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 497AE5F620140FB1A3632D80 /* Pods-YippyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1409,6 +1313,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1418,12 +1323,12 @@
 		};
 		34ACFBE622EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D494A85C58610499F7B77533 /* Pods-YippyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1431,6 +1336,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1440,11 +1346,11 @@
 		};
 		34ACFBE822EB0B11004E6E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1452,6 +1358,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1461,11 +1368,11 @@
 		};
 		34ACFBE922EB0B11004E6E63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEE6024221D8C9C221BBE212 /* Pods-YippyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1473,6 +1380,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1506,6 +1414,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1514,9 +1423,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1531,7 +1442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1544,7 +1455,6 @@
 		};
 		34F104802354323100B65251 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6345AD4696DA11C3A58F38CB /* Pods-Yippy.beta debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
@@ -1552,14 +1462,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1572,12 +1483,12 @@
 		};
 		34F104812354323100B65251 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 473D1B2417E6C47B92751AA6 /* Pods-YippyTests.beta debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1585,6 +1496,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1594,11 +1506,11 @@
 		};
 		34F104822354323100B65251 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C555279B4167FBDCA36E01CC /* Pods-YippyUITests.beta debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1606,6 +1518,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1639,6 +1552,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1647,9 +1561,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1658,7 +1574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1670,7 +1586,6 @@
 		};
 		34F104842354325400B65251 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D2B3E00E7AF930AA001E27C /* Pods-Yippy.beta release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
@@ -1678,14 +1593,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1698,12 +1614,12 @@
 		};
 		34F104852354325400B65251 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD6B8A620296CD50E196DD19 /* Pods-YippyTests.beta release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1711,6 +1627,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1720,11 +1637,11 @@
 		};
 		34F104862354325400B65251 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D645D0527FE8FF6EF353F28D /* Pods-YippyUITests.beta release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1732,6 +1649,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1765,6 +1683,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1773,9 +1692,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1790,7 +1711,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1803,7 +1724,6 @@
 		};
 		34F104882354325E00B65251 /* XCTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 292479A169E6616BA796405B /* Pods-Yippy.xctest.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Yippy/Supporting Files/Yippy.entitlements";
@@ -1811,14 +1731,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Yippy/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyXCTest;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1830,12 +1751,12 @@
 		};
 		34F104892354325E00B65251 /* XCTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB08CF772E2DDB5EB572EC69 /* Pods-YippyTests.xctest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = YippyTests/Info.plist;
@@ -1844,6 +1765,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1853,11 +1775,11 @@
 		};
 		34F1048A2354325E00B65251 /* XCTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7B2145CEF513C8B71E739A5 /* Pods-YippyUITests.xctest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = HY8YZ2D6M7;
 				INFOPLIST_FILE = YippyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1865,6 +1787,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1942,6 +1865,38 @@
 				minimumVersion = 1.4.0;
 			};
 		};
+		DB8E791C2B7ACAEE006860F1 /* XCRemoteSwiftPackageReference "LoginServiceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clipy/LoginServiceKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nirma/Default.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		DB9340852B7B930700157394 /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1954,6 +1909,81 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34EC0FF22504A599004E1A63 /* XCRemoteSwiftPackageReference "fuse-swift" */;
 			productName = Fuse;
+		};
+		DB8E791D2B7ACAEE006860F1 /* LoginServiceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791C2B7ACAEE006860F1 /* XCRemoteSwiftPackageReference "LoginServiceKit" */;
+			productName = LoginServiceKit;
+		};
+		DB8E79202B7ACB64006860F1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DB8E79222B7ACB6A006860F1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DB8E79242B7ACB7E006860F1 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		DB8E79262B7ACB82006860F1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DB8E79282B7ACB85006860F1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DB8E792A2B7ACB89006860F1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DB8E792C2B7ACB8D006860F1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DB8E792E2B7ACB90006860F1 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		DB8E79302B7ACB94006860F1 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		DB8E79322B7ACB98006860F1 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E791F2B7ACB29006860F1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		DB8E79352B7ACBCC006860F1 /* Default */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */;
+			productName = Default;
+		};
+		DB8E79372B7ACBE2006860F1 /* Default */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */;
+			productName = Default;
+		};
+		DB8E79392B7ACBE7006860F1 /* Default */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8E79342B7ACBCC006860F1 /* XCRemoteSwiftPackageReference "Default" */;
+			productName = Default;
+		};
+		DB9340862B7B930700157394 /* EasySkeleton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB9340852B7B930700157394 /* XCRemoteSwiftPackageReference "EasySkeleton" */;
+			productName = EasySkeleton;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,6 +1,0 @@
-framework module Pods_YippyUITests {
-  umbrella header "Pods-YippyUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

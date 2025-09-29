@@ -53,6 +53,20 @@ class HistoryFileManager {
         do {
             try checkHistoryDirectory()
             try self.orderManager.write(history.map({$0.fsId.uuidString}) as NSArray)
+            for item in history {
+                guard let meta = item.metadata else {
+                    continue
+                }
+
+                guard let data = try? JSONEncoder().encode(meta) else {
+                    continue
+                }
+                let url = self.orderManager.url
+                    .deletingLastPathComponent()
+                    .appending(path: item.fsId.uuidString)
+                    .appending(path: "meta.json")
+                try? self.dataFileManager.writeData(data, to: url, options: .atomic)
+            }
             return true
         }
         catch {
@@ -147,9 +161,15 @@ class HistoryFileManager {
                 do {
                     // Get all the files
                     let dataUrls = try self.fileManager.contentsOfDirectory(at: content, includingPropertiesForKeys: nil)
+                    let metaURL = dataUrls.first { $0.lastPathComponent == "meta.json" }
                     // and create the types
                     let types = dataUrls.map({NSPasteboard.PasteboardType($0.lastPathComponent)})
-                    items[id] = HistoryItem(fsId: id, types: types, cache: cache)
+                    items[id] = HistoryItem(
+                        fsId: id,
+                        types: types,
+                        cache: cache,
+                        metadata: getMeta(from: metaURL)
+                    )
                 }
                 catch {
                     let historyError = YippyError(code: 0, userInfo: [
@@ -201,7 +221,16 @@ class HistoryFileManager {
         
         return History(cache: cache, items: orderedItems)
     }
-    
+
+    private func getMeta(from url: URL?) -> HistoryItemMetadata? {
+        guard let url else { return nil }
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        let meta = try? JSONDecoder().decode(HistoryItemMetadata.self, from: data)
+        return meta
+    }
+
     func insertItem(newHistory: [HistoryItem], at i: Int, completionHandler handler: ((Bool) -> Void)? = nil) {
         dispatchQueue.async {
             // First check that we have unsaved data to save

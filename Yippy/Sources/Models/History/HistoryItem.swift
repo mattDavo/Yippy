@@ -11,7 +11,11 @@ import Cocoa
 import Quartz
 
 /// Interface for an item that was on the pasteboard
-class HistoryItem: NSObject {
+class HistoryItem: NSObject, Identifiable {
+    
+    var id: UUID {
+        return fsId
+    }
     
     // MARK: - Private attributes
     
@@ -39,6 +43,9 @@ class HistoryItem: NSObject {
     /// File system id. Unique name of the folder contains the data for this item
     let fsId: UUID
     
+    /// Metadata including category and source information
+    var metadata: HistoryItemMetadata?
+    
     /// Whether the item is being cached.
     var isCached: Bool {
         return cache.isItemRegistered(fsId)
@@ -50,8 +57,9 @@ class HistoryItem: NSObject {
     ///
     /// This value is used when determining the writable types for an item.
     static var pastesRichText = true
-    
-    
+
+    let originBundleId: String?
+
     // MARK: - Constructors
     
     /// Creates a `HistoryItem` for an item that has not been saved to disk yet.
@@ -60,11 +68,17 @@ class HistoryItem: NSObject {
     ///
     /// - Parameter unsavedData: Pastebaord data that has not yet been saved to disk.
     /// - Parameter cache: `HistoryCache` to use for caching if this item starts using caching.
-    init(unsavedData: [NSPasteboard.PasteboardType: Data], cache: HistoryCache) {
+    init(
+        unsavedData: [NSPasteboard.PasteboardType: Data],
+        cache: HistoryCache,
+        originBundleId: String?
+    ) {
         self._unsavedData = unsavedData
         self.types = unsavedData.keys.map({$0})
         self.cache = cache
         self.fsId = UUID()
+        self.metadata = nil
+        self.originBundleId = originBundleId
     }
     
     /// Creates a `HistoryItem` for an item that is saved to disk.
@@ -72,14 +86,15 @@ class HistoryItem: NSObject {
     /// - Parameter fsId: The unique id of the item.
     /// - Parameter types: The types of pasteboard data that this item contains.
     /// - Parameter cache: `HistoryCache` to use for caching.
-    init(fsId: UUID, types: [NSPasteboard.PasteboardType], cache: HistoryCache) {
+    init(fsId: UUID, types: [NSPasteboard.PasteboardType], cache: HistoryCache, metadata: HistoryItemMetadata?) {
         self.fsId = fsId
         self._unsavedData = nil
         self.types = types
         self.cache = cache
+        self.metadata = metadata
+        self.originBundleId = metadata?.originBundleId
         self.cache.registerItem(withId: fsId)
     }
-    
     
     // MARK: - Public methods
     
@@ -196,8 +211,6 @@ class HistoryItem: NSObject {
             image = NSImage(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
         }
         return image
-        
-        
     }
     
     func getFileIcon() -> NSImage? {
@@ -211,6 +224,31 @@ class HistoryItem: NSObject {
         pasteboard.declareTypes([.color], owner: nil)
         pasteboard.setData(data, forType: .color)
         return NSColor(from: pasteboard)
+    }
+    
+    /// Detects and sets the category metadata for this item
+    func detectAndSetCategory() {
+        self.metadata = CategoryDetector.shared.detectCategory(for: self)
+    }
+    
+    /// Gets the category for this item, detecting it if not already set
+    func getCategory() -> HistoryItemCategory {
+        if let metadata = self.metadata {
+            return metadata.category
+        } else {
+            detectAndSetCategory()
+            return self.metadata?.category ?? .other
+        }
+    }
+    
+    /// Gets the code source for this item if it's a code item
+    func getCodeSource() -> CodeSource? {
+        if let metadata = self.metadata {
+            return metadata.codeSource
+        } else {
+            detectAndSetCategory()
+            return self.metadata?.codeSource
+        }
     }
     
     private func isStringLink(string: String) -> Bool {

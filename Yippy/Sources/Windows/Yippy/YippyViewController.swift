@@ -11,11 +11,7 @@ import HotKey
 import RxSwift
 import RxRelay
 import RxCocoa
-
-struct Results {
-    let items: [HistoryItem]
-    let isSearchResult: Bool
-}
+import SwiftUI
 
 class YippyViewController: NSViewController {
     
@@ -59,9 +55,9 @@ class YippyViewController: NSViewController {
             results,
             selected.distinctUntilChanged().withPrevious(startWith: nil)
         )
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: onAllChange)
-            .disposed(by: disposeBag)
+        .observe(on: MainScheduler.instance)
+        .subscribe(onNext: onAllChange)
+        .disposed(by: disposeBag)
         
         searchBar.delegate = self
         
@@ -85,7 +81,7 @@ class YippyViewController: NSViewController {
         YippyHotKeys.ctrlAltCmdUpArrow.onDown { State.main.panelPosition.accept(.top) }
         YippyHotKeys.ctrlDelete.onDown(deleteSelected)
         YippyHotKeys.ctrlSpace.onDown(togglePreview)
-        YippyHotKeys.cmdBackslash.onDown(focusSearchBar)
+//        YippyHotKeys.cmdBackslash.onDown(focusSearchBar)
         
         // Paste hot keys
         YippyHotKeys.cmd0.onDown { self.shortcutPressed(key: 0) }

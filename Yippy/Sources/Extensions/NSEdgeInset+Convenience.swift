@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import SwiftUI
 
 extension NSEdgeInsets {
     
@@ -17,5 +18,15 @@ extension NSEdgeInsets {
     
     var xTotal: CGFloat {
         return left + right
+    }
+}
+
+extension EdgeInsets {
+    var yTotal: CGFloat {
+        return top + bottom
+    }
+    
+    var xTotal: CGFloat {
+        return leading + trailing
     }
 }

@@ -70,7 +70,7 @@ public class SearchEngine {
             return completion(result)
         }
         
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInteractive).async {
             self.sem.wait()
             self.inProgress.append(searchQuery)
             self.sem.signal()
@@ -79,7 +79,7 @@ public class SearchEngine {
             let resSem = DispatchSemaphore(value: 1)
             let searchResult = SearchResult(query: searchQuery, items: self.data.count)
             for (i, d) in self.data.enumerated() {
-                DispatchQueue.global().async {
+                DispatchQueue.global(qos: .userInitiated).async {
                     if performSearch(needle: searchQuery.query, haystack: d) {
                         resSem.wait()
                         searchResult.addResult(i)

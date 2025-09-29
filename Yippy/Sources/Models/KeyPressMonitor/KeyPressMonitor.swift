@@ -9,7 +9,9 @@
 import Foundation
 import Cocoa
 import HotKey
+import SwiftUI
 
+@Observable
 class KeyPressMonitor {
     
     var keyUpMonitor: EventMonitor!

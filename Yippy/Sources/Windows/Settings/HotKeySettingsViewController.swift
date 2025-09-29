@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import HotKey
+import SwiftUI
 
 class HotKeySettingsViewController: NSViewController {
     
@@ -92,6 +93,116 @@ class HotKeySettingsViewController: NSViewController {
         let keyStrings = stringifyKeys([toggleHotKey.key].compactMap{$0})
         let modifierStrings = toggleHotKey.modifiers.toStringCharacters()
         
+        return (modifierStrings + keyStrings).joined(separator: "+")
+    }
+}
+
+
+struct ShortcutsSettingsView: View {
+    @SwiftUI.State private var captureShortcut: String = "⌘ + ⇧ + C"
+    @SwiftUI.State private var newToggleHotKey: KeyCombo?
+    @SwiftUI.State private var saveHotKeyButton: Bool = false
+    @SwiftUI.State private var keyPressMonitor: KeyPressMonitor = KeyPressMonitor()
+
+    var body: some View {
+        Form {
+            Section("Shortcuts") {
+                HStack {
+                    Text("Capture shortcut")
+                    Spacer()
+                    Button {
+                        keyPressMonitor.isPaused = false
+                    } label: {
+                        Text(captureShortcut)
+                    }
+                    .frame(width: 120)
+                    .background {
+                        if !keyPressMonitor.isPaused {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.accentColor)
+                        }
+                    }
+                }
+                .accessibilityElement(children: .combine)
+            }
+        }
+        .onDisappear(perform: {
+            keyPressMonitor.isPaused = true
+        })
+        .task {
+            showSavedToggleHotKey()
+            keyPressMonitor.subscribeToKeyDown { (keys, modifiers) in
+                if let toggleHotKey = self.createToggleHotKey(keys: keys, modifiers: modifiers) {
+                    self.showNewToggleHotKey(toggleHotKey)
+                    self.saveHotKeyButton = true
+                    self.newToggleHotKey = toggleHotKey
+                }
+                else {
+                    self.showSavedToggleHotKey()
+                    self.saveHotKeyButton = false
+                    self.newToggleHotKey = nil
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                if #available(macOS 26.0, *) {
+                    Button("Save", role: .confirm) {
+                        save()
+                    }
+                    .disabled(!saveHotKeyButton)
+                } else {
+                    Button("Save") {
+                        save()
+                    }
+                    .disabled(!saveHotKeyButton)
+                }
+            }
+        }
+        .navigationTitle("Hot Keys")
+    }
+
+    func save() {
+        guard let hotKey = newToggleHotKey else {
+            return
+        }
+
+        YippyHotKeys.toggle.changeHotKey(keyCombo: hotKey)
+        Settings.main.toggleHotKey = hotKey
+        showSavedToggleHotKey()
+    }
+
+    func createToggleHotKey(keys: [Key], modifiers: NSEvent.ModifierFlags) -> KeyCombo? {
+        let modifiers = filterModifiers(modifiers)
+        let keys = filterKeys(keys)
+
+        guard keys.count == 1 else {
+            return nil
+        }
+
+        let key = keys[0]
+
+        guard !modifiers.isEmpty || isFunctionKey(key: key) else {
+            return nil
+        }
+
+        return KeyCombo(key: key, modifiers: modifiers)
+    }
+
+    func showSavedToggleHotKey() {
+        captureShortcut = formatToggleHotKey(Settings.main.toggleHotKey)
+//        hotkeyLabel.textColor = NSColor.secondaryLabelColor
+    }
+
+    func showNewToggleHotKey(_ toggleHotKey: KeyCombo) {
+        captureShortcut = formatToggleHotKey(toggleHotKey)
+//        hotkeyLabel.textColor = NSColor.labelColor
+    }
+
+    func formatToggleHotKey(_ toggleHotKey: KeyCombo) -> String {
+        let keyStrings = stringifyKeys([toggleHotKey.key].compactMap{$0})
+        let modifierStrings = toggleHotKey.modifiers.toStringCharacters()
+
         return (modifierStrings + keyStrings).joined(separator: "+")
     }
 }

@@ -42,6 +42,7 @@ class Accessibility {
         static let yippyItemTextView = "YippyItemTextView"
         static let yippyTextCellView = "YippyTextCellView"
         static let yippyColorCellView = "YippyColorCellView"
+        static let yippyWebLinkCellView = "YippyWebLinkCellView"
         static let yippyTiffCellView = "YippyTiffCellView"
         static let yippyFileIconCellView = "YippyFileIconCellView"
         static let yippyFileThumbnailCellView = "YippyFileThumbnailCellView"

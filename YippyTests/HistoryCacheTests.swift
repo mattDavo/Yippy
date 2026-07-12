@@ -178,7 +178,7 @@ class HistoryCacheTests: XCTestCase {
         
         // Cache size should still be 0
         
-        // 3. Assert the result is what we expect, the cache reduces after unregsitering the item, and that the file manager is called twice
+        // 3. Assert the result is what we expect, the cache reduces after unregistering the item, and that the file manager is called twice
         self.expectation(for: NSPredicate(block: { (_, _) -> Bool in
             return self.cache.currentCacheSize == 0
         }), evaluatedWith: nil, handler: nil)
@@ -192,8 +192,8 @@ class HistoryCacheTests: XCTestCase {
     
     
     // MARK: - isItemRegistered()
-    func testIsItemRegsitered() {
-        // 1. Create an id, should initially be unregisted
+    func testIsItemRegistered() {
+        // 1. Create an id, should initially be unregistered
         let id = UUID()
         XCTAssertFalse(cache.isItemRegistered(id))
         

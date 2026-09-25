@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ApplicationServices
 
 class AccessControlHelper {
     

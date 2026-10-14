@@ -11,6 +11,7 @@ public sealed class ToggleHotKeyService : IDisposable
     private readonly SettingsService settings;
     private Action onPressed = () => { };
     private IDisposable? registration;
+    private bool isSuspended;
 
     public ToggleHotKeyService(IGlobalHotKeys hotKeys, SettingsService settings)
     {
@@ -27,7 +28,7 @@ public sealed class ToggleHotKeyService : IDisposable
     public bool Start(Action onPressed)
     {
         this.onPressed = onPressed;
-        registration = hotKeys.TryRegister(Current, () => this.onPressed());
+        registration = hotKeys.TryRegister(Current, Pressed);
         return registration is not null;
     }
 
@@ -39,28 +40,44 @@ public sealed class ToggleHotKeyService : IDisposable
             return false;
         }
         registration?.Dispose();
-        var updated = hotKeys.TryRegister(gesture, () => onPressed());
+        registration = null;
+        var updated = hotKeys.TryRegister(gesture, Pressed);
         if (updated is null)
         {
-            registration = hotKeys.TryRegister(Current, () => onPressed());
+            if (!isSuspended)
+            {
+                registration = hotKeys.TryRegister(Current, Pressed);
+            }
             return false;
         }
-        registration = updated;
         settings.Update(s => s with { ToggleHotKey = gesture });
+        if (isSuspended)
+        {
+            // It was only registered to check it's free; Resume registers it for good
+            updated.Dispose();
+        }
+        else
+        {
+            registration = updated;
+        }
         return true;
     }
 
     /// <summary>Lets the shortcut through to other apps for a while, e.g. while a new one is being typed in the settings.</summary>
     public void Suspend()
     {
+        isSuspended = true;
         registration?.Dispose();
         registration = null;
     }
 
     public void Resume()
     {
-        registration ??= hotKeys.TryRegister(Current, () => onPressed());
+        isSuspended = false;
+        registration ??= hotKeys.TryRegister(Current, Pressed);
     }
+
+    private void Pressed() => onPressed();
 
     public void Dispose()
     {

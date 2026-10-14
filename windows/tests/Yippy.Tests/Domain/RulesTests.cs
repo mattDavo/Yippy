@@ -113,6 +113,18 @@ public class PanelLayoutTests
     }
 
     [Fact]
+    public void ThePreviewSitsBesideEdgePanelsAndInsideOthers()
+    {
+        var right = PanelLayout.GetFrame(PanelPosition.Right, WorkArea, 1);
+        var top = PanelLayout.GetFrame(PanelPosition.Top, WorkArea, 1);
+        var center = PanelLayout.GetFrame(PanelPosition.CenterSmall, WorkArea, 1);
+
+        Assert.Equal(new ScreenRect(right.X - 560, 0, 560, 1040), PanelLayout.GetPreviewFrame(PanelPosition.Right, right, WorkArea, 1));
+        Assert.Equal(new ScreenRect(1920 + 680, 300, 560, 450), PanelLayout.GetPreviewFrame(PanelPosition.Top, top, WorkArea, 1));
+        Assert.Equal(new ScreenRect(center.Right - 480, center.Y, 480, center.Height), PanelLayout.GetPreviewFrame(PanelPosition.CenterSmall, center, WorkArea, 1));
+    }
+
+    [Fact]
     public void NeverLargerThanTheScreen()
     {
         var small = new ScreenRect(0, 0, 300, 200);

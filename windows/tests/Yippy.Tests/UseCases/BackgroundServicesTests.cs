@@ -219,6 +219,20 @@ public class ToggleHotKeyServiceTests
     }
 
     [Fact]
+    public void ChangingWhileSuspendedRegistersOnlyOnResume()
+    {
+        var service = new ToggleHotKeyService(hotKeys, settings);
+        service.Start(() => { });
+        service.Suspend();
+        var gesture = new HotKeyGesture('Q', KeyModifiers.Control | KeyModifiers.Alt);
+
+        Assert.True(service.TryChange(gesture));
+        Assert.Empty(hotKeys.Registered);
+        service.Resume();
+        Assert.Equal(new[] { gesture }, hotKeys.Registered.Keys);
+    }
+
+    [Fact]
     public void SuspendingLetsTheShortcutThrough()
     {
         var service = new ToggleHotKeyService(hotKeys, settings);

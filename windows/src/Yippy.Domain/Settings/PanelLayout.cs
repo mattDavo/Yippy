@@ -38,6 +38,27 @@ public static class PanelLayout
         };
     }
 
+    /// <summary>Width of the preview shown beside the panel, in device-independent pixels.</summary>
+    public const double PreviewWidth = 560;
+
+    /// <summary>
+    /// Where the preview of the selected item goes: beside an edge panel, on the side facing the middle of the screen,
+    /// or over the right of a centred or full-screen panel.
+    /// </summary>
+    public static ScreenRect GetPreviewFrame(PanelPosition position, ScreenRect panel, ScreenRect workArea, double scale)
+    {
+        var width = Math.Min(PreviewWidth * scale, workArea.Width / 2);
+        var height = Math.Min(EdgeHeight * 1.5 * scale, workArea.Height / 2);
+        return position switch
+        {
+            PanelPosition.Right => panel with { X = panel.X - width, Width = width },
+            PanelPosition.Left => panel with { X = panel.Right, Width = width },
+            PanelPosition.Top => new ScreenRect(panel.X + (panel.Width - width) / 2, panel.Bottom, width, Math.Min(height, workArea.Bottom - panel.Bottom)),
+            PanelPosition.Bottom => new ScreenRect(panel.X + (panel.Width - width) / 2, Math.Max(workArea.Y, panel.Y - height), width, Math.Min(height, panel.Y - workArea.Y)),
+            _ => panel with { X = panel.Right - Math.Min(width, panel.Width / 2), Width = Math.Min(width, panel.Width / 2) },
+        };
+    }
+
     private static ScreenRect Centered(ScreenRect area, double fraction)
     {
         var width = area.Width * fraction;

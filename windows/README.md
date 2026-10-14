@@ -22,7 +22,7 @@ Windows 10 1809 or later, x64. The published `Yippy.exe` is self-contained, so .
 
 ## Build and run
 
-Needs the .NET 8 SDK. From this folder:
+Needs the .NET 8 SDK or newer (a newer runtime runs it too). From this folder:
 
 ```powershell
 dotnet build Yippy.sln

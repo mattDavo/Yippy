@@ -13,5 +13,7 @@
     <Copyright>Copyright © Matthew Davidson and contributors</Copyright>
     <!-- The Windows SDK version the Windows-only projects compile against (for Windows.Media.Ocr). -->
     <YippyWindowsTargetFramework>net8.0-windows10.0.19041.0</YippyWindowsTargetFramework>
+    <!-- Run on a newer .NET when 8 isn't installed (dotnet run, dotnet test). Published builds carry their own runtime. -->
+    <RollForward>Major</RollForward>
   </PropertyGroup>
 </Project>

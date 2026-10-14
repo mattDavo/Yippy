@@ -201,6 +201,9 @@ internal static class NativeMethods
     [DllImport(User32)]
     public static extern IntPtr GetForegroundWindow();
 
+    [DllImport(User32, CharSet = CharSet.Unicode)]
+    public static extern IntPtr FindWindow(string? className, string? windowName);
+
     [DllImport(User32)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool SetForegroundWindow(IntPtr hwnd);

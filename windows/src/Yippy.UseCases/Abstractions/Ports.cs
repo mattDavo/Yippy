@@ -118,3 +118,22 @@ public interface IGlobalHotKeys
     /// <returns>A registration to dispose to unregister it, or null if another app already uses the shortcut.</returns>
     IDisposable? TryRegister(HotKeyGesture gesture, Action onPressed);
 }
+
+/// <summary>
+/// Windows' own Win+V shortcut, which opens its clipboard history. Explorer registers it, so no other app can until
+/// Explorer is told to leave it alone.
+/// </summary>
+public interface IShellClipboardShortcut
+{
+    /// <summary>Whether Explorer has been told to leave Win+V alone.</summary>
+    bool IsReleased { get; }
+
+    /// <summary>Tells Explorer to leave Win+V alone. Takes effect when Explorer restarts.</summary>
+    void Release();
+
+    /// <summary>Gives Win+V back to Explorer. Takes effect when Explorer restarts.</summary>
+    void Restore();
+
+    /// <summary>Restarts Explorer (the taskbar and desktop) so a change takes effect.</summary>
+    Task RestartShellAsync();
+}

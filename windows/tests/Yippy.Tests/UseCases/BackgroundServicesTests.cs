@@ -245,6 +245,83 @@ public class ToggleHotKeyServiceTests
     }
 }
 
+public class WindowsClipboardShortcutServiceTests
+{
+    private readonly FakeGlobalHotKeys hotKeys = new();
+    private readonly SettingsService settings = new(new InMemorySettingsRepository());
+    private readonly FakeShellClipboardShortcut shell;
+    private readonly ToggleHotKeyService toggle;
+    private readonly WindowsClipboardShortcutService service;
+
+    public WindowsClipboardShortcutServiceTests()
+    {
+        shell = new FakeShellClipboardShortcut(hotKeys);
+        toggle = new ToggleHotKeyService(hotKeys, settings);
+        toggle.Start(() => { });
+        service = new WindowsClipboardShortcutService(shell, toggle);
+    }
+
+    [Fact]
+    public void WinVBelongsToWindowsAtFirst()
+    {
+        Assert.False(service.IsTakenOver);
+        Assert.False(service.OpensYippy);
+        Assert.False(toggle.TryChange(HotKeyGesture.WindowsClipboard));
+    }
+
+    [Fact]
+    public async Task TakingOverReleasesWinVFromExplorerAndRegistersIt()
+    {
+        Assert.True(await service.TakeOverAsync());
+
+        Assert.True(service.OpensYippy);
+        Assert.Equal(1, shell.Restarts);
+        Assert.Equal(HotKeyGesture.WindowsClipboard, settings.Current.ToggleHotKey);
+        Assert.Equal(new[] { HotKeyGesture.WindowsClipboard }, hotKeys.Registered.Keys);
+    }
+
+    [Fact]
+    public async Task RestoringGivesWinVBackAndSwitchesToTheReplacement()
+    {
+        await service.TakeOverAsync();
+
+        Assert.True(await service.RestoreAsync(HotKeyGesture.DefaultToggle));
+
+        Assert.False(service.IsTakenOver);
+        Assert.False(shell.IsReleased);
+        Assert.Equal(2, shell.Restarts);
+        Assert.Equal(HotKeyGesture.DefaultToggle, settings.Current.ToggleHotKey);
+        Assert.Contains(HotKeyGesture.WindowsClipboard, hotKeys.TakenByOtherApps);
+    }
+
+    [Fact]
+    public async Task RestoringAfterChoosingAnotherShortcutKeepsThatShortcut()
+    {
+        await service.TakeOverAsync();
+        var other = new HotKeyGesture('Q', KeyModifiers.Control | KeyModifiers.Alt);
+        toggle.TryChange(other);
+        Assert.True(service.IsTakenOver);
+        Assert.False(service.OpensYippy);
+
+        Assert.True(await service.RestoreAsync(HotKeyGesture.DefaultToggle));
+
+        Assert.False(service.IsTakenOver);
+        Assert.Equal(other, settings.Current.ToggleHotKey);
+    }
+
+    [Fact]
+    public async Task RestoringChangesNothingWhenTheReplacementIsTaken()
+    {
+        await service.TakeOverAsync();
+        hotKeys.TakenByOtherApps.Add(HotKeyGesture.DefaultToggle);
+
+        Assert.False(await service.RestoreAsync(HotKeyGesture.DefaultToggle));
+
+        Assert.True(service.IsTakenOver);
+        Assert.Equal(1, shell.Restarts);
+    }
+}
+
 public class SettingsServiceTests
 {
     [Fact]

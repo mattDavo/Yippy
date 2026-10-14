@@ -69,6 +69,7 @@ public static class CompositionRoot
             new SendInputPasteSimulator(s.GetRequiredService<ForegroundWindowTracker>(), s.GetRequiredService<IAppLogger>()));
         services.AddSingleton<ITextRecognizer, WindowsOcrTextRecognizer>();
         services.AddSingleton<IAppInfoProvider, WindowsAppInfoProvider>();
+        services.AddSingleton<IShellClipboardShortcut>(s => new ExplorerClipboardShortcut(s.GetRequiredService<IAppLogger>()));
         services.AddSingleton<IStartupRegistration>(s => new RegistryStartupRegistration(App.InstanceName, s.GetRequiredService<IAppLogger>()));
     }
 
@@ -117,6 +118,7 @@ public static class CompositionRoot
         services.AddSingleton<PasteService>();
         services.AddSingleton<SearchService>();
         services.AddSingleton<ToggleHotKeyService>();
+        services.AddSingleton<WindowsClipboardShortcutService>();
     }
 
     private static void AddPresentation(IServiceCollection services, Action quit)

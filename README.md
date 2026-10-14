@@ -17,6 +17,9 @@ brew install --cask yippy
 
 For help with installation see: <a href="https://yippy.mattdavo.com/installation" target="_blank">yippy.mattdavo.com/installation</a>.
 
+### Windows
+A Windows version lives in [`windows/`](windows/README.md). Download `Yippy-<version>-win-x64.exe` from the newest `windows-v` release on the [releases page](https://github.com/Hamza-Shewa/Yippy/releases).
+
 ## Developing Yippy
 ### Contributions
 All contributions are welcome, whether they are pull requests, bug reports, feature requests or general feedback.

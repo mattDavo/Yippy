@@ -148,3 +148,38 @@ public sealed class RecordingLogger : IAppLogger
 
     public void Warning(string message) => Warnings.Add(message);
 }
+
+/// <summary>Explorer, which holds Win+V until it is told to let go and restarted.</summary>
+public sealed class FakeShellClipboardShortcut : IShellClipboardShortcut
+{
+    private readonly FakeGlobalHotKeys hotkeys;
+
+    public FakeShellClipboardShortcut(FakeGlobalHotKeys hotkeys)
+    {
+        this.hotkeys = hotkeys;
+        hotkeys.TakenByOtherApps.Add(HotKeyGesture.WindowsClipboard);
+    }
+
+    public bool IsReleased { get; private set; }
+
+    public int Restarts { get; private set; }
+
+    public void Release() => IsReleased = true;
+
+    public void Restore() => IsReleased = false;
+
+    public Task RestartShellAsync()
+    {
+        Restarts++;
+        // Explorer registers Win+V when it starts, unless it was told not to (or another app has it)
+        if (IsReleased)
+        {
+            hotkeys.TakenByOtherApps.Remove(HotKeyGesture.WindowsClipboard);
+        }
+        else if (!hotkeys.Registered.ContainsKey(HotKeyGesture.WindowsClipboard))
+        {
+            hotkeys.TakenByOtherApps.Add(HotKeyGesture.WindowsClipboard);
+        }
+        return Task.CompletedTask;
+    }
+}

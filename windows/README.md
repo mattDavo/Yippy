@@ -14,6 +14,12 @@ It is a separate .NET 8 / WPF app that ports the macOS app's features:
 - Copies marked as private by password managers (`ExcludeClipboardContentFromMonitorProcessing`,
   `CanIncludeInClipboardHistory = 0`) are never saved.
 
+- Win+V can open Yippy instead of Windows' own clipboard history (Settings › General › Use Win+V for Yippy), and be
+  given back the same way. It sets Explorer's `DisabledHotkeys` setting for your user and restarts Explorer.
+  [`scripts/Use-YippyForWinV.ps1`](scripts/Use-YippyForWinV.ps1) and
+  [`scripts/Restore-WindowsWinV.ps1`](scripts/Restore-WindowsWinV.ps1) do the Windows side of the same change, and
+  are attached to each release.
+
 Not ported: automatic updates (Sparkle is macOS-only) and the Accessibility welcome window (Windows needs no permission to paste).
 
 ## Requirements

@@ -19,6 +19,9 @@ public readonly record struct HotKeyGesture(int VirtualKey, KeyModifiers Modifie
     /// <summary>Ctrl+Shift+V, the counterpart of the macOS app's ⌘⇧V.</summary>
     public static HotKeyGesture DefaultToggle { get; } = new('V', KeyModifiers.Control | KeyModifiers.Shift);
 
+    /// <summary>Win+V, which opens Windows' own clipboard history unless Yippy takes it over.</summary>
+    public static HotKeyGesture WindowsClipboard { get; } = new('V', KeyModifiers.Windows);
+
     /// <summary>
     /// Whether the gesture can be a system-wide shortcut: it needs a modifier, so typing isn't taken away from every app,
     /// unless the key is a function key.

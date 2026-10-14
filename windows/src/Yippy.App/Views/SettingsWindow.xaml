@@ -10,7 +10,7 @@
         d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel}"
         Title="Yippy Settings"
         Width="560"
-        Height="460"
+        Height="520"
         MinWidth="460"
         MinHeight="400"
         WindowStartupLocation="CenterScreen"
@@ -54,8 +54,14 @@
                                             ToolTip="Click, then press the new shortcut" />
                     <Button Content="Reset" Margin="8,0,0,0" Padding="10,3" Command="{Binding ResetHotKeyCommand}" />
                 </StackPanel>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding HotKeyMessage}" Style="{StaticResource Note}"
-                           Visibility="{Binding HotKeyMessage, Converter={StaticResource VisibleWhen}}" />
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="{Binding HotKeyMessage}" Style="{StaticResource Note}"
+                               Visibility="{Binding HotKeyMessage, Converter={StaticResource VisibleWhen}}" />
+                    <!-- Win+V: take it over from Windows' clipboard history, or give it back -->
+                    <Button Content="{Binding WinVButtonText}" Command="{Binding ToggleWinVCommand}"
+                            HorizontalAlignment="Left" Padding="10,3" Margin="0,0,0,6" />
+                    <TextBlock Text="{Binding WinVNote}" Style="{StaticResource Note}" Margin="0,0,0,14" />
+                </StackPanel>
 
                 <TextBlock Grid.Row="2" Text="Panel position:" Style="{StaticResource Label}" />
                 <ComboBox Grid.Row="2" Grid.Column="1" Width="220" HorizontalAlignment="Left" Margin="0,0,0,10"

@@ -18,11 +18,14 @@ public sealed partial class SettingsViewModel : ObservableObject
     private readonly SettingsService settings;
     private readonly IStartupRegistration startup;
     private readonly ToggleHotKeyService hotKey;
+    private readonly WindowsClipboardShortcutService windowsClipboardShortcut;
+    private readonly IDialogService dialogs;
 
     public SettingsViewModel(
         SettingsService settings,
         IStartupRegistration startup,
         ToggleHotKeyService hotKey,
+        WindowsClipboardShortcutService windowsClipboardShortcut,
         ITextRecognizer textRecognizer,
         IAppInfoProvider appInfo,
         AppIcons icons,
@@ -31,6 +34,8 @@ public sealed partial class SettingsViewModel : ObservableObject
         this.settings = settings;
         this.startup = startup;
         this.hotKey = hotKey;
+        this.windowsClipboardShortcut = windowsClipboardShortcut;
+        this.dialogs = dialogs;
         IsTextRecognitionAvailable = textRecognizer.IsAvailable;
         IgnoredApps = new AppListViewModel(
             "Copies made in these apps are not saved to the history, e.g. a password manager:",
@@ -145,4 +150,46 @@ public sealed partial class SettingsViewModel : ObservableObject
 
     [RelayCommand]
     private void ResetHotKey() => SetHotKey(HotKeyGesture.DefaultToggle);
+
+    /// <summary>Whether Windows has let go of Win+V for Yippy.</summary>
+    public bool IsWinVTakenOver => windowsClipboardShortcut.IsTakenOver;
+
+    public string WinVButtonText => IsWinVTakenOver ? "Give Win+V Back to Windows" : "Use Win+V for Yippy";
+
+    public string WinVNote => !IsWinVTakenOver
+        ? "Win+V opens Windows' own clipboard history. Yippy can take it over, and you can give it back here at any time."
+        : windowsClipboardShortcut.OpensYippy
+            ? $"Win+V opens Yippy instead of Windows' clipboard history. Giving it back sets Yippy's shortcut to {HotKeyGesture.DefaultToggle}."
+            : $"Windows leaves Win+V alone, but Yippy's shortcut is {HotKeyText}. Give Win+V back to use Windows' clipboard history again.";
+
+    /// <summary>Takes Win+V over from Windows' clipboard history, or gives it back.</summary>
+    [RelayCommand]
+    private async Task ToggleWinV()
+    {
+        var takeOver = !IsWinVTakenOver;
+        var message = (takeOver
+                ? "Win+V will open Yippy instead of Windows' clipboard history."
+                : windowsClipboardShortcut.OpensYippy
+                    ? $"Win+V will open Windows' clipboard history again, and Yippy's shortcut becomes {HotKeyGesture.DefaultToggle}."
+                    : "Win+V will open Windows' clipboard history again.")
+            + "\n\nTo apply it, Windows Explorer restarts: the taskbar disappears for a moment and open File Explorer "
+            + "windows close. You can change it back here at any time.";
+        if (!dialogs.Confirm(takeOver ? "Use Win+V for Yippy" : "Give Win+V Back to Windows", message))
+        {
+            return;
+        }
+        if (takeOver)
+        {
+            HotKeyMessage = await windowsClipboardShortcut.TakeOverAsync()
+                ? null
+                : "Windows still holds Win+V. Sign out and back in, then try again.";
+        }
+        else
+        {
+            HotKeyMessage = await windowsClipboardShortcut.RestoreAsync(HotKeyGesture.DefaultToggle)
+                ? null
+                : $"{HotKeyGesture.DefaultToggle} is used by another app. Choose another shortcut first, then try again.";
+        }
+        OnPropertyChanged(string.Empty);
+    }
 }

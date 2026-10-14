@@ -1,0 +1,81 @@
+<Window x:Class="Yippy.App.Views.PreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+        Title="Yippy Preview"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        Focusable="False"
+        Topmost="True"
+        WindowStartupLocation="Manual"
+        Background="{DynamicResource Yippy.PanelBackground}"
+        Foreground="{DynamicResource Yippy.PrimaryText}"
+        UseLayoutRounding="True">
+
+    <!-- The selected item, larger. DataContext is the panel's view model; it never takes focus from the panel. -->
+    <Window.Resources>
+        <DataTemplate x:Key="TextPreview">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <TextBlock Text="{Binding FullText}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="13" TextWrapping="Wrap"
+                           Foreground="{DynamicResource Yippy.PrimaryText}" />
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RichTextPreview">
+            <Border Background="White" CornerRadius="4" Padding="8">
+                <RichTextBox presentation:RichTextDocument.Rtf="{Binding Rtf}" IsReadOnly="True" BorderThickness="0"
+                             Background="Transparent" Focusable="False" VerticalScrollBarVisibility="Auto" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ImagePreview">
+            <Image Source="{Binding Image}" Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="HighQuality" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="FilesPreview">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding FilePaths}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12" Margin="0,0,0,4"
+                                       TextWrapping="Wrap" Foreground="{DynamicResource Yippy.PrimaryText}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ColorPreview">
+            <StackPanel>
+                <Border Height="160" CornerRadius="6" Background="{Binding ColorBrush}" BorderThickness="1"
+                        BorderBrush="{DynamicResource Yippy.CardBorder}" />
+                <TextBlock Text="{Binding FullText}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="16" Margin="0,10,0,0"
+                           Foreground="{DynamicResource Yippy.PrimaryText}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <presentation:ItemTemplateSelector x:Key="PreviewSelector"
+                                           Text="{StaticResource TextPreview}"
+                                           RichText="{StaticResource RichTextPreview}"
+                                           Image="{StaticResource ImagePreview}"
+                                           Files="{StaticResource FilesPreview}"
+                                           Color="{StaticResource ColorPreview}" />
+    </Window.Resources>
+
+    <Border BorderBrush="{DynamicResource Yippy.PanelBorder}" BorderThickness="1" Padding="14">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{Binding SelectedItem}" ContentTemplateSelector="{StaticResource PreviewSelector}" />
+            <TextBlock Grid.Row="1" Margin="0,10,0,0" FontSize="11" TextTrimming="CharacterEllipsis"
+                       Foreground="{DynamicResource Yippy.SecondaryText}">
+                <Run Text="{Binding SelectedItem.InfoText, Mode=OneWay}" />
+                <Run Text="  ·  Ctrl+Space closes" />
+            </TextBlock>
+        </Grid>
+    </Border>
+</Window>

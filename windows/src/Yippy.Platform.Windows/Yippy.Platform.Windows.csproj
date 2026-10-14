@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Win32 and WinRT adapters: clipboard, hot keys, focus and paste, OCR, start-up registration. -->
+  <PropertyGroup>
+    <TargetFramework>$(YippyWindowsTargetFramework)</TargetFramework>
+    <RootNamespace>Yippy.Platform.Windows</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yippy.UseCases\Yippy.UseCases.csproj" />
+  </ItemGroup>
+</Project>

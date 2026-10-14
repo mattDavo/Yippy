@@ -1,0 +1,19 @@
+<Project>
+  <!-- Shared by every project in the Windows solution. -->
+  <PropertyGroup>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Lets the Windows-only projects build (but not run) on Linux and macOS too. -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Version>1.0.0</Version>
+    <Product>Yippy</Product>
+    <Company>Yippy</Company>
+    <Copyright>Copyright © Matthew Davidson and contributors</Copyright>
+    <!-- The Windows SDK version the Windows-only projects compile against (for Windows.Media.Ocr). -->
+    <YippyWindowsTargetFramework>net8.0-windows10.0.19041.0</YippyWindowsTargetFramework>
+    <!-- Run on a newer .NET when 8 isn't installed (dotnet run, dotnet test). Published builds carry their own runtime. -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The WPF app: tray icon, history panel, settings. Also the composition root that wires every layer together. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(YippyWindowsTargetFramework)</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <!-- Only for the tray icon (NotifyIcon). -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Yippy</AssemblyName>
+    <RootNamespace>Yippy.App</RootNamespace>
+    <ApplicationIcon>Assets\Yippy.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- WFAC010 wants Windows Forms' DPI API, but this is a WPF app: its DPI awareness belongs in the manifest. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- WPF and Windows Forms share type names (Application, MessageBox…); keep the WPF ones unqualified. -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+    <Using Include="System.IO" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Yippy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yippy.Infrastructure\Yippy.Infrastructure.csproj" />
+    <ProjectReference Include="..\Yippy.Platform.Windows\Yippy.Platform.Windows.csproj" />
+  </ItemGroup>
+</Project>

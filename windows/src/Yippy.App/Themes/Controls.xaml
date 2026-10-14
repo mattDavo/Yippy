@@ -1,0 +1,206 @@
+<!-- Styles shared by the panel and the preview. Colours come from the theme dictionaries (Light.xaml, Dark.xaml). -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:presentation="clr-namespace:Yippy.App.Presentation">
+
+    <FontFamily x:Key="Yippy.IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+    <FontFamily x:Key="Yippy.MonoFont">Cascadia Mono, Consolas, Courier New</FontFamily>
+
+    <presentation:VisibleWhenConverter x:Key="VisibleWhen" />
+
+    <!-- The Clipboard / Favourites switch above the list -->
+    <Style x:Key="Yippy.SegmentButton" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{DynamicResource Yippy.SecondaryText}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="12,5" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Background" Background="Transparent" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Background" Property="Background" Value="{DynamicResource Yippy.SegmentSelected}" />
+                            <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- A borderless button showing an icon glyph -->
+    <Style x:Key="Yippy.IconButton" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource Yippy.IconFont}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{DynamicResource Yippy.SecondaryText}" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Background" Background="Transparent" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background" Property="Background" Value="{DynamicResource Yippy.SegmentBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- The search box, with its placeholder in Tag -->
+    <Style x:Key="Yippy.SearchBox" TargetType="TextBox">
+        <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Yippy.PrimaryText}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource Yippy.Accent}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="30,6,8,6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="Border" Background="{DynamicResource Yippy.InputBackground}"
+                            BorderBrush="{DynamicResource Yippy.InputBorder}" BorderThickness="1" CornerRadius="5">
+                        <Grid>
+                            <TextBlock Text="&#xE721;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="13"
+                                       Foreground="{DynamicResource Yippy.SecondaryText}" Margin="10,0,0,0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="Placeholder" Text="{TemplateBinding Tag}" Margin="{TemplateBinding Padding}"
+                                       Foreground="{DynamicResource Yippy.SecondaryText}" Visibility="Collapsed" IsHitTestVisible="False"
+                                       TextTrimming="CharacterEllipsis" />
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" Padding="0"
+                                          VerticalAlignment="Center" Focusable="False" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Yippy.Accent}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- A thin scroll bar that suits both themes -->
+    <Style x:Key="Yippy.ScrollThumb" TargetType="Thumb">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Background="{DynamicResource Yippy.ScrollThumb}" CornerRadius="3" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Yippy.ScrollPage" TargetType="RepeatButton">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Yippy.ScrollBar" TargetType="ScrollBar">
+        <Setter Property="Width" Value="8" />
+        <Setter Property="MinWidth" Value="8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Track x:Name="PART_Track" IsDirectionReversed="True" Margin="1,2">
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton Style="{StaticResource Yippy.ScrollPage}" Command="ScrollBar.PageUpCommand" />
+                        </Track.DecreaseRepeatButton>
+                        <Track.Thumb>
+                            <Thumb Style="{StaticResource Yippy.ScrollThumb}" />
+                        </Track.Thumb>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton Style="{StaticResource Yippy.ScrollPage}" Command="ScrollBar.PageDownCommand" />
+                        </Track.IncreaseRepeatButton>
+                    </Track>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- How each kind of item's content is drawn, in the list and (larger) in the preview -->
+    <DataTemplate x:Key="Yippy.TextContent">
+        <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12"
+                   Foreground="{DynamicResource Yippy.PrimaryText}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="Yippy.LinkContent">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xE71B;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="12" Margin="0,2,6,0"
+                       Foreground="{DynamicResource Yippy.Link}" VerticalAlignment="Top" />
+            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12"
+                       Foreground="{DynamicResource Yippy.Link}" TextDecorations="Underline" TextWrapping="Wrap" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Rich text keeps its own colours, so it sits on a paper-white background in both themes -->
+    <DataTemplate x:Key="Yippy.RichTextContent">
+        <Border Background="White" CornerRadius="4" Padding="6,4" ClipToBounds="True">
+            <RichTextBox presentation:RichTextDocument.Rtf="{Binding Rtf}" IsReadOnly="True" IsHitTestVisible="False"
+                         Focusable="False" BorderThickness="0" Background="Transparent" Padding="0"
+                         VerticalScrollBarVisibility="Disabled" />
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Yippy.ImageContent">
+        <Image Source="{Binding Thumbnail}" Stretch="Uniform" StretchDirection="DownOnly" HorizontalAlignment="Left"
+               RenderOptions.BitmapScalingMode="HighQuality" MinHeight="24" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="Yippy.FilesContent">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="&#xE8B7;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="16" Margin="0,0,8,0"
+                           Foreground="{DynamicResource Yippy.SecondaryText}" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding FileSummary}" FontSize="13" FontWeight="SemiBold"
+                           Foreground="{DynamicResource Yippy.PrimaryText}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="11" Margin="0,4,0,0"
+                       Foreground="{DynamicResource Yippy.SecondaryText}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Yippy.ColorContent">
+        <StackPanel Orientation="Horizontal">
+            <Border Width="36" Height="22" CornerRadius="4" Background="{Binding ColorBrush}"
+                    BorderBrush="{DynamicResource Yippy.CardBorder}" BorderThickness="1" Margin="0,0,10,0" />
+            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12"
+                       Foreground="{DynamicResource Yippy.PrimaryText}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <presentation:ItemTemplateSelector x:Key="Yippy.ItemContentSelector"
+                                       Text="{StaticResource Yippy.TextContent}"
+                                       Link="{StaticResource Yippy.LinkContent}"
+                                       RichText="{StaticResource Yippy.RichTextContent}"
+                                       Image="{StaticResource Yippy.ImageContent}"
+                                       Files="{StaticResource Yippy.FilesContent}"
+                                       Color="{StaticResource Yippy.ColorContent}" />
+</ResourceDictionary>

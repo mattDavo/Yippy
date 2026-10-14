@@ -20,6 +20,14 @@ Not ported: automatic updates (Sparkle is macOS-only) and the Accessibility welc
 
 Windows 10 1809 or later, x64. The published `Yippy.exe` is self-contained, so .NET doesn't need to be installed.
 
+## Download
+
+Every merge to `master` that changes the Windows app publishes `Yippy-<version>-win-x64.exe` as a GitHub release tagged
+`windows-vX.Y.Z` ([all releases](https://github.com/Hamza-Shewa/Yippy/releases)). The version is `<Version>` in
+`Directory.Build.props`, or the latest `windows-v` tag with its patch number incremented; raise `<Version>` to start a
+new minor or major version. Windows releases are not marked "Latest", which stays the macOS installer. The exe isn't
+code-signed, so SmartScreen warns on first run (More info › Run anyway).
+
 ## Build and run
 
 Needs the .NET 8 SDK or newer (a newer runtime runs it too). From this folder:

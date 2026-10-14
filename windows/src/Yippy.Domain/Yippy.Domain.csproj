@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Entities and pure rules. No I/O and no dependencies, so it builds and is tested on any OS. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Yippy.Domain</RootNamespace>
+  </PropertyGroup>
+</Project>

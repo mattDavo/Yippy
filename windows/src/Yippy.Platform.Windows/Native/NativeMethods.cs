@@ -62,6 +62,20 @@ internal static class NativeMethods
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    public struct GUITHREADINFO
+    {
+        public int Size;
+        public uint Flags;
+        public IntPtr Active;
+        public IntPtr Focus;
+        public IntPtr Capture;
+        public IntPtr MenuOwner;
+        public IntPtr MoveSize;
+        public IntPtr Caret;
+        public RECT CaretRect;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     public struct MONITORINFO
     {
         public int Size;
@@ -193,6 +207,10 @@ internal static class NativeMethods
 
     [DllImport(User32)]
     public static extern uint GetWindowThreadProcessId(IntPtr hwnd, out uint processId);
+
+    [DllImport(User32, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool GetGUIThreadInfo(uint threadId, ref GUITHREADINFO info);
 
     [DllImport(User32)]
     [return: MarshalAs(UnmanagedType.Bool)]

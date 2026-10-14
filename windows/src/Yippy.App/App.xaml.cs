@@ -57,12 +57,12 @@ public partial class App : System.Windows.Application
             args.Handled = true;
         };
 
-        StartBackgroundServices(services);
+        var settings = services.GetRequiredService<SettingsService>();
+        StartBackgroundServices(services, settings.IsFirstLaunch);
         var panel = services.GetRequiredService<PanelController>();
         var tray = services.GetRequiredService<TrayIcon>();
         showWait = ThreadPool.RegisterWaitForSingleObject(showEvent, (_, _) => Dispatcher.BeginInvoke(panel.Show), null, Timeout.Infinite, false);
 
-        var settings = services.GetRequiredService<SettingsService>();
         var hotKey = services.GetRequiredService<ToggleHotKeyService>();
         if (!hotKey.Start(panel.Toggle))
         {
@@ -95,15 +95,23 @@ public partial class App : System.Windows.Application
         base.OnExit(e);
     }
 
-    private void StartBackgroundServices(IServiceProvider provider)
+    private void StartBackgroundServices(IServiceProvider provider, bool isFirstLaunch)
     {
         // These work through events, so they only need creating
         var capture = provider.GetRequiredService<ClipboardCaptureService>();
         provider.GetRequiredService<HistorySettingsSync>();
         provider.GetRequiredService<TextRecognitionService>();
 
-        // Pick up anything copied while Yippy wasn't running
-        capture.Capture();
+        if (isFirstLaunch)
+        {
+            // Whatever was copied before Yippy was installed may be private; start with an empty history
+            capture.IgnoreCurrentContent();
+        }
+        else
+        {
+            // Pick up anything copied while Yippy wasn't running
+            capture.Capture();
+        }
 
         var clean = provider.GetRequiredService<AutoCleanService>();
         clean.Clean();

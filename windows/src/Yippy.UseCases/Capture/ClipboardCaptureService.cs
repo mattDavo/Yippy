@@ -38,6 +38,12 @@ public sealed class ClipboardCaptureService
     /// <summary>Remembers a change Yippy made to the clipboard, so it isn't added to the history as a new copy.</summary>
     public void RecordOwnChange(uint sequenceNumber) => Record(sequenceNumber);
 
+    /// <summary>
+    /// Treats what's on the clipboard now as dealt with, without saving it. On the first launch, so whatever happened to be
+    /// copied before Yippy was installed doesn't end up in the history.
+    /// </summary>
+    public void IgnoreCurrentContent() => Record(clipboard.SequenceNumber);
+
     /// <summary>Adds what's on the clipboard to the history, unless it has been dealt with already.</summary>
     public void Capture()
     {

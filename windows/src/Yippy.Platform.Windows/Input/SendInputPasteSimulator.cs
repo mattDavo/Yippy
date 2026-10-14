@@ -17,6 +17,12 @@ public sealed class SendInputPasteSimulator : IPasteSimulator
     private static readonly TimeSpan FocusTimeout = TimeSpan.FromSeconds(2);
     private static readonly TimeSpan PollInterval = TimeSpan.FromMilliseconds(20);
 
+    /// <summary>
+    /// How long to wait after the app is in front before pressing Ctrl+V. Apps such as Windows 11 Notepad give their editor
+    /// focus a moment after their window comes to the front, and drop keys that arrive before that.
+    /// </summary>
+    private static readonly TimeSpan SettleDelay = TimeSpan.FromMilliseconds(100);
+
     private readonly ForegroundWindowTracker tracker;
     private readonly IAppLogger logger;
 
@@ -38,7 +44,8 @@ public sealed class SendInputPasteSimulator : IPasteSimulator
         var waited = Stopwatch.StartNew();
         // Wait for the app to come to the front, and for Shift, Alt and Win from Yippy's own shortcuts to be let go,
         // so they don't turn Ctrl+V into another shortcut (Ctrl+Shift+V would even reopen the panel)
-        while (waited.Elapsed < FocusTimeout && (GetForegroundWindow() != target || IsAnyHeld(VK_SHIFT, VK_MENU, VK_LWIN, VK_RWIN)))
+        while (waited.Elapsed < FocusTimeout
+            && (GetForegroundWindow() != target || !HasKeyboardFocus(target) || IsAnyHeld(VK_SHIFT, VK_MENU, VK_LWIN, VK_RWIN)))
         {
             await Task.Delay(PollInterval);
         }
@@ -48,7 +55,22 @@ public sealed class SendInputPasteSimulator : IPasteSimulator
             logger.Warning("The previous app didn't come back to the front, so the item was copied but not pasted.");
             return;
         }
+        await Task.Delay(SettleDelay);
+        if (GetForegroundWindow() != target)
+        {
+            logger.Warning("The previous app lost the focus again, so the item was copied but not pasted.");
+            return;
+        }
         PressCtrlV();
+    }
+
+    /// <summary>Whether one of the window's controls has the keyboard focus, so it receives the keys.</summary>
+    private static bool HasKeyboardFocus(IntPtr window)
+    {
+        var thread = GetWindowThreadProcessId(window, out _);
+        var info = new GUITHREADINFO { Size = Marshal.SizeOf<GUITHREADINFO>() };
+        // If the app can't be asked (e.g. it runs as administrator), don't hold the paste up
+        return !GetGUIThreadInfo(thread, ref info) || info.Focus != IntPtr.Zero;
     }
 
     private static bool IsAnyHeld(params ushort[] keys) => keys.Any(IsHeld);

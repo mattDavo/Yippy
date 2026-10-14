@@ -80,6 +80,19 @@ public class ClipboardCaptureServiceTests
     }
 
     [Fact]
+    public void WhatWasCopiedBeforeTheFirstLaunchCanBeLeftOut()
+    {
+        var app = new TestApp();
+        app.Clipboard.Write(ClipboardContent.FromText("copied before Yippy"));
+
+        app.Capture.IgnoreCurrentContent();
+        app.Capture.Capture();
+        app.Clipboard.Copy("copied after");
+
+        Assert.Equal(new[] { "copied after" }, app.Texts);
+    }
+
+    [Fact]
     public void ALockedClipboardIsRetriedOnTheNextChange()
     {
         var app = new TestApp();

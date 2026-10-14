@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using Yippy.App.ViewModels;
+using Yippy.App.ViewModels.Settings;
 
 namespace Yippy.App.Views;
 

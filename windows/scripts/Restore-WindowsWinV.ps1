@@ -7,8 +7,9 @@
     then restarts Explorer so it registers Win+V again. The taskbar disappears for a moment and open File
     Explorer windows close.
 
-    If Yippy is running with Win+V as its shortcut, change Yippy's shortcut first (Settings > General >
-    "Give Win+V Back to Windows" does both steps), or quit Yippy: while Yippy holds Win+V, Explorer can't take it.
+    If Yippy is running with Win+V as its shortcut, change Yippy's shortcut first, or quit Yippy: while Yippy
+    holds Win+V, Explorer can't take it. Settings > Shortcut > "Give Win+V back" in Yippy, or
+    "Yippy.exe --restore-win-v", does every step for you (the uninstaller runs it too).
 
     This undoes Use-YippyForWinV.ps1. No administrator rights are needed.
 

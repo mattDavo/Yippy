@@ -7,8 +7,9 @@
     shortcut Explorer leaves alone), then restarts Explorer so it lets go of Win+V. The taskbar disappears for
     a moment and open File Explorer windows close.
 
-    Afterwards, set Yippy's shortcut to Win+V: Settings > General > "Use Win+V for Yippy", or click the shortcut
-    box and press Win+V. Yippy's settings button does both steps in one go.
+    Afterwards, set Yippy's shortcut to Win+V: click the shortcut box in Settings > Shortcut and press Win+V.
+    Settings > Shortcut > "Use Win+V" in Yippy, or "Yippy.exe --use-win-v", does both steps in one go (so does
+    the installer's Win+V option).
 
     Restore-WindowsWinV.ps1 undoes this. No administrator rights are needed.
 

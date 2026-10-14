@@ -19,16 +19,24 @@ public sealed partial class PanelViewModel : ObservableObject
     private readonly PasteService paste;
     private readonly SearchService search;
     private readonly IDialogService dialogs;
+    private readonly IAppNavigation navigation;
     private readonly ItemContext context;
     private readonly Dictionary<Guid, ItemViewModel> viewModels = new();
     private CancellationTokenSource? searchCancellation;
 
-    public PanelViewModel(HistoryEditingService editing, PasteService paste, SearchService search, IDialogService dialogs, ItemContext context)
+    public PanelViewModel(
+        HistoryEditingService editing,
+        PasteService paste,
+        SearchService search,
+        IDialogService dialogs,
+        IAppNavigation navigation,
+        ItemContext context)
     {
         this.editing = editing;
         this.paste = paste;
         this.search = search;
         this.dialogs = dialogs;
+        this.navigation = navigation;
         this.context = context;
 
         editing.ClipboardHistory.Changed += (_, change) => OnHistoryChanged(editing.ClipboardHistory, change);
@@ -52,7 +60,7 @@ public sealed partial class PanelViewModel : ObservableObject
     /// <summary>The history being shown.</summary>
     public ItemHistory History => IsFavouritesSelected ? editing.Favourites : editing.ClipboardHistory;
 
-    public string SearchPlaceholder => "Search (Ctrl+F)  ·  /img /link /file @app";
+    public string SearchPlaceholder => "Search, or filter with /img /link /file @app";
 
     [ObservableProperty]
     private IReadOnlyList<ItemViewModel> items = Array.Empty<ItemViewModel>();
@@ -84,9 +92,18 @@ public sealed partial class PanelViewModel : ObservableObject
 
     public bool IsEmpty => Items.Count == 0;
 
+    public string EmptyTitle => SearchText.Length > 0
+        ? "No matches"
+        : IsFavouritesSelected ? "No favourites yet" : "Nothing copied yet";
+
     public string EmptyText => SearchText.Length > 0
-        ? "Nothing matches the search."
-        : IsFavouritesSelected ? "No favourites yet. Press the heart on an item to keep it here." : "Copy something and it shows up here.";
+        ? "Try fewer letters, or another filter: /img, /link, /file, /color or @app."
+        : IsFavouritesSelected
+            ? "Press the heart on an item, or Ctrl+D, to keep it here for good."
+            : "Copy some text, a link, an image or files, and it shows up here.";
+
+    /// <summary>The empty list's icon (Segoe Fluent Icons): a magnifier, a heart or a clipboard.</summary>
+    public string EmptyGlyph => SearchText.Length > 0 ? "\uE721" : IsFavouritesSelected ? "\uEB51" : "\uE77F";
 
     partial void OnSearchTextChanged(string value) => Refresh();
 
@@ -99,7 +116,9 @@ public sealed partial class PanelViewModel : ObservableObject
     partial void OnItemsChanged(IReadOnlyList<ItemViewModel> value)
     {
         OnPropertyChanged(nameof(IsEmpty));
+        OnPropertyChanged(nameof(EmptyTitle));
         OnPropertyChanged(nameof(EmptyText));
+        OnPropertyChanged(nameof(EmptyGlyph));
     }
 
     /// <summary>Called each time the panel opens.</summary>
@@ -242,6 +261,20 @@ public sealed partial class PanelViewModel : ObservableObject
 
     [RelayCommand]
     private void Close() => CloseRequested?.Invoke(this, EventArgs.Empty);
+
+    [RelayCommand]
+    private void OpenSettings()
+    {
+        CloseRequested?.Invoke(this, EventArgs.Empty);
+        navigation.ShowSettings();
+    }
+
+    [RelayCommand]
+    private void ShowHelp()
+    {
+        CloseRequested?.Invoke(this, EventArgs.Empty);
+        navigation.ShowHelp();
+    }
 
     private async Task PasteWith(ItemViewModel? item, Func<ItemHistory, HistoryItem, Task> action)
     {

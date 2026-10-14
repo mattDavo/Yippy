@@ -12,7 +12,9 @@
         WindowStartupLocation="Manual"
         Background="{DynamicResource Yippy.PanelBackground}"
         Foreground="{DynamicResource Yippy.PrimaryText}"
-        UseLayoutRounding="True">
+        FontFamily="{StaticResource Yippy.UIFont}"
+        UseLayoutRounding="True"
+        presentation:WindowStyling.FollowsTheme="True">
 
     <!-- The selected item, larger. DataContext is the panel's view model; it never takes focus from the panel. -->
     <Window.Resources>
@@ -64,18 +66,22 @@
                                            Color="{StaticResource ColorPreview}" />
     </Window.Resources>
 
-    <Border BorderBrush="{DynamicResource Yippy.PanelBorder}" BorderThickness="1" Padding="14">
+    <Border BorderBrush="{DynamicResource Yippy.PanelBorder}" BorderThickness="{DynamicResource Yippy.FrameThickness}" Padding="16">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <ContentPresenter Content="{Binding SelectedItem}" ContentTemplateSelector="{StaticResource PreviewSelector}" />
-            <TextBlock Grid.Row="1" Margin="0,10,0,0" FontSize="11" TextTrimming="CharacterEllipsis"
-                       Foreground="{DynamicResource Yippy.SecondaryText}">
-                <Run Text="{Binding SelectedItem.InfoText, Mode=OneWay}" />
-                <Run Text="  ·  Ctrl+Space closes" />
-            </TextBlock>
+            <DockPanel Grid.Row="1" Margin="0,12,0,0">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <presentation:KeyHint Keys="Ctrl+Space" />
+                    <TextBlock Text="Close preview" FontSize="12" Margin="2,0,0,0" VerticalAlignment="Center"
+                               Foreground="{DynamicResource Yippy.SecondaryText}" />
+                </StackPanel>
+                <TextBlock Text="{Binding SelectedItem.InfoText}" FontSize="12" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
+                           Foreground="{DynamicResource Yippy.SecondaryText}" Margin="0,0,12,0" />
+            </DockPanel>
         </Grid>
     </Border>
 </Window>

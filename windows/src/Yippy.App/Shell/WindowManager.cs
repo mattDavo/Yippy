@@ -1,13 +1,13 @@
 using System.Windows;
 using Microsoft.Win32;
-using Yippy.App.ViewModels;
+using Yippy.App.ViewModels.Settings;
 using Yippy.App.Views;
 using Yippy.UseCases.Settings;
 
 namespace Yippy.App.Shell;
 
 /// <summary>Opens Yippy's windows and dialogs, one of each kind at a time.</summary>
-public sealed class WindowManager : IDialogService
+public sealed class WindowManager : IDialogService, IAppNavigation
 {
     private readonly Func<SettingsViewModel> settingsViewModel;
     private readonly SettingsService settings;
@@ -20,9 +20,15 @@ public sealed class WindowManager : IDialogService
         this.settings = settings;
     }
 
-    public void ShowSettings() => ShowSingle(() => new SettingsWindow(settingsViewModel()));
-
-    public void ShowAbout() => ShowSingle(() => new AboutWindow());
+    public void ShowSettings(SettingsPage? page = null)
+    {
+        var viewModel = settingsViewModel();
+        if (page is { } shown)
+        {
+            viewModel.Show(shown);
+        }
+        ShowSingle(() => new SettingsWindow(viewModel));
+    }
 
     public void ShowHelp() => ShowSingle(() => new HelpWindow(settings.Current.ToggleHotKey));
 
@@ -47,6 +53,16 @@ public sealed class WindowManager : IDialogService
             InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
         };
         return dialog.ShowDialog(ActiveWindow()) == true ? dialog.FileName : null;
+    }
+
+    public string? PickFolder(string title)
+    {
+        var dialog = new OpenFolderDialog
+        {
+            Title = title,
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+        };
+        return dialog.ShowDialog(ActiveWindow()) == true ? dialog.FolderName : null;
     }
 
     private void ShowSingle<T>(Func<T> create) where T : Window

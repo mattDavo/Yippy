@@ -9,7 +9,7 @@ using Yippy.Domain.Settings;
 using Yippy.UseCases.Abstractions;
 using Yippy.UseCases.Settings;
 
-namespace Yippy.App.ViewModels;
+namespace Yippy.App.ViewModels.Settings;
 
 /// <summary>An app in a settings list.</summary>
 public sealed record AppEntry(AppIdentity App, string Name, ImageSource? Icon)
@@ -30,7 +30,6 @@ public sealed partial class AppListViewModel : ObservableObject
     private readonly IDialogService dialogs;
 
     public AppListViewModel(
-        string message,
         SettingsService settings,
         Func<AppSettings, IReadOnlyList<AppIdentity>> read,
         Func<AppSettings, IReadOnlyList<AppIdentity>, AppSettings> write,
@@ -38,7 +37,6 @@ public sealed partial class AppListViewModel : ObservableObject
         AppIcons icons,
         IDialogService dialogs)
     {
-        Message = message;
         this.settings = settings;
         this.read = read;
         this.write = write;
@@ -54,8 +52,6 @@ public sealed partial class AppListViewModel : ObservableObject
             }
         };
     }
-
-    public string Message { get; }
 
     public ObservableCollection<AppEntry> Apps { get; } = new();
 

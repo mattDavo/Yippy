@@ -58,10 +58,14 @@ public sealed partial class ItemViewModel : ObservableObject
 
     /// <summary>The row in the list, for the Ctrl+0…9 hints.</summary>
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ShortcutText))]
+    [NotifyPropertyChangedFor(nameof(ShortcutKey))]
+    [NotifyPropertyChangedFor(nameof(ShortcutToolTip))]
     private int index;
 
-    public string? ShortcutText => Index < 10 ? $"Ctrl+{Index}" : null;
+    /// <summary>The number key that pastes this item with Ctrl, shown as a keycap.</summary>
+    public string? ShortcutKey => Index < 10 ? Index.ToString(System.Globalization.CultureInfo.InvariantCulture) : null;
+
+    public string? ShortcutToolTip => Index < 10 ? $"Ctrl+{Index} pastes this" : null;
 
     public string Text => text ??= Truncate(Item.GetDisplayText());
 
@@ -133,7 +137,7 @@ public sealed partial class ItemViewModel : ObservableObject
 
     public string? SourceName => Item.Metadata.Source is { } source ? context.AppInfo.GetDisplayName(source) : null;
 
-    /// <summary>"Visual Studio Code · 5 min ago", under every item.</summary>
+    /// <summary>"Visual Studio Code, 5 min ago", under every item.</summary>
     public string InfoText
     {
         get
@@ -147,7 +151,7 @@ public sealed partial class ItemViewModel : ObservableObject
             {
                 parts.Add(TimeAgo.Format(copiedAt, context.Clock.Now));
             }
-            return string.Join(" · ", parts);
+            return string.Join(", ", parts);
         }
     }
 

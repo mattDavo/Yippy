@@ -1,0 +1,35 @@
+<UserControl x:Class="Yippy.App.Views.Settings.GeneralPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
+             xmlns:views="clr-namespace:Yippy.App.Views"
+             xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=settings:GeneralPageViewModel}">
+    <StackPanel>
+        <presentation:SettingsCard Glyph="&#xE7E8;" Header="Start with Windows"
+                                   Description="Yippy opens in the notification area when you sign in, so it never misses a copy.">
+            <CheckBox Style="{StaticResource Yippy.ToggleSwitch}" IsChecked="{Binding LaunchAtLogin}"
+                      AutomationProperties.Name="Start with Windows" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE7F4;" Header="Panel position"
+                                   Description="Where the panel opens on the screen. Ctrl+Alt+arrow keys move it while it's open.">
+            <ComboBox MinWidth="200" ItemsSource="{Binding Positions}" DisplayMemberPath="Title" SelectedValuePath="Value"
+                      SelectedValue="{Binding PanelPosition}" AutomationProperties.Name="Panel position" />
+        </presentation:SettingsCard>
+
+        <TextBlock Text="Styled text" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE8D2;" Header="Show styling"
+                                   Description="Show copied text with its fonts and colours in the panel.">
+            <CheckBox Style="{StaticResource Yippy.ToggleSwitch}" IsChecked="{Binding ShowsRichText}"
+                      AutomationProperties.Name="Show styling" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE77F;" Header="Paste with styling"
+                                   Description="Paste text with its fonts and colours. Shift+Enter always pastes plain text.">
+            <CheckBox Style="{StaticResource Yippy.ToggleSwitch}" IsChecked="{Binding PastesRichText}"
+                      AutomationProperties.Name="Paste with styling" />
+        </presentation:SettingsCard>
+    </StackPanel>
+</UserControl>

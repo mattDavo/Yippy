@@ -1,0 +1,41 @@
+<UserControl x:Class="Yippy.App.Views.Settings.AboutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
+             xmlns:views="clr-namespace:Yippy.App.Views"
+             xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=settings:AboutPageViewModel}">
+    <StackPanel>
+        <Border Background="{DynamicResource Yippy.CardBackground}" BorderBrush="{DynamicResource Yippy.CardBorder}"
+                BorderThickness="1" CornerRadius="6" Padding="20" Margin="0,0,0,4">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="pack://application:,,,/Yippy;component/Assets/Yippy.ico" Width="64" Height="64"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+                <StackPanel Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="Yippy" Style="{StaticResource Yippy.SubtitleText}" />
+                    <TextBlock Text="{Binding Version}" Style="{StaticResource Yippy.CaptionText}" Margin="0,2,0,0" />
+                    <TextBlock Text="Everything you copy, a shortcut away." Style="{StaticResource Yippy.BodyText}" Margin="0,8,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <presentation:SettingsCard Glyph="&#xE774;" Header="Website and source code" Description="github.com/Hamza-Shewa/Yippy">
+            <Button Style="{StaticResource Yippy.Button}" Content="Open" Command="{Binding OpenWebsiteCommand}" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE896;" Header="Updates" Description="New versions are published on GitHub, with an installer.">
+            <Button Style="{StaticResource Yippy.Button}" Content="See releases" Command="{Binding OpenReleasesCommand}" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xEBE8;" Header="Report a problem" Description="Say what happened and what you expected, on GitHub.">
+            <Button Style="{StaticResource Yippy.Button}" Content="Report" Command="{Binding ReportProblemCommand}" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE765;" Header="Keyboard shortcuts" Description="Everything the panel can do from the keyboard.">
+            <Button Style="{StaticResource Yippy.Button}" Content="Show shortcuts" Command="{Binding ShowShortcutsCommand}" />
+        </presentation:SettingsCard>
+
+        <TextBlock Style="{StaticResource Yippy.CaptionText}" Margin="2,16,0,0"
+                   Text="Yippy for Windows is based on Yippy for macOS by Matthew Davidson, and is open source under the MIT License." />
+    </StackPanel>
+</UserControl>

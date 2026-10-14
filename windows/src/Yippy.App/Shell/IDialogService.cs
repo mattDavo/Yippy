@@ -12,4 +12,7 @@ public interface IDialogService
 
     /// <returns>The path of the executable the user picked, or null if cancelled.</returns>
     string? PickExecutable();
+
+    /// <returns>The folder the user picked, or null if cancelled.</returns>
+    string? PickFolder(string title);
 }

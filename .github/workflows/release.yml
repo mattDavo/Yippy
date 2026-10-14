@@ -11,6 +11,9 @@ on:
     paths-ignore:
       - '**.md'
       - '.gitignore'
+      # The Windows app has its own workflow (windows.yml)
+      - 'windows/**'
+      - '.github/workflows/windows.yml'
 
 # One release at a time, so two quick merges can't pick the same version.
 concurrency:

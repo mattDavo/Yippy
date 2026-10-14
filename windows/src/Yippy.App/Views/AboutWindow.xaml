@@ -1,0 +1,22 @@
+<Window x:Class="Yippy.App.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About Yippy"
+        Width="360"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/Yippy;component/Assets/Yippy.ico">
+    <StackPanel Margin="24" HorizontalAlignment="Center">
+        <Image Source="pack://application:,,,/Yippy;component/Assets/Yippy.ico" Width="96" Height="96" />
+        <TextBlock Text="Yippy" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,12,0,0" />
+        <TextBlock x:Name="VersionText" HorizontalAlignment="Center" Margin="0,4,0,0" Foreground="Gray" />
+        <TextBlock Text="A clipboard history for Windows: everything you copy, a shortcut away."
+                   TextWrapping="Wrap" TextAlignment="Center" Margin="0,12,0,0" />
+        <TextBlock HorizontalAlignment="Center" Margin="0,12,0,0">
+            <Hyperlink NavigateUri="https://github.com/Hamza-Shewa/Yippy" RequestNavigate="OnRequestNavigate">github.com/Hamza-Shewa/Yippy</Hyperlink>
+        </TextBlock>
+        <TextBlock Text="Based on Yippy for macOS by Matthew Davidson." Foreground="Gray" FontSize="11"
+                   HorizontalAlignment="Center" Margin="0,12,0,0" />
+    </StackPanel>
+</Window>

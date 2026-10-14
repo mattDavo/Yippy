@@ -1,0 +1,19 @@
+<!-- The Light theme's colours. ThemeManager swaps this dictionary when the Windows app theme changes. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="Yippy.PanelBackground" Color="#F3F3F3" />
+    <SolidColorBrush x:Key="Yippy.PanelBorder" Color="#D6D6D6" />
+    <SolidColorBrush x:Key="Yippy.CardBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Yippy.CardBorder" Color="#E3E3E3" />
+    <SolidColorBrush x:Key="Yippy.CardHover" Color="#F7F7F7" />
+    <SolidColorBrush x:Key="Yippy.Accent" Color="#0067C0" />
+    <SolidColorBrush x:Key="Yippy.PrimaryText" Color="#1A1A1A" />
+    <SolidColorBrush x:Key="Yippy.SecondaryText" Color="#616161" />
+    <SolidColorBrush x:Key="Yippy.InputBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Yippy.InputBorder" Color="#CFCFCF" />
+    <SolidColorBrush x:Key="Yippy.SegmentBackground" Color="#E5E5E5" />
+    <SolidColorBrush x:Key="Yippy.SegmentSelected" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Yippy.Link" Color="#0067C0" />
+    <SolidColorBrush x:Key="Yippy.Favourite" Color="#D13438" />
+    <SolidColorBrush x:Key="Yippy.ScrollThumb" Color="#B3B3B3" />
+</ResourceDictionary>

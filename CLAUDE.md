@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Yippy is a macOS menu-bar clipboard manager (Swift 5, AppKit, RxSwift, CocoaPods + Swift Package Manager; project deployment target 10.13/10.14). It only builds and runs on macOS with Xcode. There is no linter or formatter configured.
 
+The `windows/` folder holds a separate Windows port (C#, .NET 8, WPF); see "Windows app" at the end.
+
 ## Build, run, test
 
 Always open/build `Yippy.xcworkspace` (not the `.xcodeproj`). Dependencies come from two places:
@@ -82,3 +84,19 @@ Unit tests mock every system dependency (`FileManagerMock`, `ArrayFileManagerMoc
 Several tests wait on predicate `XCTestExpectation`s. Chaining two of them through an expectation handler always timed out on current XCTest, so await each step in turn.
 
 New source and test files must be added to `Yippy.xcodeproj/project.pbxproj`; PRs that each add files tend to conflict there.
+
+## Windows app
+`windows/` is a .NET 8 / WPF port with its own solution (`windows/Yippy.sln`) and README. It shares no code with the Swift app, so a feature added to one has to be ported to the other by hand.
+
+```sh
+cd windows
+dotnet build Yippy.sln
+dotnet test Yippy.sln   # xUnit, runs on any OS
+```
+
+- Layers: `Yippy.Domain` (pure) <- `Yippy.UseCases` (services plus the ports in `Abstractions/Ports.cs`) <- `Yippy.Infrastructure` (files) and `Yippy.Platform.Windows` (Win32) <- `Yippy.App` (WPF/MVVM). `Yippy.App/CompositionRoot.cs` is the only place that names concrete adapters. Domain, UseCases, Infrastructure and the tests target plain `net8.0`; keep Windows APIs out of them.
+- `Directory.Build.props` turns warnings into errors and sets `EnableWindowsTargeting`, so the WPF projects compile on Linux with the Microsoft-built SDK (Ubuntu's own `dotnet-sdk` package lacks the WindowsDesktop SDK). The app itself only runs on Windows.
+- Tests use the fakes in `tests/Yippy.Tests/Fakes` (`TestApp` wires the use cases like the composition root does).
+- `GetClipboardSequenceNumber` plays the role of `NSPasteboard.changeCount`; Yippy records the number after its own writes so they aren't captured. Formats are stored by name (`CF_UNICODETEXT`, `Rich Text Format`, registered names).
+- New settings go in `AppSettings` with a default; the JSON reader fills missing fields from the defaults, so older settings files still load.
+- `.github/workflows/windows.yml` builds, tests and publishes `Yippy.exe` on `windows-latest`; `release.yml` ignores `windows/**`.

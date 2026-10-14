@@ -27,9 +27,7 @@ public partial class App : System.Windows.Application
 
     private static readonly TimeSpan FlushTimeout = TimeSpan.FromSeconds(5);
 
-    private Mutex? instanceMutex;
-    private EventWaitHandle? showEvent;
-    private RegisteredWaitHandle? showWait;
+    private SingleInstance? instance;
     private ThemeManager? theme;
     private ServiceProvider? services;
     private DispatcherTimer? cleanTimer;
@@ -39,11 +37,10 @@ public partial class App : System.Windows.Application
         base.OnStartup(e);
 
         // A second launch opens the running copy's panel instead of starting another one
-        instanceMutex = new Mutex(initiallyOwned: true, $@"Local\{InstanceName}.Instance", out var isFirstInstance);
-        showEvent = new EventWaitHandle(false, EventResetMode.AutoReset, $@"Local\{InstanceName}.Show");
-        if (!isFirstInstance)
+        instance = new SingleInstance(InstanceName);
+        if (!instance.IsFirst)
         {
-            showEvent.Set();
+            instance.RequestShow();
             Shutdown();
             return;
         }
@@ -58,10 +55,13 @@ public partial class App : System.Windows.Application
         };
 
         var settings = services.GetRequiredService<SettingsService>();
+        // The installer may have handed Win+V to Yippy before its first launch
+        services.GetRequiredService<WindowsClipboardShortcutSetup>().ApplyToFirstLaunch();
         StartBackgroundServices(services, settings.IsFirstLaunch);
         var panel = services.GetRequiredService<PanelController>();
         var tray = services.GetRequiredService<TrayIcon>();
-        showWait = ThreadPool.RegisterWaitForSingleObject(showEvent, (_, _) => Dispatcher.BeginInvoke(panel.Show), null, Timeout.Infinite, false);
+        instance.OnShowRequested(() => Dispatcher.BeginInvoke(panel.Show));
+        instance.OnQuitRequested(() => Dispatcher.BeginInvoke(() => Shutdown()));
 
         var hotKey = services.GetRequiredService<ToggleHotKeyService>();
         if (!hotKey.Start(panel.Toggle))
@@ -79,7 +79,6 @@ public partial class App : System.Windows.Application
     protected override void OnExit(ExitEventArgs e)
     {
         cleanTimer?.Stop();
-        showWait?.Unregister(null);
         if (services is not null)
         {
             // Let the last writes reach the disk before the process ends
@@ -90,8 +89,7 @@ public partial class App : System.Windows.Application
             services.Dispose();
         }
         theme?.Dispose();
-        showEvent?.Dispose();
-        instanceMutex?.Dispose();
+        instance?.Dispose();
         base.OnExit(e);
     }
 

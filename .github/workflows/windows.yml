@@ -1,7 +1,7 @@
 name: Windows
 
-# Builds and tests the Windows app (windows/) and uploads a self-contained Yippy.exe as an artifact.
-# Every push or merge to master that changes the Windows app also publishes it as a GitHub release.
+# Builds and tests the Windows app (windows/), and uploads a self-contained Yippy.exe and its installer as artifacts.
+# Every push or merge to master that changes the Windows app also publishes them as a GitHub release.
 #
 # Windows releases are tagged windows-vX.Y.Z, separately from the macOS v-tags. The version is <Version> from
 # windows/Directory.Build.props, unless a windows-v tag for it (or a later one) already exists, in which case the
@@ -63,6 +63,8 @@ jobs:
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
       DOTNET_NOLOGO: 1
+      # The Inno Setup compiler, from NuGet so every build uses the same version
+      INNO_SETUP_VERSION: 6.7.3
     steps:
       - uses: actions/checkout@v4
 
@@ -103,10 +105,76 @@ jobs:
           -p:EnableCompressionInSingleFile=true -p:DebugType=none
           -p:Version=${{ needs.version.outputs.version }} -o publish
 
+      - name: Build the installer
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $package = Join-Path $env:RUNNER_TEMP 'innosetup.zip'
+          $tools = Join-Path $env:RUNNER_TEMP 'innosetup'
+          Invoke-WebRequest "https://api.nuget.org/v3-flatcontainer/tools.innosetup/$env:INNO_SETUP_VERSION/tools.innosetup.$env:INNO_SETUP_VERSION.nupkg" -OutFile $package
+          Expand-Archive $package -DestinationPath $tools
+          & (Join-Path $tools 'tools\ISCC.exe') /Q "/DAppVersion=${{ needs.version.outputs.version }}" /DPublishDir=..\publish installer\Yippy.iss
+          if ($LASTEXITCODE -ne 0) { throw "ISCC failed with exit code $LASTEXITCODE" }
+
+      - name: Test the installer
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          function WaitUntil([scriptblock]$condition, [string]$failure) {
+            for ($i = 0; -not (& $condition); $i++) {
+              if ($i -ge 30) { throw $failure }
+              Start-Sleep -Seconds 1
+            }
+          }
+          function Run($file, [string[]]$arguments) {
+            # WaitForExit, not Start-Process -Wait, which would also wait for the Yippy the installer starts
+            $process = Start-Process $file -ArgumentList $arguments -PassThru
+            $process.WaitForExit()
+            return $process.ExitCode
+          }
+          $setup = (Get-ChildItem installer/output/Yippy-*-setup.exe).FullName
+          $app = Join-Path $env:LOCALAPPDATA 'Programs\Yippy'
+          $exe = Join-Path $app 'Yippy.exe'
+          $run = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
+          $advanced = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+
+          $code = Run $setup '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/TASKS=startup'
+          if ($code -ne 0) { throw "Setup exited with $code" }
+          foreach ($file in 'Yippy.exe', 'scripts\Use-YippyForWinV.ps1', 'scripts\Restore-WindowsWinV.ps1') {
+            if (-not (Test-Path (Join-Path $app $file))) { throw "Not installed: $file" }
+          }
+          $startup = (Get-ItemProperty $run).Yippy
+          if ($startup -ne "`"$exe`"") { throw "Launch at sign-in entry: '$startup'" }
+
+          # The commands the installer and uninstaller run (without restarting Explorer on the runner)
+          Set-ItemProperty -Path $advanced -Name DisabledHotkeys -Value 'Q' -Type String
+          if ((Run $exe '--use-win-v', '--no-restart') -ne 0) { throw '--use-win-v failed' }
+          if ((Get-ItemProperty $advanced).DisabledHotkeys -cne 'QV') { throw '--use-win-v left Win+V to Windows' }
+          if ((Run $exe '--restore-win-v', '--no-restart') -ne 0) { throw '--restore-win-v failed' }
+          if ((Get-ItemProperty $advanced).DisabledHotkeys -cne 'Q') { throw '--restore-win-v kept Win+V' }
+          Remove-ItemProperty -Path $advanced -Name DisabledHotkeys
+
+          Start-Sleep -Seconds 5
+          Write-Host "Yippy running after setup: $([bool](Get-Process Yippy -ErrorAction SilentlyContinue))"
+          if ((Run $exe '--quit') -ne 0) { throw '--quit failed' }
+          WaitUntil { -not (Get-Process Yippy -ErrorAction SilentlyContinue) } 'Yippy is still running after --quit'
+
+          $code = Run (Join-Path $app 'unins000.exe') '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART'
+          if ($code -ne 0) { throw "Uninstall exited with $code" }
+          # The uninstaller carries on from a copy of itself in %TEMP%
+          WaitUntil { -not (Test-Path $exe) } 'Yippy.exe is still installed'
+          if ((Get-ItemProperty $run).PSObject.Properties.Name -contains 'Yippy') { throw 'The launch at sign-in entry is still there' }
+
       - uses: actions/upload-artifact@v4
         with:
           name: Yippy-win-x64
           path: windows/publish/Yippy.exe
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Yippy-setup
+          path: windows/installer/output/Yippy-*-setup.exe
           if-no-files-found: error
 
       - uses: actions/upload-artifact@v4
@@ -142,21 +210,26 @@ jobs:
         with:
           name: Yippy-scripts
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: Yippy-setup
+
       - name: Publish the release
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ needs.version.outputs.version }}
         run: |
           exe="Yippy-$VERSION-win-x64.exe"
+          setup="Yippy-$VERSION-setup.exe"
           mv Yippy.exe "$exe"
           # --latest=false keeps the macOS release as the repository's "Latest"
-          gh release create "windows-v$VERSION" "$exe" Use-YippyForWinV.ps1 Restore-WindowsWinV.ps1 \
+          gh release create "windows-v$VERSION" "$setup" "$exe" Use-YippyForWinV.ps1 Restore-WindowsWinV.ps1 \
             --repo "${{ github.repository }}" \
             --target "${{ github.sha }}" \
             --title "Yippy for Windows $VERSION" \
             --latest=false \
-            --notes "Yippy for Windows 10 (1809 or later) and 11, x64. Download $exe and run it; it's self-contained, so .NET doesn't need to be installed. Yippy starts in the notification area: press Ctrl+Shift+V to open your clipboard history.
+            --notes "Yippy for Windows 10 (1809 or later) and 11, x64. Download $setup and run it: it installs Yippy for you only, without administrator rights, and can start Yippy when you sign in and hand it Win+V. $exe is the same app without an installer. Both are self-contained, so .NET doesn't need to be installed. Yippy starts in the notification area: press Ctrl+Shift+V to open your clipboard history.
 
-          To make Win+V open Yippy instead of Windows' clipboard history, use Settings > General > Use Win+V for Yippy, or run Use-YippyForWinV.ps1; Restore-WindowsWinV.ps1 undoes it.
+          To make Win+V open Yippy instead of Windows' clipboard history, tick it in the installer, or use Settings > Shortcut > Use Win+V. Use-YippyForWinV.ps1 and Restore-WindowsWinV.ps1 do the same without Yippy (Yippy.exe --use-win-v and --restore-win-v too).
 
           The app isn't code-signed yet, so SmartScreen may warn the first time: choose More info, then Run anyway."

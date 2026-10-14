@@ -70,6 +70,7 @@ public static class CompositionRoot
         services.AddSingleton<ITextRecognizer, WindowsOcrTextRecognizer>();
         services.AddSingleton<IAppInfoProvider, WindowsAppInfoProvider>();
         services.AddSingleton<IShellClipboardShortcut>(s => new ExplorerClipboardShortcut(s.GetRequiredService<IAppLogger>()));
+        services.AddSingleton<IClipboardShortcutScripts, EmbeddedClipboardShortcutScripts>();
         services.AddSingleton<IStartupRegistration>(s => new RegistryStartupRegistration(App.InstanceName, s.GetRequiredService<IAppLogger>()));
     }
 
@@ -119,6 +120,7 @@ public static class CompositionRoot
         services.AddSingleton<SearchService>();
         services.AddSingleton<ToggleHotKeyService>();
         services.AddSingleton<WindowsClipboardShortcutService>();
+        services.AddSingleton<WindowsClipboardShortcutSetup>();
     }
 
     private static void AddPresentation(IServiceCollection services, Action quit)

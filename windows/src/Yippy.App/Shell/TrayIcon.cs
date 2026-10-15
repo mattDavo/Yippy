@@ -86,7 +86,7 @@ public sealed class TrayIcon : IDisposable
         });
         menu.Items.Add(new ToolStripSeparator());
         menu.Items.Add(new ToolStripMenuItem("Yippy Help", null, (_, _) => windows.ShowHelp()));
-        menu.Items.Add(new ToolStripMenuItem("About Yippy", null, (_, _) => windows.ShowAbout()));
+        menu.Items.Add(new ToolStripMenuItem("About Yippy", null, (_, _) => windows.ShowSettings(SettingsPage.About)));
         menu.Items.Add(new ToolStripSeparator());
         menu.Items.Add(new ToolStripMenuItem("Quit Yippy", null, (_, _) => quit()));
     }
@@ -107,7 +107,7 @@ public sealed class TrayIcon : IDisposable
 
     private void ClearHistory()
     {
-        if (windows.Confirm("Clear History", "Delete every item in the clipboard history? Favourites are kept."))
+        if (windows.Confirm("Clear History", "Delete every item in the clipboard history? Favourites are kept. This can't be undone."))
         {
             editing.Clear(editing.ClipboardHistory);
         }

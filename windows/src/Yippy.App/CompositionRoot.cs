@@ -2,6 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Yippy.App.Presentation;
 using Yippy.App.Shell;
 using Yippy.App.ViewModels;
+using Yippy.App.ViewModels.Settings;
+using Yippy.Domain.Apps;
+using Yippy.Domain.Settings;
 using Yippy.Infrastructure.Hosting;
 using Yippy.Infrastructure.Logging;
 using Yippy.Infrastructure.Settings;
@@ -43,6 +46,7 @@ public static class CompositionRoot
         AddPlatform(services);
         AddUseCases(services);
         AddPresentation(services, quit);
+        AddSettings(services, paths);
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateOnBuild = true, ValidateScopes = true });
     }
 
@@ -70,6 +74,7 @@ public static class CompositionRoot
         services.AddSingleton<ITextRecognizer, WindowsOcrTextRecognizer>();
         services.AddSingleton<IAppInfoProvider, WindowsAppInfoProvider>();
         services.AddSingleton<IShellClipboardShortcut>(s => new ExplorerClipboardShortcut(s.GetRequiredService<IAppLogger>()));
+        services.AddSingleton<IClipboardShortcutScripts, EmbeddedClipboardShortcutScripts>();
         services.AddSingleton<IStartupRegistration>(s => new RegistryStartupRegistration(App.InstanceName, s.GetRequiredService<IAppLogger>()));
     }
 
@@ -119,16 +124,18 @@ public static class CompositionRoot
         services.AddSingleton<SearchService>();
         services.AddSingleton<ToggleHotKeyService>();
         services.AddSingleton<WindowsClipboardShortcutService>();
+        services.AddSingleton<WindowsClipboardShortcutSetup>();
     }
 
     private static void AddPresentation(IServiceCollection services, Action quit)
     {
         services.AddSingleton<AppIcons>();
         services.AddSingleton<ItemContext>();
+        services.AddSingleton<ILauncher, ShellLauncher>();
         services.AddSingleton(s => new WindowManager(s.GetRequiredService<SettingsViewModel>, s.GetRequiredService<SettingsService>()));
         services.AddSingleton<IDialogService>(s => s.GetRequiredService<WindowManager>());
+        services.AddSingleton<IAppNavigation>(s => s.GetRequiredService<WindowManager>());
         services.AddSingleton<PanelViewModel>();
-        services.AddSingleton<SettingsViewModel>();
         services.AddSingleton<PanelController>();
         services.AddSingleton(s => new TrayIcon(
             s.GetRequiredService<PanelController>(),
@@ -137,5 +144,35 @@ public static class CompositionRoot
             s.GetRequiredService<IStartupRegistration>(),
             s.GetRequiredService<HistoryEditingService>(),
             quit));
+    }
+
+    /// <summary>The settings window's pages (Composite: <see cref="SettingsViewModel"/> holds them).</summary>
+    private static void AddSettings(IServiceCollection services, AppPaths paths)
+    {
+        services.AddSingleton<GeneralPageViewModel>();
+        services.AddSingleton<ShortcutPageViewModel>();
+        services.AddSingleton(s => new HistoryPageViewModel(
+            s.GetRequiredService<SettingsService>(),
+            s.GetRequiredService<HistoryEditingService>(),
+            s.GetRequiredService<IDialogService>(),
+            AppList(s, settings => settings.ExpiringApps, (settings, apps) => settings with { ExpiringApps = apps })));
+        services.AddSingleton(s => new PrivacyPageViewModel(
+            s.GetRequiredService<SettingsService>(),
+            s.GetRequiredService<ITextRecognizer>(),
+            s.GetRequiredService<ILauncher>(),
+            AppList(s, settings => settings.IgnoredApps, (settings, apps) => settings with { IgnoredApps = apps }),
+            paths.Root));
+        services.AddSingleton<AboutPageViewModel>();
+        services.AddSingleton<SettingsViewModel>();
+    }
+
+    private static AppListViewModel AppList(
+        IServiceProvider services,
+        Func<AppSettings, IReadOnlyList<AppIdentity>> read,
+        Func<AppSettings, IReadOnlyList<AppIdentity>, AppSettings> write)
+    {
+        return new AppListViewModel(
+            services.GetRequiredService<SettingsService>(), read, write,
+            services.GetRequiredService<IAppInfoProvider>(), services.GetRequiredService<AppIcons>(), services.GetRequiredService<IDialogService>());
     }
 }

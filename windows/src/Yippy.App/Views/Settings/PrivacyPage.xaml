@@ -1,0 +1,27 @@
+<UserControl x:Class="Yippy.App.Views.Settings.PrivacyPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
+             xmlns:views="clr-namespace:Yippy.App.Views"
+             xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=settings:PrivacyPageViewModel}">
+    <StackPanel>
+        <presentation:SettingsCard Glyph="&#xED1A;" Header="Ignored apps" IsContentBelow="True"
+                                   Description="Copies made in these apps are never saved, for example a password manager. Copies an app marks as private are always skipped.">
+            <views:AppListEditor DataContext="{Binding IgnoredApps}" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE91B;" Header="Find images by their text" Description="{Binding TextRecognitionNote}">
+            <CheckBox Style="{StaticResource Yippy.ToggleSwitch}" IsChecked="{Binding RecognizesTextInImages}"
+                      IsEnabled="{Binding IsTextRecognitionAvailable}" AutomationProperties.Name="Find images by their text" />
+        </presentation:SettingsCard>
+
+        <TextBlock Text="Your data" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE838;" Header="History, favourites and settings"
+                                   Description="{Binding DataFolder, StringFormat='Saved on this PC only, in {0}'}">
+            <Button Style="{StaticResource Yippy.Button}" Content="Open folder" Command="{Binding OpenDataFolderCommand}" />
+        </presentation:SettingsCard>
+    </StackPanel>
+</UserControl>

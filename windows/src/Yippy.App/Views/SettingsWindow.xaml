@@ -3,108 +3,77 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Yippy.App.ViewModels"
-        xmlns:views="clr-namespace:Yippy.App.Views"
+        xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
+        xmlns:pages="clr-namespace:Yippy.App.Views.Settings"
         xmlns:presentation="clr-namespace:Yippy.App.Presentation"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel}"
+        d:DataContext="{d:DesignInstance Type=settings:SettingsViewModel}"
         Title="Yippy Settings"
-        Width="560"
-        Height="520"
-        MinWidth="460"
-        MinHeight="400"
+        Width="900"
+        Height="660"
+        MinWidth="700"
+        MinHeight="460"
         WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource Yippy.PanelBackground}"
+        Foreground="{DynamicResource Yippy.PrimaryText}"
+        FontFamily="{StaticResource Yippy.UIFont}"
+        UseLayoutRounding="True"
+        presentation:WindowStyling.FollowsTheme="True"
         Icon="pack://application:,,,/Yippy;component/Assets/Yippy.ico">
-    <!-- Every change is saved straight away, as on macOS -->
+    <!-- Navigation on the left, the selected page on the right. Every change is saved straight away. -->
     <Window.Resources>
-        <Style TargetType="CheckBox">
-            <Setter Property="Margin" Value="0,0,0,10" />
-        </Style>
-        <Style x:Key="Label" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0,0,12,10" />
-        </Style>
-        <Style x:Key="Note" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Gray" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Margin" Value="0,0,0,10" />
-        </Style>
+        <DataTemplate DataType="{x:Type settings:GeneralPageViewModel}">
+            <pages:GeneralPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type settings:ShortcutPageViewModel}">
+            <pages:ShortcutPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type settings:HistoryPageViewModel}">
+            <pages:HistoryPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type settings:PrivacyPageViewModel}">
+            <pages:PrivacyPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type settings:AboutPageViewModel}">
+            <pages:AboutPage />
+        </DataTemplate>
     </Window.Resources>
 
-    <TabControl Margin="10">
-        <TabItem Header="General">
-            <Grid Margin="16">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="248" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Open Yippy with:" Style="{StaticResource Label}" />
-                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,10">
-                    <presentation:HotKeyBox x:Name="HotKey" Width="180" Padding="4,3" Text="{Binding HotKeyText, Mode=OneWay}"
-                                            ToolTip="Click, then press the new shortcut" />
-                    <Button Content="Reset" Margin="8,0,0,0" Padding="10,3" Command="{Binding ResetHotKeyCommand}" />
+        <DockPanel Margin="12,16,8,12">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10,0,0,20">
+                <Image Source="pack://application:,,,/Yippy;component/Assets/Yippy.ico" Width="28" Height="28"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+                <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="Yippy" Style="{StaticResource Yippy.BodyStrongText}" />
+                    <TextBlock Text="Settings" Style="{StaticResource Yippy.CaptionText}" />
                 </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="1">
-                    <TextBlock Text="{Binding HotKeyMessage}" Style="{StaticResource Note}"
-                               Visibility="{Binding HotKeyMessage, Converter={StaticResource VisibleWhen}}" />
-                    <!-- Win+V: take it over from Windows' clipboard history, or give it back -->
-                    <Button Content="{Binding WinVButtonText}" Command="{Binding ToggleWinVCommand}"
-                            HorizontalAlignment="Left" Padding="10,3" Margin="0,0,0,6" />
-                    <TextBlock Text="{Binding WinVNote}" Style="{StaticResource Note}" Margin="0,0,0,14" />
-                </StackPanel>
-
-                <TextBlock Grid.Row="2" Text="Panel position:" Style="{StaticResource Label}" />
-                <ComboBox Grid.Row="2" Grid.Column="1" Width="220" HorizontalAlignment="Left" Margin="0,0,0,10"
-                          ItemsSource="{Binding Positions}" DisplayMemberPath="Title" SelectedValuePath="Value"
-                          SelectedValue="{Binding PanelPosition}" />
-
-                <TextBlock Grid.Row="3" Text="Items to keep:" Style="{StaticResource Label}" />
-                <ComboBox Grid.Row="3" Grid.Column="1" Width="220" HorizontalAlignment="Left" Margin="0,0,0,10"
-                          ItemsSource="{Binding MaxHistoryOptions}" SelectedItem="{Binding MaxHistory}" />
-
-                <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,6,0,0">
-                    <CheckBox Content="Launch Yippy when I sign in" IsChecked="{Binding LaunchAtLogin}" />
-                    <CheckBox Content="Show styled text with its styling" IsChecked="{Binding ShowsRichText}" />
-                    <CheckBox Content="Paste styled text with its styling" IsChecked="{Binding PastesRichText}" />
-                </StackPanel>
-            </Grid>
-        </TabItem>
-
-        <TabItem Header="Auto-Clean">
-            <DockPanel Margin="16">
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,16">
-                    <TextBlock Text="Delete items older than:" Style="{StaticResource Label}" Margin="0,0,12,0" />
-                    <ComboBox Width="180" ItemsSource="{Binding MaxAgeOptions}" DisplayMemberPath="Title"
-                              SelectedValuePath="Value" SelectedValue="{Binding MaxItemAgeDays}" />
-                </StackPanel>
-                <TextBlock DockPanel.Dock="Top" Style="{StaticResource Note}"
-                           Text="Favourites are never deleted automatically." />
-                <views:AppListEditor DataContext="{Binding ExpiringApps}" />
-            </DockPanel>
-        </TabItem>
-
-        <TabItem Header="Ignored Apps">
-            <views:AppListEditor Margin="16" DataContext="{Binding IgnoredApps}" />
-        </TabItem>
-
-        <TabItem Header="Text in Images">
-            <StackPanel Margin="16">
-                <CheckBox Content="Find images by the text in them" IsChecked="{Binding RecognizesTextInImages}"
-                          IsEnabled="{Binding IsTextRecognitionAvailable}" />
-                <TextBlock Text="{Binding TextRecognitionNote}" Style="{StaticResource Note}" />
-                <TextBlock Style="{StaticResource Note}"
-                           Text="Text recognition runs on this PC with Windows' own OCR. Nothing is sent anywhere." />
             </StackPanel>
-        </TabItem>
-    </TabControl>
+            <ListBox Style="{StaticResource Yippy.ListBox}" ItemContainerStyle="{StaticResource Yippy.NavItem}"
+                     ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}"
+                     AutomationProperties.Name="Settings pages">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type settings:SettingsPageViewModel}">
+                        <StackPanel Orientation="Horizontal" AutomationProperties.Name="{Binding Title}">
+                            <TextBlock Text="{Binding Glyph}" FontFamily="{StaticResource Yippy.IconFont}" FontSize="16"
+                                       Margin="4,0,14,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Title}" FontSize="14" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Focusable="False">
+            <StackPanel Margin="24,12,36,36" MaxWidth="880">
+                <TextBlock Text="{Binding SelectedPage.Title}" Style="{StaticResource Yippy.TitleText}" Margin="0,0,0,20" />
+                <ContentControl Content="{Binding SelectedPage}" Focusable="False" IsTabStop="False" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

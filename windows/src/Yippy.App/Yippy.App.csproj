@@ -11,6 +11,8 @@
     <RootNamespace>Yippy.App</RootNamespace>
     <ApplicationIcon>Assets\Yippy.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Program.Main, which handles the command line before WPF starts. -->
+    <StartupObject>Yippy.App.Program</StartupObject>
     <!-- WFAC010 wants Windows Forms' DPI API, but this is a WPF app: its DPI awareness belongs in the manifest. -->
     <NoWarn>$(NoWarn);WFAC010</NoWarn>
   </PropertyGroup>

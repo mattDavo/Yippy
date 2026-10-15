@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Graphics.Imaging;
 using Windows.Media.Ocr;
@@ -9,7 +10,7 @@ namespace Yippy.Platform.Windows.Ocr;
 /// <summary>Reads the text in images with Windows' built-in OCR, in the languages of the user's profile.</summary>
 public sealed class WindowsOcrTextRecognizer : ITextRecognizer
 {
-    private readonly Lazy<OcrEngine?> engine = new(OcrEngine.TryCreateFromUserProfileLanguages);
+    private readonly Lazy<OcrEngine?> engine = new(CreateEngine);
 
     public bool IsAvailable => engine.Value is not null;
 
@@ -42,5 +43,18 @@ public sealed class WindowsOcrTextRecognizer : ITextRecognizer
 
         var result = await ocr.RecognizeAsync(bitmap).AsTask(cancellationToken);
         return string.Join('\n', result.Lines.Select(line => line.Text));
+    }
+
+    /// <summary>Null when no OCR language is installed, or Windows' OCR isn't there at all (some trimmed editions).</summary>
+    private static OcrEngine? CreateEngine()
+    {
+        try
+        {
+            return OcrEngine.TryCreateFromUserProfileLanguages();
+        }
+        catch (COMException)
+        {
+            return null;
+        }
     }
 }

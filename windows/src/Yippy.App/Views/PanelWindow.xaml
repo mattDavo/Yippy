@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Yippy.App.ViewModels"
+        xmlns:presentation="clr-namespace:Yippy.App.Presentation"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:PanelViewModel}"
         Title="Yippy"
@@ -14,30 +15,37 @@
         WindowStartupLocation="Manual"
         Background="{DynamicResource Yippy.PanelBackground}"
         Foreground="{DynamicResource Yippy.PrimaryText}"
+        FontFamily="{StaticResource Yippy.UIFont}"
         UseLayoutRounding="True"
+        presentation:WindowStyling.FollowsTheme="True"
         PreviewKeyDown="OnPreviewKeyDown">
 
     <Window.Resources>
-        <!-- A card per item; the selected one gets an accent border -->
+        <!-- A card per item. The selected one is tinted, with an accent border and a pill on its left edge (no layout shift) -->
         <Style x:Key="ItemContainer" TargetType="ListBoxItem">
-            <Setter Property="Margin" Value="8,0,8,6" />
+            <Setter Property="Margin" Value="10,0,10,6" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="Card" Background="{DynamicResource Yippy.CardBackground}"
-                                BorderBrush="{DynamicResource Yippy.CardBorder}" BorderThickness="1" CornerRadius="6">
-                            <ContentPresenter />
-                        </Border>
+                        <Grid>
+                            <Border x:Name="Card" Background="{DynamicResource Yippy.CardBackground}"
+                                    BorderBrush="{DynamicResource Yippy.CardBorder}" BorderThickness="1" CornerRadius="6">
+                                <ContentPresenter />
+                            </Border>
+                            <Border x:Name="Pill" Width="3" Height="18" CornerRadius="1.5" HorizontalAlignment="Left"
+                                    VerticalAlignment="Center" Margin="3,0,0,0" Background="{DynamicResource Yippy.Accent}" Visibility="Collapsed" />
+                        </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Card" Property="Background" Value="{DynamicResource Yippy.CardHover}" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Card" Property="Background" Value="{DynamicResource Yippy.CardSelected}" />
                                 <Setter TargetName="Card" Property="BorderBrush" Value="{DynamicResource Yippy.Accent}" />
-                                <Setter TargetName="Card" Property="BorderThickness" Value="2" />
+                                <Setter TargetName="Pill" Property="Visibility" Value="Visible" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -88,9 +96,9 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <ContentPresenter Content="{Binding}" ContentTemplateSelector="{StaticResource Yippy.ItemContentSelector}"
-                                  Margin="10,8,10,4" MaxHeight="200" ClipToBounds="True" />
-                <!-- Info bar: name, source app and time, shortcut, heart -->
-                <Grid Grid.Row="1" Margin="10,0,4,4">
+                                  Margin="12,10,12,6" MaxHeight="200" ClipToBounds="True" />
+                <!-- Info bar: source app icon, name, source app and time, Ctrl+number keycap, heart -->
+                <Grid Grid.Row="1" Margin="12,0,6,6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -99,13 +107,15 @@
                     </Grid.ColumnDefinitions>
                     <Image Source="{Binding SourceIcon}" Width="14" Height="14" Margin="0,0,6,0" VerticalAlignment="Center"
                            Visibility="{Binding SourceIcon, Converter={StaticResource VisibleWhen}}" />
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="11"
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="12"
                                ToolTip="{Binding CopiedAtToolTip}">
-                        <Run Text="{Binding Title, Mode=OneWay}" FontWeight="SemiBold" Foreground="{DynamicResource Yippy.PrimaryText}" />
-                        <Run Text="{Binding InfoText, Mode=OneWay}" Foreground="{DynamicResource Yippy.SecondaryText}" />
+                        <!-- No whitespace between the runs, or an item without a name starts with a space -->
+                        <Run Text="{Binding Title, Mode=OneWay, StringFormat='{}{0}  '}" FontWeight="SemiBold" Foreground="{DynamicResource Yippy.PrimaryText}"
+                        /><Run Text="{Binding InfoText, Mode=OneWay}" Foreground="{DynamicResource Yippy.SecondaryText}" />
                     </TextBlock>
-                    <TextBlock Grid.Column="2" Text="{Binding ShortcutText}" FontSize="11" Margin="8,0,2,0" VerticalAlignment="Center"
-                               Foreground="{DynamicResource Yippy.SecondaryText}" />
+                    <ContentControl Grid.Column="2" Style="{StaticResource Yippy.Keycap}" Content="{Binding ShortcutKey}" Margin="8,0,2,0"
+                                    ToolTip="{Binding ShortcutToolTip}"
+                                    Visibility="{Binding ShortcutKey, Converter={StaticResource VisibleWhen}}" />
                     <Button x:Name="Heart" Grid.Column="3" Style="{StaticResource Yippy.IconButton}" Content="{Binding FavouriteGlyph}"
                             ToolTip="{Binding FavouriteToolTip}"
                             Command="{Binding Panel.ToggleFavouriteCommand}" CommandParameter="{Binding}" />
@@ -119,17 +129,25 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Border BorderBrush="{DynamicResource Yippy.PanelBorder}" BorderThickness="1">
+    <!-- Windows 11 draws the border itself (WindowStyling), around rounded corners -->
+    <Border BorderBrush="{DynamicResource Yippy.PanelBorder}" BorderThickness="{DynamicResource Yippy.FrameThickness}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- Clipboard / Favourites, and the item count -->
-            <Grid Margin="8,8,8,6">
-                <Border Background="{DynamicResource Yippy.SegmentBackground}" CornerRadius="6" Padding="2" HorizontalAlignment="Left">
+            <!-- Clipboard / Favourites, the item count, help and settings -->
+            <Grid Margin="10,10,6,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Border Background="{DynamicResource Yippy.SegmentBackground}" CornerRadius="6" Padding="2">
                     <StackPanel Orientation="Horizontal">
                         <RadioButton Style="{StaticResource Yippy.SegmentButton}" Content="Clipboard" GroupName="Group"
                                      IsChecked="{Binding IsClipboardSelected}" ToolTip="Ctrl+Tab switches" />
@@ -137,27 +155,65 @@
                                      IsChecked="{Binding IsFavouritesSelected}" ToolTip="Ctrl+Tab switches" />
                     </StackPanel>
                 </Border>
-                <TextBlock Text="{Binding CountText}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="11"
-                           Foreground="{DynamicResource Yippy.SecondaryText}" />
+                <TextBlock Grid.Column="1" Text="{Binding CountText}" Margin="12,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           FontSize="12" Foreground="{DynamicResource Yippy.SecondaryText}" TextTrimming="CharacterEllipsis" />
+                <Button Grid.Column="2" Style="{StaticResource Yippy.IconButton}" Content="&#xE897;" ToolTip="Keyboard shortcuts"
+                        AutomationProperties.Name="Keyboard shortcuts" Command="{Binding ShowHelpCommand}" />
+                <Button Grid.Column="3" Style="{StaticResource Yippy.IconButton}" Content="&#xE713;" ToolTip="Settings"
+                        AutomationProperties.Name="Settings" Command="{Binding OpenSettingsCommand}" />
             </Grid>
 
-            <TextBox x:Name="SearchBox" Grid.Row="1" Margin="8,0,8,8" Style="{StaticResource Yippy.SearchBox}"
-                     Tag="{Binding SearchPlaceholder}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox x:Name="SearchBox" Grid.Row="1" Margin="10,0,10,10" Style="{StaticResource Yippy.SearchBox}"
+                     Tag="{Binding SearchPlaceholder}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     AutomationProperties.Name="Search" />
 
             <ListBox x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
                      ItemContainerStyle="{StaticResource ItemContainer}" ItemTemplate="{StaticResource ItemTemplate}"
                      Background="Transparent" BorderThickness="0" Padding="0" Focusable="False" AllowDrop="True"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True"
                      VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
-                     VirtualizingPanel.ScrollUnit="Pixel" SelectionChanged="OnSelectionChanged">
-                <ListBox.Resources>
-                    <Style TargetType="ScrollBar" BasedOn="{StaticResource Yippy.ScrollBar}" />
-                </ListBox.Resources>
-            </ListBox>
+                     VirtualizingPanel.ScrollUnit="Pixel" SelectionChanged="OnSelectionChanged"
+                     AutomationProperties.Name="{Binding CountText}" />
 
-            <TextBlock Grid.Row="2" Text="{Binding EmptyText}" Margin="24" TextWrapping="Wrap" TextAlignment="Center"
-                       HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="{DynamicResource Yippy.SecondaryText}"
-                       Visibility="{Binding IsEmpty, Converter={StaticResource VisibleWhen}}" />
+            <!-- Nothing to show: say why, and what to do -->
+            <StackPanel Grid.Row="2" Margin="32,40,32,24" HorizontalAlignment="Center" VerticalAlignment="Top" MaxWidth="300"
+                        Visibility="{Binding IsEmpty, Converter={StaticResource VisibleWhen}}">
+                <TextBlock Text="{Binding EmptyGlyph}" FontFamily="{StaticResource Yippy.IconFont}" FontSize="32"
+                           HorizontalAlignment="Center" Foreground="{DynamicResource Yippy.SecondaryText}" />
+                <TextBlock Text="{Binding EmptyTitle}" Style="{StaticResource Yippy.BodyStrongText}" TextAlignment="Center"
+                           Margin="0,14,0,4" />
+                <TextBlock Text="{Binding EmptyText}" Style="{StaticResource Yippy.CaptionText}" TextAlignment="Center" />
+            </StackPanel>
+
+            <!-- What the keyboard does, at a glance -->
+            <Border Grid.Row="3" BorderBrush="{DynamicResource Yippy.Divider}" BorderThickness="0,1,0,0" Padding="12,8,12,9">
+                <WrapPanel>
+                    <WrapPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Foreground" Value="{DynamicResource Yippy.SecondaryText}" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Margin" Value="2,0,14,0" />
+                        </Style>
+                    </WrapPanel.Resources>
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <presentation:KeyHint Keys="Enter" />
+                        <TextBlock Text="Paste" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <presentation:KeyHint Keys="Shift+Enter" />
+                        <TextBlock Text="Plain text" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <presentation:KeyHint Keys="Ctrl+D" />
+                        <TextBlock Text="Favourite" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <presentation:KeyHint Keys="Ctrl+Space" />
+                        <TextBlock Text="Preview" />
+                    </StackPanel>
+                </WrapPanel>
+            </Border>
         </Grid>
     </Border>
 </Window>

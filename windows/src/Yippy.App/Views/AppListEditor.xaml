@@ -3,18 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:Yippy.App.ViewModels"
+             xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=vm:AppListViewModel}">
-    <!-- A list of apps, with Add (running apps, or browse for one) and Remove. DataContext: AppListViewModel. -->
-    <DockPanel>
-        <TextBlock DockPanel.Dock="Top" Text="{Binding Message}" TextWrapping="Wrap" Margin="0,0,0,8" />
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,8,0,0">
-            <Button x:Name="AddButton" Content="Add Running App ▾" Padding="10,3" Click="OnAddClick">
+             d:DataContext="{d:DesignInstance Type=settings:AppListViewModel}">
+    <!-- A list of apps, with Add (a running app, or browse for one) and Remove. DataContext: AppListViewModel. -->
+    <StackPanel>
+        <Border Background="{DynamicResource Yippy.PanelBackground}" BorderBrush="{DynamicResource Yippy.CardBorder}"
+                BorderThickness="1" CornerRadius="4" Padding="4" MinHeight="56">
+            <Grid>
+                <ListBox x:Name="Apps" Style="{StaticResource Yippy.ListBox}" ItemsSource="{Binding Apps}" SelectedItem="{Binding SelectedApp}"
+                         MaxHeight="220" AutomationProperties.Name="Apps">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type settings:AppEntry}">
+                            <StackPanel Orientation="Horizontal" AutomationProperties.Name="{Binding Name}">
+                                <Image Source="{Binding Icon}" Width="20" Height="20" Margin="0,0,12,0" VerticalAlignment="Center" />
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" FontSize="14" />
+                                    <TextBlock Text="{Binding Id}" FontSize="12" Foreground="{DynamicResource Yippy.SecondaryText}"
+                                               TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Text="No apps yet. Add one below." Style="{StaticResource Yippy.CaptionText}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Visibility="{Binding Apps.Count, Converter={StaticResource VisibleWhen}, ConverterParameter=Invert}" />
+            </Grid>
+        </Border>
+        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+            <Button x:Name="AddButton" Style="{StaticResource Yippy.Button}" Click="OnAddClick">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Add a running app" />
+                    <TextBlock Text="&#xE70D;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="10" Margin="8,1,0,0"
+                               VerticalAlignment="Center" />
+                </StackPanel>
                 <Button.ContextMenu>
                     <ContextMenu x:Name="RunningAppsMenu" ItemsSource="{Binding RunningApps}">
                         <ContextMenu.ItemContainerStyle>
-                            <Style TargetType="MenuItem">
+                            <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                                 <Setter Property="Header" Value="{Binding Name}" />
                                 <Setter Property="Icon">
                                     <Setter.Value>
@@ -29,19 +56,8 @@
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
-            <Button Content="Browse…" Padding="10,3" Margin="8,0,0,0" Command="{Binding BrowseCommand}" />
-            <Button Content="Remove" Padding="10,3" Margin="8,0,0,0" Command="{Binding RemoveCommand}" />
+            <Button Style="{StaticResource Yippy.Button}" Content="Browse…" Margin="8,0,0,0" Command="{Binding BrowseCommand}" />
+            <Button Style="{StaticResource Yippy.Button}" Content="Remove" Margin="8,0,0,0" Command="{Binding RemoveCommand}" />
         </StackPanel>
-        <ListBox ItemsSource="{Binding Apps}" SelectedItem="{Binding SelectedApp}" MinHeight="140">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="2">
-                        <Image Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,8,0" />
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text="{Binding Id}" Foreground="Gray" Margin="8,0,0,0" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </DockPanel>
+    </StackPanel>
 </UserControl>

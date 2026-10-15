@@ -1,0 +1,42 @@
+<UserControl x:Class="Yippy.App.Views.Settings.ShortcutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
+             xmlns:views="clr-namespace:Yippy.App.Views"
+             xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=settings:ShortcutPageViewModel}">
+    <StackPanel>
+        <presentation:SettingsCard Glyph="&#xE765;" Header="Open Yippy with"
+                                   Description="Click the box, then press the keys. Use Ctrl, Alt, Shift or Win with another key.">
+            <StackPanel Orientation="Horizontal">
+                <presentation:HotKeyBox x:Name="HotKey" Style="{StaticResource Yippy.TextBox}" Width="190"
+                                        HorizontalContentAlignment="Center" Text="{Binding HotKeyText, Mode=OneWay}"
+                                        AutomationProperties.Name="Shortcut that opens Yippy" ToolTip="Click, then press the new shortcut" />
+                <Button Style="{StaticResource Yippy.Button}" Content="Reset" Margin="8,0,0,0" Command="{Binding ResetHotKeyCommand}"
+                        ToolTip="Go back to Ctrl+Shift+V" />
+            </StackPanel>
+        </presentation:SettingsCard>
+        <Border Style="{StaticResource Yippy.InfoBar}" Visibility="{Binding HotKeyMessage, Converter={StaticResource VisibleWhen}}">
+            <TextBlock Text="{Binding HotKeyMessage}" Style="{StaticResource Yippy.BodyText}" />
+        </Border>
+
+        <TextBlock Text="Windows' clipboard shortcut" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE77F;" Header="Win+V" Description="{Binding WinVNote}">
+            <Button Style="{StaticResource Yippy.Button}" Content="{Binding WinVButtonText}" Command="{Binding ToggleWinVCommand}" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE943;" Header="Win+V scripts" Description="{Binding ScriptsNote}">
+            <Button Style="{StaticResource Yippy.Button}" Content="Save scripts…" Command="{Binding SaveScriptsCommand}" />
+        </presentation:SettingsCard>
+        <TextBlock Text="{Binding ScriptsMessage}" Style="{StaticResource Yippy.CaptionText}" Margin="2,0,0,4"
+                   Visibility="{Binding ScriptsMessage, Converter={StaticResource VisibleWhen}}" />
+
+        <TextBlock Text="In the panel" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE8FD;" Header="Keyboard shortcuts"
+                                   Description="Paste, preview, search and favourite without touching the mouse.">
+            <Button Style="{StaticResource Yippy.Button}" Content="Show shortcuts" Command="{Binding ShowShortcutsCommand}" />
+        </presentation:SettingsCard>
+    </StackPanel>
+</UserControl>

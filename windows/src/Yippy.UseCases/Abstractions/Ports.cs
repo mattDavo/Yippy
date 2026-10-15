@@ -137,3 +137,16 @@ public interface IShellClipboardShortcut
     /// <summary>Restarts Explorer (the taskbar and desktop) so a change takes effect.</summary>
     Task RestartShellAsync();
 }
+
+/// <summary>
+/// The PowerShell scripts that hand Win+V to Yippy or back to Windows without Yippy running, e.g. for an administrator
+/// setting up another account. They ship inside Yippy.exe.
+/// </summary>
+public interface IClipboardShortcutScripts
+{
+    IReadOnlyList<string> FileNames { get; }
+
+    /// <summary>Writes the scripts into a folder, replacing older copies.</summary>
+    /// <returns>The files written.</returns>
+    IReadOnlyList<string> SaveTo(string folder);
+}

@@ -23,7 +23,7 @@ func formatFileUrl(_ url: URL) -> NSAttributedString {
     ]
     
     let deletedAttributes: [NSAttributedString.Key: Any] = [
-        .foregroundColor: NSColor.systemRed
+        .foregroundColor: DesignTokens.Color.danger
     ]
     
     let startOfLast = url.path.count - url.lastPathComponent.count

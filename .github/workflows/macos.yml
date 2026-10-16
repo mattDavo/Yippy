@@ -1,0 +1,33 @@
+name: macOS
+
+# Builds the macOS app and runs its unit tests on every pull request that touches it. Releases are release.yml's job.
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'windows/**'
+      - '.github/workflows/windows.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    env:
+      # Current Xcode rejects the project's 10.13/10.14 deployment target, and CI has no signing certificate (CLAUDE.md)
+      OVERRIDES: >-
+        MACOSX_DEPLOYMENT_TARGET=12.0 CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the Beta app
+        run: |
+          xcodebuild build -workspace Yippy.xcworkspace -scheme "Yippy Beta" -destination 'platform=macOS' $OVERRIDES -quiet
+
+      - name: Unit tests
+        run: |
+          xcodebuild test -workspace Yippy.xcworkspace -scheme "Yippy XCTest" -destination 'platform=macOS' \
+            -only-testing:YippyTests $OVERRIDES -quiet

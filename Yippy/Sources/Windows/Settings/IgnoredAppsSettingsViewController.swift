@@ -21,7 +21,7 @@ class IgnoredAppsSettingsViewController: NSViewController {
 
     init(
         bundleIds: BehaviorRelay<[String]> = State.main.ignoredAppBundleIds,
-        message: String = "Yippy won't save anything copied while one of these apps is in front, e.g. a password manager.",
+        message: String = "Cairn won't save anything copied while one of these apps is in front, e.g. a password manager.",
         prompt: String = "Ignore"
     ) {
         self.bundleIdsRelay = bundleIds

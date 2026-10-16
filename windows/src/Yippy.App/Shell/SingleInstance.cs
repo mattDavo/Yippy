@@ -2,7 +2,7 @@ namespace Yippy.App.Shell;
 
 /// <summary>
 /// Keeps one copy of Yippy running per user. Later launches don't start another copy: they ask the running one to show
-/// its panel, or to quit (the installer does that before replacing Yippy.exe).
+/// its panel, or to quit (the installer does that before replacing Cairn.exe).
 /// </summary>
 public sealed class SingleInstance : IDisposable
 {

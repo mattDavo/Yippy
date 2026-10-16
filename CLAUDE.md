@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Yippy is a macOS menu-bar clipboard manager (Swift 5, AppKit, RxSwift, CocoaPods + Swift Package Manager; project deployment target 10.13/10.14). It only builds and runs on macOS with Xcode. There is no linter or formatter configured.
+Cairn (formerly Yippy, a fork of Matthew Davidson's MIT-licensed app) is a macOS menu-bar clipboard manager (Swift 5, AppKit, RxSwift, CocoaPods + Swift Package Manager; project deployment target 10.13/10.14). It only builds and runs on macOS with Xcode. There is no linter or formatter configured.
+
+Only what users see is named Cairn. The code keeps Yippy as its internal name: the Xcode project, targets, schemes, the Swift module (`PRODUCT_MODULE_NAME = Yippy`, so storyboards and `@testable import Yippy` work), Swift types, the .NET solution, projects and namespaces, and the `Yippy.*` XAML resource keys. User-facing strings use `Brand` (`Yippy/Sources/Constants/Brand.swift`, `windows/src/Yippy.App/Brand.cs`). Keep Matthew Davidson's copyright line in `LICENSE` and the credit in the About screens and `THIRD_PARTY_NOTICES.md`.
 
 The `windows/` folder holds a separate Windows port (C#, .NET 8, WPF); see "Windows app" at the end.
 
@@ -20,9 +22,9 @@ There are three shared schemes, each with its own build configuration and bundle
 
 | Scheme | Config | Bundle id | Use |
 | --- | --- | --- | --- |
-| `Yippy` | Debug/Release | `MatthewDavidson.Yippy` | production run/archive |
-| `Yippy Beta` | Beta Debug/Beta Release (`BETA` flag, different status-bar icon) | `MatthewDavidson.YippyBeta` | day-to-day development, beta archive |
-| `Yippy XCTest` | `XCTest` (`DEBUG XCTEST` flags) | `MatthewDavidson.YippyXCTest` | the only scheme that runs tests |
+| `Yippy` | Debug/Release | `com.hamzashewa.Cairn` (`Cairn.app`) | production run/archive |
+| `Yippy Beta` | Beta Debug/Beta Release (`BETA` flag, different status-bar icon) | `com.hamzashewa.CairnBeta` (`Cairn Beta.app`) | day-to-day development, beta archive |
+| `Yippy XCTest` | `XCTest` (`DEBUG XCTEST` flags) | `com.hamzashewa.CairnXCTest` | the only scheme that runs tests |
 
 ```sh
 xcodebuild -workspace Yippy.xcworkspace -scheme "Yippy Beta" build
@@ -38,7 +40,10 @@ Xcode 27 rejects the project's 10.13/10.14 deployment target, and signing fails 
 
 `YippyUITests` drives the real app via XCUITest and needs the test runner to have Accessibility permission. The scheme's launch environment sets `SRCROOT`, and the UI tests forward it to the app (see "UI-test hooks" below). `create-installer.sh` builds the `.dmg` installer; its usage is in the README.
 
-Because the app-support directory and `UserDefaults` are keyed by bundle id, Yippy, Yippy Beta and the XCTest build each have separate history, favourites and settings.
+Because the app-support directory and `UserDefaults` are keyed by bundle id, Cairn, Cairn Beta and the XCTest build each have separate history, favourites and settings. On the first launch under a new bundle id, `LegacyMigration` copies the folder and settings from the old `MatthewDavidson.Yippy*` id (not in XCTest or `--uitesting` runs). `.github/workflows/macos.yml` builds the Beta app and runs `YippyTests` on pull requests.
+
+### Design system
+`brand/tokens.json` is the single source of Cairn's colours (light and dark), radii, spacing and type sizes; `brand/generate.py` writes the platform files from it (Windows `Themes/Light.xaml`, `Dark.xaml`, `Tokens.xaml`, `Assets/AppIcon.ico`, installer images; macOS `Assets.xcassets/Tokens/*.colorset`, the app/status-bar icons and `AppLogo`, and `Constants/DesignTokens.swift`) and checks text contrast. Don't edit generated files by hand, and use tokens (`DesignTokens.Color.accent`, `{DynamicResource Yippy.Accent}`, `{StaticResource Yippy.Radius.Card}`) rather than literal colours or radii. See `brand/README.md`.
 
 ## Architecture
 
@@ -100,8 +105,8 @@ dotnet test Yippy.sln   # xUnit, runs on any OS
 - `GetClipboardSequenceNumber` plays the role of `NSPasteboard.changeCount`; Yippy records the number after its own writes so they aren't captured. Formats are stored by name (`CF_UNICODETEXT`, `Rich Text Format`, registered names).
 - Win+V belongs to Explorer. `WindowsClipboardShortcutService` takes it over by adding "V" to `HKCU\...\Explorer\Advanced\DisabledHotkeys` (`ExplorerClipboardShortcut`), restarting Explorer, then registering Win+V as the toggle; restoring reverses the order. `windows/scripts/*.ps1` do the registry side by hand, and CI runs them with `-NoRestart`.
 - New settings go in `AppSettings` with a default; the JSON reader fills missing fields from the defaults, so older settings files still load.
-- `Yippy.App/Program.cs` is the entry point. The commands `--use-win-v`, `--restore-win-v` and `--quit` (`CommandLine`, run by `Shell/CommandRunner` through `WindowsClipboardShortcutSetup`) are handled there before WPF starts, so they work headless; a running copy is told to quit (`Shell/SingleInstance`: the `Local\Yippy.Instance` mutex plus show/quit events) and relaunched afterwards. The installer and uninstaller rely on them.
+- `Yippy.App/Program.cs` is the entry point. The commands `--use-win-v`, `--restore-win-v` and `--quit` (`CommandLine`, run by `Shell/CommandRunner` through `WindowsClipboardShortcutSetup`) are handled there before WPF starts, so they work headless; a running copy is told to quit (`Shell/SingleInstance`: the `Local\Cairn.Instance` mutex plus show/quit events) and relaunched afterwards. The installer and uninstaller rely on them.
 - The `.ps1` scripts are embedded in `Yippy.Platform.Windows` (`EmbeddedClipboardShortcutScripts`) for Settings > Shortcut > Save scripts; edit them in `windows/scripts/` only.
-- `windows/installer/Yippy.iss` is the Inno Setup installer: per user (no admin), Start menu, optional sign-in and Win+V tasks, uninstall restores Win+V and asks before deleting `%APPDATA%\Yippy`. Keep its `InstanceMutex` in step with `App.InstanceName`.
-- UI: `Themes/Light.xaml`/`Dark.xaml` are colour tokens, `Themes/Fluent.xaml` the fonts, text styles and control styles; use those keys (`Yippy.*`) rather than literal colours. Settings is one window with a page view model per area in `ViewModels/Settings` (navigate with `IAppNavigation.ShowSettings(SettingsPage)`); page views are in `Views/Settings`.
-- `.github/workflows/windows.yml` builds, tests and publishes `Yippy.exe` on `windows-latest`, builds the installer with Inno Setup (from the `tools.innosetup` NuGet package), and installs, exercises and uninstalls it. On `master` it also creates a `windows-vX.Y.Z` GitHub release (not marked Latest) with the setup, the portable exe and the scripts, whose version comes from `<Version>` in `windows/Directory.Build.props` or the next patch after the latest `windows-v` tag. `release.yml` (macOS, `v` tags) ignores `windows/**`.
+- `windows/installer/Cairn.iss` is the Inno Setup installer: per user (no admin), Start menu, optional sign-in and Win+V tasks, uninstall restores Win+V and asks before deleting `%APPDATA%\Cairn`. It keeps Yippy's AppId so it updates a Yippy 1.x install (removing `Yippy.exe` and its sign-in entry). Keep its `InstanceMutex` in step with `App.InstanceName`. `Program.Main` runs `Shell/LegacyMigration` first, which closes a running Yippy and moves `%APPDATA%\Yippy` and its sign-in entry over once.
+- UI: `Themes/Light.xaml`/`Dark.xaml` are colour tokens and `Themes/Tokens.xaml` radii, spacing and type sizes (all generated from `brand/tokens.json`), `Themes/Fluent.xaml` the fonts, text styles and control styles; use those keys (`Yippy.*`) rather than literal values. Settings is one window with a page view model per area in `ViewModels/Settings` (navigate with `IAppNavigation.ShowSettings(SettingsPage)`); page views are in `Views/Settings`.
+- `.github/workflows/windows.yml` builds, tests and publishes `Cairn.exe` on `windows-latest`, builds the installer with Inno Setup (from the `tools.innosetup` NuGet package), and installs, exercises and uninstalls it. On `master` it also creates a `windows-vX.Y.Z` GitHub release (not marked Latest) with the setup, the portable exe and the scripts, whose version comes from `<Version>` in `windows/Directory.Build.props` or the next patch after the latest `windows-v` tag. `release.yml` (macOS, `v` tags) ignores `windows/**`.

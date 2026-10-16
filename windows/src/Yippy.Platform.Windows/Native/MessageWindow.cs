@@ -15,7 +15,7 @@ public sealed class MessageWindow : IDisposable
 
     public MessageWindow()
     {
-        source = new HwndSource(new HwndSourceParameters("Yippy")
+        source = new HwndSource(new HwndSourceParameters("Cairn")
         {
             ParentWindow = new IntPtr(HwndMessage),
             WindowStyle = 0,

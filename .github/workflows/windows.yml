@@ -1,6 +1,6 @@
 name: Windows
 
-# Builds and tests the Windows app (windows/), and uploads a self-contained Yippy.exe and its installer as artifacts.
+# Builds and tests the Windows app (windows/), and uploads a self-contained Cairn.exe and its installer as artifacts.
 # Every push or merge to master that changes the Windows app also publishes them as a GitHub release.
 #
 # Windows releases are tagged windows-vX.Y.Z, separately from the macOS v-tags. The version is <Version> from
@@ -90,15 +90,15 @@ jobs:
           }
           $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
           Set-ItemProperty -Path $key -Name DisabledHotkeys -Value 'Q' -Type String
-          ./scripts/Use-YippyForWinV.ps1 -NoRestart
+          ./scripts/Use-CairnForWinV.ps1 -NoRestart
           $after = (Get-ItemProperty -Path $key -Name DisabledHotkeys).DisabledHotkeys
-          if ($after -cne 'QV') { throw "After Use-YippyForWinV: '$after'" }
+          if ($after -cne 'QV') { throw "After Use-CairnForWinV: '$after'" }
           ./scripts/Restore-WindowsWinV.ps1 -NoRestart
           $after = (Get-ItemProperty -Path $key -Name DisabledHotkeys).DisabledHotkeys
           if ($after -cne 'Q') { throw "After Restore-WindowsWinV: '$after'" }
           Remove-ItemProperty -Path $key -Name DisabledHotkeys
 
-      - name: Publish Yippy.exe
+      - name: Publish Cairn.exe
         run: >
           dotnet publish src/Yippy.App/Yippy.App.csproj -c Release -r win-x64 --self-contained
           -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
@@ -113,7 +113,7 @@ jobs:
           $tools = Join-Path $env:RUNNER_TEMP 'innosetup'
           Invoke-WebRequest "https://api.nuget.org/v3-flatcontainer/tools.innosetup/$env:INNO_SETUP_VERSION/tools.innosetup.$env:INNO_SETUP_VERSION.nupkg" -OutFile $package
           Expand-Archive $package -DestinationPath $tools
-          & (Join-Path $tools 'tools\ISCC.exe') /Q "/DAppVersion=${{ needs.version.outputs.version }}" /DPublishDir=..\publish installer\Yippy.iss
+          & (Join-Path $tools 'tools\ISCC.exe') /Q "/DAppVersion=${{ needs.version.outputs.version }}" /DPublishDir=..\publish installer\Cairn.iss
           if ($LASTEXITCODE -ne 0) { throw "ISCC failed with exit code $LASTEXITCODE" }
 
       - name: Test the installer
@@ -127,23 +127,23 @@ jobs:
             }
           }
           function Run($file, [string[]]$arguments) {
-            # WaitForExit, not Start-Process -Wait, which would also wait for the Yippy the installer starts
+            # WaitForExit, not Start-Process -Wait, which would also wait for the Cairn the installer starts
             $process = Start-Process $file -ArgumentList $arguments -PassThru
             $process.WaitForExit()
             return $process.ExitCode
           }
-          $setup = (Get-ChildItem installer/output/Yippy-*-setup.exe).FullName
-          $app = Join-Path $env:LOCALAPPDATA 'Programs\Yippy'
-          $exe = Join-Path $app 'Yippy.exe'
+          $setup = (Get-ChildItem installer/output/Cairn-*-setup.exe).FullName
+          $app = Join-Path $env:LOCALAPPDATA 'Programs\Cairn'
+          $exe = Join-Path $app 'Cairn.exe'
           $run = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
           $advanced = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
 
           $code = Run $setup '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/TASKS=startup'
           if ($code -ne 0) { throw "Setup exited with $code" }
-          foreach ($file in 'Yippy.exe', 'scripts\Use-YippyForWinV.ps1', 'scripts\Restore-WindowsWinV.ps1') {
+          foreach ($file in 'Cairn.exe', 'scripts\Use-CairnForWinV.ps1', 'scripts\Restore-WindowsWinV.ps1') {
             if (-not (Test-Path (Join-Path $app $file))) { throw "Not installed: $file" }
           }
-          $startup = (Get-ItemProperty $run).Yippy
+          $startup = (Get-ItemProperty $run).Cairn
           if ($startup -ne "`"$exe`"") { throw "Launch at sign-in entry: '$startup'" }
 
           # The commands the installer and uninstaller run (without restarting Explorer on the runner)
@@ -155,31 +155,31 @@ jobs:
           Remove-ItemProperty -Path $advanced -Name DisabledHotkeys
 
           Start-Sleep -Seconds 5
-          Write-Host "Yippy running after setup: $([bool](Get-Process Yippy -ErrorAction SilentlyContinue))"
+          Write-Host "Cairn running after setup: $([bool](Get-Process Cairn -ErrorAction SilentlyContinue))"
           if ((Run $exe '--quit') -ne 0) { throw '--quit failed' }
-          WaitUntil { -not (Get-Process Yippy -ErrorAction SilentlyContinue) } 'Yippy is still running after --quit'
+          WaitUntil { -not (Get-Process Cairn -ErrorAction SilentlyContinue) } 'Cairn is still running after --quit'
 
           $code = Run (Join-Path $app 'unins000.exe') '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART'
           if ($code -ne 0) { throw "Uninstall exited with $code" }
           # The uninstaller carries on from a copy of itself in %TEMP%
-          WaitUntil { -not (Test-Path $exe) } 'Yippy.exe is still installed'
-          if ((Get-ItemProperty $run).PSObject.Properties.Name -contains 'Yippy') { throw 'The launch at sign-in entry is still there' }
+          WaitUntil { -not (Test-Path $exe) } 'Cairn.exe is still installed'
+          if ((Get-ItemProperty $run).PSObject.Properties.Name -contains 'Cairn') { throw 'The launch at sign-in entry is still there' }
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Yippy-win-x64
-          path: windows/publish/Yippy.exe
+          name: Cairn-win-x64
+          path: windows/publish/Cairn.exe
           if-no-files-found: error
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Yippy-setup
-          path: windows/installer/output/Yippy-*-setup.exe
+          name: Cairn-setup
+          path: windows/installer/output/Cairn-*-setup.exe
           if-no-files-found: error
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Yippy-scripts
+          name: Cairn-scripts
           path: windows/scripts/*.ps1
           if-no-files-found: error
 
@@ -204,32 +204,32 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: Yippy-win-x64
+          name: Cairn-win-x64
 
       - uses: actions/download-artifact@v4
         with:
-          name: Yippy-scripts
+          name: Cairn-scripts
 
       - uses: actions/download-artifact@v4
         with:
-          name: Yippy-setup
+          name: Cairn-setup
 
       - name: Publish the release
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ needs.version.outputs.version }}
         run: |
-          exe="Yippy-$VERSION-win-x64.exe"
-          setup="Yippy-$VERSION-setup.exe"
-          mv Yippy.exe "$exe"
+          exe="Cairn-$VERSION-win-x64.exe"
+          setup="Cairn-$VERSION-setup.exe"
+          mv Cairn.exe "$exe"
           # --latest=false keeps the macOS release as the repository's "Latest"
-          gh release create "windows-v$VERSION" "$setup" "$exe" Use-YippyForWinV.ps1 Restore-WindowsWinV.ps1 \
+          gh release create "windows-v$VERSION" "$setup" "$exe" Use-CairnForWinV.ps1 Restore-WindowsWinV.ps1 \
             --repo "${{ github.repository }}" \
             --target "${{ github.sha }}" \
-            --title "Yippy for Windows $VERSION" \
+            --title "Cairn for Windows $VERSION" \
             --latest=false \
-            --notes "Yippy for Windows 10 (1809 or later) and 11, x64. Download $setup and run it: it installs Yippy for you only, without administrator rights, and can start Yippy when you sign in and hand it Win+V. $exe is the same app without an installer. Both are self-contained, so .NET doesn't need to be installed. Yippy starts in the notification area: press Ctrl+Shift+V to open your clipboard history.
+            --notes "Cairn for Windows 10 (1809 or later) and 11, x64. Cairn was called Yippy before version 2; installing it over Yippy keeps your history, favourites and settings. Download $setup and run it: it installs Cairn for you only, without administrator rights, and can start Cairn when you sign in and hand it Win+V. $exe is the same app without an installer. Both are self-contained, so .NET doesn't need to be installed. Cairn starts in the notification area: press Ctrl+Shift+V to open your clipboard history.
 
-          To make Win+V open Yippy instead of Windows' clipboard history, tick it in the installer, or use Settings > Shortcut > Use Win+V. Use-YippyForWinV.ps1 and Restore-WindowsWinV.ps1 do the same without Yippy (Yippy.exe --use-win-v and --restore-win-v too).
+          To make Win+V open Cairn instead of Windows' clipboard history, tick it in the installer, or use Settings > Shortcut > Use Win+V. Use-CairnForWinV.ps1 and Restore-WindowsWinV.ps1 do the same without Cairn (Cairn.exe --use-win-v and --restore-win-v too).
 
           The app isn't code-signed yet, so SmartScreen may warn the first time: choose More info, then Run anyway."

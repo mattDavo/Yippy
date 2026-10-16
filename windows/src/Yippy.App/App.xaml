@@ -2,11 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              ShutdownMode="OnExplicitShutdown">
-    <!-- No StartupUri: Yippy starts in the notification area, and App.OnStartup opens windows when they're asked for.
-         ThemeManager adds Light.xaml or Dark.xaml to these resources. -->
+    <!-- No StartupUri: Cairn starts in the notification area, and App.OnStartup opens windows when they're asked for.
+         ThemeManager adds Light.xaml or Dark.xaml to these resources. Tokens.xaml, Light.xaml and Dark.xaml are
+         generated from brand/tokens.json (see brand/README.md). -->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Tokens.xaml" />
                 <ResourceDictionary Source="Themes/Fluent.xaml" />
                 <ResourceDictionary Source="Themes/Controls.xaml" />
             </ResourceDictionary.MergedDictionaries>

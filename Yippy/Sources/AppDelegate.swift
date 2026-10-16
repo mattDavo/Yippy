@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        migrateFromYippyIfNeeded()
         checkBuildFlags()
         checkLaunchArgs()
         Controller.main = Controller(state: State.main, settings: Settings.main)
@@ -42,9 +43,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    /// Before anything reads the settings or the history: they may still be under Yippy's bundle id.
+    func migrateFromYippyIfNeeded() {
+        #if !XCTEST
+        if !CommandLine.arguments.contains("--uitesting") {
+            LegacyMigration.run()
+        }
+        #endif
+    }
+
     func checkBuildFlags() {
         #if BETA
-        YippyStatusItem.statusItemButtonImage = NSImage(named: NSImage.Name("YippyBetaStatusBarIcon"))
+        YippyStatusItem.statusItemButtonImage = NSImage(named: NSImage.Name("BetaStatusBarIcon"))
         #endif
     }
     

@@ -11,7 +11,7 @@ import Cocoa
 
 class YippyStatusItem {
     
-    static var statusItemButtonImage = NSImage(named: NSImage.Name("YippyStatusBarIcon"))
+    static var statusItemButtonImage = NSImage(named: NSImage.Name("StatusBarIcon"))
     
     static func create() -> NSStatusItem {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)

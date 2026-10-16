@@ -17,7 +17,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <Border x:Name="Background" Background="Transparent" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                    <Border x:Name="Background" Background="Transparent" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -40,17 +40,17 @@
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="CaretBrush" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource Yippy.Accent}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Padding" Value="34,7,10,8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Grid>
                         <Border x:Name="Field" Background="{DynamicResource Yippy.InputBackground}"
-                                BorderBrush="{DynamicResource Yippy.InputBorder}" BorderThickness="1" CornerRadius="4" />
+                                BorderBrush="{DynamicResource Yippy.InputBorder}" BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}" />
                         <Border x:Name="Underline" BorderBrush="{DynamicResource Yippy.Accent}" BorderThickness="0,0,0,2"
-                                CornerRadius="4" Visibility="Hidden" />
-                        <TextBlock Text="&#xE721;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="14"
+                                CornerRadius="{StaticResource Yippy.Radius.Control}" Visibility="Hidden" />
+                        <TextBlock Text="&#xE721;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="{StaticResource Yippy.FontSize.Body}"
                                    Foreground="{DynamicResource Yippy.SecondaryText}" Margin="12,0,0,0" VerticalAlignment="Center" />
                         <TextBlock x:Name="Placeholder" Text="{TemplateBinding Tag}" Margin="{TemplateBinding Padding}" Padding="2,0,56,0"
                                    Foreground="{DynamicResource Yippy.SecondaryText}" Visibility="Collapsed" IsHitTestVisible="False"
@@ -75,23 +75,24 @@
     </Style>
 
     <!-- How each kind of item's content is drawn, in the list and (larger) in the preview -->
+    <!-- Copied text is set in the UI font, which keeps more of a long copy readable; colours and paths stay monospaced -->
     <DataTemplate x:Key="Yippy.TextContent">
-        <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12"
+        <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.UIFont}" FontSize="13" LineHeight="18"
                    Foreground="{DynamicResource Yippy.PrimaryText}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
     </DataTemplate>
 
     <DataTemplate x:Key="Yippy.LinkContent">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="&#xE71B;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="12" Margin="0,2,6,0"
+            <TextBlock Text="&#xE71B;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="{StaticResource Yippy.FontSize.Caption}" Margin="0,2,6,0"
                        Foreground="{DynamicResource Yippy.Link}" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12"
+            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.UIFont}" FontSize="13"
                        Foreground="{DynamicResource Yippy.Link}" TextDecorations="Underline" TextWrapping="Wrap" />
         </StackPanel>
     </DataTemplate>
 
     <!-- Rich text keeps its own colours, so it sits on a paper-white background in both themes -->
     <DataTemplate x:Key="Yippy.RichTextContent">
-        <Border Background="White" CornerRadius="4" Padding="6,4" ClipToBounds="True">
+        <Border Background="White" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="6,4" ClipToBounds="True">
             <RichTextBox presentation:RichTextDocument.Rtf="{Binding Rtf}" IsReadOnly="True" IsHitTestVisible="False"
                          Focusable="False" BorderThickness="0" Background="Transparent" Padding="0"
                          VerticalScrollBarVisibility="Disabled" />
@@ -118,9 +119,9 @@
 
     <DataTemplate x:Key="Yippy.ColorContent">
         <StackPanel Orientation="Horizontal">
-            <Border Width="36" Height="22" CornerRadius="4" Background="{Binding ColorBrush}"
+            <Border Width="36" Height="22" CornerRadius="{StaticResource Yippy.Radius.Small}" Background="{Binding ColorBrush}"
                     BorderBrush="{DynamicResource Yippy.CardBorder}" BorderThickness="1" Margin="0,0,10,0" />
-            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="12"
+            <TextBlock Text="{Binding Text}" FontFamily="{StaticResource Yippy.MonoFont}" FontSize="{StaticResource Yippy.FontSize.Caption}"
                        Foreground="{DynamicResource Yippy.PrimaryText}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>

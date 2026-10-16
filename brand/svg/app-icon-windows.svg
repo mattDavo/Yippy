@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3A3531"/>
+      <stop offset="1" stop-color="#141311"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAF8F5"/>
+      <stop offset="1" stop-color="#CFC8BE"/>
+    </linearGradient>
+    <linearGradient id="ember" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4A27E"/>
+      <stop offset="1" stop-color="#D9653A"/>
+    </linearGradient>
+    <linearGradient id="beta" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C6B57"/>
+      <stop offset="1" stop-color="#1F2E25"/>
+    </linearGradient>
+    <radialGradient id="shadow">
+      <stop offset="0" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="992" height="992" rx="220" fill="url(#plate)"/>
+  <rect x="16" y="16" width="992" height="992" rx="220" fill="url(#sheen)"/>
+  <g transform="translate(512 512) scale(0.9) translate(-512 -512)">
+    <ellipse cx="518" cy="747.12" rx="270.0" ry="41.28" fill="url(#shadow)"/>
+    <ellipse cx="506" cy="556.24" rx="205.0" ry="34.56" fill="url(#shadow)"/>
+    <ellipse cx="530" cy="392.12" rx="140.0" ry="29.279999999999998" fill="url(#shadow)"/>
+    <path d="M782.0,668.0 C782.0,731.6 728.0,754.0 528.2,754.0 C328.4,754.0 242.0,731.6 242.0,668.0 C242.0,604.4 296.0,582.0 495.8,582.0 C695.6,582.0 782.0,604.4 782.0,668.0 Z" transform="rotate(-3 512 668)" fill="url(#stone)"/>
+    <path d="M705.0,490.0 C705.0,543.3 664.0,562.0 512.3,562.0 C360.6,562.0 295.0,543.3 295.0,490.0 C295.0,436.7 336.0,418.0 487.7,418.0 C639.4,418.0 705.0,436.7 705.0,490.0 Z" transform="rotate(4 500 490)" fill="url(#stone)"/>
+    <path d="M664.0,336.0 C664.0,381.1 636.0,397.0 532.4,397.0 C428.8,397.0 384.0,381.1 384.0,336.0 C384.0,290.9 412.0,275.0 515.6,275.0 C619.2,275.0 664.0,290.9 664.0,336.0 Z" transform="rotate(-5 524 336)" fill="url(#ember)"/>
+  </g>
+</svg>

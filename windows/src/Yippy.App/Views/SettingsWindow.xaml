@@ -8,7 +8,7 @@
         xmlns:presentation="clr-namespace:Yippy.App.Presentation"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=settings:SettingsViewModel}"
-        Title="Yippy Settings"
+        Title="Cairn Settings"
         Width="900"
         Height="660"
         MinWidth="700"
@@ -19,7 +19,7 @@
         FontFamily="{StaticResource Yippy.UIFont}"
         UseLayoutRounding="True"
         presentation:WindowStyling.FollowsTheme="True"
-        Icon="pack://application:,,,/Yippy;component/Assets/Yippy.ico">
+        Icon="pack://application:,,,/Cairn;component/Assets/AppIcon.ico">
     <!-- Navigation on the left, the selected page on the right. Every change is saved straight away. -->
     <Window.Resources>
         <DataTemplate DataType="{x:Type settings:GeneralPageViewModel}">
@@ -47,10 +47,10 @@
 
         <DockPanel Margin="12,16,8,12">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10,0,0,20">
-                <Image Source="pack://application:,,,/Yippy;component/Assets/Yippy.ico" Width="28" Height="28"
+                <Image Source="pack://application:,,,/Cairn;component/Assets/AppIcon.ico" Width="28" Height="28"
                        RenderOptions.BitmapScalingMode="HighQuality" />
                 <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="Yippy" Style="{StaticResource Yippy.BodyStrongText}" />
+                    <TextBlock Text="Cairn" Style="{StaticResource Yippy.BodyStrongText}" />
                     <TextBlock Text="Settings" Style="{StaticResource Yippy.CaptionText}" />
                 </StackPanel>
             </StackPanel>
@@ -62,7 +62,7 @@
                         <StackPanel Orientation="Horizontal" AutomationProperties.Name="{Binding Title}">
                             <TextBlock Text="{Binding Glyph}" FontFamily="{StaticResource Yippy.IconFont}" FontSize="16"
                                        Margin="4,0,14,0" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding Title}" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Title}" FontSize="{StaticResource Yippy.FontSize.Body}" VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

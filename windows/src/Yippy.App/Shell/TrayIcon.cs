@@ -38,7 +38,7 @@ public sealed class TrayIcon : IDisposable
         icon = new NotifyIcon
         {
             Icon = LoadIcon(),
-            Text = "Yippy",
+            Text = "Cairn",
             ContextMenuStrip = menu,
             Visible = true,
         };
@@ -85,10 +85,10 @@ public sealed class TrayIcon : IDisposable
             Enabled = editing.ClipboardHistory.Items.Count > 0,
         });
         menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add(new ToolStripMenuItem("Yippy Help", null, (_, _) => windows.ShowHelp()));
-        menu.Items.Add(new ToolStripMenuItem("About Yippy", null, (_, _) => windows.ShowSettings(SettingsPage.About)));
+        menu.Items.Add(new ToolStripMenuItem("Cairn Help", null, (_, _) => windows.ShowHelp()));
+        menu.Items.Add(new ToolStripMenuItem("About Cairn", null, (_, _) => windows.ShowSettings(SettingsPage.About)));
         menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add(new ToolStripMenuItem("Quit Yippy", null, (_, _) => quit()));
+        menu.Items.Add(new ToolStripMenuItem("Quit Cairn", null, (_, _) => quit()));
     }
 
     private ToolStripMenuItem PositionMenu()
@@ -115,7 +115,7 @@ public sealed class TrayIcon : IDisposable
 
     private static System.Drawing.Icon LoadIcon()
     {
-        var resource = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Yippy;component/Assets/Yippy.ico"));
+        var resource = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Cairn;component/Assets/AppIcon.ico"));
         using var stream = resource!.Stream;
         // The small size, so the notification area doesn't scale the 256 px image down badly
         return new System.Drawing.Icon(stream, System.Windows.Forms.SystemInformation.SmallIconSize);

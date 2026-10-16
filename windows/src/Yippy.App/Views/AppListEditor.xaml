@@ -9,7 +9,7 @@
     <!-- A list of apps, with Add (a running app, or browse for one) and Remove. DataContext: AppListViewModel. -->
     <StackPanel>
         <Border Background="{DynamicResource Yippy.PanelBackground}" BorderBrush="{DynamicResource Yippy.CardBorder}"
-                BorderThickness="1" CornerRadius="4" Padding="4" MinHeight="56">
+                BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="4" MinHeight="56">
             <Grid>
                 <ListBox x:Name="Apps" Style="{StaticResource Yippy.ListBox}" ItemsSource="{Binding Apps}" SelectedItem="{Binding SelectedApp}"
                          MaxHeight="220" AutomationProperties.Name="Apps">
@@ -18,8 +18,8 @@
                             <StackPanel Orientation="Horizontal" AutomationProperties.Name="{Binding Name}">
                                 <Image Source="{Binding Icon}" Width="20" Height="20" Margin="0,0,12,0" VerticalAlignment="Center" />
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name}" FontSize="14" />
-                                    <TextBlock Text="{Binding Id}" FontSize="12" Foreground="{DynamicResource Yippy.SecondaryText}"
+                                    <TextBlock Text="{Binding Name}" FontSize="{StaticResource Yippy.FontSize.Body}" />
+                                    <TextBlock Text="{Binding Id}" FontSize="{StaticResource Yippy.FontSize.Caption}" Foreground="{DynamicResource Yippy.SecondaryText}"
                                                TextTrimming="CharacterEllipsis" />
                                 </StackPanel>
                             </StackPanel>

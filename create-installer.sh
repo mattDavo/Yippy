@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Builds Yippy and packages it as a drag-to-Applications disk image (.dmg).
+# Builds Cairn and packages it as a drag-to-Applications disk image (.dmg).
 #
-#   ./create-installer.sh                      # Release build of "Yippy", ad-hoc signed
+#   ./create-installer.sh                      # Release build of the "Yippy" scheme (Cairn.app), ad-hoc signed
 #   ./create-installer.sh --scheme "Yippy Beta"
 #   ./create-installer.sh --sign "Developer ID Application: Name (TEAMID)" --notarize yippy-notary
-#   ./create-installer.sh --app path/to/Yippy.app   # package an existing build
+#   ./create-installer.sh --app path/to/Cairn.app   # package an existing build
 #
 # Run with --help for every option. Only Xcode's command line tools are required;
 # if create-dmg (brew install create-dmg) is installed it is used for a nicer window layout.

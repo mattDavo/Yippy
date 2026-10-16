@@ -5,7 +5,7 @@ namespace Yippy.Tests.Infrastructure;
 public class CommandLineTests
 {
     [Fact]
-    public void NoArgumentsRunsYippy()
+    public void NoArgumentsRunsTheApp()
     {
         var command = CommandLine.Parse(Array.Empty<string>());
 

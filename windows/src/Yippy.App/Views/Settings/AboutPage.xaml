@@ -6,23 +6,24 @@
              xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
              xmlns:views="clr-namespace:Yippy.App.Views"
              xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+             xmlns:app="clr-namespace:Yippy.App"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=settings:AboutPageViewModel}">
     <StackPanel>
         <Border Background="{DynamicResource Yippy.CardBackground}" BorderBrush="{DynamicResource Yippy.CardBorder}"
-                BorderThickness="1" CornerRadius="6" Padding="20" Margin="0,0,0,4">
+                BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Card}" Padding="20" Margin="0,0,0,4">
             <StackPanel Orientation="Horizontal">
-                <Image Source="pack://application:,,,/Yippy;component/Assets/Yippy.ico" Width="64" Height="64"
+                <Image Source="pack://application:,,,/Cairn;component/Assets/AppIcon.ico" Width="64" Height="64"
                        RenderOptions.BitmapScalingMode="HighQuality" />
                 <StackPanel Margin="20,0,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="Yippy" Style="{StaticResource Yippy.SubtitleText}" />
+                    <TextBlock Text="Cairn" Style="{StaticResource Yippy.SubtitleText}" />
                     <TextBlock Text="{Binding Version}" Style="{StaticResource Yippy.CaptionText}" Margin="0,2,0,0" />
                     <TextBlock Text="Everything you copy, a shortcut away." Style="{StaticResource Yippy.BodyText}" Margin="0,8,0,0" />
                 </StackPanel>
             </StackPanel>
         </Border>
 
-        <presentation:SettingsCard Glyph="&#xE774;" Header="Website and source code" Description="github.com/Hamza-Shewa/Yippy">
+        <presentation:SettingsCard Glyph="&#xE774;" Header="Website and source code" Description="{x:Static app:Brand.Repository}">
             <Button Style="{StaticResource Yippy.Button}" Content="Open" Command="{Binding OpenWebsiteCommand}" />
         </presentation:SettingsCard>
         <presentation:SettingsCard Glyph="&#xE896;" Header="Updates" Description="New versions are published on GitHub, with an installer.">
@@ -36,6 +37,6 @@
         </presentation:SettingsCard>
 
         <TextBlock Style="{StaticResource Yippy.CaptionText}" Margin="2,16,0,0"
-                   Text="Yippy for Windows is based on Yippy for macOS by Matthew Davidson, and is open source under the MIT License." />
+                   Text="{x:Static app:Brand.Credit}" />
     </StackPanel>
 </UserControl>

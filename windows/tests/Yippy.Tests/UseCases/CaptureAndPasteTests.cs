@@ -83,7 +83,7 @@ public class ClipboardCaptureServiceTests
     public void WhatWasCopiedBeforeTheFirstLaunchCanBeLeftOut()
     {
         var app = new TestApp();
-        app.Clipboard.Write(ClipboardContent.FromText("copied before Yippy"));
+        app.Clipboard.Write(ClipboardContent.FromText("copied before Cairn"));
 
         app.Capture.IgnoreCurrentContent();
         app.Capture.Capture();

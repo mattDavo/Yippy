@@ -27,23 +27,17 @@ struct Constants {
     
     struct fonts {
         
+        /// Copied text, in the panel and the preview: Cairn sets it in the system font, like the Windows app.
         static var yippyPlainText: NSFont {
-            if #available(OSX 10.15, *) {
-                return NSFont(name: "SF Mono Regular", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
-//                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
-            }
-            else {
-                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.systemFont(ofSize: 12)
-            }
+            return NSFont.systemFont(ofSize: 13)
         }
         
+        /// File paths stay monospaced, so their folders line up.
         static var yippyFileNameText: NSFont {
             if #available(OSX 10.15, *) {
-                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+                return NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
             }
-            else {
-                return NSFont(name: "Roboto Mono Light for Powerline", size: 12) ?? NSFont.systemFont(ofSize: 12)
-            }
+            return NSFont.userFixedPitchFont(ofSize: 12) ?? NSFont.systemFont(ofSize: 12)
         }
     }
     

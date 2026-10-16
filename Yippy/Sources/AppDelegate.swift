@@ -76,7 +76,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #if !XCTEST
         // Tests never sync, nor touch the keychain
         if #available(macOS 10.15, *) {
-            SyncCoordinator.start(state: State.main)
+            // AppKit calls the delegate on the main thread
+            MainActor.assumeIsolated {
+                SyncCoordinator.start(state: State.main)
+            }
         }
         #endif
     }

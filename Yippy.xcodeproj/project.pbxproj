@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B96C69CBC81653A54A0886AC /* LegacyMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2572C47B96C69CBC81653A5 /* LegacyMigration.swift */; };
+		1E6F2AF2076F12F0793342AB /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A49241E6F2AF2076F12F0 /* DesignTokens.swift */; };
+		A31063D737B2C2672E56A107 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD678314A31063D737B2C267 /* Brand.swift */; };
 		21E7F595A4B7F55FB6B40EBC /* UpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A7D0F52E9E82E00F5D3D85 /* UpdaterTests.swift */; };
 		00F81FCA80247BE7C52F4AB8 /* FavouritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586B6138840C59985660F030 /* FavouritesTests.swift */; };
 		34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34010D29234AB3F100C1218D /* YippyWindow.swift */; };
@@ -178,6 +181,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2572C47B96C69CBC81653A5 /* LegacyMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMigration.swift; sourceTree = "<group>"; };
+		C65A49241E6F2AF2076F12F0 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		AD678314A31063D737B2C267 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F65BC0B62CDD1741868EDB5 /* HistoryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryTests.swift; sourceTree = "<group>"; };
@@ -651,6 +657,7 @@
 		348D526123876A770024A5C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B2572C47B96C69CBC81653A5 /* LegacyMigration.swift */,
 				34EC0FF52504AC79004E1A63 /* Search */,
 				345A900623ED422400A21334 /* CellHeightCache.swift */,
 				3465A8FF23EF84A2009EE52B /* Cache.swift */,
@@ -675,6 +682,8 @@
 		348D526223876AAB0024A5C7 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				AD678314A31063D737B2C267 /* Brand.swift */,
+				C65A49241E6F2AF2076F12F0 /* DesignTokens.swift */,
 				3426811D233E0A4600BA226A /* Accessibility.swift */,
 				3488B13F22FAE8F30019E7DA /* Constants.swift */,
 			);
@@ -1094,6 +1103,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B96C69CBC81653A54A0886AC /* LegacyMigration.swift in Sources */,
+				1E6F2AF2076F12F0793342AB /* DesignTokens.swift in Sources */,
+				A31063D737B2C2672E56A107 /* Brand.swift in Sources */,
 				34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */,
 				341D9D292337251B008A2BE6 /* KeyActionHandler.swift in Sources */,
 				3423B1C1234D8AFF00B40715 /* HistoryItem.swift in Sources */,
@@ -1418,10 +1430,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.Cairn;
+				PRODUCT_MODULE_NAME = Yippy;
+				PRODUCT_NAME = Cairn;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1445,10 +1457,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.Yippy;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.Cairn;
+				PRODUCT_MODULE_NAME = Yippy;
+				PRODUCT_NAME = Cairn;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1469,10 +1481,10 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cairn.app/Contents/MacOS/Cairn";
 			};
 			name = Debug;
 		};
@@ -1491,10 +1503,10 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cairn.app/Contents/MacOS/Cairn";
 			};
 			name = Release;
 		};
@@ -1512,7 +1524,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Yippy;
@@ -1533,7 +1545,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Yippy;
@@ -1620,10 +1632,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME) Beta";
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnBeta;
+				PRODUCT_MODULE_NAME = Yippy;
+				PRODUCT_NAME = "Cairn Beta";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG BETA";
 				SWIFT_VERSION = 5.0;
@@ -1645,10 +1657,10 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cairn.app/Contents/MacOS/Cairn";
 			};
 			name = "Beta Debug";
 		};
@@ -1666,7 +1678,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Yippy;
@@ -1746,10 +1758,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyBeta;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME) Beta";
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnBeta;
+				PRODUCT_MODULE_NAME = Yippy;
+				PRODUCT_NAME = "Cairn Beta";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = BETA;
 				SWIFT_VERSION = 5.0;
@@ -1771,10 +1783,10 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cairn.app/Contents/MacOS/Cairn";
 			};
 			name = "Beta Release";
 		};
@@ -1792,7 +1804,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Yippy;
@@ -1879,10 +1891,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyXCTest;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnXCTest;
+				PRODUCT_MODULE_NAME = Yippy;
+				PRODUCT_NAME = Cairn;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG XCTEST";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1904,10 +1916,10 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yippy.app/Contents/MacOS/Yippy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cairn.app/Contents/MacOS/Cairn";
 			};
 			name = XCTest;
 		};
@@ -1925,7 +1937,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MatthewDavidson.YippyUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Yippy;

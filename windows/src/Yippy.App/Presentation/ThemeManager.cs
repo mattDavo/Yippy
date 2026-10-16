@@ -7,8 +7,8 @@ namespace Yippy.App.Presentation;
 /// <summary>Follows the Windows light or dark app theme, swapping the brushes the panel uses.</summary>
 public sealed class ThemeManager : IDisposable
 {
-    private static readonly Uri LightTheme = new("pack://application:,,,/Yippy;component/Themes/Light.xaml");
-    private static readonly Uri DarkTheme = new("pack://application:,,,/Yippy;component/Themes/Dark.xaml");
+    private static readonly Uri LightTheme = new("pack://application:,,,/Cairn;component/Themes/Light.xaml");
+    private static readonly Uri DarkTheme = new("pack://application:,,,/Cairn;component/Themes/Dark.xaml");
 
     private readonly ResourceDictionary resources;
     private ResourceDictionary? current;

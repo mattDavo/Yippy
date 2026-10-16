@@ -140,7 +140,7 @@ public interface IShellClipboardShortcut
 
 /// <summary>
 /// The PowerShell scripts that hand Win+V to Yippy or back to Windows without Yippy running, e.g. for an administrator
-/// setting up another account. They ship inside Yippy.exe.
+/// setting up another account. They ship inside Cairn.exe.
 /// </summary>
 public interface IClipboardShortcutScripts
 {

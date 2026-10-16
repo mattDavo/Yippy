@@ -9,12 +9,12 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=settings:ShortcutPageViewModel}">
     <StackPanel>
-        <presentation:SettingsCard Glyph="&#xE765;" Header="Open Yippy with"
+        <presentation:SettingsCard Glyph="&#xE765;" Header="Open Cairn with"
                                    Description="Click the box, then press the keys. Use Ctrl, Alt, Shift or Win with another key.">
             <StackPanel Orientation="Horizontal">
                 <presentation:HotKeyBox x:Name="HotKey" Style="{StaticResource Yippy.TextBox}" Width="190"
                                         HorizontalContentAlignment="Center" Text="{Binding HotKeyText, Mode=OneWay}"
-                                        AutomationProperties.Name="Shortcut that opens Yippy" ToolTip="Click, then press the new shortcut" />
+                                        AutomationProperties.Name="Shortcut that opens Cairn" ToolTip="Click, then press the new shortcut" />
                 <Button Style="{StaticResource Yippy.Button}" Content="Reset" Margin="8,0,0,0" Command="{Binding ResetHotKeyCommand}"
                         ToolTip="Go back to Ctrl+Shift+V" />
             </StackPanel>

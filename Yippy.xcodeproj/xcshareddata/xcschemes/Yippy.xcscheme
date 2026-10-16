@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "34ACFBBA22EB0B0F004E6E63"
-               BuildableName = "Yippy.app"
+               BuildableName = "Cairn.app"
                BlueprintName = "Yippy"
                ReferencedContainer = "container:Yippy.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "34ACFBBA22EB0B0F004E6E63"
-            BuildableName = "Yippy.app"
+            BuildableName = "Cairn.app"
             BlueprintName = "Yippy"
             ReferencedContainer = "container:Yippy.xcodeproj">
          </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "34ACFBBA22EB0B0F004E6E63"
-            BuildableName = "Yippy.app"
+            BuildableName = "Cairn.app"
             BlueprintName = "Yippy"
             ReferencedContainer = "container:Yippy.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "34ACFBBA22EB0B0F004E6E63"
-            BuildableName = "Yippy.app"
+            BuildableName = "Cairn.app"
             BlueprintName = "Yippy"
             ReferencedContainer = "container:Yippy.xcodeproj">
          </BuildableReference>

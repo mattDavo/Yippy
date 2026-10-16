@@ -20,9 +20,14 @@ public partial class App : System.Windows.Application
 {
 #if DEBUG
     /// <summary>Development builds keep their own history, settings and sign-in entry, like the macOS Beta build.</summary>
-    public const string InstanceName = "Yippy Dev";
+    public const string InstanceName = Brand.Name + " Dev";
+
+    /// <summary>The same build's name before the rename, which <see cref="LegacyMigration"/> moves over.</summary>
+    public const string LegacyInstanceName = Brand.LegacyName + " Dev";
 #else
-    public const string InstanceName = "Yippy";
+    public const string InstanceName = Brand.Name;
+
+    public const string LegacyInstanceName = Brand.LegacyName;
 #endif
 
     private static readonly TimeSpan FlushTimeout = TimeSpan.FromSeconds(5);
@@ -67,12 +72,12 @@ public partial class App : System.Windows.Application
         if (!hotKey.Start(panel.Toggle))
         {
             tray.Notify("Shortcut unavailable",
-                $"Another app uses {hotKey.Current}. Click the Yippy icon, or choose another shortcut in Settings.", isWarning: true);
+                $"Another app uses {hotKey.Current}. Click the Cairn icon, or choose another shortcut in Settings.", isWarning: true);
         }
         else if (settings.IsFirstLaunch)
         {
-            tray.Notify("Yippy is running",
-                $"Press {hotKey.Current} to see everything you copy. Yippy lives here, in the notification area.");
+            tray.Notify("Cairn is running",
+                $"Press {hotKey.Current} to see everything you copy. Cairn lives here, in the notification area.");
         }
     }
 

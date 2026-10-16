@@ -44,24 +44,19 @@ class YippyItemBaseCellView: NSTableCellView {
         
         guard let lastSetSelected = self.lastSetSelected else { return }
         if !lastSetSelected { return }
-        guard #available(OSX 10.14, *) else { return }
-        layer?.backgroundColor = NSColor.controlAccentColor.cgColor
+        layer?.backgroundColor = DesignTokens.Color.accent.cgColor
     }
     
     static let shortcutStringAttributes: [NSAttributedString.Key: Any] = [
         .font: Constants.fonts.yippyPlainText,
-        .foregroundColor: NSColor.white.withAlphaComponent(0.7)
+        .foregroundColor: DesignTokens.Color.textOnAccent
     ]
     
     func setHighlight(isSelected: Bool) {
-        var highlightColor = NSColor.systemBlue.withAlphaComponent(0.7).cgColor
-        if #available(OSX 10.14, *) {
-            highlightColor = NSColor.controlAccentColor.cgColor
-        }
-        
-        layer?.backgroundColor = isSelected ? highlightColor : NSColor.clear.cgColor
+        // Cairn's selection is the Ember accent around the card, the newest stone's colour
+        layer?.backgroundColor = isSelected ? DesignTokens.Color.accent.cgColor : NSColor.clear.cgColor
         self.lastSetSelected = isSelected
-        infoTextField?.textColor = isSelected ? NSColor.white.withAlphaComponent(0.85) : .secondaryLabelColor
+        infoTextField?.textColor = isSelected ? DesignTokens.Color.textOnAccent : DesignTokens.Color.secondaryText
     }
     
     override init(frame frameRect: NSRect) {
@@ -85,7 +80,7 @@ class YippyItemBaseCellView: NSTableCellView {
         contentView.addSubview(shortcutTextView)
         
         wantsLayer = true
-        layer?.cornerRadius = 10
+        layer?.cornerRadius = DesignTokens.Radius.card
         itemTextView.drawsBackground = false
         itemTextView.setAccessibilityIdentifier(Accessibility.identifiers.yippyItemTextView)
         
@@ -98,7 +93,7 @@ class YippyItemBaseCellView: NSTableCellView {
     func setupContentView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.wantsLayer = true
-        contentView.layer?.cornerRadius = 7
+        contentView.layer?.cornerRadius = DesignTokens.Radius.card - Self.contentViewInsets.left
         
         addConstraint(NSLayoutConstraint(item: contentView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: Self.contentViewInsets.left))
         addConstraint(NSLayoutConstraint(item: contentView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: Self.contentViewInsets.top))
@@ -113,14 +108,11 @@ class YippyItemBaseCellView: NSTableCellView {
         shortcutTextView.textContainer?.lineFragmentPadding = 0
         shortcutTextView.alignment = .right
         shortcutTextView.textContainerInset = NSSize(width: 5, height: 2)
-        shortcutTextView.layer?.cornerRadius = 7
+        shortcutTextView.layer?.cornerRadius = DesignTokens.Radius.card - Self.contentViewInsets.left
         shortcutTextView.layer?.maskedCorners = .layerMinXMaxYCorner
         shortcutTextView.isHorizontallyResizable = false
         shortcutTextView.isVerticallyResizable = false
-        shortcutTextView.backgroundColor = NSColor(named: NSColor.Name("ShortcutBackgroundColor"))!
-        if #available(OSX 10.14, *) {
-            shortcutTextView.backgroundColor = NSColor.controlAccentColor
-        }
+        shortcutTextView.backgroundColor = DesignTokens.Color.accent
         shortcutTextView.layer?.zPosition = 1
         
         contentView.addConstraint(NSLayoutConstraint(item: shortcutTextView!, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0))
@@ -186,7 +178,7 @@ class YippyItemBaseCellView: NSTableCellView {
     func setIsFavourite(_ isFavourite: Bool) {
         favouriteButton.toolTip = isFavourite ? "Remove from favourites (⌃F)" : "Add to favourites (⌃F)"
         
-        let color = isFavourite ? NSColor.systemRed : NSColor.secondaryLabelColor
+        let color = isFavourite ? DesignTokens.Color.favourite : DesignTokens.Color.secondaryText
         if #available(OSX 11.0, *) {
             favouriteButton.image = NSImage(systemSymbolName: isFavourite ? "heart.fill" : "heart", accessibilityDescription: isFavourite ? "Remove from favourites" : "Add to favourites")
             favouriteButton.imagePosition = .imageOnly
@@ -223,7 +215,7 @@ class YippyItemBaseCellView: NSTableCellView {
         infoTextField = NSTextField(labelWithString: "")
         infoTextField.translatesAutoresizingMaskIntoConstraints = false
         infoTextField.font = NSFont.systemFont(ofSize: 10)
-        infoTextField.textColor = .secondaryLabelColor
+        infoTextField.textColor = DesignTokens.Color.secondaryText
         infoTextField.lineBreakMode = .byTruncatingTail
         infoTextField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         infoTextField.setAccessibilityIdentifier(Accessibility.identifiers.yippyItemInfoText)

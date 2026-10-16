@@ -9,7 +9,7 @@ namespace Yippy.Platform.Windows.Input;
 /// Frees Win+V from Explorer through its <c>DisabledHotkeys</c> setting: each letter in it is a Win+letter shortcut
 /// Explorer doesn't register when it starts. Only "V" is added or removed; other letters the user set are kept.
 /// </summary>
-/// <remarks><c>scripts/Use-YippyForWinV.ps1</c> and <c>scripts/Restore-WindowsWinV.ps1</c> make the same change.</remarks>
+/// <remarks><c>scripts/Use-CairnForWinV.ps1</c> and <c>scripts/Restore-WindowsWinV.ps1</c> make the same change.</remarks>
 public sealed class ExplorerClipboardShortcut : IShellClipboardShortcut
 {
     private const string AdvancedKey = @"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced";

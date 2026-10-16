@@ -1,9 +1,9 @@
 namespace Yippy.Infrastructure.Hosting;
 
-/// <summary>Where Yippy keeps its files: <c>%APPDATA%\Yippy</c> unless <c>YIPPY_DATA_DIR</c> says otherwise.</summary>
+/// <summary>Where the app keeps its files: <c>%APPDATA%\Cairn</c> unless <c>CAIRN_DATA_DIR</c> says otherwise.</summary>
 public sealed record AppPaths(string Root)
 {
-    public const string DataDirectoryVariable = "YIPPY_DATA_DIR";
+    public const string DataDirectoryVariable = "CAIRN_DATA_DIR";
 
     public string History => Path.Combine(Root, "history");
 
@@ -11,13 +11,14 @@ public sealed record AppPaths(string Root)
 
     public string Settings => Path.Combine(Root, "settings.json");
 
+    /// <summary>Whether <see cref="DataDirectoryVariable"/> chose the folder, rather than the user's profile.</summary>
+    public static bool IsOverridden => !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable(DataDirectoryVariable));
+
     /// <param name="folderName">The folder under %APPDATA%, so development builds can keep their own history.</param>
-    public static AppPaths ForCurrentUser(string folderName)
-    {
-        var overridden = Environment.GetEnvironmentVariable(DataDirectoryVariable);
-        var root = string.IsNullOrWhiteSpace(overridden)
-            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), folderName)
-            : overridden;
-        return new AppPaths(root);
-    }
+    public static AppPaths ForCurrentUser(string folderName) =>
+        new(IsOverridden ? Environment.GetEnvironmentVariable(DataDirectoryVariable)! : InAppData(folderName));
+
+    /// <summary>The folder under %APPDATA% with this name, whether or not it exists.</summary>
+    public static string InAppData(string folderName) =>
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), folderName);
 }

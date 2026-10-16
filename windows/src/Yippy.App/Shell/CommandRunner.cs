@@ -6,7 +6,7 @@ using Yippy.UseCases.HotKeys;
 
 namespace Yippy.App.Shell;
 
-/// <summary>Yippy.exe's exit codes when it runs a command.</summary>
+/// <summary>Cairn.exe's exit codes when it runs a command.</summary>
 public enum CommandExitCode
 {
     Success = 0,
@@ -17,7 +17,7 @@ public enum CommandExitCode
 }
 
 /// <summary>
-/// Carries out a command from Yippy.exe's command line (<see cref="CommandLine"/>) without starting the WPF app, for the
+/// Carries out a command from Cairn.exe's command line (<see cref="CommandLine"/>) without starting the WPF app, for the
 /// installer and uninstaller. A running copy of Yippy is closed first, so it can't overwrite the change with its own
 /// settings, and started again afterwards.
 /// </summary>

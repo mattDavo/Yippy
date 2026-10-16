@@ -10,7 +10,7 @@
              d:DataContext="{d:DesignInstance Type=settings:GeneralPageViewModel}">
     <StackPanel>
         <presentation:SettingsCard Glyph="&#xE7E8;" Header="Start with Windows"
-                                   Description="Yippy opens in the notification area when you sign in, so it never misses a copy.">
+                                   Description="Cairn opens in the notification area when you sign in, so it never misses a copy.">
             <CheckBox Style="{StaticResource Yippy.ToggleSwitch}" IsChecked="{Binding LaunchAtLogin}"
                       AutomationProperties.Name="Start with Windows" />
         </presentation:SettingsCard>

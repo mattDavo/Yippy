@@ -7,11 +7,11 @@
     then restarts Explorer so it registers Win+V again. The taskbar disappears for a moment and open File
     Explorer windows close.
 
-    If Yippy is running with Win+V as its shortcut, change Yippy's shortcut first, or quit Yippy: while Yippy
-    holds Win+V, Explorer can't take it. Settings > Shortcut > "Give Win+V back" in Yippy, or
-    "Yippy.exe --restore-win-v", does every step for you (the uninstaller runs it too).
+    If Cairn is running with Win+V as its shortcut, change Cairn's shortcut first, or quit Cairn: while Cairn
+    holds Win+V, Explorer can't take it. Settings > Shortcut > "Give Win+V back" in Cairn, or
+    "Cairn.exe --restore-win-v", does every step for you (the uninstaller runs it too).
 
-    This undoes Use-YippyForWinV.ps1. No administrator rights are needed.
+    This undoes Use-CairnForWinV.ps1. No administrator rights are needed.
 
 .PARAMETER NoRestart
     Only change the setting; it takes effect the next time you sign in.

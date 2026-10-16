@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3A3531"/>
+      <stop offset="1" stop-color="#141311"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAF8F5"/>
+      <stop offset="1" stop-color="#CFC8BE"/>
+    </linearGradient>
+    <linearGradient id="ember" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4A27E"/>
+      <stop offset="1" stop-color="#D9653A"/>
+    </linearGradient>
+    <linearGradient id="beta" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C6B57"/>
+      <stop offset="1" stop-color="#1F2E25"/>
+    </linearGradient>
+    <radialGradient id="shadow">
+      <stop offset="0" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="992" height="992" rx="200" fill="url(#plate)"/>
+  <rect x="16" y="16" width="992" height="992" rx="200" fill="url(#sheen)"/>
+  <g transform="translate(512 512) scale(0.84) translate(-512 -512)">
+    <path d="M892.0,716.0 C892.0,803.3 816.0,834.0 534.8,834.0 C253.6,834.0 132.0,803.3 132.0,716.0 C132.0,628.7 208.0,598.0 489.2,598.0 C770.4,598.0 892.0,628.7 892.0,716.0 Z" transform="rotate(-2 512 716)" fill="url(#stone)"/>
+    <path d="M790.0,482.0 C790.0,556.0 732.0,582.0 517.4,582.0 C302.8,582.0 210.0,556.0 210.0,482.0 C210.0,408.0 268.0,382.0 482.6,382.0 C697.2,382.0 790.0,408.0 790.0,482.0 Z" transform="rotate(3 500 482)" fill="url(#stone)"/>
+    <path d="M726.0,268.0 C726.0,331.6 686.0,354.0 538.0,354.0 C390.0,354.0 326.0,331.6 326.0,268.0 C326.0,204.4 366.0,182.0 514.0,182.0 C662.0,182.0 726.0,204.4 726.0,268.0 Z" transform="rotate(-4 526 268)" fill="url(#ember)"/>
+  </g>
+</svg>

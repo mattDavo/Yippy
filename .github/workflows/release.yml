@@ -60,6 +60,6 @@ jobs:
           dmg="$(ls build/installer/*.dmg)"
           gh release create "$tag" "$dmg" \
             --target "${{ github.sha }}" \
-            --title "Yippy ${{ steps.version.outputs.version }}" \
+            --title "Cairn ${{ steps.version.outputs.version }}" \
             --generate-notes \
             --notes "Ad-hoc signed build: on first launch, right-click the app and choose Open, then grant Accessibility access."

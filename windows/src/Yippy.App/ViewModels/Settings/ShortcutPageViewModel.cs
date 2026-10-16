@@ -87,10 +87,10 @@ public sealed partial class ShortcutPageViewModel : SettingsPageViewModel
     public string WinVButtonText => IsWinVTakenOver ? "Give Win+V back" : "Use Win+V";
 
     public string WinVNote => !IsWinVTakenOver
-        ? "Win+V opens Windows' clipboard history. Yippy can take it over, and you can give it back at any time."
+        ? "Win+V opens Windows' clipboard history. Cairn can take it over, and you can give it back at any time."
         : windowsClipboardShortcut.OpensYippy
-            ? $"Win+V opens Yippy. Giving it back to Windows makes Yippy's shortcut {HotKeyGesture.DefaultToggle}."
-            : $"Windows leaves Win+V alone, but Yippy opens with {HotKeyText}. Give Win+V back to use Windows' clipboard history again.";
+            ? $"Win+V opens Yippy. Giving it back to Windows makes Cairn's shortcut {HotKeyGesture.DefaultToggle}."
+            : $"Windows leaves Win+V alone, but Cairn opens with {HotKeyText}. Give Win+V back to use Windows' clipboard history again.";
 
     /// <summary>Takes Win+V over from Windows' clipboard history, or gives it back.</summary>
     [RelayCommand]
@@ -98,13 +98,13 @@ public sealed partial class ShortcutPageViewModel : SettingsPageViewModel
     {
         var takeOver = !IsWinVTakenOver;
         var message = (takeOver
-                ? "Win+V will open Yippy instead of Windows' clipboard history."
+                ? "Win+V will open Cairn instead of Windows' clipboard history."
                 : windowsClipboardShortcut.OpensYippy
-                    ? $"Win+V will open Windows' clipboard history again, and Yippy will open with {HotKeyGesture.DefaultToggle}."
+                    ? $"Win+V will open Windows' clipboard history again, and Cairn will open with {HotKeyGesture.DefaultToggle}."
                     : "Win+V will open Windows' clipboard history again.")
             + "\n\nTo apply it, Windows Explorer restarts: the taskbar disappears for a moment and open File Explorer "
             + "windows close. You can change it back here at any time.";
-        if (!dialogs.Confirm(takeOver ? "Use Win+V for Yippy" : "Give Win+V Back to Windows", message))
+        if (!dialogs.Confirm(takeOver ? "Use Win+V for Cairn" : "Give Win+V Back to Windows", message))
         {
             return;
         }
@@ -123,8 +123,8 @@ public sealed partial class ShortcutPageViewModel : SettingsPageViewModel
         OnPropertyChanged(string.Empty);
     }
 
-    public string ScriptsNote => $"{string.Join(" and ", scripts.FileNames)} make the same change without Yippy, "
-        + "for example for another account. Yippy.exe --use-win-v and --restore-win-v do too.";
+    public string ScriptsNote => $"{string.Join(" and ", scripts.FileNames)} make the same change without Cairn, "
+        + "for example for another account. Cairn.exe --use-win-v and --restore-win-v do too.";
 
     /// <summary>Where the scripts were saved, after saving them.</summary>
     [ObservableProperty]

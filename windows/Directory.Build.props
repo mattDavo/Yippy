@@ -7,10 +7,10 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <!-- Lets the Windows-only projects build (but not run) on Linux and macOS too. -->
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <Version>1.0.0</Version>
-    <Product>Yippy</Product>
-    <Company>Yippy</Company>
-    <Copyright>Copyright © Matthew Davidson and contributors</Copyright>
+    <Version>2.0.0</Version>
+    <Product>Cairn</Product>
+    <Company>Hamza Shewa</Company>
+    <Copyright>Copyright © 2026 Hamza Shewa. Based on Yippy, copyright © 2019 Matthew Davidson.</Copyright>
     <!-- The Windows SDK version the Windows-only projects compile against (for Windows.Media.Ocr). -->
     <YippyWindowsTargetFramework>net8.0-windows10.0.19041.0</YippyWindowsTargetFramework>
     <!-- Run on a newer .NET when 8 isn't installed (dotnet run, dotnet test). Published builds carry their own runtime. -->

@@ -15,11 +15,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Yippy" id="1Xt-HY-uBw">
+                            <menuItem title="Cairn" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Yippy" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Cairn" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Yippy" id="5kV-Vb-QxS">
+                                        <menuItem title="About Cairn" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -33,7 +33,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Yippy" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Cairn" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -51,7 +51,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Yippy" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Cairn" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -664,7 +664,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Yippy Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Cairn Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -758,7 +758,7 @@
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RtE-1d-ash">
                                 <rect key="frame" x="148" y="260" width="50" height="18"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Yippy" id="4zx-Je-VkY">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Cairn" id="4zx-Je-VkY">
                                     <font key="font" size="15" name="RobotoMonoForPowerline-Medium"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -861,7 +861,7 @@
         <scene sceneID="XZJ-Zi-dMP">
             <objects>
                 <windowController storyboardIdentifier="WelcomeWindowController" id="d0e-wz-TU7" customClass="WelcomeWindowController" customModule="Yippy" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Yippy" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="9AG-lZ-Pxs">
+                    <window key="window" title="Cairn" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="9AG-lZ-Pxs">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>
@@ -988,11 +988,11 @@
                                     <constraint firstAttribute="width" constant="111" id="gC7-e8-lwS"/>
                                     <constraint firstAttribute="height" constant="111" id="uKr-B3-ptu"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="YippyIconColored" id="fDg-n1-Z9J"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppLogo" id="fDg-n1-Z9J"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NdS-xO-VUL">
                                 <rect key="frame" x="187" y="158" width="66" height="29"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Yippy" id="Z6b-cD-Bpq">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Cairn" id="Z6b-cD-Bpq">
                                     <font key="font" metaFont="system" size="25"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1021,11 +1021,9 @@
                                             <size key="maxSize" width="399" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
-                                                    <string key="content">Written and maintained by Matthew Davidson. Icons by David Waters.
+                                                    <string key="content">Made by Hamza Shewa. Based on Yippy by Matthew Davidson, open source under the MIT License.
 
-Source code available at: https://github.com/mattDavo/Yippy
-
-Website: https://yippy.mattdavo.com</string>
+Source code: https://github.com/Hamza-Shewa/Yippy</string>
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <font key="NSFont" metaFont="system"/>
@@ -1084,11 +1082,11 @@ Website: https://yippy.mattdavo.com</string>
                                     <constraint firstAttribute="width" constant="111" id="1i8-oJ-DGw"/>
                                     <constraint firstAttribute="height" constant="111" id="3jq-eG-JEO"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="YippyIconColored" id="bDP-tq-SYF"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppLogo" id="bDP-tq-SYF"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bn-y0-I1O">
                                 <rect key="frame" x="18" y="90" width="414" height="23"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Thank you for downloading Yippy!" id="J8m-Ct-kEv">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Thank you for downloading Cairn!" id="J8m-Ct-kEv">
                                     <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1096,7 +1094,7 @@ Website: https://yippy.mattdavo.com</string>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ili-Q1-k3U">
                                 <rect key="frame" x="18" y="50" width="414" height="32"/>
-                                <textFieldCell key="cell" alignment="center" title="For Yippy to be able to paste into your applications it requires you to provide it with full control to your computer." id="YWR-Ur-mdX">
+                                <textFieldCell key="cell" alignment="center" title="For Cairn to be able to paste into your applications it requires you to provide it with full control to your computer." id="YWR-Ur-mdX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1200,7 +1198,7 @@ Website: https://yippy.mattdavo.com</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="417" id="IoB-HR-7l5"/>
                                 </constraints>
-                                <textFieldCell key="cell" alignment="center" title="Yippy cannot be used until it is given full control." id="L7o-9q-Yhu">
+                                <textFieldCell key="cell" alignment="center" title="Cairn cannot be used until it is given full control." id="L7o-9q-Yhu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1222,7 +1220,7 @@ Website: https://yippy.mattdavo.com</string>
                                     <constraint firstAttribute="height" constant="111" id="UKA-nb-Sh5"/>
                                     <constraint firstAttribute="width" constant="111" id="VAB-zM-X2s"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="YippyIconColored" id="rNG-nu-umh"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppLogo" id="rNG-nu-umh"/>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -1253,7 +1251,7 @@ Website: https://yippy.mattdavo.com</string>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GQS-f3-cdi">
                                 <rect key="frame" x="188" y="300" width="192" height="29"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="How to use Yippy" id="tsE-FG-dCI">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="How to use Cairn" id="tsE-FG-dCI">
                                     <font key="font" metaFont="system" size="25"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1268,15 +1266,15 @@ Website: https://yippy.mattdavo.com</string>
                                 </constraints>
                                 <textFieldCell key="cell" alignment="center" id="wE9-ee-EOr">
                                     <font key="font" metaFont="system"/>
-                                    <string key="title">Yippy is a simple tool for clipboard/pasteboard history. Yippy is best used by taking advantage of its keyboard controls.
+                                    <string key="title">Cairn is a simple tool for clipboard/pasteboard history. Cairn is best used by taking advantage of its keyboard controls.
 
-To launch the Yippy clipboard history window simply use the keyboard shortcut: Command (⌘) + Shift + v.
+To launch the Cairn clipboard history window simply use the keyboard shortcut: Command (⌘) + Shift + v.
 
-The Yippy history window shows all the text items ever copied since Yippy has been running (in the background). The highlighted cell indicates that the item is selected and when return/enter is pressed, it will be saved as the current item to the clipboard and pasted into the current location of the cursor. Change the selected item either by clicking on another with the mouse or moving up and down with the arrow keys.
+The Cairn history window shows all the text items ever copied since Cairn has been running (in the background). The highlighted cell indicates that the item is selected and when return/enter is pressed, it will be saved as the current item to the clipboard and pasted into the current location of the cursor. Change the selected item either by clicking on another with the mouse or moving up and down with the arrow keys.
 
 To preview items in full, toggle the space bar and a large preview window will appear of the current selected item.
 
-The default position for the Yippy is to float on the right edge of the screen, however this can be customized in the menu bar by clicking on the Yippy icon in the status bar.</string>
+The default position for Cairn is to float on the right edge of the screen, however this can be customized in the menu bar by clicking on the Cairn icon in the status bar.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1287,7 +1285,7 @@ The default position for the Yippy is to float on the right edge of the screen, 
                                     <constraint firstAttribute="width" constant="111" id="u1Y-nk-C8u"/>
                                     <constraint firstAttribute="height" constant="111" id="z66-Ks-bh4"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="YippyIconColored" id="cSg-cu-ylB"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppLogo" id="cSg-cu-ylB"/>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -1520,6 +1518,6 @@ The default position for the Yippy is to float on the right edge of the screen, 
         </scene>
     </scenes>
     <resources>
-        <image name="YippyIconColored" width="1024" height="1024"/>
+        <image name="AppLogo" width="1024" height="1024"/>
     </resources>
 </document>

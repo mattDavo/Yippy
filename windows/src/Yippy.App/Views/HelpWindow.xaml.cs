@@ -11,7 +11,7 @@ public partial class HelpWindow : Window
         InitializeComponent();
         Shortcuts.ItemsSource = new[]
         {
-            new Shortcut("Open or close Yippy (change it in Settings)", toggleHotKey.ToString()),
+            new Shortcut("Open or close Cairn (change it in Settings)", toggleHotKey.ToString()),
             new Shortcut("Select an item", "Up", "Down", "Page Up", "Page Down"),
             new Shortcut("Paste the selected item (or double-click it)", "Enter"),
             new Shortcut("Paste it as plain text", "Shift+Enter"),

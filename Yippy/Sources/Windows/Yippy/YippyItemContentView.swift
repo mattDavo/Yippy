@@ -18,13 +18,9 @@ class YippyItemContentView: NSView {
         super.updateLayer()
         
         if usesDynamicBackgroundColor {
-            layer?.backgroundColor = NSColor(named: NSColor.Name("TextBackgroundColor"))?.cgColor
+            layer?.backgroundColor = DesignTokens.Color.cardBackground.cgColor
         }
         
-        if #available(OSX 10.14, *) {
-            layer?.borderColor = NSColor.controlAccentColor.cgColor
-        } else {
-            layer?.borderColor = NSColor.systemBlue.withAlphaComponent(0.7).cgColor
-        }
+        layer?.borderColor = DesignTokens.Color.accent.cgColor
     }
 }

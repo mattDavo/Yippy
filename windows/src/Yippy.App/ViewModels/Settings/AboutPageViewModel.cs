@@ -8,7 +8,7 @@ namespace Yippy.App.ViewModels.Settings;
 /// <summary>The version, and where to find help or report a problem.</summary>
 public sealed partial class AboutPageViewModel : SettingsPageViewModel
 {
-    public const string Website = "https://github.com/Hamza-Shewa/Yippy";
+    public const string Website = Brand.Repository;
 
     private readonly ILauncher launcher;
     private readonly IAppNavigation navigation;

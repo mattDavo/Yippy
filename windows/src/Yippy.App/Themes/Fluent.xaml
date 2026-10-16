@@ -1,7 +1,8 @@
 <!--
-    Yippy's design system: type, focus, buttons, toggles, inputs, menus and settings cards in the Windows 11 (Fluent)
-    style, with every colour taken from the theme dictionaries (Light.xaml, Dark.xaml) so both themes stay in step.
-    Styles keyed "Yippy.*" are applied explicitly; the unkeyed ones restyle every control of that type.
+    Cairn's components for Windows: type, focus, buttons, toggles, inputs, menus and settings cards, laid out like
+    Windows 11 (Fluent) but drawn with Cairn's tokens: colours from the theme dictionaries (Light.xaml, Dark.xaml) and
+    radii, spacing and type sizes from Tokens.xaml, all generated from brand/tokens.json (see brand/README.md).
+    Styles keyed "Yippy.*" (the code's internal name) are applied explicitly; the unkeyed ones restyle every control of that type.
 -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,33 +16,33 @@
 
     <Style x:Key="Yippy.TitleText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.DisplayFont}" />
-        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Title}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
     </Style>
 
     <Style x:Key="Yippy.SubtitleText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.DisplayFont}" />
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Subtitle}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
     </Style>
 
     <Style x:Key="Yippy.BodyStrongText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
     <Style x:Key="Yippy.BodyText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
     <Style x:Key="Yippy.CaptionText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Caption}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.SecondaryText}" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
@@ -59,7 +60,7 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Rectangle Margin="-3" RadiusX="6" RadiusY="6" StrokeThickness="2"
+                    <Rectangle Margin="-3" RadiusX="{StaticResource Yippy.RadiusValue.Card}" RadiusY="{StaticResource Yippy.RadiusValue.Card}" StrokeThickness="2"
                                Stroke="{DynamicResource Yippy.PrimaryText}" SnapsToDevicePixels="True" />
                 </ControlTemplate>
             </Setter.Value>
@@ -69,7 +70,7 @@
     <!-- Buttons -->
     <Style x:Key="Yippy.Button" TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="Background" Value="{DynamicResource Yippy.ControlFill}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Yippy.ControlBorder}" />
@@ -82,7 +83,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Chrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="1" CornerRadius="4" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"
                                           RecognizesAccessKey="True" />
                     </Border>
@@ -112,7 +113,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Chrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="1" CornerRadius="4" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"
                                           RecognizesAccessKey="True" />
                     </Border>
@@ -142,7 +143,7 @@
     <!-- A borderless button showing an icon glyph -->
     <Style x:Key="Yippy.IconButton" TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.IconFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.SecondaryText}" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="Cursor" Value="Hand" />
@@ -150,7 +151,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="Chrome" Background="Transparent" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                    <Border x:Name="Chrome" Background="Transparent" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -180,7 +181,7 @@
     <!-- A switch for settings that are on or off (a CheckBox underneath, so keyboards and screen readers know it) -->
     <Style x:Key="Yippy.ToggleSwitch" TargetType="CheckBox">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource Yippy.FocusVisual}" />
@@ -223,7 +224,7 @@
     <!-- Text boxes: a thin border with an accent underline while typing -->
     <Style x:Key="Yippy.TextBox" TargetType="TextBox">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="CaretBrush" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource Yippy.Accent}" />
@@ -235,9 +236,9 @@
                 <ControlTemplate TargetType="TextBox">
                     <Grid>
                         <Border x:Name="Field" Background="{DynamicResource Yippy.InputBackground}"
-                                BorderBrush="{DynamicResource Yippy.InputBorder}" BorderThickness="1" CornerRadius="4" />
+                                BorderBrush="{DynamicResource Yippy.InputBorder}" BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}" />
                         <Border x:Name="Underline" BorderBrush="{DynamicResource Yippy.Accent}" BorderThickness="0,0,0,2"
-                                CornerRadius="4" Visibility="Hidden" />
+                                CornerRadius="{StaticResource Yippy.Radius.Control}" Visibility="Hidden" />
                         <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" Padding="0"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="False" />
                     </Grid>
@@ -312,7 +313,7 @@
     <!-- Drop-down lists -->
     <Style TargetType="ComboBox">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="MinWidth" Value="160" />
@@ -328,7 +329,7 @@
                             <ToggleButton.Template>
                                 <ControlTemplate TargetType="ToggleButton">
                                     <Border x:Name="Chrome" Background="{DynamicResource Yippy.ControlFill}"
-                                            BorderBrush="{DynamicResource Yippy.ControlBorder}" BorderThickness="1" CornerRadius="4">
+                                            BorderBrush="{DynamicResource Yippy.ControlBorder}" BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}">
                                         <TextBlock Text="&#xE70D;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="10"
                                                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0"
                                                    Foreground="{DynamicResource Yippy.SecondaryText}" />
@@ -353,7 +354,7 @@
                                PopupAnimation="Fade" IsOpen="{TemplateBinding IsDropDownOpen}">
                             <Border MinWidth="{Binding ActualWidth, ElementName=Toggle}" MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                     Background="{DynamicResource Yippy.CardBackground}" BorderBrush="{DynamicResource Yippy.PanelBorder}"
-                                    BorderThickness="1" CornerRadius="6" Padding="4">
+                                    BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Card}" Padding="4">
                                 <ScrollViewer SnapsToDevicePixels="True">
                                     <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
                                 </ScrollViewer>
@@ -375,7 +376,7 @@
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Padding" Value="11,6" />
         <Setter Property="Margin" Value="0,1" />
         <Setter Property="Cursor" Value="Hand" />
@@ -385,7 +386,7 @@
 
     <ControlTemplate x:Key="Yippy.ListItemTemplate" TargetType="{x:Type ContentControl}">
         <Grid>
-            <Border x:Name="Chrome" Background="{TemplateBinding Background}" CornerRadius="4" />
+            <Border x:Name="Chrome" Background="{TemplateBinding Background}" CornerRadius="{StaticResource Yippy.Radius.Control}" />
             <Border x:Name="Pill" Width="3" Height="16" CornerRadius="1.5" HorizontalAlignment="Left"
                     Background="{DynamicResource Yippy.Accent}" Visibility="Collapsed" />
             <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -435,14 +436,14 @@
     <!-- Right-click menus -->
     <Style TargetType="ContextMenu">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Body}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="HasDropShadow" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContextMenu">
                     <Border Background="{DynamicResource Yippy.CardBackground}" BorderBrush="{DynamicResource Yippy.PanelBorder}"
-                            BorderThickness="1" CornerRadius="8" Padding="4">
+                            BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Overlay}" Padding="4">
                         <StackPanel IsItemsHost="True" Grid.IsSharedSizeScope="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
                     </Border>
                 </ControlTemplate>
@@ -465,7 +466,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuItem">
-                    <Border x:Name="Chrome" Background="Transparent" CornerRadius="4" Padding="10,6" Margin="0,1" MinWidth="200">
+                    <Border x:Name="Chrome" Background="Transparent" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="10,6" Margin="0,1" MinWidth="200">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="MenuIcon" />
@@ -475,7 +476,7 @@
                             </Grid.ColumnDefinitions>
                             <ContentPresenter x:Name="Icon" ContentSource="Icon" Width="16" Height="16" Margin="0,0,10,0" VerticalAlignment="Center" />
                             <ContentPresenter Grid.Column="1" ContentSource="Header" RecognizesAccessKey="True" VerticalAlignment="Center" />
-                            <TextBlock Grid.Column="2" Text="{TemplateBinding InputGestureText}" Margin="24,0,0,0" FontSize="12"
+                            <TextBlock Grid.Column="2" Text="{TemplateBinding InputGestureText}" Margin="24,0,0,0" FontSize="{StaticResource Yippy.FontSize.Caption}"
                                        VerticalAlignment="Center" Foreground="{DynamicResource Yippy.SecondaryText}" />
                             <TextBlock x:Name="Arrow" Grid.Column="3" Text="&#xE76C;" FontFamily="{StaticResource Yippy.IconFont}" FontSize="10"
                                        Margin="12,0,0,0" VerticalAlignment="Center" Visibility="Collapsed"
@@ -483,7 +484,7 @@
                             <Popup x:Name="PART_Popup" Placement="Right" HorizontalOffset="6" VerticalOffset="-5" AllowsTransparency="True"
                                    Focusable="False" PopupAnimation="Fade" IsOpen="{TemplateBinding IsSubmenuOpen}">
                                 <Border Background="{DynamicResource Yippy.CardBackground}" BorderBrush="{DynamicResource Yippy.PanelBorder}"
-                                        BorderThickness="1" CornerRadius="8" Padding="4">
+                                        BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Overlay}" Padding="4">
                                     <StackPanel IsItemsHost="True" Grid.IsSharedSizeScope="True"
                                                 KeyboardNavigation.DirectionalNavigation="Cycle" />
                                 </Border>
@@ -511,14 +512,14 @@
 
     <Style TargetType="ToolTip">
         <Setter Property="FontFamily" Value="{StaticResource Yippy.UIFont}" />
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontSize" Value="{StaticResource Yippy.FontSize.Caption}" />
         <Setter Property="Foreground" Value="{DynamicResource Yippy.PrimaryText}" />
         <Setter Property="HasDropShadow" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
                     <Border Background="{DynamicResource Yippy.CardBackground}" BorderBrush="{DynamicResource Yippy.PanelBorder}"
-                            BorderThickness="1" CornerRadius="4" Padding="8,5,8,6" MaxWidth="320">
+                            BorderThickness="1" CornerRadius="{StaticResource Yippy.Radius.Control}" Padding="8,5,8,6" MaxWidth="320">
                         <ContentPresenter>
                             <ContentPresenter.Resources>
                                 <Style TargetType="TextBlock">
@@ -544,7 +545,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
-                    <Border MinWidth="20" Padding="5,1,5,2" CornerRadius="4" BorderThickness="1,1,1,2"
+                    <Border MinWidth="20" Padding="5,1,5,2" CornerRadius="{StaticResource Yippy.Radius.Small}" BorderThickness="1,1,1,2"
                             Background="{DynamicResource Yippy.KeycapBackground}" BorderBrush="{DynamicResource Yippy.KeycapBorder}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
@@ -593,7 +594,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="presentation:SettingsCard">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"
-                            CornerRadius="6" Padding="{TemplateBinding Padding}" MinHeight="{TemplateBinding MinHeight}" SnapsToDevicePixels="True">
+                            CornerRadius="{StaticResource Yippy.Radius.Card}" Padding="{TemplateBinding Padding}" MinHeight="{TemplateBinding MinHeight}" SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -604,12 +605,12 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <TextBlock x:Name="Glyph" Text="{TemplateBinding Glyph}" FontFamily="{StaticResource Yippy.IconFont}" FontSize="20"
+                            <TextBlock x:Name="Glyph" Text="{TemplateBinding Glyph}" FontFamily="{StaticResource Yippy.IconFont}" FontSize="{StaticResource Yippy.FontSize.Subtitle}"
                                        Margin="2,0,18,0" VerticalAlignment="Center" Foreground="{DynamicResource Yippy.PrimaryText}" />
                             <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,24,0">
-                                <TextBlock Text="{TemplateBinding Header}" FontSize="14" TextWrapping="Wrap"
+                                <TextBlock Text="{TemplateBinding Header}" FontSize="{StaticResource Yippy.FontSize.Body}" TextWrapping="Wrap"
                                            Foreground="{DynamicResource Yippy.PrimaryText}" />
-                                <TextBlock x:Name="Description" Text="{TemplateBinding Description}" FontSize="12" Margin="0,2,0,0"
+                                <TextBlock x:Name="Description" Text="{TemplateBinding Description}" FontSize="{StaticResource Yippy.FontSize.Caption}" Margin="0,2,0,0"
                                            TextWrapping="Wrap" Foreground="{DynamicResource Yippy.SecondaryText}" />
                             </StackPanel>
                             <ContentPresenter x:Name="Control" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
@@ -643,7 +644,7 @@
         <Setter Property="Background" Value="{DynamicResource Yippy.CardSelected}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Yippy.CardBorder}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="CornerRadius" Value="{StaticResource Yippy.Radius.Card}" />
         <Setter Property="Padding" Value="16,10" />
         <Setter Property="Margin" Value="0,0,0,4" />
     </Style>

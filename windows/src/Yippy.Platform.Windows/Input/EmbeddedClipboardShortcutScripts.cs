@@ -5,8 +5,8 @@ using Yippy.UseCases.Abstractions;
 namespace Yippy.Platform.Windows.Input;
 
 /// <summary>
-/// <c>scripts/Use-YippyForWinV.ps1</c> and <c>scripts/Restore-WindowsWinV.ps1</c>, embedded in this assembly
-/// (see the project file) so Yippy.exe carries them wherever it goes.
+/// <c>scripts/Use-CairnForWinV.ps1</c> and <c>scripts/Restore-WindowsWinV.ps1</c>, embedded in this assembly
+/// (see the project file) so Cairn.exe carries them wherever it goes.
 /// </summary>
 public sealed class EmbeddedClipboardShortcutScripts : IClipboardShortcutScripts
 {
@@ -27,7 +27,7 @@ public sealed class EmbeddedClipboardShortcutScripts : IClipboardShortcutScripts
         foreach (var fileName in FileNames)
         {
             using var resource = Assembly.GetManifestResourceStream(ResourcePrefix + fileName)
-                ?? throw new InvalidOperationException($"The script {fileName} is missing from Yippy.");
+                ?? throw new InvalidOperationException($"The script {fileName} is missing from Cairn.");
             var path = Path.Combine(folder, fileName);
             using var file = File.Create(path);
             resource.CopyTo(file);

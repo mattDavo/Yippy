@@ -7,9 +7,9 @@
     <UseWPF>true</UseWPF>
     <!-- Only for the tray icon (NotifyIcon). -->
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyName>Yippy</AssemblyName>
+    <AssemblyName>Cairn</AssemblyName>
     <RootNamespace>Yippy.App</RootNamespace>
-    <ApplicationIcon>Assets\Yippy.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <!-- Program.Main, which handles the command line before WPF starts. -->
     <StartupObject>Yippy.App.Program</StartupObject>
@@ -23,7 +23,7 @@
     <Using Include="System.IO" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Yippy.ico" />
+    <Resource Include="Assets\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />

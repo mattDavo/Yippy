@@ -1,6 +1,6 @@
 namespace Yippy.Infrastructure.Hosting;
 
-/// <summary>What Yippy.exe was started to do.</summary>
+/// <summary>What Cairn.exe was started to do.</summary>
 public enum StartupAction
 {
     /// <summary>Run in the notification area (no arguments).</summary>
@@ -17,7 +17,7 @@ public enum StartupAction
 }
 
 /// <summary>
-/// Yippy.exe's command line. The commands are what the installer and uninstaller run, and what
+/// Cairn.exe's command line. The commands are what the installer and uninstaller run, and what
 /// <c>scripts/*.ps1</c> do without Yippy; anything else starts Yippy as usual.
 /// </summary>
 /// <param name="RestartsShell">

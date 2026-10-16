@@ -19,13 +19,16 @@ public sealed class ClipboardCaptureService
     private readonly ItemHistory history;
     private readonly SettingsService settings;
     private readonly IClock clock;
+    private readonly IHistoryActivity activity;
 
-    public ClipboardCaptureService(IClipboard clipboard, IClipboardMonitor monitor, ItemHistory history, SettingsService settings, IClock clock)
+    public ClipboardCaptureService(IClipboard clipboard, IClipboardMonitor monitor, ItemHistory history, SettingsService settings, IClock clock,
+        IHistoryActivity? activity = null)
     {
         this.clipboard = clipboard;
         this.history = history;
         this.settings = settings;
         this.clock = clock;
+        this.activity = activity ?? NoHistoryActivity.Instance;
         monitor.ClipboardChanged += (_, _) => Capture();
     }
 
@@ -79,10 +82,11 @@ public sealed class ClipboardCaptureService
             var id = history.Items[existing].Id;
             history.Move(existing, 0);
             history.UpdateMetadata(id, m => m with { CopiedAt = now, Source = snapshot.Source });
+            activity.Copied(history.Items[0]);
         }
         else
         {
-            history.Add(content, new ItemMetadata { CopiedAt = now, Source = snapshot.Source });
+            activity.Copied(history.Add(content, new ItemMetadata { CopiedAt = now, Source = snapshot.Source }));
         }
         Record(sequenceNumber);
     }

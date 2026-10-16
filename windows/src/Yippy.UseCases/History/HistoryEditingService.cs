@@ -15,13 +15,16 @@ public sealed class HistoryEditingService
 {
     private readonly IClipboard clipboard;
     private readonly ClipboardCaptureService capture;
+    private readonly IHistoryActivity activity;
 
-    public HistoryEditingService(ItemHistory clipboardHistory, ItemHistory favourites, IClipboard clipboard, ClipboardCaptureService capture)
+    public HistoryEditingService(ItemHistory clipboardHistory, ItemHistory favourites, IClipboard clipboard, ClipboardCaptureService capture,
+        IHistoryActivity? activity = null)
     {
         ClipboardHistory = clipboardHistory;
         Favourites = favourites;
         this.clipboard = clipboard;
         this.capture = capture;
+        this.activity = activity ?? NoHistoryActivity.Instance;
     }
 
     public ItemHistory ClipboardHistory { get; }
@@ -37,6 +40,8 @@ public sealed class HistoryEditingService
             return;
         }
         var wasOnClipboard = index == 0 && history.MovesPastedItemToTop && capture.IsClipboardUnchanged;
+        // Before deleting, while the item's content can still be read
+        activity.Deleted(history, new[] { item });
         history.Delete(item.Id);
         if (wasOnClipboard)
         {
@@ -48,6 +53,7 @@ public sealed class HistoryEditingService
     {
         var hadClipboard = history.MovesPastedItemToTop && history.Items.Count > 0 && capture.IsClipboardUnchanged;
         history.Clear();
+        activity.Cleared(history);
         if (hadClipboard)
         {
             capture.RecordOwnChange(clipboard.Clear());
@@ -81,7 +87,9 @@ public sealed class HistoryEditingService
         var index = Favourites.IndexOfContent(item.ContentHash);
         if (index >= 0)
         {
-            Favourites.Delete(Favourites.Items[index].Id);
+            var favourite = Favourites.Items[index];
+            activity.Deleted(Favourites, new[] { favourite });
+            Favourites.Delete(favourite.Id);
             return false;
         }
         if (item.ReadContent() is not { } content)
@@ -89,7 +97,7 @@ public sealed class HistoryEditingService
             return false;
         }
         // Keep where and when it was copied, and any text read from its image
-        Favourites.Add(content, item.Metadata);
+        activity.FavouriteChanged(Favourites.Add(content, item.Metadata));
         return true;
     }
 
@@ -98,6 +106,10 @@ public sealed class HistoryEditingService
     {
         var title = name.Trim();
         Favourites.UpdateMetadata(favourite.Id, m => m with { Title = title.Length == 0 ? null : title });
+        if (Favourites.IndexOf(favourite.Id) is var index and >= 0)
+        {
+            activity.FavouriteChanged(Favourites.Items[index]);
+        }
     }
 
     /// <summary>Replaces a favourite's content with plain text, without any styling it had.</summary>
@@ -107,6 +119,9 @@ public sealed class HistoryEditingService
         {
             return;
         }
-        Favourites.Replace(favourite.Id, ClipboardContent.FromText(text));
+        if (Favourites.Replace(favourite.Id, ClipboardContent.FromText(text)) is { } edited)
+        {
+            activity.FavouriteChanged(edited, replaced: favourite);
+        }
     }
 }

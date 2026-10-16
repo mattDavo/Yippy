@@ -7,6 +7,7 @@ public enum SettingsPage
     Shortcut,
     History,
     Privacy,
+    Sync,
     About,
 }
 

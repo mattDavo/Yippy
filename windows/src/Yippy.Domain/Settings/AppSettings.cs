@@ -42,6 +42,15 @@ public sealed record AppSettings
     /// <summary>Whether the text in copied images is read so search can find it.</summary>
     public bool RecognizesTextInImages { get; init; }
 
+    /// <summary>Whether copies and favourites are synced with the user's other devices. The sync key is kept separately.</summary>
+    public bool SyncEnabled { get; init; }
+
+    /// <summary>The sync server's address, e.g. <c>https://sync.example.com</c>.</summary>
+    public string? SyncServer { get; init; }
+
+    /// <summary>The sync server's access key, if it has one.</summary>
+    public string? SyncAccessKey { get; init; }
+
     public AutoCleanPolicy GetAutoCleanPolicy() => new(MaxItemAgeDays, ExpiringApps);
 
     public bool IsIgnored(AppIdentity? app) => app is not null && IgnoredApps.Contains(app);

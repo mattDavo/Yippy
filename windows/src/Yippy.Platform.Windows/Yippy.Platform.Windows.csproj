@@ -11,6 +11,10 @@
     <EmbeddedResource Include="..\..\scripts\*.ps1" LogicalName="Yippy.Scripts.%(Filename)%(Extension)" Link="Scripts\%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
+    <!-- DPAPI, to keep the sync key encrypted for the user (DpapiSyncKeyStore). -->
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Yippy.UseCases\Yippy.UseCases.csproj" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,33 @@
+# The sync server behind Caddy, which gets and renews an HTTPS certificate for SYNC_DOMAIN by itself.
+# Put the settings in a .env file next to this one (see .env.example), then: docker compose up -d --build
+services:
+  sync:
+    build: .
+    restart: unless-stopped
+    environment:
+      SYNC_ACCESS_KEY: ${SYNC_ACCESS_KEY:-}
+      SYNC_MAX_RECORD_MB: ${SYNC_MAX_RECORD_MB:-25}
+      SYNC_SPACE_QUOTA_MB: ${SYNC_SPACE_QUOTA_MB:-512}
+      SYNC_HISTORY_DAYS: ${SYNC_HISTORY_DAYS:-30}
+      SYNC_DELETION_DAYS: ${SYNC_DELETION_DAYS:-30}
+    volumes:
+      - sync-data:/data
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on: [sync]
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SYNC_DOMAIN: ${SYNC_DOMAIN:?Set SYNC_DOMAIN in .env to the server's domain name}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  sync-data:
+  caddy-data:
+  caddy-config:

@@ -34,6 +34,9 @@
         <DataTemplate DataType="{x:Type settings:PrivacyPageViewModel}">
             <pages:PrivacyPage />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type settings:SyncPageViewModel}">
+            <pages:SyncPage />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type settings:AboutPageViewModel}">
             <pages:AboutPage />
         </DataTemplate>

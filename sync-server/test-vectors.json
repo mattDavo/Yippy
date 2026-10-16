@@ -1,0 +1,36 @@
+{
+  "comment": "Known answers for sync-server/PROTOCOL.md. The Windows tests write this file; both apps' tests check it.",
+  "keyBytes": "030a11181f262d343b424950575e656c737a81888f969da4abb2b9c0c7ced5dc",
+  "key": "0C51-260Z-4RPK-8ET2-9585-EQK5-DHSQ-N0C8-HYB9-V95B-PAWW-1HYE-TQE0",
+  "spaceId": "5ab28d1aec1c800b53250d50c734acca",
+  "authToken": "DqeJrqP59Z9TErqMs_FKA6tzAFBh_RuZGRioQQlRCDQ",
+  "records": [
+    {
+      "comment": "formats are UTF-8 text here; in payloads they are base64",
+      "formats": {
+        "text": "hello"
+      },
+      "canonicalBytes": "040000000000000074657874050000000000000068656c6c6f",
+      "recordKey": "h/ndHYx-01OPyg3bT61nDWfw",
+      "copiedAt": 1760600000000,
+      "title": null,
+      "nonce": "000102030405060708090a0b",
+      "plaintext": "{\"v\":1,\"copiedAt\":1760600000000,\"formats\":{\"text\":\"aGVsbG8=\"}}",
+      "sealed": "AQABAgMEBQYHCAkKCxWX2cn8V1JHrn87gAbbsI1lyB/44u95x/avhnQmSRWaqLcBCnHD14IKJ3MVIg906XTYmfkS/DhyJyU3gAbXgNx47QxDT1UweGPueQAz0g=="
+    },
+    {
+      "comment": "formats are UTF-8 text here; in payloads they are base64",
+      "formats": {
+        "html": "<b>Grüße</b> \uD83D\uDC4B",
+        "text": "Grüße \uD83D\uDC4B"
+      },
+      "canonicalBytes": "040000000000000068746d6c13000000000000003c623e4772c3bcc39f653c2f623e20f09f918b0400000000000000746578740c000000000000004772c3bcc39f6520f09f918b",
+      "recordKey": "f/AZXy_ftbbHW2INhoiSFSrg",
+      "copiedAt": 1760600123456,
+      "title": "Greeting",
+      "nonce": "0c0d0e0f1011121314151617",
+      "plaintext": "{\"v\":1,\"copiedAt\":1760600123456,\"title\":\"Greeting\",\"formats\":{\"html\":\"PGI\\u002BR3LDvMOfZTwvYj4g8J\\u002BRiw==\",\"text\":\"R3LDvMOfZSDwn5GL\"}}",
+      "sealed": "AQwNDg8QERITFBUWF8MNxtsCG03bhG0gtdg5lJD36hJwf/a/UqmA246tZ4T7SRh4CVGrEtENkzpFKyKeUkbTDt09WuYA+ZqIgeS2hOnG1xehz34eDdB7FnH8p0qgHR737SkNSmTCzXe7+TbSBVhjft9AgEYWirrDT6e8fPQPe2Ry958TkpQQ6g8vb5KucM9/9fjlHS5Vvb/ONGn83bOgSCuhKQqZBQ=="
+    }
+  ]
+}

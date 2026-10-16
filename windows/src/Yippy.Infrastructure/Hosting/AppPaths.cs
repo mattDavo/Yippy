@@ -11,6 +11,11 @@ public sealed record AppPaths(string Root)
 
     public string Settings => Path.Combine(Root, "settings.json");
 
+    public string SyncState => Path.Combine(Root, "sync.json");
+
+    /// <summary>The sync key, encrypted for the current Windows user.</summary>
+    public string SyncKey => Path.Combine(Root, "sync-key.bin");
+
     /// <summary>Whether <see cref="DataDirectoryVariable"/> chose the folder, rather than the user's profile.</summary>
     public static bool IsOverridden => !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable(DataDirectoryVariable));
 

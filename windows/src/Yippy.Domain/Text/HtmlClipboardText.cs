@@ -4,9 +4,34 @@ using System.Text.RegularExpressions;
 
 namespace Yippy.Domain.Text;
 
-/// <summary>Reads the text of the Windows <c>HTML Format</c>, a header of byte offsets followed by the HTML.</summary>
+/// <summary>Reads and writes the Windows <c>HTML Format</c>, a header of byte offsets followed by the HTML.</summary>
 public static partial class HtmlClipboardText
 {
+    /// <summary>The copied HTML without the header: the fragment if the header marks one, else everything after the header.</summary>
+    public static string GetFragment(byte[] data)
+    {
+        var raw = Encoding.UTF8.GetString(data);
+        if (Fragment(raw, data) is { } fragment)
+        {
+            return fragment;
+        }
+        var start = Offset(raw, "StartHTML");
+        return start is { } s && s >= 0 && s <= data.Length ? Encoding.UTF8.GetString(data, s, data.Length - s).TrimEnd('\0') : raw.TrimEnd('\0');
+    }
+
+    /// <summary>Wraps an HTML fragment in the <c>HTML Format</c> header, as apps expect it on the clipboard.</summary>
+    public static byte[] Wrap(string fragment)
+    {
+        const string header = "Version:0.9\r\nStartHTML:{0:D10}\r\nEndHTML:{1:D10}\r\nStartFragment:{2:D10}\r\nEndFragment:{3:D10}\r\n";
+        const string before = "<html><body>\r\n<!--StartFragment-->";
+        const string after = "<!--EndFragment-->\r\n</body></html>";
+        var headerLength = string.Format(header, 0, 0, 0, 0).Length;
+        var startFragment = headerLength + Encoding.UTF8.GetByteCount(before);
+        var endFragment = startFragment + Encoding.UTF8.GetByteCount(fragment);
+        var endHtml = endFragment + Encoding.UTF8.GetByteCount(after);
+        return Encoding.UTF8.GetBytes(string.Format(header, headerLength, endHtml, startFragment, endFragment) + before + fragment + after);
+    }
+
     public static string ToPlainText(byte[] data)
     {
         var raw = Encoding.UTF8.GetString(data);

@@ -1,0 +1,9 @@
+{$SYNC_DOMAIN} {
+	encode gzip
+	reverse_proxy sync:8080 {
+		# Requests for changes wait up to a minute for one
+		transport http {
+			read_timeout 90s
+		}
+	}
+}

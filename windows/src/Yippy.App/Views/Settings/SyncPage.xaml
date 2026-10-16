@@ -1,0 +1,52 @@
+<UserControl x:Class="Yippy.App.Views.Settings.SyncPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:Yippy.App.ViewModels.Settings"
+             xmlns:presentation="clr-namespace:Yippy.App.Presentation"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=settings:SyncPageViewModel}">
+    <StackPanel>
+        <presentation:SettingsCard Glyph="&#xE895;" Header="Sync with your other devices" Description="{Binding StatusText}">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource Yippy.AccentButton}" Content="{Binding TurnOnText}" Command="{Binding TurnOnCommand}" />
+                <Button Style="{StaticResource Yippy.Button}" Content="Turn off" Margin="8,0,0,0" Command="{Binding TurnOffCommand}"
+                        Visibility="{Binding IsOn, Converter={StaticResource VisibleWhen}}" />
+            </StackPanel>
+        </presentation:SettingsCard>
+        <Border Style="{StaticResource Yippy.InfoBar}" Visibility="{Binding Message, Converter={StaticResource VisibleWhen}}">
+            <TextBlock Text="{Binding Message}" Style="{StaticResource Yippy.BodyText}" TextWrapping="Wrap" />
+        </Border>
+
+        <TextBlock Text="Server" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE968;" Header="Address" Description="Your sync server, e.g. https://sync.example.com.">
+            <TextBox Style="{StaticResource Yippy.TextBox}" Width="260" Text="{Binding ServerAddress, UpdateSourceTrigger=PropertyChanged}"
+                     AutomationProperties.Name="Sync server address" />
+        </presentation:SettingsCard>
+        <presentation:SettingsCard Glyph="&#xE8D7;" Header="Access key" Description="Only if the server was set up with one.">
+            <TextBox Style="{StaticResource Yippy.TextBox}" Width="260" Text="{Binding AccessKey, UpdateSourceTrigger=PropertyChanged}"
+                     AutomationProperties.Name="Sync server access key" />
+        </presentation:SettingsCard>
+
+        <TextBlock Text="Sync key" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE72E;" Header="Sync key" IsContentBelow="True"
+                                   Description="Enter the same key on every device. Everything is encrypted with it before it leaves this PC, so the server can't read it. Keep it private.">
+            <StackPanel>
+                <TextBox Style="{StaticResource Yippy.TextBox}" FontFamily="{StaticResource Yippy.MonoFont}"
+                         Text="{Binding SyncKey, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="Sync key" />
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Button Style="{StaticResource Yippy.Button}" Content="New key" Command="{Binding NewKeyCommand}" />
+                    <Button Style="{StaticResource Yippy.Button}" Content="Copy key" Margin="8,0,0,0" Command="{Binding CopyKeyCommand}"
+                            ToolTip="Copies the key without adding it to the history" />
+                </StackPanel>
+            </StackPanel>
+        </presentation:SettingsCard>
+
+        <TextBlock Text="Start over" Style="{StaticResource Yippy.SectionHeader}" />
+        <presentation:SettingsCard Glyph="&#xE74D;" Header="Erase synced data"
+                                   Description="Deletes what this key stored on the server and turns sync off. Items on your devices stay.">
+            <Button Style="{StaticResource Yippy.DangerButton}" Content="Erase…" Command="{Binding EraseServerDataCommand}" />
+        </presentation:SettingsCard>
+    </StackPanel>
+</UserControl>

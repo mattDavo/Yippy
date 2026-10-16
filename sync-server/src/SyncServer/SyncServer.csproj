@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- The sync relay: stores the apps' encrypted records and hands out changes. See PROTOCOL.md. -->
+  <PropertyGroup>
+    <RootNamespace>SyncServer</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SyncServer.Tests" />
+  </ItemGroup>
+</Project>

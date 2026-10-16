@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         checkBuildFlags()
         checkLaunchArgs()
         Controller.main = Controller(state: State.main, settings: Settings.main)
+        startSync()
         
         showWelcomeIfNeeded()
 
@@ -69,6 +70,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Bring the window to front
         NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    func startSync() {
+        #if !XCTEST
+        // Tests never sync, nor touch the keychain
+        if #available(macOS 10.15, *) {
+            SyncCoordinator.start(state: State.main)
+        }
+        #endif
     }
     
     func setupHotKey() {

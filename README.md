@@ -16,6 +16,9 @@ Releases are on the [releases page](https://github.com/Hamza-Shewa/Yippy/release
 
 Cairn was called Yippy before macOS 3.0 and Windows 2.0. The new versions move your history, favourites and settings over on their first launch.
 
+## Sync
+Cairn can sync its history and favourites between your Macs and PCs through a small server you host yourself (Settings > Sync). Everything is encrypted on the device with a sync key the server never sees. How to run the server is in [`sync-server/`](sync-server/README.md).
+
 ## Identity and design system
 Cairn's name, logo, colours, type and spacing live in [`brand/`](brand/README.md). `brand/tokens.json` is the single source for both apps; `brand/generate.py` turns it into the Windows theme dictionaries, the macOS named colours and Swift constants, and every icon.
 

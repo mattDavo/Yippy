@@ -26,7 +26,10 @@ struct Settings: Codable, DefaultStorable {
         ignoredAppBundleIds: [String],
         maxItemAgeDays: Int,
         expiringAppBundleIds: [String],
-        recognizesTextInImages: Bool
+        recognizesTextInImages: Bool,
+        syncEnabled: Bool,
+        syncServer: String,
+        syncAccessKey: String
     ) {
         self.panelPosition = panelPosition
         self.pasteboardChangeCount = pasteboardChangeCount
@@ -38,6 +41,9 @@ struct Settings: Codable, DefaultStorable {
         self.maxItemAgeDays = maxItemAgeDays
         self.expiringAppBundleIds = expiringAppBundleIds
         self.recognizesTextInImages = recognizesTextInImages
+        self.syncEnabled = syncEnabled
+        self.syncServer = syncServer
+        self.syncAccessKey = syncAccessKey
     }
     
     init(from decoder: Decoder) throws {
@@ -53,6 +59,9 @@ struct Settings: Codable, DefaultStorable {
         self.maxItemAgeDays = try container.decodeIfPresent(Int.self, forKey: .maxItemAgeDays) ?? Self.default.maxItemAgeDays
         self.expiringAppBundleIds = try container.decodeIfPresent([String].self, forKey: .expiringAppBundleIds) ?? Self.default.expiringAppBundleIds
         self.recognizesTextInImages = try container.decodeIfPresent(Bool.self, forKey: .recognizesTextInImages) ?? Self.default.recognizesTextInImages
+        self.syncEnabled = try container.decodeIfPresent(Bool.self, forKey: .syncEnabled) ?? Self.default.syncEnabled
+        self.syncServer = try container.decodeIfPresent(String.self, forKey: .syncServer) ?? Self.default.syncServer
+        self.syncAccessKey = try container.decodeIfPresent(String.self, forKey: .syncAccessKey) ?? Self.default.syncAccessKey
     }
     
     static var main: Settings! {
@@ -80,7 +89,10 @@ struct Settings: Codable, DefaultStorable {
         ignoredAppBundleIds: [],
         maxItemAgeDays: 0,
         expiringAppBundleIds: [],
-        recognizesTextInImages: false
+        recognizesTextInImages: false,
+        syncEnabled: false,
+        syncServer: "",
+        syncAccessKey: ""
     )
     
     // MARK: - Settings
@@ -108,6 +120,15 @@ struct Settings: Codable, DefaultStorable {
     
     /// Whether the text in copied images is read so search can find it (see `TextRecognizer`).
     var recognizesTextInImages: Bool
+    
+    /// Whether the history and favourites sync with other devices (see `SyncCoordinator`). The sync key is in the keychain.
+    var syncEnabled: Bool
+    
+    /// The sync server's address.
+    var syncServer: String
+    
+    /// The key the sync server asks for, if it was set up with one. Empty if not.
+    var syncAccessKey: String
     
     
     // MARK: - State Binding Methods

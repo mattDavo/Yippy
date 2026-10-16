@@ -10,6 +10,21 @@
 		B96C69CBC81653A54A0886AC /* LegacyMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2572C47B96C69CBC81653A5 /* LegacyMigration.swift */; };
 		1E6F2AF2076F12F0793342AB /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A49241E6F2AF2076F12F0 /* DesignTokens.swift */; };
 		A31063D737B2C2672E56A107 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD678314A31063D737B2C267 /* Brand.swift */; };
+		124FB68F9DA6F565C9A7A900 /* HistoryActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F57F061A37C98924D638D1 /* HistoryActivity.swift */; };
+		0629AD219E9F94152AA41CF9 /* SyncKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92CE3E344D4DE18660F0ED /* SyncKey.swift */; };
+		01A34F02DE14F8185389F827 /* SyncRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93E33408837CDA5F510FFC /* SyncRecord.swift */; };
+		67DD2D458680FA4DD0CD8111 /* SyncServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956DD53557D6A074C45C9341 /* SyncServer.swift */; };
+		F8F53B62F2A45FE768F497C9 /* SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF866D69C5CC798F9F76D7 /* SyncState.swift */; };
+		776EAEAC709376EF551146BC /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1FCE505F2E0F56AC5F7AE /* SyncEngine.swift */; };
+		8B620D5887D3CEA30766642D /* SyncPasteboardMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25667919AB144366EBAF8F /* SyncPasteboardMapper.swift */; };
+		156E8B6509EE9AD35AD83249 /* HistorySyncList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7218B1412964199F9464B45 /* HistorySyncList.swift */; };
+		03EA5FD22804058FFC0BE68F /* KeychainSyncKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D98979601F1A7AF352CEC /* KeychainSyncKeyStore.swift */; };
+		F3E50948CA7A410F539F7501 /* SyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944B2C46D222FF9CD7AAC99 /* SyncCoordinator.swift */; };
+		21A65AD0BA9953F92C7DF73C /* SyncSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C89CEDA6A696145FEE5AD4 /* SyncSettingsViewController.swift */; };
+		15B656DDED3389A8495DAA5F /* SyncFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0B5A1B9449B4E99C73B137 /* SyncFakes.swift */; };
+		FDF2FC5876378D7F433D7699 /* SyncCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5046B5124880C8AE42FCEF /* SyncCoreTests.swift */; };
+		E6C4B19A38ADFD20D13F0E65 /* SyncEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B3509DAAF6FDA74683E639 /* SyncEngineTests.swift */; };
+		505906A2790344B3136445F8 /* HistorySyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E041421FA20BCDE893B37CA0 /* HistorySyncTests.swift */; };
 		21E7F595A4B7F55FB6B40EBC /* UpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A7D0F52E9E82E00F5D3D85 /* UpdaterTests.swift */; };
 		00F81FCA80247BE7C52F4AB8 /* FavouritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586B6138840C59985660F030 /* FavouritesTests.swift */; };
 		34010D2A234AB3F100C1218D /* YippyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34010D29234AB3F100C1218D /* YippyWindow.swift */; };
@@ -184,6 +199,21 @@
 		B2572C47B96C69CBC81653A5 /* LegacyMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMigration.swift; sourceTree = "<group>"; };
 		C65A49241E6F2AF2076F12F0 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
 		AD678314A31063D737B2C267 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		24F57F061A37C98924D638D1 /* HistoryActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryActivity.swift; sourceTree = "<group>"; };
+		3F92CE3E344D4DE18660F0ED /* SyncKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncKey.swift; sourceTree = "<group>"; };
+		DD93E33408837CDA5F510FFC /* SyncRecord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncRecord.swift; sourceTree = "<group>"; };
+		956DD53557D6A074C45C9341 /* SyncServer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncServer.swift; sourceTree = "<group>"; };
+		C1AF866D69C5CC798F9F76D7 /* SyncState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncState.swift; sourceTree = "<group>"; };
+		5AA1FCE505F2E0F56AC5F7AE /* SyncEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		BE25667919AB144366EBAF8F /* SyncPasteboardMapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncPasteboardMapper.swift; sourceTree = "<group>"; };
+		B7218B1412964199F9464B45 /* HistorySyncList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistorySyncList.swift; sourceTree = "<group>"; };
+		962D98979601F1A7AF352CEC /* KeychainSyncKeyStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeychainSyncKeyStore.swift; sourceTree = "<group>"; };
+		7944B2C46D222FF9CD7AAC99 /* SyncCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncCoordinator.swift; sourceTree = "<group>"; };
+		08C89CEDA6A696145FEE5AD4 /* SyncSettingsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncSettingsViewController.swift; sourceTree = "<group>"; };
+		5F0B5A1B9449B4E99C73B137 /* SyncFakes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncFakes.swift; sourceTree = "<group>"; };
+		1E5046B5124880C8AE42FCEF /* SyncCoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncCoreTests.swift; sourceTree = "<group>"; };
+		03B3509DAAF6FDA74683E639 /* SyncEngineTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SyncEngineTests.swift; sourceTree = "<group>"; };
+		E041421FA20BCDE893B37CA0 /* HistorySyncTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistorySyncTests.swift; sourceTree = "<group>"; };
 		04546907DC383E069F30ADBE /* Pods-YippyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YippyUITests.debug.xcconfig"; path = "Target Support Files/Pods-YippyUITests/Pods-YippyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		06717A6CF5535260A83784EF /* Pods_YippyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YippyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F65BC0B62CDD1741868EDB5 /* HistoryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryTests.swift; sourceTree = "<group>"; };
@@ -383,6 +413,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D495465896205E29E99E8E84 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				3F92CE3E344D4DE18660F0ED /* SyncKey.swift */,
+				DD93E33408837CDA5F510FFC /* SyncRecord.swift */,
+				956DD53557D6A074C45C9341 /* SyncServer.swift */,
+				C1AF866D69C5CC798F9F76D7 /* SyncState.swift */,
+				5AA1FCE505F2E0F56AC5F7AE /* SyncEngine.swift */,
+				BE25667919AB144366EBAF8F /* SyncPasteboardMapper.swift */,
+				B7218B1412964199F9464B45 /* HistorySyncList.swift */,
+				962D98979601F1A7AF352CEC /* KeychainSyncKeyStore.swift */,
+				7944B2C46D222FF9CD7AAC99 /* SyncCoordinator.swift */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
+		2BB89757B11A51FF42717D11 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				5F0B5A1B9449B4E99C73B137 /* SyncFakes.swift */,
+				1E5046B5124880C8AE42FCEF /* SyncCoreTests.swift */,
+				03B3509DAAF6FDA74683E639 /* SyncEngineTests.swift */,
+				E041421FA20BCDE893B37CA0 /* HistorySyncTests.swift */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
 		2F6C79B4B534D194417375B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +573,7 @@
 				34417676240863930076BEDA /* SettingsWindowController.swift */,
 				AD43B4E33629AB762388875D /* IgnoredAppsSettingsViewController.swift */,
 				C08CFEA05A8196167D6EBE28 /* HistorySettingsViewController.swift */,
+				08C89CEDA6A696145FEE5AD4 /* SyncSettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -673,6 +731,7 @@
 				348D525E2387667D0024A5C7 /* YippyHotKey */,
 				341FFEE82442EDA500C47E6D /* HistoryItemText.swift */,
 				7989D48FDBF446F358D44D87 /* Updater.swift */,
+				D495465896205E29E99E8E84 /* Sync */,
 				97E35BADFF2422A4570649BE /* TextRecognizer.swift */,
 				7043513AB8A89CFAC80C871E /* TextTransform.swift */,
 			);
@@ -725,6 +784,7 @@
 				34CA01FD235D3AE700EB067C /* DataFileManager.swift */,
 				DD4C98CD972B9E8B30B9BB22 /* History+Favourites.swift */,
 				392D23D5A1A80B5582F57DB6 /* AutoClean.swift */,
+				24F57F061A37C98924D638D1 /* HistoryActivity.swift */,
 				F662D5929B23E4D1FF47F098 /* HistoryItemMetadata.swift */,
 			);
 			path = History;
@@ -781,6 +841,7 @@
 				463049263873C1BC37CA7667 /* YippyHistoryTests.swift */,
 				B2A8DB3BDAC8F66AEB466DCA /* SearchEngineTests.swift */,
 				586B6138840C59985660F030 /* FavouritesTests.swift */,
+				2BB89757B11A51FF42717D11 /* Sync */,
 			);
 			path = YippyTests;
 			sourceTree = "<group>";
@@ -1201,6 +1262,17 @@
 				34B5C42C23580CC6005247EB /* WarningLogger.swift in Sources */,
 				3488B14022FAE8F30019E7DA /* Constants.swift in Sources */,
 				3989D3C26413F9024C186FCC /* Updater.swift in Sources */,
+				124FB68F9DA6F565C9A7A900 /* HistoryActivity.swift in Sources */,
+				0629AD219E9F94152AA41CF9 /* SyncKey.swift in Sources */,
+				01A34F02DE14F8185389F827 /* SyncRecord.swift in Sources */,
+				67DD2D458680FA4DD0CD8111 /* SyncServer.swift in Sources */,
+				F8F53B62F2A45FE768F497C9 /* SyncState.swift in Sources */,
+				776EAEAC709376EF551146BC /* SyncEngine.swift in Sources */,
+				8B620D5887D3CEA30766642D /* SyncPasteboardMapper.swift in Sources */,
+				156E8B6509EE9AD35AD83249 /* HistorySyncList.swift in Sources */,
+				03EA5FD22804058FFC0BE68F /* KeychainSyncKeyStore.swift in Sources */,
+				F3E50948CA7A410F539F7501 /* SyncCoordinator.swift in Sources */,
+				21A65AD0BA9953F92C7DF73C /* SyncSettingsViewController.swift in Sources */,
 				3CF699DE9CAEC3DDC992C044 /* History+Favourites.swift in Sources */,
 				5ECB69F201C8F92C82C18B17 /* IgnoredAppsSettingsViewController.swift in Sources */,
 				01CF5D29CC1F8C045A2D2D84 /* HistorySettingsViewController.swift in Sources */,
@@ -1238,6 +1310,10 @@
 				97B8D3E776DEB8A0201AA128 /* YippyHistoryTests.swift in Sources */,
 				6EDCDE70EDD293235425F0EF /* SearchEngineTests.swift in Sources */,
 				00F81FCA80247BE7C52F4AB8 /* FavouritesTests.swift in Sources */,
+				15B656DDED3389A8495DAA5F /* SyncFakes.swift in Sources */,
+				FDF2FC5876378D7F433D7699 /* SyncCoreTests.swift in Sources */,
+				E6C4B19A38ADFD20D13F0E65 /* SyncEngineTests.swift in Sources */,
+				505906A2790344B3136445F8 /* HistorySyncTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1430,6 +1506,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_framework",
+					CryptoKit,
+				);
 				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.Cairn;
 				PRODUCT_MODULE_NAME = Yippy;
@@ -1457,6 +1538,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_framework",
+					CryptoKit,
+				);
 				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.Cairn;
 				PRODUCT_MODULE_NAME = Yippy;
@@ -1632,6 +1718,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_framework",
+					CryptoKit,
+				);
 				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnBeta;
 				PRODUCT_MODULE_NAME = Yippy;
@@ -1758,6 +1849,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_framework",
+					CryptoKit,
+				);
 				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnBeta;
 				PRODUCT_MODULE_NAME = Yippy;
@@ -1891,6 +1987,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_framework",
+					CryptoKit,
+				);
 				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hamzashewa.CairnXCTest;
 				PRODUCT_MODULE_NAME = Yippy;

@@ -204,7 +204,7 @@ class Controller {
     }
     
     @objc func clearHistoryClicked() {
-        state.history.clear()
+        state.history.clearByUser()
     }
     
     @objc func showHelpWindow() {

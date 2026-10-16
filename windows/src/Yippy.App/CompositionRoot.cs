@@ -9,11 +9,13 @@ using Yippy.Infrastructure.Hosting;
 using Yippy.Infrastructure.Logging;
 using Yippy.Infrastructure.Settings;
 using Yippy.Infrastructure.Storage;
+using Yippy.Infrastructure.Sync;
 using Yippy.Platform.Windows.Apps;
 using Yippy.Platform.Windows.Clipboard;
 using Yippy.Platform.Windows.Input;
 using Yippy.Platform.Windows.Native;
 using Yippy.Platform.Windows.Ocr;
+using Yippy.Platform.Windows.Sync;
 using Yippy.UseCases.Abstractions;
 using Yippy.UseCases.Caching;
 using Yippy.UseCases.Capture;
@@ -24,6 +26,7 @@ using Yippy.UseCases.Paste;
 using Yippy.UseCases.Recognition;
 using Yippy.UseCases.Search;
 using Yippy.UseCases.Settings;
+using Yippy.UseCases.Sync;
 
 namespace Yippy.App;
 
@@ -43,7 +46,7 @@ public static class CompositionRoot
     {
         var services = new ServiceCollection();
         AddInfrastructure(services, paths);
-        AddPlatform(services);
+        AddPlatform(services, paths);
         AddUseCases(services);
         AddPresentation(services, quit);
         AddSettings(services, paths);
@@ -60,9 +63,11 @@ public static class CompositionRoot
             (s, _) => new FileHistoryRepository(paths.History, s.GetRequiredService<IAppLogger>()));
         services.AddKeyedSingleton<FileHistoryRepository>(Favourites,
             (s, _) => new FileHistoryRepository(paths.Favourites, s.GetRequiredService<IAppLogger>()));
+        services.AddSingleton<ISyncStateRepository>(s => new JsonSyncStateRepository(paths.SyncState, s.GetRequiredService<IAppLogger>()));
+        services.AddSingleton<ISyncServerFactory, HttpSyncServerFactory>();
     }
 
-    private static void AddPlatform(IServiceCollection services)
+    private static void AddPlatform(IServiceCollection services, AppPaths paths)
     {
         services.AddSingleton<MessageWindow>();
         services.AddSingleton<ForegroundWindowTracker>();
@@ -75,6 +80,8 @@ public static class CompositionRoot
         services.AddSingleton<IAppInfoProvider, WindowsAppInfoProvider>();
         services.AddSingleton<IShellClipboardShortcut>(s => new ExplorerClipboardShortcut(s.GetRequiredService<IAppLogger>()));
         services.AddSingleton<IClipboardShortcutScripts, EmbeddedClipboardShortcutScripts>();
+        services.AddSingleton<IImageCodec, WpfImageCodec>();
+        services.AddSingleton<ISyncKeyStore>(s => new DpapiSyncKeyStore(paths.SyncKey, s.GetRequiredService<IAppLogger>()));
         services.AddSingleton<IStartupRegistration>(s => new RegistryStartupRegistration(App.InstanceName, s.GetRequiredService<IAppLogger>()));
     }
 
@@ -94,17 +101,30 @@ public static class CompositionRoot
             var repository = s.GetRequiredKeyedService<FileHistoryRepository>(key);
             return new ItemHistory(repository, new CachingItemDataSource(repository), int.MaxValue, movesPastedItemToTop: false);
         });
+        // Sync hears what the user does to the histories (IHistoryActivity) and applies other devices' changes to them
+        services.AddSingleton(s => new SyncService(
+            s.GetRequiredKeyedService<ItemHistory>(Clipboard),
+            s.GetRequiredKeyedService<ItemHistory>(Favourites),
+            s.GetRequiredService<SettingsService>(),
+            s.GetRequiredService<ISyncKeyStore>(),
+            s.GetRequiredService<ISyncStateRepository>(),
+            s.GetRequiredService<ISyncServerFactory>(),
+            new SyncFormatMapper(s.GetRequiredService<IImageCodec>()),
+            s.GetRequiredService<IClock>(),
+            s.GetRequiredService<IAppLogger>()));
         services.AddSingleton(s => new ClipboardCaptureService(
             s.GetRequiredService<IClipboard>(),
             s.GetRequiredService<IClipboardMonitor>(),
             s.GetRequiredKeyedService<ItemHistory>(Clipboard),
             s.GetRequiredService<SettingsService>(),
-            s.GetRequiredService<IClock>()));
+            s.GetRequiredService<IClock>(),
+            s.GetRequiredService<SyncService>()));
         services.AddSingleton(s => new HistoryEditingService(
             s.GetRequiredKeyedService<ItemHistory>(Clipboard),
             s.GetRequiredKeyedService<ItemHistory>(Favourites),
             s.GetRequiredService<IClipboard>(),
-            s.GetRequiredService<ClipboardCaptureService>()));
+            s.GetRequiredService<ClipboardCaptureService>(),
+            s.GetRequiredService<SyncService>()));
         services.AddSingleton(s => new AutoCleanService(
             s.GetRequiredKeyedService<ItemHistory>(Clipboard),
             s.GetRequiredService<IClipboard>(),
@@ -162,6 +182,7 @@ public static class CompositionRoot
             s.GetRequiredService<ILauncher>(),
             AppList(s, settings => settings.IgnoredApps, (settings, apps) => settings with { IgnoredApps = apps }),
             paths.Root));
+        services.AddSingleton<SyncPageViewModel>();
         services.AddSingleton<AboutPageViewModel>();
         services.AddSingleton<SettingsViewModel>();
     }

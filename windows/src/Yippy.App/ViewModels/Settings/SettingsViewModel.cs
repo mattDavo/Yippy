@@ -11,10 +11,11 @@ public sealed partial class SettingsViewModel : ObservableObject
         ShortcutPageViewModel shortcut,
         HistoryPageViewModel history,
         PrivacyPageViewModel privacy,
+        SyncPageViewModel sync,
         AboutPageViewModel about)
     {
         Shortcut = shortcut;
-        Pages = new SettingsPageViewModel[] { general, shortcut, history, privacy, about };
+        Pages = new SettingsPageViewModel[] { general, shortcut, history, privacy, sync, about };
         selectedPage = general;
     }
 

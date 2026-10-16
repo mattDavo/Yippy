@@ -335,9 +335,7 @@ class YippyViewController: NSViewController {
         guard let title = runEditAlert(message: "Rename Favourite", informativeText: "The name is shown under the item and found by search.", accessoryView: field, firstResponder: field) else {
             return
         }
-        let history = State.main.favourites!
-        let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        history.updateMetadata(ofItemWithId: item.fsId) { $0.title = name.isEmpty ? nil : name }
+        State.main.favourites.renameFavourite(withId: item.fsId, to: title)
     }
     
     /// Lets the favourite's text be edited. The edited favourite is plain text, without any styling it had.
@@ -361,11 +359,10 @@ class YippyViewController: NSViewController {
         guard let newText = runEditAlert(message: "Edit Favourite", informativeText: "Saving keeps the text only, without any styling.", accessoryView: scrollView, firstResponder: textView, result: { textView.string }) else {
             return
         }
-        let history = State.main.favourites!
-        guard newText != text, !newText.isEmpty, let i = history.items.firstIndex(where: { $0.fsId == item.fsId }), let data = newText.data(using: .utf8) else {
+        guard newText != text, !newText.isEmpty else {
             return
         }
-        history.replaceItem(at: i, withData: [.string: data])
+        State.main.favourites.editFavourite(withId: item.fsId, text: newText)
     }
     
     /// Closes the panel and shows an alert with Save and Cancel buttons around `accessoryView`.

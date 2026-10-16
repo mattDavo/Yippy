@@ -11,6 +11,8 @@ It is a separate .NET 8 / WPF app that ports the macOS app's features:
 - Source app and time on each item, ignored apps, apps whose copies expire, and deleting items after a number of days.
 - Paste as plain text (Shift+Enter) or transformed (trim, case, remove link tracking, pretty-print JSON).
 - Panel at any screen edge, centred or full screen, following the screen the mouse is on, in light or dark theme.
+- Sync with your Macs and other PCs through your own server (Settings › Sync), end-to-end encrypted; see
+  [`sync-server/`](../sync-server/README.md).
 - Copies marked as private by password managers (`ExcludeClipboardContentFromMonitorProcessing`,
   `CanIncludeInClipboardHistory = 0`) are never saved.
 
@@ -113,4 +115,9 @@ The UI uses Cairn's design system ([`brand/`](../brand/README.md)) laid out like
 `brand/tokens.json` by `brand/generate.py`, as is `Assets/AppIcon.ico`; `Fluent.xaml` holds the type ramp and control
 styles every window uses, including the
 keycaps (`KeyHint`) and settings cards (`SettingsCard`) in `Presentation/`. Settings has a page per area (General,
-Shortcut, History, Privacy, About), each with its own view model in `ViewModels/Settings`.
+Shortcut, History, Privacy, Sync, About), each with its own view model in `ViewModels/Settings`.
+
+Sync lives in `Yippy.Domain/Sync` (the sync key, record ids and encryption from
+[`sync-server/PROTOCOL.md`](../sync-server/PROTOCOL.md)), `Yippy.UseCases/Sync` (`SyncService`, which hears what the user
+does through `IHistoryActivity`, queues changes in `sync.json` and long-polls the server), `Yippy.Infrastructure/Sync`
+(the HTTP client) and `Yippy.Platform.Windows/Sync` (the key, kept in `sync-key.bin` encrypted with DPAPI).

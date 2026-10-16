@@ -36,6 +36,18 @@ class SettingsTabViewController: NSTabViewController {
             history.image = NSImage(named: NSImage.refreshTemplateName)
         }
         addTabViewItem(history)
+        
+        if #available(macOS 10.15, *), let coordinator = SyncCoordinator.main {
+            let sync = NSTabViewItem(viewController: SyncSettingsViewController(sync: coordinator))
+            sync.label = "Sync"
+            if #available(macOS 11.0, *) {
+                sync.image = NSImage(systemSymbolName: "arrow.triangle.2.circlepath", accessibilityDescription: "Sync")
+            }
+            else {
+                sync.image = NSImage(named: NSImage.refreshTemplateName)
+            }
+            addTabViewItem(sync)
+        }
     }
     
     override func viewWillAppear() {

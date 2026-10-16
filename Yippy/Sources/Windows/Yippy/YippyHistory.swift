@@ -105,7 +105,7 @@ class YippyHistory {
             return nil
         }
         
-        history.deleteItem(at: index)
+        history.deleteItemByUser(at: index)
         if index == 0 && movesPastedItemToTop {
             // If we want to remove this, then we may have to change the `HistoryItem` writingOptions() to not `.promised`, because if something is pasted from history, then deleted, it can no longer satisfy the promise.
             // Only the clipboard history has its top item on the pasteboard. The favourites' order doesn't follow the pasteboard, so removing the first favourite must not wipe whatever was copied.

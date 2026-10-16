@@ -1,0 +1,36 @@
+# For an nginx on the host itself (not in Docker): proxies the sync domain to the container's local port.
+# Copy to /etc/nginx/sites-available/, set server_name and the certificate paths, link it into sites-enabled,
+# then: nginx -t && systemctl reload nginx
+# With nginx-proxy or Nginx Proxy Manager in Docker you don't need this file; see README.md.
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name sync.example.com;
+
+    # A Cloudflare origin certificate, or Let's Encrypt's (certbot --nginx -d sync.example.com)
+    ssl_certificate     /etc/ssl/cloudflare/sync.example.com.pem;
+    ssl_certificate_key /etc/ssl/cloudflare/sync.example.com.key;
+
+    # One synced item can be a large image (SYNC_MAX_RECORD_MB, 25 by default); nginx's default is 1 MB.
+    client_max_body_size 30m;
+
+    location / {
+        proxy_pass http://127.0.0.1:18090;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        # Devices wait up to a minute for each other's changes (long polling): don't time out or buffer them.
+        proxy_read_timeout 90s;
+        proxy_buffering off;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name sync.example.com;
+    return 301 https://$host$request_uri;
+}

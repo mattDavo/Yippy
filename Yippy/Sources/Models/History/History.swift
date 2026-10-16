@@ -48,6 +48,11 @@ class History {
         _maxItems.asObservable()
     }
     
+    /// The current item limit.
+    var maxItemCount: Int {
+        return _maxItems.value
+    }
+    
     enum Change {
         case initial
         case insert(index: Int)
@@ -69,6 +74,9 @@ class History {
     
     /// Copies made while one of these apps is frontmost are not saved.
     var ignoredBundleIds = Set<String>()
+    
+    /// Hears what the user does to this history, e.g. sync.
+    weak var activity: HistoryActivity?
     /// If a pasteboard item's types contains any of these, it will not be saved.
     private let pasteboardTypeDenylist: Set = [
         "org.nspasteboard.TransientType",
@@ -126,6 +134,18 @@ class History {
         subscribers.forEach({$0(_items, Change.delete(deletedItem: removed))})
         historyFM.deleteItem(newHistory: _items, deleted: removed)
         saveMetadata()
+    }
+    
+    /// Deletes the item because the user asked to, telling `activity` first.
+    func deleteItemByUser(at i: Int) {
+        activity?.history(self, willDelete: [_items[i]])
+        deleteItem(at: i)
+    }
+    
+    /// Clears the history because the user asked to, then tells `activity`.
+    func clearByUser() {
+        clear()
+        activity?.historyDidClear(self)
     }
     
     func clear() {
@@ -331,11 +351,13 @@ extension History: PasteboardMonitorDelegate {
                         $0.copiedAt = Date()
                         $0.sourceBundleId = originBundleId
                     }
+                    activity?.history(self, didCopy: _items[0])
                 }
                 else {
                     let historyItem = HistoryItem(unsavedData: data, cache: cache, metadata: HistoryItemMetadata(sourceBundleId: originBundleId, copiedAt: Date()))
                     fingerprints[historyItem.fsId] = Self.fingerprint(of: data)
                     insertItem(historyItem, at: 0)
+                    activity?.history(self, didCopy: historyItem)
                 }
             }
         }

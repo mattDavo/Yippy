@@ -73,6 +73,11 @@ struct Constants {
         static var warningLog: URL {
             return yippyAppSupport.appendingPathComponent("warning.log", isDirectory: false)
         }
+        
+        /// What sync remembers between runs (see `FileSyncStateStore`).
+        static var syncState: URL {
+            return yippyAppSupport.appendingPathComponent("sync.json", isDirectory: false)
+        }
     }
     
     struct logging {

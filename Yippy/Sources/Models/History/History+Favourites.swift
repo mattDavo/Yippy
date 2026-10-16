@@ -61,15 +61,36 @@ extension History {
     @discardableResult
     func toggleFavourite(_ item: HistoryItem) -> Bool {
         if let i = indexOfItem(withSameContentAs: item) {
-            deleteItem(at: i)
+            deleteItemByUser(at: i)
             return false
         }
         guard let data = item.allDataIfComplete() else {
             return false
         }
         // Keep where and when it was copied, and any text read from its image
-        insertItem(HistoryItem(unsavedData: data, cache: cache, metadata: item.metadata), at: 0)
+        let favourite = HistoryItem(unsavedData: data, cache: cache, metadata: item.metadata)
+        insertItem(favourite, at: 0)
+        activity?.history(self, didChangeFavourite: favourite)
         return true
+    }
+    
+    /// Names the favourite with this id. An empty name removes it.
+    func renameFavourite(withId id: UUID, to name: String) {
+        let name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        updateMetadata(ofItemWithId: id) { $0.title = name.isEmpty ? nil : name }
+        if let item = items.first(where: { $0.fsId == id }) {
+            activity?.history(self, didChangeFavourite: item)
+        }
+    }
+    
+    /// Replaces the favourite with this id by plain text, keeping its place and name.
+    func editFavourite(withId id: UUID, text: String) {
+        guard let i = items.firstIndex(where: { $0.fsId == id }), let data = text.data(using: .utf8) else {
+            return
+        }
+        activity?.history(self, willDelete: [items[i]])
+        replaceItem(at: i, withData: [.string: data])
+        activity?.history(self, didChangeFavourite: items[i])
     }
 }
 

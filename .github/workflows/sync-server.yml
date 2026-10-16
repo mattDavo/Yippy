@@ -1,0 +1,36 @@
+name: Sync server
+
+# Tests the sync server (sync-server/) and checks its Docker image builds.
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'sync-server/**'
+      - '.github/workflows/sync-server.yml'
+  pull_request:
+    paths:
+      - 'sync-server/**'
+      - '.github/workflows/sync-server.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Test
+        working-directory: sync-server
+        run: dotnet test SyncServer.sln
+
+      - name: Build the Docker image
+        working-directory: sync-server
+        run: docker build -t sync-server .

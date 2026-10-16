@@ -8,7 +8,7 @@ Cairn (formerly Yippy, a fork of Matthew Davidson's MIT-licensed app) is a macOS
 
 Only what users see is named Cairn. The code keeps Yippy as its internal name: the Xcode project, targets, schemes, the Swift module (`PRODUCT_MODULE_NAME = Yippy`, so storyboards and `@testable import Yippy` work), Swift types, the .NET solution, projects and namespaces, and the `Yippy.*` XAML resource keys. User-facing strings use `Brand` (`Yippy/Sources/Constants/Brand.swift`, `windows/src/Yippy.App/Brand.cs`). Keep Matthew Davidson's copyright line in `LICENSE` and the credit in the About screens and `THIRD_PARTY_NOTICES.md`.
 
-The `windows/` folder holds a separate Windows port (C#, .NET 8, WPF); see "Windows app" at the end.
+The `windows/` folder holds a separate Windows port (C#, .NET 8, WPF); see "Windows app" at the end. `sync-server/` is the self-hosted server both apps sync through; see "Sync server".
 
 ## Build, run, test
 
@@ -77,6 +77,13 @@ Keyboard handling has two separate systems:
 ### Search
 `SearchEngine` runs on a serial background queue: a case-insensitive subsequence match over each item's plain text, cached per item id (items without plain text never match). Each `search` or `cancel` bumps a generation counter, so a superseded search stops early and its results are never delivered; `completion` runs on the main queue with the matching `HistoryItem`s (not indices).
 
+### Sync
+Sync sends the history and favourites to the user's other Macs and PCs through `sync-server/` (see "Sync server" below), end-to-end encrypted. The code is in `Models/Sync`:
+- Platform-independent core (Foundation + CryptoKit, all `@available(macOS 10.15, *)`): `SyncKey` (the key and what HKDF derives from it), `SyncRecord` (formats, record ids, AES-GCM sealing), `SyncServer` (`HTTPSyncServer`), `SyncState` (the queue and cursor, saved in `sync.json` in the app-support directory) and `SyncEngine` (`@MainActor`; sees each history through the `SyncList` protocol). The engine's tests (`YippyTests/Sync`) need no AppKit, so they also build as a Swift package on Linux with swift-crypto (`#if canImport(CryptoKit)` picks the library).
+- AppKit side: `HistorySyncList` (adapter from `History`), `SyncPasteboardMapper` (`.string`/`.rtf`/`.html`/`.png`; TIFF is sent as PNG; copied files aren't synced), `KeychainSyncKeyStore`, and `SyncCoordinator`, which `AppDelegate` starts (not in `XCTEST` builds) and the Sync settings tab (`SyncSettingsViewController`, only on 10.15+) talks to. `Settings.syncEnabled/syncServer/syncAccessKey` are saved by the coordinator, not bound to relays.
+- Only what the user does is synced. `History` reports it to its `activity` (`HistoryActivity`): copies from `pasteboardDidChange`, `deleteItemByUser`, `clearByUser`, and favourite toggles, renames and edits (`History+Favourites`). Trimming to the limit, auto-clean and changes applied from other devices go through the plain `deleteItem`/`insertItem`/`clear`, so they're never sent back. A new user action must use or add a reporting method, not call the plain one.
+- CryptoKit is weak-linked (`-weak_framework CryptoKit` in the Yippy target's `OTHER_LDFLAGS`) for the 10.13 deployment target. `Info.plist` allows plain HTTP to local-network servers (`NSAllowsLocalNetworking`).
+
 ### Automatic updates
 `Updater` wraps Sparkle's `SPUStandardUpdaterController`. It only starts, and `Controller` only adds the "Check for Updates..." menu item, when `Info.plist` has an `https` `SUFeedURL` and a non-empty `SUPublicEDKey`. Both ship empty, so updates are off until the appcast URL and signing key are supplied; the `XCTEST` build never starts it. The release steps are in the README ("Automatic updates").
 
@@ -109,4 +116,14 @@ dotnet test Yippy.sln   # xUnit, runs on any OS
 - The `.ps1` scripts are embedded in `Yippy.Platform.Windows` (`EmbeddedClipboardShortcutScripts`) for Settings > Shortcut > Save scripts; edit them in `windows/scripts/` only.
 - `windows/installer/Cairn.iss` is the Inno Setup installer: per user (no admin), Start menu, optional sign-in and Win+V tasks, uninstall restores Win+V and asks before deleting `%APPDATA%\Cairn`. It keeps Yippy's AppId so it updates a Yippy 1.x install (removing `Yippy.exe` and its sign-in entry). Keep its `InstanceMutex` in step with `App.InstanceName`. `Program.Main` runs `Shell/LegacyMigration` first, which closes a running Yippy and moves `%APPDATA%\Yippy` and its sign-in entry over once.
 - UI: `Themes/Light.xaml`/`Dark.xaml` are colour tokens and `Themes/Tokens.xaml` radii, spacing and type sizes (all generated from `brand/tokens.json`), `Themes/Fluent.xaml` the fonts, text styles and control styles; use those keys (`Yippy.*`) rather than literal values. Settings is one window with a page view model per area in `ViewModels/Settings` (navigate with `IAppNavigation.ShowSettings(SettingsPage)`); page views are in `Views/Settings`.
+- Sync (`Domain/Sync`, `UseCases/Sync`, `Infrastructure/Sync`, `Platform.Windows/Sync`, Settings > Sync) follows the same protocol and rules as the Mac's `SyncEngine`; `SyncService` implements `IHistoryActivity`, which `ClipboardCaptureService` and `HistoryEditingService` call for user actions only. The key is in `sync-key.bin` (DPAPI), the queue in `sync.json`.
 - `.github/workflows/windows.yml` builds, tests and publishes `Cairn.exe` on `windows-latest`, builds the installer with Inno Setup (from the `tools.innosetup` NuGet package), and installs, exercises and uninstalls it. On `master` it also creates a `windows-vX.Y.Z` GitHub release (not marked Latest) with the setup, the portable exe and the scripts, whose version comes from `<Version>` in `windows/Directory.Build.props` or the next patch after the latest `windows-v` tag. `release.yml` (macOS, `v` tags) ignores `windows/**`.
+
+## Sync server
+`sync-server/` is the relay both apps sync through: an ASP.NET Core minimal API (.NET 8) over SQLite, deployed with Docker Compose: `docker-compose.prod.yml` + `deploy.sh` behind the VPS's existing reverse proxy (the external `web-proxy` network, like the personal assistant), or `docker-compose.yml` with its own Caddy. Its README has the steps, the Cloudflare and nginx settings, and the environment variables. `PROTOCOL.md` is the contract all three implement; change it first. Layers: `Domain` <- `Application` (`SyncService`, the `ISyncStore` port) <- `Infrastructure` (`SqliteSyncStore`, `RetentionWorker`) and `Api` (endpoints). `.github/workflows/sync-server.yml` tests it and builds the image.
+
+```sh
+cd sync-server && dotnet test SyncServer.sln
+```
+
+`test-vectors.json` is shared by the Windows tests (which write it with `SYNC_WRITE_TEST_VECTORS=1`) and the Mac's `SyncCoreTests` (which find it relative to their source file, or at `SYNC_TEST_VECTORS`), so every implementation agrees on keys, ids and encryption.

@@ -10,6 +10,7 @@ using Yippy.UseCases.Cleaning;
 using Yippy.UseCases.HotKeys;
 using Yippy.UseCases.Recognition;
 using Yippy.UseCases.Settings;
+using Yippy.UseCases.Sync;
 
 namespace Yippy.App;
 
@@ -115,6 +116,8 @@ public partial class App : System.Windows.Application
             // Pick up anything copied while Yippy wasn't running
             capture.Capture();
         }
+
+        provider.GetRequiredService<SyncService>().Start();
 
         var clean = provider.GetRequiredService<AutoCleanService>();
         clean.Clean();

@@ -1,0 +1,56 @@
+# The sync server behind the VPS's existing reverse proxy, the same way the personal assistant is deployed:
+# the container joins the external `web-proxy` network, and the proxy routes SYNC_DOMAIN to it on port 8080
+# (nginx-proxy reads VIRTUAL_HOST/LETSENCRYPT_HOST; in Nginx Proxy Manager add the host by hand, see README).
+# It also listens on 127.0.0.1:${SYNC_HOST_PORT} so deploy.sh can check it from the host.
+#
+#   docker network create web-proxy   # once, if the proxy hasn't made it
+#   cp .env.example .env && chmod 600 .env
+#   sh deploy.sh
+#
+# docker-compose.yml is the alternative for a server with no reverse proxy (it brings its own Caddy).
+
+# Rotate logs so a chatty container can't fill the disk (the defaults keep them forever).
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  sync:
+    build: .
+    image: cairn-sync-server:production
+    container_name: cairn_sync
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      VIRTUAL_HOST: ${SYNC_DOMAIN:?Set SYNC_DOMAIN in .env to the server's domain name}
+      LETSENCRYPT_HOST: ${SYNC_DOMAIN}
+      VIRTUAL_PORT: 8080
+      SYNC_ACCESS_KEY: ${SYNC_ACCESS_KEY:-}
+      SYNC_MAX_RECORD_MB: ${SYNC_MAX_RECORD_MB:-25}
+      SYNC_SPACE_QUOTA_MB: ${SYNC_SPACE_QUOTA_MB:-512}
+      SYNC_HISTORY_DAYS: ${SYNC_HISTORY_DAYS:-30}
+      SYNC_DELETION_DAYS: ${SYNC_DELETION_DAYS:-30}
+    expose:
+      - "8080"
+    ports:
+      - "127.0.0.1:${SYNC_HOST_PORT:-18090}:8080"
+    volumes:
+      - sync_data:/data
+    networks:
+      - web-proxy
+    # A small API over SQLite; the cap only stops a runaway from taking the assistant's memory.
+    mem_limit: 512m
+    pids_limit: 256
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  web-proxy:
+    external: true
+
+volumes:
+  sync_data:
